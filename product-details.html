@@ -242,7 +242,7 @@
                             <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
                                 <span class="-mt-2">20 Beads</span>
                             </button>
-                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border border-[#8E5936]/30 hover:border-[#8E5936]/60 text-[#8E5936] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
+                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border border-[#8E5936]/30 bg-[#8E5936]/20 hover:bg-[#8E5936]/30 text-[#8E5936] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
                                 <span class="-mt-2">27 Beads</span>
                             </button>
                         </div>
@@ -447,7 +447,7 @@
                 <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 sharp-edge">S</div>
+                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 shape-heart">S</div>
                             <div>
                                 <h4 class="font-bold text-[#8E5936]">Sara</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★★</div>
@@ -462,7 +462,7 @@
                 <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936]/80 text-white flex items-center justify-center font-bold mr-3 sharp-edge">MT</div>
+                            <div class="w-10 h-10 bg-[#8E5936]/80 text-white flex items-center justify-center font-bold mr-3 shape-heart">MT</div>
                             <div>
                                 <h4 class="font-bold text-[#8E5936]">Mike T.</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★☆</div>
@@ -477,7 +477,7 @@
                 <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 sharp-edge">P</div>
+                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 shape-heart">P</div>
                             <div>
                                 <h4 class="font-bold text-[#8E5936]">praba</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★★</div>
@@ -608,12 +608,18 @@
                 buttons.forEach(btn => btn.classList.remove('selected-heart'));
                 button.classList.add('selected-heart');
             } else if (type === 'beads') {
+                if (button.classList.contains('bg-[#8E5936]')) {
+                    // Already selected, so unpick
+                    button.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
+                    button.classList.add('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
+                    return;
+                }
                 buttons.forEach(btn => {
-                    btn.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]');
-                    btn.classList.add('bg-[#8E5936]/10', 'text-[#8E5936]', 'hover:bg-[#8E5936]/20');
+                    btn.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
+                    btn.classList.add('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
                 });
-                button.classList.remove('bg-[#8E5936]/10', 'text-[#8E5936]', 'hover:bg-[#8E5936]/20');
-                button.classList.add('bg-[#8E5936]', 'text-[#FFF2E2]');
+                button.classList.remove('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
+                button.classList.add('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
             } else {
                 buttons.forEach(btn => {
                     btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]`;
