@@ -72,18 +72,7 @@
             text-shadow: 0 1px 2px rgba(0,0,0,.5);
         }
 
-        /* ── Floating particles ── */
-        .particle {
-            position: absolute; border-radius: 50%; pointer-events: none;
-            background: radial-gradient(circle, rgba(142,89,54,.45), transparent);
-            animation: float-p linear infinite;
-        }
-        @keyframes float-p {
-            0%   { transform: translateY(110%) scale(0); opacity: 0; }
-            10%  { opacity: .8; }
-            90%  { opacity: .4; }
-            100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
-        }
+        /* ── Floating particles removed as requested ── */
 
         /* ── Countdown timer ── */
         .timer-box {
@@ -232,8 +221,7 @@
 
     <!-- Hero Header with Particles -->
     <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero" style="background: linear-gradient(135deg, #FFF2E2 0%, #f5e0c8 50%, #FFF2E2 100%);">
-        <!-- Floating Particles -->
-        <div id="particles-container" class="absolute inset-0 z-0 overflow-hidden pointer-events-none"></div>
+        <!-- Header Background -->
 
         <div class="relative z-10 px-4">
             <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 mb-4 block" data-aos="fade-down" data-aos-delay="100">Auspicious Bundles</span>
@@ -536,20 +524,6 @@
         }
         setInterval(updateTimer, 1000);
         updateTimer();
-
-        // Floating particles
-        function createParticles() {
-            const c = document.getElementById('particles-container');
-            if (!c) return;
-            for (let i = 0; i < 20; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
-                const sz = Math.random() * 18 + 6;
-                p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*8}s;`;
-                c.appendChild(p);
-            }
-        }
-        createParticles();
 
         // Bundle builder
         const selectedItems = [];

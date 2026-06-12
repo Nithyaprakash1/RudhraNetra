@@ -52,9 +52,15 @@
         <main class="max-w-5xl mx-auto px-6 py-12">
             <h1 class="text-4xl mb-8 border-b border-[#8E5936]/20 pb-4">Your Sacred Cart</h1>
             
-            <div id="cartEmptyMessage" class="hidden text-center py-20">
-                <p class="text-xl text-[#8E5936]/60 mb-6">Your cart is currently empty.</p>
-                <a href="product.html" class="px-8 py-3 bg-[#8E5936] text-[#FFF2E2] sharp-edge hover:bg-[#5c3a23] transition inline-block text-sm uppercase tracking-widest font-semibold">Explore Products</a>
+            <div id="cartEmptyMessage" class="hidden text-center py-20" data-aos="fade-up">
+                <div class="inline-flex justify-center items-center w-24 h-24 rounded-full bg-[#8E5936]/10 text-[#8E5936] mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl text-[#8E5936] mb-4">Your Cart is Empty</h2>
+                <p class="text-base text-[#8E5936]/70 mb-8 max-w-md mx-auto">It looks like you haven't added any sacred items yet. Explore our collection of consecrated Karungali artifacts.</p>
+                <a href="index.html#store" class="px-8 py-3 bg-[#8E5936] text-[#FFF2E2] rounded-full hover:bg-[#5c3a23] transition inline-block text-sm uppercase tracking-widest font-semibold shadow-lg">Start Journey</a>
             </div>
 
             <div id="cartContent" class="hidden flex flex-col md:flex-row gap-12">
