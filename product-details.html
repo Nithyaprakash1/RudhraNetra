@@ -59,6 +59,31 @@
             100% { transform: translateY(0px); }
         }
 
+        .shape-heart {
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            border-radius: 0;
+        }
+
+        .floating-heart-anim {
+            position: fixed;
+            pointer-events: none;
+            font-size: 24px;
+            color: #8E5936;
+            animation: floatUpHeart 1.5s ease-out forwards;
+            z-index: 9999;
+        }
+        @keyframes floatUpHeart {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+
         /* ── Heart Button ── */
         .heart-btn {
             width: 52px;
@@ -214,11 +239,11 @@
                     <div class="mb-6">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Beads</label>
                         <div class="flex space-x-3">
-                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-6 py-3 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-sm font-semibold tracking-wide uppercase sharp-edge focus:outline-none transition">
-                                20 Beads
+                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
+                                <span class="-mt-2">20 Beads</span>
                             </button>
-                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-6 py-3 border border-[#8E5936]/30 hover:border-[#8E5936]/60 text-[#8E5936] text-sm font-semibold tracking-wide uppercase sharp-edge focus:outline-none transition">
-                                27 Beads
+                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border border-[#8E5936]/30 hover:border-[#8E5936]/60 text-[#8E5936] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
+                                <span class="-mt-2">27 Beads</span>
                             </button>
                         </div>
                     </div>
@@ -248,7 +273,7 @@
 
                 <!-- Action CTA Buttons (Full width sharp edges) -->
                 <div class="space-y-4">
-                    <button class="shining-button w-full py-4 bg-[#8E5936] text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase hover:bg-[#5c3a23] transition shadow-lg sharp-edge">
+                    <button onclick="showHeartAnimation(event)" class="shining-button w-full py-4 bg-[#8E5936] text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase hover:bg-[#5c3a23] transition shadow-lg sharp-edge">
                         Buy Now
                     </button>
                     <button class="w-full py-4 bg-transparent border-2 border-[#8E5936] text-[#8E5936] hover:bg-[#8E5936] hover:text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
@@ -582,6 +607,13 @@
             if (type === 'size') {
                 buttons.forEach(btn => btn.classList.remove('selected-heart'));
                 button.classList.add('selected-heart');
+            } else if (type === 'beads') {
+                buttons.forEach(btn => {
+                    btn.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]');
+                    btn.classList.add('bg-[#8E5936]/10', 'text-[#8E5936]', 'hover:bg-[#8E5936]/20');
+                });
+                button.classList.remove('bg-[#8E5936]/10', 'text-[#8E5936]', 'hover:bg-[#8E5936]/20');
+                button.classList.add('bg-[#8E5936]', 'text-[#FFF2E2]');
             } else {
                 buttons.forEach(btn => {
                     btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]`;
@@ -601,6 +633,18 @@
             if (current < 1) current = 1;
             
             input.value = current;
+        }
+
+        function showHeartAnimation(e) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '🤎'; // Karungali styled heart
+            heart.className = 'floating-heart-anim';
+            heart.style.left = (e.clientX - 10) + 'px';
+            heart.style.top = (e.clientY - 20) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 1500);
         }
     </script>
 </body>
