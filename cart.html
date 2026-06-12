@@ -112,7 +112,18 @@
 
         // Cart Logic
         function loadCart() {
-            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
+            let cart = JSON.parse(localStorage.getItem('rudraCart'));
+            
+            // Auto-populate cart with demo content if empty
+            if (!cart || cart.length === 0) {
+                cart = [
+                    { name: 'Karungali Malai (108 Beads)', price: 1200, quantity: 1, image: 'https://placehold.co/100x100/8E5936/FFF2E2?text=Malai' },
+                    { name: 'Karungali Bracelet', price: 450, quantity: 2, image: 'https://placehold.co/100x100/8E5936/FFF2E2?text=Bracelet' },
+                    { name: 'Ganesha Deity Idol', price: 1800, quantity: 1, image: 'https://placehold.co/100x100/8E5936/FFF2E2?text=Ganesha' }
+                ];
+                localStorage.setItem('rudraCart', JSON.stringify(cart));
+            }
+
             const cartContent = document.getElementById('cartContent');
             const cartEmptyMessage = document.getElementById('cartEmptyMessage');
             const cartItemsList = document.getElementById('cartItemsList');
