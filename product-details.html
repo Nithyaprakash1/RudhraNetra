@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karungali Bracelet with Rudraksha | Rudra Nethra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFF2E2;
+            color: #8E5936;
+        }
+        h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
+        
+        .navbar-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-nav {
+            background: rgba(255, 242, 226, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(142, 89, 54, 0.2);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 9999px;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFF2E2; }
+        ::-webkit-scrollbar-thumb { background: #8E5936; border-radius: 4px; }
+
+        /* SHARP OUTER EDGES ONLY */
+        .sharp-edge {
+            border-radius: 0px !important;
+        }
+
+        /* Shining Button Animation */
+        .shining-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .shining-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 242, 226, 0.6), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* Product Drawer */
+        .product-drawer {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .group:hover .product-drawer {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 transition-all duration-500" id="nav-container">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#8E5936]">RUDRA NETHRA</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
+                <a href="index.html" class="hover:text-[#5c3a23]">Home</a>
+                <div class="relative group">
+                    <a href="products.html" class="hover:text-[#5c3a23] cursor-pointer">Products</a>
+                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF2E2] shadow-2xl rounded-2xl w-[600px] border border-[#8E5936]/10">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
+                                <span class="text-xs font-semibold text-[#8E5936]">Mala Beads</span>
+                            </a>
+                            <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
+                                <span class="text-xs font-semibold text-[#8E5936]">Bracelets</span>
+                            </a>
+                             <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
+                                <span class="text-xs font-semibold text-[#8E5936]">Deity Idols</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a href="combo.html" class="hover:text-[#5c3a23]">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#5c3a23]">About</a>
+                <a href="contact.html" class="hover:text-[#5c3a23]">Contact</a>
+            </div>
+            <div class="flex items-center space-x-6">
+                 <!-- Cart Icon -->
+                 <a href="#" class="text-[#8E5936] hover:text-[#5c3a23] transition relative" aria-label="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
+                    </svg>
+                    <span class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                 </a>
+                <button class="shining-button px-6 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-sm hover:bg-[#5c3a23] transition font-medium">Shop Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper for Parallax Effect -->
+    <div class="relative z-20 bg-[#FFF2E2] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
+
+    <!-- Main Product Detail Panel Container -->
+    <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <!-- Left Side: Interactive Image Gallery (5 Columns) -->
+            <div class="lg:col-span-6" data-aos="fade-right">
+                <!-- Large Display with Real-time pulse views counter -->
+                <div class="relative bg-white/40 border border-[#8E5936]/10 p-4 shadow-xl sharp-edge mb-4">
+                    <img id="mainProductImg" src="https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+with+Rudraksha" class="w-full h-auto object-cover rounded-md" alt="Karungali Bracelet with Rudraksha">
+                    
+                    <!-- Dynamic Pulse Views Badge -->
+                    <div class="absolute top-8 left-8 flex items-center bg-[#1E110A] text-[#FFF2E2] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider sharp-edge shadow-lg">
+                        <span class="relative flex h-2 w-2 mr-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        <span>500+ views</span>
+                    </div>
+                </div>
+
+                <!-- Small Galleries Thumbnails -->
+                <div class="grid grid-cols-4 gap-4">
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+with+Rudraksha')" class="border-2 border-[#8E5936] p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Beads+View" class="w-full h-20 object-cover" alt="Beads view">
+                    </button>
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/5C3A23/FFF2E2?text=Bracelet+Angle+2')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/5C3A23/FFF2E2?text=Angle+2" class="w-full h-20 object-cover" alt="Angle 2">
+                    </button>
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+Aura')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Aura+Shot" class="w-full h-20 object-cover" alt="Aura Shot">
+                    </button>
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/5C3A23/FFF2E2?text=Detailed+Beads')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/5C3A23/FFF2E2?text=Detail+Zoom" class="w-full h-20 object-cover" alt="Detail zoom">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Details, Selectors, and CTA (6 Columns) -->
+            <div class="lg:col-span-6 flex flex-col justify-between" data-aos="fade-left">
+                <div>
+                    <!-- Breadcrumbs & Category -->
+                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-[#8E5936] mb-3 leading-tight">Karungali Bracelet with Rudraksha</h1>
+                    <p class="text-base text-[#8E5936]/80 italic mb-6">Combining Karungali and Rudraksha for protection and positivity.</p>
+                    
+                    <!-- Pricing Structure -->
+                    <div class="flex items-center space-x-4 mb-8">
+                        <span class="text-4xl font-black text-[#8E5936]">₹599</span>
+                        <span class="text-lg line-through opacity-50">₹699</span>
+                        <span class="bg-[#8E5936] text-[#FFF2E2] px-3 py-1 font-bold text-xs uppercase tracking-widest sharp-edge">12% OFF</span>
+                    </div>
+
+                    <!-- Options 1: Select Beads count (Segmented controllers with sharp edges) -->
+                    <div class="mb-6">
+                        <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Beads</label>
+                        <div class="flex space-x-3">
+                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-6 py-3 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-sm font-semibold tracking-wide uppercase sharp-edge focus:outline-none transition">
+                                20 Beads
+                            </button>
+                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-6 py-3 border border-[#8E5936]/30 hover:border-[#8E5936]/60 text-[#8E5936] text-sm font-semibold tracking-wide uppercase sharp-edge focus:outline-none transition">
+                                27 Beads
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Options 2: Select Bead Size -->
+                    <div class="mb-8">
+                        <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Size</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn px-5 py-2.5 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition">6mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]">7mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]">8mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]">10mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]">12mm</button>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Control -->
+                    <div class="mb-8">
+                        <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Quantity</label>
+                        <div class="inline-flex items-center border border-[#8E5936]/30 bg-white/40 sharp-edge">
+                            <button onclick="adjustQuantity(-1)" class="px-4 py-2 text-lg font-bold text-[#8E5936] hover:bg-[#8E5936]/10 focus:outline-none">-</button>
+                            <input type="text" id="quantityVal" value="1" readonly class="w-12 text-center bg-transparent text-[#8E5936] font-bold text-sm focus:outline-none">
+                            <button onclick="adjustQuantity(1)" class="px-4 py-2 text-lg font-bold text-[#8E5936] hover:bg-[#8E5936]/10 focus:outline-none">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action CTA Buttons (Full width sharp edges) -->
+                <div class="space-y-4">
+                    <button class="shining-button w-full py-4 bg-[#8E5936] text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase hover:bg-[#5c3a23] transition shadow-lg sharp-edge">
+                        Buy Now
+                    </button>
+                    <button class="w-full py-4 bg-transparent border-2 border-[#8E5936] text-[#8E5936] hover:bg-[#8E5936] hover:text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Product Technical Specs & Authenticity Certificate Details Block -->
+    <section class="py-20 bg-[#8E5936]/5 relative z-10 border-t border-b border-[#8E5936]/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <!-- Left Side Specifications Panel (6 Columns sharp edge) -->
+            <div class="lg:col-span-7 space-y-12" data-aos="fade-right">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-[#8E5936]">Product Specifications</h2>
+                    
+                    <!-- Details Table -->
+                    <div class="border border-[#8E5936]/20 bg-white/40 sharp-edge overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <tr class="border-b border-[#8E5936]/10">
+                                <td class="p-4 font-semibold text-xs uppercase opacity-75 w-1/3">Product Name</td>
+                                <td class="p-4 text-[#8E5936]">Karungali Bracelet with Rudraksha</td>
+                            </tr>
+                            <tr class="border-b border-[#8E5936]/10">
+                                <td class="p-4 font-semibold text-xs uppercase opacity-75">Material</td>
+                                <td class="p-4 text-[#8E5936]">Pure Karungali Wood & Natural Rudraksha Beads</td>
+                            </tr>
+                            <tr class="border-b border-[#8E5936]/10">
+                                <td class="p-4 font-semibold text-xs uppercase opacity-75">Beads Count</td>
+                                <td class="p-4 text-[#8E5936]">54 Beads : 108 Beads</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold text-xs uppercase opacity-75">Finish</td>
+                                <td class="p-4 text-[#8E5936]">Silver Plated Caps</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-[#8E5936]">Quality Assurance</h3>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <li class="flex items-center space-x-3 text-sm">
+                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="font-medium text-[#8E5936]/90">100% Natural Karungali Wood</span>
+                        </li>
+                        <li class="flex items-center space-x-3 text-sm">
+                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="font-medium text-[#8E5936]/90">Handcrafted by Skilled Artisans</span>
+                        </li>
+                        <li class="flex items-center space-x-3 text-sm">
+                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="font-medium text-[#8E5936]/90">Quality Checked & Approved</span>
+                        </li>
+                        <li class="flex items-center space-x-3 text-sm">
+                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="font-medium text-[#8E5936]/90">Eco-friendly & Sustainable</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side Security Certificate (5 Columns sharp edge) -->
+            <div class="lg:col-span-5" data-aos="fade-left">
+                <!-- Visual Certificate Layout representation -->
+                <div class="border-2 border-dashed border-[#8E5936]/50 bg-white/60 p-8 shadow-inner sharp-edge relative">
+                    <!-- Fine filigree style design inside borders -->
+                    <div class="absolute inset-2 border border-[#8E5936]/10 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 text-center">
+                        <span class="serif-font italic text-[#8E5936]/70 text-sm block mb-1">Rudra Nethra Sanctum Seal</span>
+                        <h3 class="serif-font font-bold text-2xl tracking-widest text-[#8E5936] border-b border-[#8E5936]/20 pb-4 mb-6">CERTIFICATE OF AUTHENTICITY</h3>
+                        
+                        <p class="text-sm opacity-80 leading-relaxed mb-6">
+                            This certifies that the product is made from
+                        </p>
+                        
+                        <h4 class="serif-font text-3xl font-extrabold text-[#8E5936] mb-8">100% Genuine Karungali Wood</h4>
+                        
+                        <p class="text-[10px] uppercase tracking-widest font-semibold opacity-60 mb-2">Verification Code</p>
+                        <div class="bg-[#8E5936]/10 py-3 px-6 font-mono font-bold text-[#8E5936] tracking-wider text-base inline-block sharp-edge select-all">
+                            KGN-2025-XXXX
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-[#8E5936]/10 text-[11px] opacity-70">
+                            <p class="mb-2">For any authenticity concerns, please contact:</p>
+                            <a href="mailto:support@rudhranethra.com" class="font-bold underline hover:text-[#5c3a23]">support@rudhranethra.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Feedback & Detailed Customer Reviews -->
+    <section class="py-24 px-6 max-w-7xl mx-auto relative z-10">
+        <h2 class="text-4xl font-bold text-center mb-16">Seeded Devotion Reviews</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <!-- Left Side Score Display (4 Columns) -->
+            <div class="lg:col-span-4 bg-white/40 p-8 border border-[#8E5936]/10 sharp-edge" data-aos="fade-right">
+                <div class="text-center mb-8">
+                    <span class="text-6xl font-black text-[#8E5936]">4.6</span>
+                    <span class="text-sm opacity-60 block mt-2">out of 5 stars</span>
+                    <div class="flex justify-center text-amber-500 mt-2 text-xl">★★★★★</div>
+                    <span class="text-xs opacity-50 block mt-1">(1,242 customer ratings)</span>
+                </div>
+
+                <!-- Star Progress bars -->
+                <div class="space-y-3">
+                    <div class="flex items-center text-xs">
+                        <span class="w-8 opacity-75">5★</span>
+                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8E5936]" style="width: 85%;"></div>
+                        </div>
+                        <span class="w-8 text-right opacity-75">85%</span>
+                    </div>
+                    <div class="flex items-center text-xs">
+                        <span class="w-8 opacity-75">4★</span>
+                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8E5936]" style="width: 10%;"></div>
+                        </div>
+                        <span class="w-8 text-right opacity-75">10%</span>
+                    </div>
+                    <div class="flex items-center text-xs">
+                        <span class="w-8 opacity-75">3★</span>
+                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8E5936]" style="width: 3%;"></div>
+                        </div>
+                        <span class="w-8 text-right opacity-75">3%</span>
+                    </div>
+                    <div class="flex items-center text-xs">
+                        <span class="w-8 opacity-75">2★</span>
+                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8E5936]" style="width: 1%;"></div>
+                        </div>
+                        <span class="w-8 text-right opacity-75">1%</span>
+                    </div>
+                    <div class="flex items-center text-xs">
+                        <span class="w-8 opacity-75">1★</span>
+                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8E5936]" style="width: 1%;"></div>
+                        </div>
+                        <span class="w-8 text-right opacity-75">1%</span>
+                    </div>
+                </div>
+
+                <button class="w-full mt-8 py-3.5 bg-transparent border border-[#8E5936] text-[#8E5936] hover:bg-[#8E5936] hover:text-[#FFF2E2] transition text-xs font-bold uppercase tracking-wider sharp-edge">
+                    Write Review
+                </button>
+            </div>
+
+            <!-- Right Side Customer Feedbacks List (8 Columns) -->
+            <div class="lg:col-span-8 space-y-8" data-aos="fade-left">
+                
+                <!-- Feedback 1 -->
+                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 sharp-edge">S</div>
+                            <div>
+                                <h4 class="font-bold text-[#8E5936]">Sara</h4>
+                                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                            </div>
+                        </div>
+                        <span class="text-xs opacity-50">2 days ago</span>
+                    </div>
+                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"Beautiful product! Exceeded my expectations."</p>
+                </div>
+
+                <!-- Feedback 2 -->
+                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#8E5936]/80 text-white flex items-center justify-center font-bold mr-3 sharp-edge">MT</div>
+                            <div>
+                                <h4 class="font-bold text-[#8E5936]">Mike T.</h4>
+                                <div class="flex text-amber-500 text-xs">★★★★☆</div>
+                            </div>
+                        </div>
+                        <span class="text-xs opacity-50">1 week ago</span>
+                    </div>
+                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"Good quality, but shipping took longer than expected."</p>
+                </div>
+
+                <!-- Feedback 3 -->
+                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 sharp-edge">P</div>
+                            <div>
+                                <h4 class="font-bold text-[#8E5936]">praba</h4>
+                                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                            </div>
+                        </div>
+                        <span class="text-xs opacity-50">2 weeks ago</span>
+                    </div>
+                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"loving it! Perfect for daily use."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Immersive Pre-Footer Banner & CTA -->
+    <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
+        <!-- Floating Transparent Product / Creative Image -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-25 pointer-events-none select-none z-0">
+            <img src="https://placehold.co/800x400/1E110A/FFF2E2?text=[Your+Immersive+Transparent+Image]" class="w-full max-w-[1200px] h-full object-contain mix-blend-screen" alt="Immersive Graphic">
+        </div>
+
+        <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
+            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF2E2]/60 mb-4 block">Elevate Your Sacred Space</span>
+            <h2 class="text-5xl md:text-6xl text-[#FFF2E2] mb-6 leading-tight">Awaken The Energy Within</h2>
+            <p class="text-lg text-[#FFF2E2]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+            <a href="products.html" class="shining-button inline-block px-10 py-4 bg-[#8E5936] text-[#FFF2E2] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
+                EXPLORE THE COLLECTION
+            </a>
+        </div>
+    </section>
+
+    </div> <!-- End Main Content Wrapper -->
+
+    <!-- Footer Area -->
+    <div id="footer-spacer"></div>
+    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-16 px-6 text-[#FFF2E2]/80" id="footer-contact">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-1">
+                <h3 class="text-3xl font-bold mb-4 text-[#FFF2E2]">Rudra Nethra</h3>
+                <p class="text-sm">Awaken your third eye.</p>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-[#8E5936] transition">Home</a></li>
+                    <li><a href="products.html" class="hover:text-[#8E5936] transition">Products</a></li>
+                    <li><a href="about.html" class="hover:text-[#8E5936] transition">About Us</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8E5936] transition">Combo Offer</a></li>
+                    <li><a href="contact.html" class="hover:text-[#8E5936] transition">Contact</a></li>
+                </ul>
+            </div>
+             <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Products</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali malai</a></li>
+                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Bracelet</a></li>
+                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Necklace</a></li>
+                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Ring</a></li>
+                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Damru Bracelet</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Contact Us</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tel:+919025895191" class="hover:text-[#8E5936] transition">+919025895191</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
+            <div class="mt-4 md:mt-0 flex space-x-4">
+                <a href="#" class="hover:text-[#8E5936] transition">Privacy Policy</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#8E5936] transition">Terms of Service</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#8E5936] transition">Shipping Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Footer Spacer for Curtain Reveal Parallax
+        function updateFooterSpacer() {
+            const footer = document.getElementById('footer-contact');
+            const spacer = document.getElementById('footer-spacer');
+            if (footer && spacer) {
+                spacer.style.height = footer.offsetHeight + 'px';
+            }
+        }
+        window.addEventListener('resize', updateFooterSpacer);
+        window.addEventListener('load', updateFooterSpacer);
+        // Set initial height immediately
+        updateFooterSpacer();
+
+        // Navbar glass effect on scroll
+        window.addEventListener('scroll', () => {
+            const navContainer = document.getElementById('nav-container');
+            if (window.scrollY > 50) {
+                navContainer.classList.add('glass-nav');
+            } else {
+                navContainer.classList.remove('glass-nav');
+            }
+        });
+
+        // Image Gallery Selector
+        function changeProductImage(btn, imgSrc) {
+            document.getElementById('mainProductImg').src = imgSrc;
+            
+            // Manage Active Button States
+            const btns = btn.parentElement.querySelectorAll('button');
+            btns.forEach(b => {
+                b.className = "border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none";
+            });
+            btn.className = "border-2 border-[#8E5936] p-1 bg-white/40 sharp-edge focus:outline-none";
+        }
+
+        // Option selection button styles toggling
+        function selectOption(button, type) {
+            const buttons = document.querySelectorAll(`.${type}-option-btn`);
+            buttons.forEach(btn => {
+                btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]`;
+            });
+            
+            // Adjust style for active selected element
+            button.className = `${type}-option-btn px-5 py-2.5 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition`;
+        }
+
+        // Quantity counter controller
+        function adjustQuantity(val) {
+            const input = document.getElementById('quantityVal');
+            let current = parseInt(input.value);
+            if (isNaN(current)) current = 1;
+            
+            current += val;
+            if (current < 1) current = 1;
+            
+            input.value = current;
+        }
+    </script>
+</body>
+</html>
