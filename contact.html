@@ -315,9 +315,37 @@
                         </div>
                     </div>
 
-                    <!-- Image instead of map -->
-                    <div class="mt-12 h-64 border border-[#8E5936]/20 bg-white rounded-[2.5rem] relative overflow-hidden shadow-[0_10px_30px_rgba(142,89,54,0.15)] group transition-all duration-500 hover:shadow-[0_20px_40px_rgba(142,89,54,0.25)]">
-                        <img src="image/img -1.jpg" alt="Rudra Nethra Contact" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <!-- Stylized Map Placeholder -->
+                    <div class="mt-12 h-64 border border-[#8E5936]/20 bg-gradient-to-br from-[#FFF2E2] to-[#fdebd3] flex flex-col items-center justify-center p-6 text-center shadow-inner rounded-3xl relative overflow-hidden group">
+                        <!-- Map Background Pattern -->
+                        <div class="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiAvPgo8Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iIzAwMCIvPgo8L3N2Zz4=')]"></div>
+
+                        <!-- Enhanced Radar and Ripple Animation -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 pointer-events-none flex items-center justify-center">
+                            <!-- Radar Sweep -->
+                            <div class="absolute inset-0 rounded-full border border-[#8E5936]/20 overflow-hidden">
+                                <div class="radar-sweep w-full h-full"></div>
+                            </div>
+                            <!-- Cascading Ripples -->
+                            <div class="absolute inset-0 rounded-full border-2 border-[#8E5936]/30 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                            <div class="absolute inset-6 rounded-full border-2 border-[#8E5936]/40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_1s]"></div>
+                            <div class="absolute inset-12 rounded-full border-2 border-[#8E5936]/50 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite_2s]"></div>
+                            <!-- Core Glow -->
+                            <div class="absolute inset-16 rounded-full bg-[#8E5936]/20 blur-xl animate-pulse"></div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col items-center transform group-hover:-translate-y-2 transition-transform duration-500">
+                            <!-- Map Marker Icon -->
+                            <div class="w-16 h-16 bg-[#8E5936] rounded-full flex items-center justify-center text-[#FFF2E2] mb-3 shadow-[0_10px_20px_rgba(142,89,54,0.3)] relative z-20">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 z-10">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+                                <div class="absolute -bottom-1.5 w-3 h-3 bg-[#FFF2E2] rounded-full border-[3px] border-[#8E5936]"></div>
+                            </div>
+                            <h4 class="font-bold text-xl text-[#8E5936] drop-shadow-sm mb-1 relative z-20">Map Integration Area</h4>
+                            <p class="text-sm font-medium opacity-80 max-w-[250px] text-[#8E5936] relative z-20">Conscious Shipping Worldwide from Tamil Nadu, India</p>
+                        </div>
                     </div>
                 </div>
 
@@ -446,9 +474,9 @@
         <!-- Advanced True Parallax Background -->
         <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <img id="parallax-bg"
-                src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                src="image/img -1.jpg"
                 alt="Sacred Space Background"
-                class="absolute top-[-25%] left-0 w-full h-[150%] object-cover object-center will-change-transform">
+                class="absolute top-[-25%] left-0 w-full h-[150%] object-cover object-center will-change-transform opacity-60">
         </div>
 
         <!-- Overlays for Depth -->
