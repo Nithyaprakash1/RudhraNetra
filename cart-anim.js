@@ -26,7 +26,8 @@ window.addToCart = function(name, price, image, qty = 1) {
     let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
     let existing = cart.find(i => i.name === name);
     if(existing) {
-        existing.quantity += qty;
+        alert('This product is already in your cart!');
+        return;
     } else {
         cart.push({ name, price, image, quantity: qty });
     }
