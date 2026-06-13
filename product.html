@@ -80,6 +80,17 @@
             opacity: 1;
             transform: translateY(0);
         }
+            .nav-text-glow {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.8), 1px 1px 2px rgba(255,255,255,1);
+        }
+        .active-page {
+            text-shadow: 0 0 12px #8B4513, 0 0 24px #8B4513;
+            color: #FFF1E0 !important;
+            background-color: #8B4513;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(139,69,19,0.5);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -92,7 +103,7 @@
                 <span class="hidden md:inline-block text-base md:text-2xl font-bold tracking-tighter text-[#8B4513] whitespace-nowrap">RUDRA NETHRA</span>
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8B4513]">
-                <a href="index.html" class="hover:text-[#8B4513]">Home</a>
+                <a href="index.html" class="hover:text-[#8B4513] nav-text-glow">Home</a>
                 <div class="relative group">
                     <a href="products.html" class="hover:text-[#8B4513] cursor-pointer font-bold">Products</a>
                     <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
@@ -112,9 +123,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="combo.html" class="hover:text-[#8B4513]">Combo Offer</a>
-                <a href="about.html" class="hover:text-[#8B4513]">About</a>
-                <a href="contact.html" class="hover:text-[#8B4513]">Contact</a>
+                <a href="combo.html" class="hover:text-[#8B4513] nav-text-glow">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#8B4513] nav-text-glow">About</a>
+                <a href="contact.html" class="hover:text-[#8B4513] nav-text-glow">Contact</a>
             </div>
             <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
                  <!-- Cart Icon -->
@@ -500,4 +511,5 @@
     </script>
 </body>
 </html>
+
 
