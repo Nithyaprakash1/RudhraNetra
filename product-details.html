@@ -493,7 +493,7 @@
                     
                     <!-- Pricing Structure -->
                     <div class="flex items-center space-x-4 mb-8">
-                        <span class="text-4xl font-black text-[#8B4513]">&#8377;599</span>
+                        <span id="product-price" class="text-4xl font-black text-[#8B4513]">&#8377;599</span>
                         <span class="text-lg line-through opacity-50">&#8377;699</span>
                         <span class="bg-[#8B4513] text-[#FFF1E0] px-3 py-1 font-bold text-xs uppercase tracking-widest sharp-edge">12% OFF</span>
                     </div>
@@ -536,10 +536,10 @@
 
                 <!-- Action CTA Buttons (Full width sharp edges) -->
                 <div class="space-y-4">
-                    <button onclick="window.location.href='checkout.html'" class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
+                    <button onclick="buyNowWithOptions()" class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
                         Buy Now
                     </button>
-                    <button onclick="addToCart('Karungali Malai', 1200, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Karungali+Malai', parseInt(document.getElementById('quantityVal').value) || 1)" class="w-full py-4 bg-transparent border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
+                    <button onclick="addToCartWithOptions()" class="w-full py-4 bg-transparent border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
                         Add to Cart
                     </button>
                 </div>
@@ -887,6 +887,7 @@
                 // Adjust style for active selected element
                 button.className = `${type}-option-btn px-5 py-2.5 border-2 border-[#8B4513] bg-[#8B4513] text-[#FFF1E0] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition`;
             }
+            updatePriceDisplay();
         }
 
         // Quantity counter controller
@@ -899,9 +900,87 @@
             if (current < 1) current = 1;
             
             input.value = current;
+            updatePriceDisplay();
         }
 
-        
+        function calculateDynamicPrice() {
+            let basePrice = 599;
+            
+            // Get selected size
+            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-heart');
+            let size = selectedSizeBtn ? parseInt(selectedSizeBtn.innerText) : 6;
+            if (size > 6) {
+                basePrice += (size - 6) * 50; // Add 50 for every mm above 6
+            }
+            
+            // Get selected beads
+            let selectedBeadsBtn = document.querySelector('.beads-option-btn.bg-\\[\\#8B4513\\]');
+            let beads = selectedBeadsBtn ? parseInt(selectedBeadsBtn.innerText) : 20;
+            if (beads === 27) {
+                basePrice += 100;
+            }
+            
+            return basePrice;
+        }
+
+        function updatePriceDisplay() {
+            const priceElement = document.getElementById('product-price');
+            if (priceElement) {
+                priceElement.innerHTML = '&#8377;' + calculateDynamicPrice();
+            }
+        }
+
+        function getCartItemOptions() {
+            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-heart');
+            let size = selectedSizeBtn ? selectedSizeBtn.innerText : '6mm';
+            
+            let selectedBeadsBtn = document.querySelector('.beads-option-btn.bg-\\[\\#8B4513\\]');
+            let beads = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace('\n', ' ') : '20 Beads';
+            
+            let qty = parseInt(document.getElementById('quantityVal').value) || 1;
+            let price = calculateDynamicPrice();
+            
+            return {
+                name: `Karungali Malai (${size}, ${beads})`,
+                price: price,
+                quantity: qty,
+                image: 'https://placehold.co/600x600/8B4513/FFF1E0?text=Karungali+Malai'
+            };
+        }
+
+        function addToCartWithOptions() {
+            const item = getCartItemOptions();
+            if (typeof addToCart === 'function') {
+                addToCart(item.name, item.price, item.image, item.quantity);
+            }
+        }
+
+        function buyNowWithOptions() {
+            const item = getCartItemOptions();
+            
+            // Load existing cart or create new one
+            let cart = JSON.parse(localStorage.getItem('rudra_cart')) || [];
+            
+            // Check if item already exists
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += item.quantity;
+            } else {
+                cart.push(item);
+            }
+            
+            // Save back to localStorage
+            localStorage.setItem('rudra_cart', JSON.stringify(cart));
+            
+            // Redirect to checkout
+            window.location.href = 'checkout.html';
+        }
+
+        // Initialize price display on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePriceDisplay();
+        });
+
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
