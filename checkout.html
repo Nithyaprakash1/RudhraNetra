@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -490,7 +490,7 @@
                     <div class="border-t border-[#8B4513]/10 pt-4 space-y-3 mb-6 text-sm text-[#8B4513]/80">
                         <div class="flex justify-between">
                             <span>Subtotal</span>
-                            <span id="checkout-subtotal" class="font-medium">â‚¹0.00</span>
+                            <span id="checkout-subtotal" class="font-medium">&#8377;0.00</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Shipping</span>
@@ -498,7 +498,7 @@
                         </div>
                         <div class="flex justify-between text-lg font-bold text-[#8B4513] pt-3 border-t border-[#8B4513]/10">
                             <span>Total</span>
-                            <span id="checkout-total">â‚¹0.00</span>
+                            <span id="checkout-total">&#8377;0.00</span>
                         </div>
                     </div>
 
@@ -531,7 +531,7 @@
 
     if (cartItems.length === 0) {
         // Fallback dummy item for direct Buy Now if cart is empty
-        container.innerHTML = 
+        container.innerHTML = `
             <div class="flex gap-4 items-center">
                 <div class="w-16 h-16 bg-[#8B4513]/10 rounded-lg overflow-hidden flex-shrink-0">
                     <img src="https://placehold.co/100x100/8B4513/FFF1E0?text=Item" class="w-full h-full object-cover">
@@ -540,28 +540,28 @@
                     <h4 class="text-sm font-bold text-[#8B4513]">Karungali Product</h4>
                     <p class="text-xs text-[#8B4513]/70">Qty: 1</p>
                 </div>
-                <div class="text-sm font-bold text-[#8B4513]">â‚¹1200</div>
-            </div>;
+                <div class="text-sm font-bold text-[#8B4513]">&#8377;1200</div>
+            </div>`;
         totalAmt = 1200;
     } else {
         cartItems.forEach(item => {
             totalAmt += (item.price * item.quantity);
-            container.innerHTML += 
+            container.innerHTML += `
             <div class="flex gap-4 items-center">
                 <div class="w-16 h-16 bg-[#8B4513]/10 rounded-lg overflow-hidden flex-shrink-0">
-                    <img src=" + item.image + " class="w-full h-full object-cover">
+                    <img src="${item.image}" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-1">
-                    <h4 class="text-sm font-bold text-[#8B4513]"> + item.name + </h4>
-                    <p class="text-xs text-[#8B4513]/70">Qty:  + item.quantity + </p>
+                    <h4 class="text-sm font-bold text-[#8B4513]">${item.name}</h4>
+                    <p class="text-xs text-[#8B4513]/70">Qty: ${item.quantity}</p>
                 </div>
-                <div class="text-sm font-bold text-[#8B4513]">â‚¹ + (item.price * item.quantity) + </div>
-            </div>;
+                <div class="text-sm font-bold text-[#8B4513]">&#8377;${item.price * item.quantity}</div>
+            </div>`;
         });
     }
 
-    document.getElementById('checkout-subtotal').textContent = 'â‚¹' + totalAmt;
-    document.getElementById('checkout-total').textContent = 'â‚¹' + totalAmt;
+    document.getElementById('checkout-subtotal').innerHTML = '&#8377;' + totalAmt;
+    document.getElementById('checkout-total').innerHTML = '&#8377;' + totalAmt;
 
     // Razorpay Integration
     document.getElementById('rzp-button1').onclick = function(e) {
