@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>About Us | Rudra Nethra</title>
+    <meta name="description" content="Learn more about Rudra Nethra and our authentic Karungali wood products.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { font-family: 'Inter', sans-serif; background-color: #FFF2E2; color: #8E5936; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFF2E2; }
+        ::-webkit-scrollbar-thumb { background: #8E5936; border-radius: 4px; }
+
+        /* ── Navbar ── */
+        .navbar-transition { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-nav {
+            background: rgba(255,242,226,0.80);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(142,89,54,0.2);
+            border-radius: 9999px;
+        }
+
+        /* ── Shining button ── */
+        .shining-button { position: relative; overflow: hidden; }
+        .shining-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,242,226,0.55), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+        @keyframes shine { 0%{left:-100%} 20%{left:150%} 100%{left:150%} }
+
+        /* ── Product drawer ── */
+        .product-drawer {
+            visibility: hidden; opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            background: rgba(255,242,226,0.92) !important;
+            border: 1px solid rgba(142,89,54,0.18);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
+        }
+        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+
+        /* ── Enhanced dropdown items ── */
+        .enhanced-dropdown-item {
+            display: block; text-align: center; padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#A8704D,#8E5936);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .enhanced-dropdown-item:hover {
+            transform: scale(1.06) translateY(-5px);
+            border-color: #D4A373;
+            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
+        }
+        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
+        .enhanced-dropdown-item span {
+            color: #FFF2E2 !important;
+            display: block; margin-top: 8px;
+            font-size: 12px; font-weight: 600;
+            letter-spacing: .05em;
+            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        }
+
+        /* ── Scroll Product Showcase ── */
+        #product-showcase {
+            position: relative;
+            /* height is just one viewport — page does NOT scroll during animation */
+            height: 100vh;
+        }
+        #showcase-sticky {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFF2E2;
+        }
+        /* Bead wrapper — JS moves horizontally, canvas renders inside */
+        #bead-wrap {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+            z-index: 2;
+        }
+        /* Rotating Product Image */
+        #bead-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* drop-shadow follows the bead image shape */
+            filter: drop-shadow(0 28px 55px rgba(5,2,0,0.65));
+        }
+        /* Feature point panels */
+        .feature-panel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: min(320px, 38vw);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            z-index: 3;
+            pointer-events: none;
+        }
+        #features-left  { left: 3vw; }
+        #features-right { right: 3vw; }
+        .feat-item {
+            opacity: 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        #features-left  .feat-item { transform: translateX(-44px); }
+        #features-right .feat-item { transform: translateX( 44px); }
+        .feat-icon {
+            flex-shrink: 0;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A8704D, #8E5936);
+            display: flex; align-items: center; justify-content: center;
+            color: #FFF2E2;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(142,89,54,0.3);
+        }
+        .feat-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: #5c3a23;
+            margin-bottom: 4px;
+        }
+        .feat-text p {
+            font-size: 0.82rem;
+            color: #8E5936;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        /* Progress bar — thin line at very bottom of section */
+        #anim-progress-bar {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #A8704D, #8E5936);
+            transition: width 0.1s linear;
+            z-index: 10;
+        }
+        /* Scroll hint */
+        #scroll-hint {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        #scroll-hint span {
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #8E5936;
+            font-weight: 600;
+        }
+        .scroll-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #8E5936;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+        .scroll-dot:nth-child(2) { animation-delay: 0.2s; }
+        .scroll-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotPulse {
+            0%,100% { opacity: 0.2; transform: scaleY(1); }
+            50%      { opacity: 1;   transform: scaleY(1.8); }
+        }
+        /* Mobile */
+        @media (max-width: 768px) {
+            #bead-wrap { width: 170px; height: 170px; }
+            .feature-panel { width: 43vw; gap: 18px; }
+            .feat-text h3 { font-size: 0.76rem; }
+            .feat-text p  { font-size: 0.68rem; }
+            .feat-icon { width: 32px; height: 32px; font-size: 13px; }
+            #features-left  { left: 1vw; }
+            #features-right { right: 1vw; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-6 left-0 right-0 z-50 px-4 md:px-6 navbar-transition" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-4 transition-all duration-500" id="nav-container">
+            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter text-[#8E5936]">RUDRA NETHRA</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
+                <a href="index.html" class="hover:text-[#5c3a23] transition">Home</a>
+                <div class="relative group">
+                    <a href="index.html#store" class="hover:text-[#5c3a23] cursor-pointer transition">Products</a>
+                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 rounded-2xl w-[520px]">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Mala" class="rounded-md w-full" alt="Mala">
+                                <span>Mala Beads</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Bracelet" class="rounded-md w-full" alt="Bracelet">
+                                <span>Bracelets</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Idol" class="rounded-md w-full" alt="Idol">
+                                <span>Deity Idols</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a href="combo.html" class="hover:text-[#5c3a23] transition">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#5c3a23] font-bold transition">About</a>
+                <a href="contact.html" class="hover:text-[#5c3a23] transition">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="text-[#8E5936] hover:text-[#5c3a23] transition relative" aria-label="Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                    <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </a>
+                <button onclick="window.location.href='product.html'" class="shining-button px-5 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-sm hover:bg-[#5c3a23] transition font-medium">Shop Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper for Parallax Effect -->
+    <div class="relative z-20 bg-[#FFF2E2] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
+
+        <!-- About Hero -->
+        <section class="pt-40 pb-10 md:pt-52 md:pb-12 px-4 md:px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl text-[#8E5936] mb-5" data-aos="fade-up">About Us</h1>
+                <p class="text-[#8E5936]/70 text-base md:text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="80">
+                    Every Karungali bead we craft carries centuries of sacred tradition —
+                    ethically sourced, ritually consecrated, and lovingly finished by hand.
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════
+             SCROLL-DRIVEN PRODUCT ANIMATION SECTION
+        ═══════════════════════════════════════════════════════ -->
+        <section id="product-showcase">
+            <div id="showcase-sticky">
+
+                <!-- Scroll hint -->
+                <div id="scroll-hint">
+                    <span>Scroll to Discover</span>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                    <div class="scroll-dot"></div>
+                </div>
+
+                <!-- Left feature panel -->
+                <div class="feature-panel" id="features-left">
+                    <div class="feat-item" id="fl1">
+                        <div class="feat-icon">🌿</div>
+                        <div class="feat-text">
+                            <h3>100% Authentic Karungali</h3>
+                            <p>Every bead is ethically harvested from certified Ebony forests, guaranteeing true Karungali density and energy.</p>
+                        </div>
+                    </div>
+                    <div class="feat-item" id="fl2">
+                        <div class="feat-icon">🕉️</div>
+                        <div class="feat-text">
+                            <h3>Vedic Consecration</h3>
+                            <p>Each piece undergoes a complete 48-hour Vedic ritual under planetary alignments before reaching your hands.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress bar -->
+                <div id="anim-progress-bar"></div>
+
+                <!-- Rotating Product Image -->
+                <div id="bead-wrap">
+                    <img id="bead-image" src="image/bead.png" alt="Karungali Bead — 360° view" />
+                </div>
+
+                <!-- Right feature panel -->
+                <div class="feature-panel" id="features-right">
+                    <div class="feat-item" id="fr1">
+                        <div class="feat-icon">✋</div>
+                        <div class="feat-text">
+                            <h3>Handcrafted Precision</h3>
+                            <p>Artisans with 20+ years of craft shape each bead by hand, ensuring perfect spherical symmetry and smooth finish.</p>
+                        </div>
+                    </div>
+                    <div class="feat-item" id="fr2">
+                        <div class="feat-icon">🛡️</div>
+                        <div class="feat-text">
+                            <h3>Lifetime Authenticity Guarantee</h3>
+                            <p>A signed certificate of authenticity accompanies every order, backed by our sacred heritage promise.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Remaining blank content area -->
+        <main class="pb-20 md:pb-36 px-4 md:px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-white/50 border border-[#8E5936]/10 rounded-2xl p-8 md:p-16 min-h-[30vh] flex items-center justify-center">
+                    <p class="text-center text-[#8E5936]/60 italic">Content goes here...</p>
+                </div>
+            </div>
+        </main>
+
+    </div> <!-- End Main Content Wrapper -->
+
+    <!-- Footer Area -->
+    <div id="footer-spacer"></div>
+    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-12 md:pt-16 px-4 md:px-6 text-[#FFF2E2]/80" id="footer-contact">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="col-span-2 md:col-span-1">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-[#FFF2E2]">Rudra Nethra</h3>
+                <p class="text-sm">Awaken your third eye.</p>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2] text-sm">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-[#8E5936] transition">Home</a></li>
+                    <li><a href="index.html#store" class="hover:text-[#8E5936] transition">Products</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8E5936] transition">Combo Offer</a></li>
+                    <li><a href="about.html" class="hover:text-[#8E5936] transition">About Us</a></li>
+                    <li><a href="contact.html" class="hover:text-[#8E5936] transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2] text-sm">Products</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="product.html" class="hover:text-[#8E5936] transition">Karungali Malai</a></li>
+                    <li><a href="product.html" class="hover:text-[#8E5936] transition">Karungali Bracelet</a></li>
+                    <li><a href="product.html" class="hover:text-[#8E5936] transition">Deity Idols</a></li>
+                    <li><a href="product.html" class="hover:text-[#8E5936] transition">Karungali Ring</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2] text-sm">Contact Us</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tel:+919025895191" class="hover:text-[#8E5936] transition">+91 90258 95191</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-8 md:mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-3">
+            <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-[#8E5936] transition">Privacy Policy</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#8E5936] transition">Terms of Service</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#8E5936] transition">Shipping Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 60 });
+
+        // Footer spacer
+        function updateFooterSpacer() {
+            const footer = document.getElementById('footer-contact');
+            const spacer = document.getElementById('footer-spacer');
+            if (footer && spacer) spacer.style.height = footer.offsetHeight + 'px';
+        }
+        window.addEventListener('resize', updateFooterSpacer);
+        window.addEventListener('load', updateFooterSpacer);
+        updateFooterSpacer();
+
+        // Navbar scroll glass
+        window.addEventListener('scroll', () => {
+            const nc = document.getElementById('nav-container');
+            if (nc) {
+                if (window.scrollY > 50) nc.classList.add('glass-nav');
+                else nc.classList.remove('glass-nav');
+            }
+        });
+
+        // Cart count
+        function updateNavCartCount() {
+            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
+            let qty = 0; cart.forEach(i => qty += i.quantity);
+            const el = document.getElementById('navCartCount');
+            if (el) el.innerText = qty;
+        }
+        window.addEventListener('load', updateNavCartCount);
+
+        /* ═══════════════════════════════════════════════════════
+           IMAGE 2D ROTATION + BIDIRECTIONAL SCROLL-LOCK
+           ─ Rotates the 2D bead image (counter-clockwise on scroll down)
+           ─ Staggered fade-in of left points, which then fade out
+             before the right points fade in.
+           ─ Page stays frozen until all feature points are revealed
+           ─ Works in reverse: scrolling back up re-enters animation
+         ═══════════════════════════════════════════════════════ */
+        (function () {
+            /* ── DOM ── */
+            const section   = document.getElementById('product-showcase');
+            const beadWrap  = document.getElementById('bead-wrap');
+            const beadImage = document.getElementById('bead-image');
+            const hint      = document.getElementById('scroll-hint');
+            const progBar   = document.getElementById('anim-progress-bar');
+            const fl1 = document.getElementById('fl1'), fl2 = document.getElementById('fl2');
+            const fr1 = document.getElementById('fr1'), fr2 = document.getElementById('fr2');
+            if (!section || !beadImage) return;
+
+            /* ── Virtual scroll + bidirectional scroll-lock state ── */
+            const TOTAL = 1100;        // virtual pixels for full animation
+            let vScroll   = 0;         // 0 … TOTAL
+            let locked    = false;
+            let frozenY   = 0;         // scrollY while locked
+            let sectionDir = 'above';  // 'above' | 'below' relative to viewport
+            let rafId     = null;
+
+            /* ── Smoothed display state ── */
+            let rotAngle = 0, rotTarget = 0;
+            let tx = 0, txT = 0;
+            let fl1o=0, fl1x=-44, fl2o=0, fl2x=-44;
+            let fr1o=0, fr1x= 44, fr2o=0, fr2x= 44;
+            let hOp = 1;
+
+            /* ── Helpers ── */
+            function lerp(a, b, t) { return a + (b - a) * t; }
+            function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; }
+            function cl(v, lo=0, hi=1) { return Math.max(lo, Math.min(hi, v)); }
+            function prog(s, e) { return ease(cl((vScroll/TOTAL - s) / (e - s))); }
+
+            /* Returns the document Y at which the section top is at viewport top */
+            function sectionDocTop() {
+                return Math.round(section.getBoundingClientRect().top + window.scrollY);
+            }
+
+            /* ── Map vScroll to animation targets ── */
+            function calcTargets() {
+                const p    = cl(vScroll / TOTAL);
+                const SIDE = 27;   // vw offset from centre
+
+                /* 2 full 360° rotations across the complete animation.
+                   Reference site rotates counter-clockwise, so we use negative direction. */
+                rotTarget = -p * Math.PI * 4;
+
+                /* Centre → right (0–48%) then right → left (48–100%) */
+                txT = p < 0.48
+                    ? lerp(0,    SIDE, ease(cl((p - 0.02) / 0.46)))
+                    : lerp(SIDE, -SIDE, ease(cl((p - 0.48) / 0.46)));
+
+                /* Feature panels — staggered reveal & fade out of first two points */
+                const fl1_fadeIn = prog(0.04, 0.18);
+                const fl2_fadeIn = prog(0.17, 0.31);
+                // First two points fade out as we scroll to the second half (p from 0.38 to 0.48)
+                const fl_fadeOut = ease(cl((p - 0.38) / 0.10));
+
+                fl1o = fl1_fadeIn * (1 - fl_fadeOut);
+                fl2o = fl2_fadeIn * (1 - fl_fadeOut);
+
+                fl1x = lerp(-44, 0, fl1o);
+                fl2x = lerp(-44, 0, fl2o);
+
+                fr1o = prog(0.52, 0.66);  fr1x = lerp( 44, 0, fr1o);
+                fr2o = prog(0.65, 0.79);  fr2x = lerp( 44, 0, fr2o);
+
+                hOp = cl(1 - p / 0.06);
+                if (progBar) progBar.style.width = (p * 100) + '%';
+            }
+
+            /* ── RAF render loop ── */
+            function render() {
+                calcTargets();
+
+                rotAngle = lerp(rotAngle, rotTarget, 0.07);   // silky-smooth lerp
+                tx       = lerp(tx, txT, 0.09);
+
+                // Rotate the actual image element itself around its Z-axis
+                beadImage.style.transform = `rotate(${rotAngle}rad)`;
+                beadWrap.style.transform = `translate(calc(-50% + ${tx}vw), -50%)`;
+
+                fl1.style.opacity = fl1o;  fl1.style.transform = `translateX(${fl1x}px)`;
+                fl2.style.opacity = fl2o;  fl2.style.transform = `translateX(${fl2x}px)`;
+                fr1.style.opacity = fr1o;  fr1.style.transform = `translateX(${fr1x}px)`;
+                fr2.style.opacity = fr2o;  fr2.style.transform = `translateX(${fr2x}px)`;
+                if (hint) hint.style.opacity = hOp;
+
+                rafId = requestAnimationFrame(render);
+            }
+
+            /* ── Scroll-lock helpers ── */
+            function lockScroll(initV) {
+                if (locked) return;
+                locked  = true;
+                vScroll = initV;
+                frozenY = sectionDocTop();   // pin page here (section top at viewport top)
+                window.scrollTo(0, frozenY);
+            }
+            function unlockScroll(to) {
+                locked = false;
+                window.scrollTo(0, to);
+            }
+
+            /* ── Unified wheel/touch handler ── */
+            function onWheel(e) {
+                const rect   = section.getBoundingClientRect();
+                const atEdge = Math.abs(rect.top) <= 10;  // section top ≈ viewport top
+
+                if (!locked && atEdge) {
+                    /* Enter from top on downward scroll */
+                    if (e.deltaY > 0 && sectionDir === 'above') {
+                        lockScroll(0);
+                    }
+                    /* Enter from bottom on upward scroll */
+                    if (e.deltaY < 0 && sectionDir === 'below') {
+                        lockScroll(TOTAL);
+                    }
+                }
+
+                if (!locked) return;
+                e.preventDefault();
+
+                vScroll = cl(vScroll + e.deltaY, 0, TOTAL);
+                const p = vScroll / TOTAL;
+
+                /* Exit forward — animation finished, page scrolls past section */
+                if (p >= 1 && e.deltaY > 0) {
+                    sectionDir = 'below';
+                    unlockScroll(frozenY + section.offsetHeight + 4);
+                    return;
+                }
+                /* Exit backward — re-entered from reverse, page scrolls above section */
+                if (p <= 0 && e.deltaY < 0) {
+                    sectionDir = 'above';
+                    unlockScroll(frozenY - 4);
+                    return;
+                }
+
+                /* Keep page frozen while animation plays */
+                window.scrollTo(0, frozenY);
+            }
+
+            window.addEventListener('wheel', onWheel, { passive: false });
+
+            /* Re-pin page if scrollbar is dragged while locked;
+               also update sectionDir while unlocked for bidirectional entry */
+            window.addEventListener('scroll', () => {
+                if (locked) { window.scrollTo(0, frozenY); return; }
+                const t = section.getBoundingClientRect().top;
+                if (t >  10) sectionDir = 'above';
+                if (t < -10) sectionDir = 'below';
+            });
+
+            /* ── Touch support (mobile) ── */
+            let touchY0 = 0;
+            window.addEventListener('touchstart', e => {
+                touchY0 = e.touches[0].clientY;
+            }, { passive: true });
+            window.addEventListener('touchmove', e => {
+                const dy = touchY0 - e.touches[0].clientY;
+                touchY0 = e.touches[0].clientY;
+                /* Multiply by 2.5 so swipe speed feels natural */
+                onWheel({ deltaY: dy * 2.5, preventDefault: () => e.preventDefault() });
+            }, { passive: false });
+
+            /* ── IntersectionObserver: start/stop RAF to save CPU ── */
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(en => {
+                    if (en.isIntersecting && !rafId) {
+                        rafId = requestAnimationFrame(render);
+                    } else if (!en.isIntersecting && rafId) {
+                        cancelAnimationFrame(rafId); rafId = null;
+                    }
+                });
+            }, { threshold: 0 });
+            obs.observe(section);
+        })();
+    </script>
+</body>
+</html>
