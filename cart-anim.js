@@ -26,7 +26,7 @@ window.addToCart = function(name, price, image, qty = 1) {
     let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
     let existing = cart.find(i => i.name === name);
     if(existing) {
-        alert('This product is already in your cart!');
+        showToast('This product is already in your cart!');
         return;
     } else {
         cart.push({ name, price, image, quantity: qty });
@@ -108,3 +108,52 @@ function playCartAnimation(event, imageUrl, onComplete) {
 window.addEventListener('DOMContentLoaded', () => {
     updateNavCartCount();
 });
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.innerText = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '40px';
+    toast.style.right = '40px';
+    toast.style.backgroundColor = '#8B4513';
+    toast.style.color = '#FFF1E0';
+    toast.style.padding = '14px 28px';
+    toast.style.borderRadius = '12px';
+    toast.style.boxShadow = '0 15px 30px rgba(139, 69, 19, 0.3)';
+    toast.style.zIndex = '10000';
+    toast.style.fontFamily = "'Inter', sans-serif";
+    toast.style.fontWeight = '500';
+    toast.style.fontSize = '15px';
+    toast.style.display = 'flex';
+    toast.style.alignItems = 'center';
+    toast.style.gap = '12px';
+    toast.style.transform = 'translateY(100px) scale(0.9)';
+    toast.style.opacity = '0';
+    toast.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    
+    // Add warning icon
+    toast.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:24px; height:24px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <span>${message}</span>
+    `;
+
+    document.body.appendChild(toast);
+    
+    // Force reflow
+    toast.getBoundingClientRect();
+    
+    // Slide in
+    toast.style.transform = 'translateY(0) scale(1)';
+    toast.style.opacity = '1';
+    
+    // Remove after 3s
+    setTimeout(() => {
+        toast.style.transform = 'translateY(100px) scale(0.9)';
+        toast.style.opacity = '0';
+        setTimeout(() => {
+            if(document.body.contains(toast)) document.body.removeChild(toast);
+        }, 500);
+    }, 3000);
+}
