@@ -926,7 +926,9 @@
         function updatePriceDisplay() {
             const priceElement = document.getElementById('product-price');
             if (priceElement) {
-                priceElement.innerHTML = '&#8377;' + calculateDynamicPrice();
+                const qty = parseInt(document.getElementById('quantityVal').value) || 1;
+                const totalCalculated = calculateDynamicPrice() * qty;
+                priceElement.innerHTML = '&#8377;' + totalCalculated;
             }
         }
 
@@ -958,18 +960,10 @@
         function buyNowWithOptions() {
             const item = getCartItemOptions();
             
-            // Load existing cart or create new one
-            let cart = JSON.parse(localStorage.getItem('rudra_cart')) || [];
+            // For Buy Now, we clear the cart and exclusively checkout this specific item configuration
+            let cart = [item];
             
-            // Check if item already exists
-            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
-            if (existingItemIndex > -1) {
-                cart[existingItemIndex].quantity += item.quantity;
-            } else {
-                cart.push(item);
-            }
-            
-            // Save back to localStorage
+            // Save to localStorage
             localStorage.setItem('rudra_cart', JSON.stringify(cart));
             
             // Redirect to checkout
