@@ -134,8 +134,8 @@
             align-items: flex-start;
             gap: 14px;
         }
-        #features-left  .feat-item { transform: translateX(-44px); }
-        #features-right .feat-item { transform: translateX( 44px); }
+        #features-left  .feat-item { transform: translateX(-60px); }
+        #features-right .feat-item { transform: translateX( 60px); }
         .feat-icon {
             flex-shrink: 0;
             width: 44px; height: 44px;
@@ -442,8 +442,9 @@
             /* ── Smoothed display state ── */
             let rotAngle = 0, rotTarget = 0;
             let tx = 0, txT = 0;
-            let fl1o=0, fl1x=-44, fl2o=0, fl2x=-44;
-            let fr1o=0, fr1x= 44, fr2o=0, fr2x= 44;
+            let fl1o = 0, fl2o = 0, fr1o = 0, fr2o = 0;
+            let fl1oT = 0, fl2oT = 0, fr1oT = 0, fr2oT = 0;
+            let fl1x = -60, fl2x = -60, fr1x = 60, fr2x = 60;
             let hOp = 1;
 
             /* ── Helpers ── */
@@ -477,14 +478,11 @@
                 // First two points fade out as we scroll to the second half (p from 0.38 to 0.48)
                 const fl_fadeOut = ease(cl((p - 0.38) / 0.10));
 
-                fl1o = fl1_fadeIn * (1 - fl_fadeOut);
-                fl2o = fl2_fadeIn * (1 - fl_fadeOut);
+                fl1oT = fl1_fadeIn * (1 - fl_fadeOut);
+                fl2oT = fl2_fadeIn * (1 - fl_fadeOut);
 
-                fl1x = lerp(-44, 0, fl1o);
-                fl2x = lerp(-44, 0, fl2o);
-
-                fr1o = prog(0.52, 0.66);  fr1x = lerp( 44, 0, fr1o);
-                fr2o = prog(0.65, 0.79);  fr2x = lerp( 44, 0, fr2o);
+                fr1oT = prog(0.52, 0.66);
+                fr2oT = prog(0.65, 0.79);
 
                 hOp = cl(1 - p / 0.06);
                 if (progBar) progBar.style.width = (p * 100) + '%';
@@ -496,6 +494,18 @@
 
                 rotAngle = lerp(rotAngle, rotTarget, 0.07);   // silky-smooth lerp
                 tx       = lerp(tx, txT, 0.09);
+
+                // Smoothly lerp the opacities
+                fl1o = lerp(fl1o, fl1oT, 0.08);
+                fl2o = lerp(fl2o, fl2oT, 0.08);
+                fr1o = lerp(fr1o, fr1oT, 0.08);
+                fr2o = lerp(fr2o, fr2oT, 0.08);
+
+                // Calculate current translations based on smoothed opacities
+                fl1x = lerp(-60, 0, fl1o);
+                fl2x = lerp(-60, 0, fl2o);
+                fr1x = lerp(60, 0, fr1o);
+                fr2x = lerp(60, 0, fr2o);
 
                 // Rotate the actual image element itself around its Z-axis
                 beadImage.style.transform = `rotate(${rotAngle}rad)`;
