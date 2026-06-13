@@ -800,30 +800,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
         // Cart Logic Global for Index
-        function updateNavCartCount() {
-            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
-            let totalQty = 0;
-            cart.forEach(i => totalQty += i.quantity);
-            const countElem = document.getElementById('navCartCount');
-            if(countElem) countElem.innerText = totalQty;
-        }
+        
 
-        function addToCart(name, price, image) {
-            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
-            let existing = cart.find(i => i.name === name);
-            if(existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ name, price, image, quantity: 1 });
-            }
-            localStorage.setItem('rudraCart', JSON.stringify(cart));
-            updateNavCartCount();
-            
-            // Minimal feedback
-            alert(name + " added to cart!");
-        }
+        
 
-        window.addEventListener('load', updateNavCartCount);
+        
 
         /* ------------------------------------------------------------------
            GLOBAL UTILITIES (unchanged)
@@ -1096,8 +1077,10 @@
             }
         });
     </script>
+<script src="cart-anim.js"></script>
 </body>
 </html>
+
 
 
 
