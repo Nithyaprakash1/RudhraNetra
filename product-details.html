@@ -952,9 +952,18 @@
 
         function addToCartWithOptions() {
             const item = getCartItemOptions();
-            if (typeof addToCart === 'function') {
-                addToCart(item.name, item.price, item.image, item.quantity);
+            
+            // Add to the main cart (rudraCart)
+            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity += item.quantity;
+            } else {
+                cart.push(item);
             }
+            localStorage.setItem('rudraCart', JSON.stringify(cart));
+            
+            alert(`Added ${item.quantity}x ${item.name} to cart!`);
         }
 
         function buyNowWithOptions() {

@@ -524,8 +524,21 @@
 
 <!-- Razorpay Integration Script -->
 <script>
-    // Load cart items from localStorage
-    const cartItems = JSON.parse(localStorage.getItem('rudra_cart')) || [];
+    let cartItems = [];
+    try {
+        let buyNowCart = JSON.parse(localStorage.getItem('rudra_cart'));
+        if (Array.isArray(buyNowCart) && buyNowCart.length > 0) {
+            cartItems = buyNowCart;
+        } else {
+            let mainCart = JSON.parse(localStorage.getItem('rudraCart'));
+            if (Array.isArray(mainCart) && mainCart.length > 0) {
+                cartItems = mainCart;
+            }
+        }
+    } catch(e) {
+        console.error("Error loading cart", e);
+    }
+
     const container = document.getElementById('checkout-items');
     let totalAmt = 0;
 
@@ -587,6 +600,7 @@
                 alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
                 // Redirect to success page or clear cart
                 localStorage.removeItem('rudra_cart');
+                localStorage.removeItem('rudraCart');
                 window.location.href = 'index.html';
             },
             "prefill": {
