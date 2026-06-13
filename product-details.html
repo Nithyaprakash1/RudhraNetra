@@ -132,7 +132,7 @@
                     .nav-text-glow {
             text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
         }
-        .active-page {
+        . {
             text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
             color: #FFF1E0 !important;
             font-weight: 800;
@@ -177,6 +177,81 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
             letter-spacing: 0.05em;
         }
+    
+        
+    
+        
+    
+        /* Dynamic Navbar Colors */
+        .nav-links, .nav-cart, .nav-mobile-btn {
+            color: #FFF1E0;
+            transition: color 0.3s ease;
+        }
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link:hover { color: #8B4513 !important; }
+        .nav-shop-btn {
+            background-color: transparent !important;
+            color: #FFF1E0 !important;
+            border: 1px solid #FFF1E0 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-shop-btn:hover {
+            background-color: #FFF1E0 !important;
+            color: #8B4513 !important;
+        }
+
+        /* Glass state */
+        .glass-nav .nav-links, .glass-nav .nav-cart, .glass-nav .nav-mobile-btn {
+            color: #8B4513 !important;
+        }
+        .glass-nav .nav-link:hover { color: #5c3a23 !important; }
+        .glass-nav .nav-shop-btn {
+            background-color: #8B4513 !important;
+            color: #FFF1E0 !important;
+            border: 1px solid #8B4513 !important;
+        }
+        .glass-nav .nav-shop-btn:hover {
+            background-color: #5c3a23 !important;
+            border-color: #5c3a23 !important;
+        }
+        
+        .glass-nav . {
+            color: #8B4513 !important;
+            text-shadow: 0 0 12px rgba(139, 69, 19, 0.4);
+        }
+    
+        /* ── Product Dropdown Drawer ── */
+        .product-drawer {
+            visibility: hidden; opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            background: linear-gradient(145deg, #FFF1E0, #F3E5D3);
+            border: 1px solid rgba(142,89,54,0.18);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
+        }
+        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+
+        /* ── Enhanced dropdown items ── */
+        .enhanced-dropdown-item {
+            display: block; text-align: center; padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#A8704D,#8E5936);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .enhanced-dropdown-item:hover {
+            transform: scale(1.06) translateY(-5px);
+            border-color: #D4A373;
+            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
+        }
+        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
+        .enhanced-dropdown-item span {
+            color: #FFF2E2 !important;
+            display: block; margin-top: 8px;
+            font-size: 12px; font-weight: 600;
+            letter-spacing: .05em;
+            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -184,14 +259,13 @@
     <!-- Navigation Bar -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
-            <a href="#home" class="flex items-center gap-2 md:gap-3 shrink-0">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
                 <img src="image/logo.png" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
-                
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
-                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">Home</a>
+                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
-                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
+                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow active-page">Products</a>
                     <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
                         <div class="grid grid-cols-3 gap-4 text-center">
                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
@@ -244,7 +318,7 @@
         </button>
         <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
             <a href="index.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
-            <a href="product.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors active-page">Products</a>
+            <a href="product.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors  active-page">Products</a>
             <a href="combo.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Combo Offer</a>
             <a href="about.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] transition-colors">Contact</a>
@@ -596,7 +670,7 @@
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] transition">Products</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] transition active-page">Products</a></li>
                     <li><a href="about.html" class="hover:text-[#8B4513] transition">About Us</a></li>
                     <li><a href="combo.html" class="hover:text-[#8B4513] transition">Combo Offer</a></li>
                     <li><a href="contact.html" class="hover:text-[#8B4513] transition">Contact</a></li>
