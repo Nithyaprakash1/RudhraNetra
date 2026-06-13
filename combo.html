@@ -331,7 +331,7 @@
                     .nav-text-glow {
             text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
         }
-        . {
+        .active-page {
             text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
             color: #FFF1E0 !important;
             font-weight: 800;
@@ -369,7 +369,7 @@
             border-color: #5c3a23 !important;
         }
         
-        .glass-nav . {
+        .glass-nav .active-page {
             color: #8B4513 !important;
             text-shadow: 0 0 12px rgba(139, 69, 19, 0.4);
         }
@@ -423,7 +423,7 @@
                 <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
                     <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
                         <div class="grid grid-cols-3 gap-4 text-center">
                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
                                 <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
