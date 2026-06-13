@@ -68,11 +68,12 @@
         /* ── Scroll Product Showcase ── */
         #product-showcase {
             position: relative;
-            /* height is just one viewport — page does NOT scroll during animation */
-            height: 100vh;
+            /* Give it enough height to scroll through */
+            height: 300vh;
         }
         #showcase-sticky {
-            position: relative;
+            position: sticky;
+            top: 0;
             height: 100vh;
             width: 100%;
             display: flex;
@@ -553,176 +554,68 @@
             let tx = 0, txT = 0;
             let ty = 0, tyT = 0;
             let fl1o = 0, fl2o = 0, fr1o = 0, fr2o = 0;
-            let fl1oT = 0, fl2oT = 0, fr1oT = 0, fr2oT = 0;
-            let fl1x = -60, fl2x = -60, fr1x = 60, fr2x = 60;
-            let hOp = 1;
 
             /* ── Helpers ── */
             function lerp(a, b, t) { return a + (b - a) * t; }
             function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; }
             function cl(v, lo=0, hi=1) { return Math.max(lo, Math.min(hi, v)); }
-            function prog(s, e) { return ease(cl((vScroll/TOTAL - s) / (e - s))); }
+            function prog(p, s, e) { return ease(cl((p - s) / (e - s))); }
 
-            /* Returns the document Y at which the section top is at viewport top */
-            function sectionDocTop() {
-                return Math.round(section.getBoundingClientRect().top + window.scrollY);
-            }
-
-            /* ── Map vScroll to animation targets ── */
-            function calcTargets() {
-                const p    = cl(vScroll / TOTAL);
-                const isMobile = window.innerWidth <= 768;
-                const SIDE = isMobile ? 8 : 18;     // smaller horizontal offset on mobile
-                const TY_MAX = isMobile ? 25 : 38;  // increased vertical depth for both left and right
-
-                /* 2 full 360° rotations across the complete animation. */
-                rotTarget = -p * Math.PI * 4;
-
-                /* Move Center -> Down Right -> Down Left (slanted > shape) */
-                if (p < 0.48) {
-                    txT = lerp(0, SIDE, ease(cl(p / 0.48)));
-                    tyT = lerp(0, TY_MAX * 0.5, ease(cl(p / 0.48)));
-                } else {
-                    txT = lerp(SIDE, -SIDE, ease(cl((p - 0.48) / 0.52)));
-                    tyT = lerp(TY_MAX * 0.5, TY_MAX, ease(cl((p - 0.48) / 0.52)));
+            /* ── RAF render loop based on natural scroll ── */
+            function render() {
+                const rect = section.getBoundingClientRect();
+                const maxScroll = section.offsetHeight - window.innerHeight;
+                let scrolled = -rect.top;
+                if (scrolled < 0) scrolled = 0;
+                if (scrolled > maxScroll) scrolled = maxScroll;
+                
+                // If section is not visible at all, don't update
+                if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                    rafId = null;
+                    return;
                 }
 
-                /* Left points (appear while moving to Down Right, disappear when moving to Center) */
-                const fl1_fadeIn = prog(0.05, 0.15);
-                const fl2_fadeIn = prog(0.15, 0.25);
-                const fl_fadeOut = Math.pow(ease(cl((p - 0.35) / 0.15)), 0.5); // Starts fading out after 0.35
-
-                fl1oT = fl1_fadeIn * (1 - fl_fadeOut);
-                fl2oT = fl2_fadeIn * (1 - fl_fadeOut);
-
-                /* Right points (appear while moving to Down Left) */
-                const fr1_fadeIn = prog(0.70, 0.80);
-                const fr2_fadeIn = prog(0.80, 0.90);
+                const p = maxScroll > 0 ? (scrolled / maxScroll) : 0;
                 
-                fr1oT = fr1_fadeIn;
-                fr2oT = fr2_fadeIn;
+                const isMobile = window.innerWidth <= 768;
+                const SIDE = isMobile ? 8 : 18;
+                const TY_MAX = isMobile ? 25 : 38;
 
-                hOp = cl(1 - p / 0.06);
-            }
+                const rotTarget = -p * Math.PI * 4;
+                const txT = (p < 0.48) ? lerp(0, SIDE, ease(cl(p / 0.48))) : lerp(SIDE, -SIDE, ease(cl((p - 0.48) / 0.52)));
+                const tyT = (p < 0.48) ? lerp(0, TY_MAX * 0.5, ease(cl(p / 0.48))) : lerp(TY_MAX * 0.5, TY_MAX, ease(cl((p - 0.48) / 0.52)));
 
-            function render() {
-                calcTargets();
+                const fl1oT = prog(p, 0.05, 0.15) * (1 - Math.pow(ease(cl((p - 0.35) / 0.15)), 0.5));
+                const fl2oT = prog(p, 0.15, 0.25) * (1 - Math.pow(ease(cl((p - 0.35) / 0.15)), 0.5));
+                const fr1oT = prog(p, 0.70, 0.80);
+                const fr2oT = prog(p, 0.80, 0.90);
+                const hOp = cl(1 - p / 0.06);
 
-                rotAngle = lerp(rotAngle, rotTarget, 0.07);   // silky-smooth lerp
-                tx       = lerp(tx, txT, 0.09);
-                ty       = lerp(ty, tyT, 0.09);
+                rotAngle = lerp(rotAngle, rotTarget, 0.1);
+                tx = lerp(tx, txT, 0.1);
+                ty = lerp(ty, tyT, 0.1);
+                fl1o = lerp(fl1o, fl1oT, 0.1); fl2o = lerp(fl2o, fl2oT, 0.1);
+                fr1o = lerp(fr1o, fr1oT, 0.1); fr2o = lerp(fr2o, fr2oT, 0.1);
 
-                // Smoothly lerp the opacities
-                fl1o = lerp(fl1o, fl1oT, 0.08);
-                fl2o = lerp(fl2o, fl2oT, 0.08);
-                fr1o = lerp(fr1o, fr1oT, 0.08);
-                fr2o = lerp(fr2o, fr2oT, 0.08);
-
-                // Calculate current translations based on smoothed opacities
-                fl1x = lerp(-60, 0, fl1o);
-                fl2x = lerp(-60, 0, fl2o);
-                fr1x = lerp(60, 0, fr1o);
-                fr2x = lerp(60, 0, fr2o);
-
-                // Rotate the actual image element itself around its Z-axis
                 beadImage.style.transform = `rotate(${rotAngle}rad)`;
-                beadWrap.style.transform = `translate(calc(-50% + ${tx}vw), calc(-50% + ${ty}vh))`;
+                beadWrap.style.transform = `translate(-50%, -50%) translate(${tx}vw, ${ty}vh)`;
 
-                fl1.style.opacity = fl1o;  fl1.style.transform = `translateX(${fl1x}px)`;
-                fl2.style.opacity = fl2o;  fl2.style.transform = `translateX(${fl2x}px)`;
-                fr1.style.opacity = fr1o;  fr1.style.transform = `translateX(${fr1x}px)`;
-                fr2.style.opacity = fr2o;  fr2.style.transform = `translateX(${fr2x}px)`;
+                fl1.style.opacity = fl1o; fl1.style.transform = `translateX(${-60 * (1 - fl1o)}px)`;
+                fl2.style.opacity = fl2o; fl2.style.transform = `translateX(${-60 * (1 - fl2o)}px)`;
+                fr1.style.opacity = fr1o; fr1.style.transform = `translateX(${60 * (1 - fr1o)}px)`;
+                fr2.style.opacity = fr2o; fr2.style.transform = `translateX(${60 * (1 - fr2o)}px)`;
                 if (hint) hint.style.opacity = hOp;
 
-                rafId = requestAnimationFrame(render);
+                rafId = null; // allow next frame
             }
 
-            /* ── Scroll-lock helpers ── */
-            function lockScroll(initV) {
-                if (locked) return;
-                locked  = true;
-                vScroll = initV;
-                frozenY = sectionDocTop();   // pin page here (section top at viewport top)
-                window.scrollTo(0, frozenY);
-            }
-            function unlockScroll(to) {
-                locked = false;
-                window.scrollTo(0, to);
-            }
-
-            /* ── Unified wheel/touch handler ── */
-            function onWheel(e) {
-                const rect   = section.getBoundingClientRect();
-                const atEdge = Math.abs(rect.top) <= 150;  // section top ≈ viewport top (increased threshold to catch fast scrolls)
-
-                if (!locked && atEdge) {
-                    /* Enter from top on downward scroll */
-                    if (e.deltaY > 0 && sectionDir === 'above') {
-                        lockScroll(0);
-                    }
-                    /* Enter from bottom on upward scroll */
-                    if (e.deltaY < 0 && sectionDir === 'below') {
-                        lockScroll(TOTAL);
-                    }
-                }
-
-                if (!locked) return;
-                e.preventDefault();
-
-                vScroll = cl(vScroll + e.deltaY, 0, TOTAL);
-                const p = vScroll / TOTAL;
-
-                /* Exit forward — animation finished, page scrolls past section */
-                if (p >= 1 && e.deltaY > 0) {
-                    sectionDir = 'below';
-                    unlockScroll(frozenY + section.offsetHeight + 4);
-                    return;
-                }
-                /* Exit backward — re-entered from reverse, page scrolls above section */
-                if (p <= 0 && e.deltaY < 0) {
-                    sectionDir = 'above';
-                    unlockScroll(frozenY - 4);
-                    return;
-                }
-
-                /* Keep page frozen while animation plays */
-                window.scrollTo(0, frozenY);
-            }
-
-            window.addEventListener('wheel', onWheel, { passive: false });
-
-            /* Re-pin page if scrollbar is dragged while locked;
-               also update sectionDir while unlocked for bidirectional entry */
+            // Trigger render on natural scroll
             window.addEventListener('scroll', () => {
-                if (locked) { window.scrollTo(0, frozenY); return; }
-                const t = section.getBoundingClientRect().top;
-                if (t >  10) sectionDir = 'above';
-                if (t < -10) sectionDir = 'below';
-            });
-
-            /* ── Touch support (mobile) ── */
-            let touchY0 = 0;
-            window.addEventListener('touchstart', e => {
-                touchY0 = e.touches[0].clientY;
+                if (!rafId) rafId = requestAnimationFrame(render);
             }, { passive: true });
-            window.addEventListener('touchmove', e => {
-                const dy = touchY0 - e.touches[0].clientY;
-                touchY0 = e.touches[0].clientY;
-                /* Multiply by 2.5 so swipe speed feels natural */
-                onWheel({ deltaY: dy * 2.5, preventDefault: () => { if (e.cancelable) e.preventDefault(); } });
-            }, { passive: false });
-
-            /* ── IntersectionObserver: start/stop RAF to save CPU ── */
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(en => {
-                    if (en.isIntersecting && !rafId) {
-                        rafId = requestAnimationFrame(render);
-                    } else if (!en.isIntersecting && rafId) {
-                        cancelAnimationFrame(rafId); rafId = null;
-                    }
-                });
-            }, { threshold: 0 });
-            obs.observe(section);
+            
+            // Initial render
+            requestAnimationFrame(render);
         })();
     </script>
     <script>
