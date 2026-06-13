@@ -524,26 +524,36 @@
 
 <!-- Razorpay Integration Script -->
 <script>
+document.addEventListener('DOMContentLoaded', function() {
     let cartItems = [];
     try {
         let buyNowCart = JSON.parse(localStorage.getItem('rudra_cart'));
+        let mainCart = JSON.parse(localStorage.getItem('rudraCart'));
+        
         if (Array.isArray(buyNowCart) && buyNowCart.length > 0) {
             cartItems = buyNowCart;
-        } else {
-            let mainCart = JSON.parse(localStorage.getItem('rudraCart'));
-            if (Array.isArray(mainCart) && mainCart.length > 0) {
-                cartItems = mainCart;
-            }
+        } else if (Array.isArray(mainCart) && mainCart.length > 0) {
+            cartItems = mainCart;
         }
     } catch(e) {
-        console.error("Error loading cart", e);
+        console.error("Error parsing cart data", e);
     }
 
     const container = document.getElementById('checkout-items');
+    const subtotalEl = document.getElementById('checkout-subtotal');
+    const totalEl = document.getElementById('checkout-total');
     let totalAmt = 0;
 
-    if (cartItems.length === 0) {
-        // Fallback dummy item for direct Buy Now if cart is empty
+    if (!container || !subtotalEl || !totalEl) {
+        console.error("Required DOM elements missing");
+        return;
+    }
+
+    // Clear loading or existing contents just in case
+    container.innerHTML = '';
+
+    if (!cartItems || cartItems.length === 0) {
+        // Fallback dummy item
         container.innerHTML = `
             <div class="flex gap-4 items-center">
                 <div class="w-16 h-16 bg-[#8B4513]/10 rounded-lg overflow-hidden flex-shrink-0">
@@ -557,27 +567,38 @@
             </div>`;
         totalAmt = 1200;
     } else {
-        cartItems.forEach(item => {
-            totalAmt += (item.price * item.quantity);
-            container.innerHTML += `
-            <div class="flex gap-4 items-center">
-                <div class="w-16 h-16 bg-[#8B4513]/10 rounded-lg overflow-hidden flex-shrink-0">
-                    <img src="${item.image}" class="w-full h-full object-cover">
-                </div>
-                <div class="flex-1">
-                    <h4 class="text-sm font-bold text-[#8B4513]">${item.name}</h4>
-                    <p class="text-xs text-[#8B4513]/70">Qty: ${item.quantity}</p>
-                </div>
-                <div class="text-sm font-bold text-[#8B4513]">&#8377;${item.price * item.quantity}</div>
-            </div>`;
+        let itemsHtml = '';
+        cartItems.forEach(function(item) {
+            if (item) {
+                let p = Number(item.price) || 0;
+                let q = Number(item.quantity) || 1;
+                let itemTotal = p * q;
+                totalAmt += itemTotal;
+                
+                itemsHtml += `
+                <div class="flex gap-4 items-center mb-3">
+                    <div class="w-16 h-16 bg-[#8B4513]/10 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="${item.image || 'https://placehold.co/100x100'}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-[#8B4513]">${item.name || 'Product'}</h4>
+                        <p class="text-xs text-[#8B4513]/70">Qty: ${q}</p>
+                    </div>
+                    <div class="text-sm font-bold text-[#8B4513]">&#8377;${itemTotal}</div>
+                </div>`;
+            }
         });
+        container.innerHTML = itemsHtml;
     }
 
-    document.getElementById('checkout-subtotal').innerHTML = '&#8377;' + totalAmt;
-    document.getElementById('checkout-total').innerHTML = '&#8377;' + totalAmt;
+    // Force DOM update
+    subtotalEl.innerHTML = '&#8377;' + totalAmt;
+    totalEl.innerHTML = '&#8377;' + totalAmt;
 
     // Razorpay Integration
-    document.getElementById('rzp-button1').onclick = function(e) {
+    const payBtn = document.getElementById('rzp-button1');
+    if (payBtn) {
+        payBtn.onclick = function(e) {
         e.preventDefault();
         
         const name = document.getElementById('c_name').value;
@@ -620,5 +641,9 @@
                 alert("Payment Failed. Reason: " + response.error.description);
         });
         rzp1.open();
+        }
     }
+});
 </script>
+</body>
+</html>
