@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,33 +36,123 @@
             color: #FFF1E0 !important;
             font-weight: 800;
         }
-    </style>
+            /* Dynamic Navbar Colors */
+        .nav-links, .nav-cart, .nav-mobile-btn {
+            color: #FFF1E0;
+            transition: color 0.3s ease;
+        }
+        .nav-link { transition: color 0.3s ease; }
+        .nav-link:hover { color: #8B4513 !important; }
+        .nav-shop-btn {
+            background-color: transparent !important;
+            color: #FFF1E0 !important;
+            border: 1px solid #FFF1E0 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-shop-btn:hover {
+            background-color: #FFF1E0 !important;
+            color: #8B4513 !important;
+        }
+
+        /* Glass state */
+        .glass-nav .nav-links, .glass-nav .nav-cart, .glass-nav .nav-mobile-btn {
+            color: #8B4513 !important;
+        }
+        .glass-nav .nav-link:hover { color: #5c3a23 !important; }
+        .glass-nav .nav-shop-btn {
+            background-color: #8B4513 !important;
+            color: #FFF1E0 !important;
+            border: 1px solid #8B4513 !important;
+        }
+        .glass-nav .nav-shop-btn:hover {
+            background-color: #5c3a23 !important;
+            border-color: #5c3a23 !important;
+        }
+        
+        .glass-nav .active-page {
+            color: #8B4513 !important;
+            text-shadow: 0 0 12px rgba(139, 69, 19, 0.4);
+        }
+    
+        /* ── Product Dropdown Drawer ── */
+        .product-drawer {
+            visibility: hidden; opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            background: linear-gradient(145deg, #FFF1E0, #F3E5D3);
+            border: 1px solid rgba(142,89,54,0.18);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
+        }
+        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+
+        /* ── Enhanced dropdown items ── */
+        .enhanced-dropdown-item {
+            display: block; text-align: center; padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#A8704D,#8E5936);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .enhanced-dropdown-item:hover {
+            transform: scale(1.06) translateY(-5px);
+            border-color: #D4A373;
+            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
+        }
+        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
+        .enhanced-dropdown-item span {
+            color: #FFF2E2 !important;
+            display: block; margin-top: 8px;
+            font-size: 12px; font-weight: 600;
+            letter-spacing: .05em;
+            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        }
+</style>
 </head>
 <body class="overflow-x-hidden pt-32">
 
     <!-- Navbar -->
-    <nav class="fixed top-6 left-0 right-0 z-50 px-6" id="navbar">
+    <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
-            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+            <a href="#home" class="flex items-center gap-2 md:gap-3 shrink-0">
                 <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
                 
             </a>
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#FFF1E0]">
-                <a href="index.html" class="hover:text-[#8B4513] nav-text-glow">Home</a>
-                <a href="product.html" class="hover:text-[#8B4513] nav-text-glow">Products</a>
-                <a href="combo.html" class="hover:text-[#8B4513] nav-text-glow">Combo Offer</a>
-                <a href="about.html" class="hover:text-[#8B4513] nav-text-glow">About</a>
-                <a href="contact.html" class="hover:text-[#8B4513] nav-text-glow">Contact</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
+                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">Home</a>
+                <div class="relative group">
+                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
+                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
+                                <span class="text-xs font-semibold block mt-2">Mala Beads</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
+                                <span class="text-xs font-semibold block mt-2">Bracelets</span>
+                            </a>
+                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
+                                <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a href="combo.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#8B4513] nav-link nav-text-glow">About</a>
+                <a href="contact.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Contact</a>
             </div>
             <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
-                <a href="cart.html" class="text-[#8B4513] hover:text-[#8B4513] transition relative" aria-label="Cart">
+                 <!-- Simple modern cart icon -->
+                 <a href="cart.html" class="nav-cart transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
                     <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                  </a>
+                <button onclick="window.location.href='product.html'" class="shining-button px-4 md:px-6 py-2 rounded-full text-xs md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop Now</button>
                  <!-- Mobile Menu Toggle Button -->
-                 <button id="mobile-menu-btn" class="md:hidden text-[#8B4513] hover:text-[#8B4513] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                 <button id="mobile-menu-btn" class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2" aria-label="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -76,17 +166,17 @@
 
     <!-- Mobile Menu Drawer -->
     <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-64 bg-[#FFF1E0] z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-6 shadow-2xl border-l border-[#8B4513]/10">
-        <button id="close-mobile-menu" class="absolute top-8 right-6 text-[#8B4513] focus:outline-none hover:text-[#8B4513] transition-colors" aria-label="Close Menu">
+        <button id="close-mobile-menu" class="absolute top-8 right-6 text-[#8B4513] focus:outline-none hover:text-[#8B4513] nav-link transition-colors" aria-label="Close Menu">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
         <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
-            <a href="index.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
-            <a href="product.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Products</a>
-            <a href="combo.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Combo Offer</a>
-            <a href="about.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
-            <a href="contact.html" class="hover:text-[#8B4513] transition-colors">Contact</a>
+            <a href="index.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
+            <a href="product.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Products</a>
+            <a href="combo.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Combo Offer</a>
+            <a href="about.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
         </div>
     </div>
 
@@ -132,16 +222,25 @@
                 </div>
             </div>
         </main>
-    </div> <!-- End Main Content Wrapper -->
-
-            <!-- Immersive Pre-Footer Banner & CTA -->
+        <!-- Immersive Pre-Footer Banner & CTA -->
     <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
         <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
         <div class="absolute inset-0 z-0">
             <img src="image/New images for each pages/For Cart Page.jpeg" class="w-full h-full object-cover object-center opacity-40" alt="Immersive Graphic">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
         </div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
+            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+            <p class="text-lg nav-links/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+            <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
+                EXPLORE THE COLLECTION
+            </a>
+        </div>
     </section>
+
+
+    </div> <!-- End Main Content Wrapper -->
 
     <!-- Footer Area -->
     <div id="footer-spacer"></div>
@@ -154,38 +253,38 @@
             <div>
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
-                    <li><a href="index.html#store" class="hover:text-[#8B4513] transition">Products</a></li>
-                    <li><a href="combo.html" class="hover:text-[#8B4513] transition">Combo Offer</a></li>
-                    <li><a href="about.html" class="hover:text-[#8B4513] transition">About Us</a></li>
-                    <li><a href="contact.html" class="hover:text-[#8B4513] transition">Contact</a></li>
+                    <li><a href="index.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
+                    <li><a href="index.html#store" class="hover:text-[#8B4513] nav-link transition">Products</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition">Combo Offer</a></li>
+                    <li><a href="about.html" class="hover:text-[#8B4513] nav-link transition">About Us</a></li>
+                    <li><a href="contact.html" class="hover:text-[#8B4513] nav-link transition">Contact</a></li>
                 </ul>
             </div>
              <div>
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Products</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="product.html" class="hover:text-[#8B4513] transition">Karungali malai</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] transition">Karungali Bracelet</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] transition">Deity Idols</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] transition">Karungali Ring</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali malai</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Bracelet</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Deity Idols</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Ring</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Contact Us</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="tel:+919025895191" class="hover:text-[#8B4513] transition">+919025895191</a></li>
-                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8B4513] transition">info@rudranethra.com</a></li>
+                    <li><a href="tel:+919025895191" class="hover:text-[#8B4513] nav-link transition">+919025895191</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8B4513] nav-link transition">info@rudranethra.com</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF1E0]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
             <div class="mt-4 md:mt-0 flex space-x-4">
-                <a href="#" class="hover:text-[#8B4513] transition">Privacy Policy</a>
+                <a href="#" class="hover:text-[#8B4513] nav-link transition">Privacy Policy</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#8B4513] transition">Terms of Service</a>
+                <a href="#" class="hover:text-[#8B4513] nav-link transition">Terms of Service</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#8B4513] transition">Shipping Policy</a>
+                <a href="#" class="hover:text-[#8B4513] nav-link transition">Shipping Policy</a>
             </div>
         </div>
     </footer>
@@ -319,6 +418,7 @@
 <script src="cart-anim.js"></script>
 </body>
 </html>
+
 
 
 

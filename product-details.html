@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +57,7 @@
             transform: skewX(-25deg);
             animation: shine 4s infinite;
         }
-        /* ── Floating Animation ── */
+        /* -- Floating Animation -- */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -89,7 +89,7 @@
             100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
         }
 
-        /* ── Heart Button ── */
+        /* -- Heart Button -- */
         .heart-btn {
             width: 52px;
             height: 48px;
@@ -153,51 +153,51 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500" id="nav-container">
-            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
+            <a href="#home" class="flex items-center gap-2 md:gap-3 shrink-0">
                 <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
                 
             </a>
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#FFF1E0]">
-                <a href="index.html" class="hover:text-[#8B4513] nav-text-glow">Home</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
+                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">Home</a>
                 <div class="relative group">
-                    <a href="product.html" class="hover:text-[#8B4513] cursor-pointer nav-text-glow active-page">Products</a>
+                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
                     <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
                         <div class="grid grid-cols-3 gap-4 text-center">
-                            <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
                                 <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
-                                <span class="text-xs font-semibold text-[#8B4513]">Mala Beads</span>
+                                <span class="text-xs font-semibold block mt-2">Mala Beads</span>
                             </a>
-                            <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
                                 <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
-                                <span class="text-xs font-semibold text-[#8B4513]">Bracelets</span>
+                                <span class="text-xs font-semibold block mt-2">Bracelets</span>
                             </a>
-                             <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
                                 <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
-                                <span class="text-xs font-semibold text-[#8B4513]">Deity Idols</span>
+                                <span class="text-xs font-semibold block mt-2">Deity Idols</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <a href="combo.html" class="hover:text-[#8B4513] nav-text-glow">Combo Offer</a>
-                <a href="about.html" class="hover:text-[#8B4513] nav-text-glow">About</a>
-                <a href="contact.html" class="hover:text-[#8B4513] nav-text-glow">Contact</a>
+                <a href="combo.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#8B4513] nav-link nav-text-glow">About</a>
+                <a href="contact.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Contact</a>
             </div>
             <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
-                 <!-- Cart Icon -->
-                 <a href="cart.html" class="text-[#8B4513] hover:text-[#8B4513] transition relative" aria-label="Cart">
+                 <!-- Simple modern cart icon -->
+                 <a href="cart.html" class="nav-cart transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
                     <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                  </a>
+                <button onclick="window.location.href='product.html'" class="shining-button px-4 md:px-6 py-2 rounded-full text-xs md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop Now</button>
                  <!-- Mobile Menu Toggle Button -->
-                 <button id="mobile-menu-btn" class="md:hidden text-[#8B4513] hover:text-[#8B4513] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                 <button id="mobile-menu-btn" class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2" aria-label="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                  </button>
-                <button class="shining-button px-4 md:px-6 py-2 bg-[#8B4513] text-[#FFF1E0] rounded-full text-xs md:text-sm hover:bg-[#8B4513] transition font-medium whitespace-nowrap">Shop Now</button>
             </div>
         </div>
     </nav>
@@ -271,8 +271,8 @@
                     
                     <!-- Pricing Structure -->
                     <div class="flex items-center space-x-4 mb-8">
-                        <span class="text-4xl font-black text-[#8B4513]">₹599</span>
-                        <span class="text-lg line-through opacity-50">₹699</span>
+                        <span class="text-4xl font-black text-[#8B4513]">?599</span>
+                        <span class="text-lg line-through opacity-50">?699</span>
                         <span class="bg-[#8B4513] text-[#FFF1E0] px-3 py-1 font-bold text-xs uppercase tracking-widest sharp-edge">12% OFF</span>
                     </div>
 
@@ -433,42 +433,42 @@
                 <div class="text-center mb-8">
                     <span class="text-6xl font-black text-[#8B4513]">4.6</span>
                     <span class="text-sm opacity-60 block mt-2">out of 5 stars</span>
-                    <div class="flex justify-center text-amber-500 mt-2 text-xl">★★★★★</div>
+                    <div class="flex justify-center text-amber-500 mt-2 text-xl">?????</div>
                     <span class="text-xs opacity-50 block mt-1">(1,242 customer ratings)</span>
                 </div>
 
                 <!-- Star Progress bars -->
                 <div class="space-y-3">
                     <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">5★</span>
+                        <span class="w-8 opacity-75">5?</span>
                         <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
                             <div class="h-full bg-[#8B4513]" style="width: 85%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">85%</span>
                     </div>
                     <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">4★</span>
+                        <span class="w-8 opacity-75">4?</span>
                         <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
                             <div class="h-full bg-[#8B4513]" style="width: 10%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">10%</span>
                     </div>
                     <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">3★</span>
+                        <span class="w-8 opacity-75">3?</span>
                         <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
                             <div class="h-full bg-[#8B4513]" style="width: 3%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">3%</span>
                     </div>
                     <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">2★</span>
+                        <span class="w-8 opacity-75">2?</span>
                         <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
                             <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">1%</span>
                     </div>
                     <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">1★</span>
+                        <span class="w-8 opacity-75">1?</span>
                         <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
                             <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
                         </div>
@@ -491,7 +491,7 @@
                             <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">S</div>
                             <div>
                                 <h4 class="font-bold text-[#8B4513]">Sara</h4>
-                                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                                <div class="flex text-amber-500 text-xs">?????</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">2 days ago</span>
@@ -506,7 +506,7 @@
                             <div class="w-10 h-10 bg-[#8B4513]/80 text-white flex items-center justify-center font-bold mr-3 shape-heart">MT</div>
                             <div>
                                 <h4 class="font-bold text-[#8B4513]">Mike T.</h4>
-                                <div class="flex text-amber-500 text-xs">★★★★☆</div>
+                                <div class="flex text-amber-500 text-xs">?????</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">1 week ago</span>
@@ -521,7 +521,7 @@
                             <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">P</div>
                             <div>
                                 <h4 class="font-bold text-[#8B4513]">praba</h4>
-                                <div class="flex text-amber-500 text-xs">★★★★★</div>
+                                <div class="flex text-amber-500 text-xs">?????</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">2 weeks ago</span>
@@ -540,6 +540,14 @@
         <div class="absolute inset-0 z-0">
             <img src="image/New images for each pages/For Product Detail page.jpeg" class="w-full h-full object-cover object-center opacity-40" alt="Immersive Graphic">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
+        </div>
+        <div class="relative z-10 max-w-3xl mx-auto mt-8" data-aos="fade-up">
+            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
+            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+            <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+            <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
+                EXPLORE THE COLLECTION
+            </a>
         </div>
     </section>
 
