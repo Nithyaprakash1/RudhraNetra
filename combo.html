@@ -804,13 +804,8 @@
         });
 
         // Cart count
-        function updateNavCartCount() {
-            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
-            let qty = 0; cart.forEach(i => qty += i.quantity);
-            const el = document.getElementById('navCartCount');
-            if (el) el.innerText = qty;
-        }
-        window.addEventListener('load', updateNavCartCount);
+        
+        
 
         // Countdown timer
         const targetDate = new Date();
@@ -906,7 +901,10 @@
             }
         });
     </script>
+<script src="cart-anim.js"></script>
 </body>
 </html>
+
+
 
 

@@ -415,7 +415,7 @@
                             <p class="text-lg font-extrabold mb-4">₹${p.price}</p>
                             <div class="flex space-x-2">
                                  <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider">Details</button>
-                                 <button onclick="event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
+                                 <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, 'https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}'); event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
                                     </svg>
@@ -506,8 +506,10 @@
             }
         });
     </script>
+<script src="cart-anim.js"></script>
 </body>
 </html>
+
 
 
 

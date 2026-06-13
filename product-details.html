@@ -314,10 +314,10 @@
 
                 <!-- Action CTA Buttons (Full width sharp edges) -->
                 <div class="space-y-4">
-                    <button onclick="showHeartAnimation(event)" class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
+                    <button class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
                         Buy Now
                     </button>
-                    <button class="w-full py-4 bg-transparent border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
+                    <button onclick="addToCart('Karungali Malai', 1200, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Karungali+Malai', parseInt(document.getElementById('quantityVal').value) || 1)" class="w-full py-4 bg-transparent border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
                         Add to Cart
                     </button>
                 </div>
@@ -682,17 +682,7 @@
             input.value = current;
         }
 
-        function showHeartAnimation(e) {
-            const heart = document.createElement('div');
-            heart.innerHTML = '🤎'; // Karungali styled heart
-            heart.className = 'floating-heart-anim';
-            heart.style.left = (e.clientX - 10) + 'px';
-            heart.style.top = (e.clientY - 20) + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 1500);
-        }
+        
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -726,8 +716,10 @@
             }
         });
     </script>
+<script src="cart-anim.js"></script>
 </body>
 </html>
+
 
 
 
