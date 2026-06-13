@@ -205,6 +205,91 @@
             .feat-icon .material-icons {
                 font-size: 16px;
             }
+            /* Tap hint indicator on mobile cards */
+            .feat-item::after {
+                content: 'Tap to read more';
+                display: block;
+                font-size: 0.65rem;
+                color: #A8704D;
+                opacity: 0.75;
+                margin-top: 6px;
+                letter-spacing: 0.05em;
+            }
+            /* Mobile bottom-sheet modal */
+            #feat-modal-overlay {
+                display: flex;
+            }
+        }
+        /* Feature modal (mobile only — hidden by default) */
+        #feat-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.45);
+            align-items: flex-end;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            animation: modalBgIn 0.25s ease;
+        }
+        @keyframes modalBgIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        #feat-modal-sheet {
+            background: #FFF8F0;
+            border-radius: 28px 28px 0 0;
+            padding: 32px 24px 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 -10px 50px rgba(0,0,0,0.2);
+            transform: translateY(0);
+            animation: sheetSlideIn 0.32s cubic-bezier(0.22,1,0.36,1);
+        }
+        @keyframes sheetSlideIn {
+            from { transform: translateY(100%); }
+            to   { transform: translateY(0); }
+        }
+        #feat-modal-sheet .modal-drag-handle {
+            width: 40px; height: 4px;
+            background: rgba(142,89,54,0.25);
+            border-radius: 99px;
+            margin: 0 auto 20px;
+        }
+        #feat-modal-icon {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A8704D, #8E5936);
+            display: flex; align-items: center; justify-content: center;
+            color: #FFF2E2;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 20px rgba(142,89,54,0.3);
+        }
+        #feat-modal-icon .material-icons { font-size: 24px; }
+        #feat-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5c3a23;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        #feat-modal-body {
+            font-size: 0.92rem;
+            color: #8E5936;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        #feat-modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(142,89,54,0.12);
+            border: none;
+            border-radius: 50%;
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            color: #8E5936;
+            font-size: 18px;
         }
         /* Progress bar removed */
         /* Scroll hint */
@@ -813,8 +898,70 @@
             }
         });
     </script>
+
+    <!-- Feature Detail Modal (mobile only) -->
+    <div id="feat-modal-overlay" role="dialog" aria-modal="true" style="display:none;">
+        <div id="feat-modal-sheet" style="position:relative;">
+            <div class="modal-drag-handle"></div>
+            <button id="feat-modal-close" aria-label="Close"><span class="material-icons" style="font-size:18px;">close</span></button>
+            <div id="feat-modal-icon"><span class="material-icons" id="feat-modal-icon-name">eco</span></div>
+            <div id="feat-modal-title">Feature</div>
+            <p id="feat-modal-body"></p>
+        </div>
+    </div>
+
+    <script>
+    /* ── Mobile feature card tap-to-expand (mobile only) ── */
+    (function () {
+        const overlay = document.getElementById('feat-modal-overlay');
+        const sheet   = document.getElementById('feat-modal-sheet');
+        const closeBtn = document.getElementById('feat-modal-close');
+        const mIcon   = document.getElementById('feat-modal-icon-name');
+        const mTitle  = document.getElementById('feat-modal-title');
+        const mBody   = document.getElementById('feat-modal-body');
+
+        const cards = [
+            { id: 'fl1', icon: 'eco',              title: '100% Authentic Karungali',        body: 'Every single bead is ethically harvested from certified, mature Ebony trees. We guarantee the highest density, rich black grain, and natural electromagnetic energy inherent in genuine Karungali wood.' },
+            { id: 'fl2', icon: 'self_improvement', title: 'Vedic Consecration',              body: 'Each piece undergoes a rigorous 48-hour Vedic consecration ritual, led by experienced priests under positive planetary alignments to cleanse negativity and maximize spiritual benefits before reaching your hands.' },
+            { id: 'fr1', icon: 'pan_tool',          title: 'Handcrafted Precision',          body: 'Our master artisans with over 20 years of experience carefully shape and polish every bead by hand, achieving perfect spherical symmetry and a silky-smooth finish without any chemical coatings.' },
+            { id: 'fr2', icon: 'verified_user',     title: 'Lifetime Authenticity Guarantee', body: 'Every order is accompanied by a signed Certificate of Authenticity with a unique serial number, backed by our generations-old promise of purity and sacred heritage.' }
+        ];
+
+        function openModal(card) {
+            mIcon.textContent  = card.icon;
+            mTitle.innerHTML   = card.title;
+            mBody.textContent  = card.body;
+            overlay.style.display = 'flex';
+            // Re-trigger animation
+            sheet.style.animation = 'none';
+            requestAnimationFrame(() => { sheet.style.animation = ''; });
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        cards.forEach(c => {
+            const el = document.getElementById(c.id);
+            if (!el) return;
+            el.addEventListener('click', () => {
+                if (window.innerWidth <= 768) openModal(c);
+            });
+            // Make card visually tappable on mobile
+            el.style.cursor = 'pointer';
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+        // Swipe down to close
+        let touchStartY = 0;
+        sheet.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+        sheet.addEventListener('touchend', e => {
+            if (e.changedTouches[0].clientY - touchStartY > 60) closeModal();
+        }, { passive: true });
+    })();
+    </script>
+
 </body>
 </html>
-
-
-
