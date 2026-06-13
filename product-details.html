@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FFF2E2;
-            color: #8E5936;
+            background-color: #FFF1E0;
+            color: #8B4513;
         }
         h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
         
@@ -33,8 +33,8 @@
         }
         
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FFF2E2; }
-        ::-webkit-scrollbar-thumb { background: #8E5936; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #FFF1E0; }
+        ::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 4px; }
 
         /* SHARP OUTER EDGES ONLY */
         .sharp-edge {
@@ -80,7 +80,7 @@
             position: fixed;
             pointer-events: none;
             font-size: 24px;
-            color: #8E5936;
+            color: #8B4513;
             animation: floatUpHeart 1.5s ease-out forwards;
             z-index: 9999;
         }
@@ -100,7 +100,7 @@
             transition: all 0.3s;
             font-size: 11px;
             font-weight: 700;
-            color: #8E5936;
+            color: #8B4513;
             padding-bottom: 6px;
             -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
             -webkit-mask-size: contain;
@@ -117,8 +117,8 @@
             transform: scale(1.05);
         }
         .heart-btn.selected-heart {
-            background-color: #8E5936;
-            color: #FFF2E2;
+            background-color: #8B4513;
+            color: #FFF1E0;
         }
 
         @keyframes shine {
@@ -139,54 +139,90 @@
             opacity: 1;
             transform: translateY(0);
         }
+                    .nav-text-glow {
+            text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
+        }
+        .active-page {
+            text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
+            color: #8B4513 !important;
+            font-weight: 800;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
     <!-- Navigation Bar -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 transition-all duration-500" id="nav-container">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#8E5936]">RUDRA NETHRA</a>
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
-                <a href="index.html" class="hover:text-[#5c3a23]">Home</a>
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500" id="nav-container">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
+                <span class="hidden md:inline-block text-base md:text-2xl font-bold tracking-tighter text-[#8B4513] whitespace-nowrap">RUDRA NETHRA</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8B4513]">
+                <a href="index.html" class="hover:text-[#8B4513] nav-text-glow">Home</a>
                 <div class="relative group">
-                    <a href="products.html" class="hover:text-[#5c3a23] cursor-pointer">Products</a>
-                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF2E2] shadow-2xl rounded-2xl w-[600px] border border-[#8E5936]/10">
+                    <a href="products.html" class="hover:text-[#8B4513] cursor-pointer nav-text-glow active-page">Products</a>
+                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
                         <div class="grid grid-cols-3 gap-4 text-center">
-                            <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
-                                <span class="text-xs font-semibold text-[#8E5936]">Mala Beads</span>
+                            <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
+                                <span class="text-xs font-semibold text-[#8B4513]">Mala Beads</span>
                             </a>
-                            <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
-                                <span class="text-xs font-semibold text-[#8E5936]">Bracelets</span>
+                            <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
+                                <span class="text-xs font-semibold text-[#8B4513]">Bracelets</span>
                             </a>
-                             <a href="#" class="hover:bg-[#8E5936]/10 p-2 rounded-lg transition block">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
-                                <span class="text-xs font-semibold text-[#8E5936]">Deity Idols</span>
+                             <a href="#" class="hover:bg-[#8B4513]/10 p-2 rounded-lg transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
+                                <span class="text-xs font-semibold text-[#8B4513]">Deity Idols</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <a href="combo.html" class="hover:text-[#5c3a23]">Combo Offer</a>
-                <a href="about.html" class="hover:text-[#5c3a23]">About</a>
-                <a href="contact.html" class="hover:text-[#5c3a23]">Contact</a>
+                <a href="combo.html" class="hover:text-[#8B4513] nav-text-glow">Combo Offer</a>
+                <a href="about.html" class="hover:text-[#8B4513] nav-text-glow">About</a>
+                <a href="contact.html" class="hover:text-[#8B4513] nav-text-glow">Contact</a>
             </div>
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
                  <!-- Cart Icon -->
-                 <a href="cart.html" class="text-[#8E5936] hover:text-[#5c3a23] transition relative" aria-label="Cart">
+                 <a href="cart.html" class="text-[#8B4513] hover:text-[#8B4513] transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
                     </svg>
-                    <span class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                    <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                  </a>
-                <button class="shining-button px-6 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-sm hover:bg-[#5c3a23] transition font-medium">Shop Now</button>
+                 <!-- Mobile Menu Toggle Button -->
+                 <button id="mobile-menu-btn" class="md:hidden text-[#8B4513] hover:text-[#8B4513] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                 </button>
+                <button class="shining-button px-4 md:px-6 py-2 bg-[#8B4513] text-[#FFF1E0] rounded-full text-xs md:text-sm hover:bg-[#8B4513] transition font-medium whitespace-nowrap">Shop Now</button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/50 z-[55] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-64 bg-[#FFF1E0] z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-6 shadow-2xl border-l border-[#8B4513]/10">
+        <button id="close-mobile-menu" class="absolute top-8 right-6 text-[#8B4513] focus:outline-none hover:text-[#8B4513] transition-colors" aria-label="Close Menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
+            <a href="index.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
+            <a href="product.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Products</a>
+            <a href="combo.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">Combo Offer</a>
+            <a href="about.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-[#8B4513] transition-colors">Contact</a>
+        </div>
+    </div>
+
     <!-- Main Content Wrapper for Parallax Effect -->
-    <div class="relative z-20 bg-[#FFF2E2] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
+    <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
     <!-- Main Product Detail Panel Container -->
     <main class="pt-32 pb-24 px-6 max-w-7xl mx-auto relative z-10">
@@ -195,11 +231,11 @@
             <!-- Left Side: Interactive Image Gallery (5 Columns) -->
             <div class="lg:col-span-6" data-aos="fade-right">
                 <!-- Large Display with Real-time pulse views counter -->
-                <div class="relative bg-white/40 border border-[#8E5936]/10 p-4 shadow-xl sharp-edge mb-4">
-                    <img id="mainProductImg" src="https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+with+Rudraksha" class="w-full h-auto object-cover rounded-md" alt="Karungali Bracelet with Rudraksha">
+                <div class="relative bg-white/40 border border-[#8B4513]/10 p-4 shadow-xl sharp-edge mb-4">
+                    <img id="mainProductImg" src="https://placehold.co/600x600/8B4513/FFF1E0?text=Bracelet+with+Rudraksha" class="w-full h-auto object-cover rounded-md" alt="Karungali Bracelet with Rudraksha">
                     
                     <!-- Dynamic Pulse Views Badge -->
-                    <div class="absolute top-8 left-8 flex items-center bg-[#1E110A] text-[#FFF2E2] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider sharp-edge shadow-lg">
+                    <div class="absolute top-8 left-8 flex items-center bg-[#1E110A] text-[#FFF1E0] px-3 py-1.5 text-xs font-semibold uppercase tracking-wider sharp-edge shadow-lg">
                         <span class="relative flex h-2 w-2 mr-2">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
@@ -210,17 +246,17 @@
 
                 <!-- Small Galleries Thumbnails -->
                 <div class="grid grid-cols-4 gap-4">
-                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+with+Rudraksha')" class="border-2 border-[#8E5936] p-1 bg-white/40 sharp-edge focus:outline-none">
-                        <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Beads+View" class="w-full h-20 object-cover" alt="Beads view">
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Bracelet+with+Rudraksha')" class="border-2 border-[#8B4513] p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Beads+View" class="w-full h-20 object-cover" alt="Beads view">
                     </button>
-                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/5C3A23/FFF2E2?text=Bracelet+Angle+2')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
-                        <img src="https://placehold.co/150x150/5C3A23/FFF2E2?text=Angle+2" class="w-full h-20 object-cover" alt="Angle 2">
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Bracelet+Angle+2')" class="border border-[#8B4513]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Angle+2" class="w-full h-20 object-cover" alt="Angle 2">
                     </button>
-                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8E5936/FFF2E2?text=Bracelet+Aura')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
-                        <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Aura+Shot" class="w-full h-20 object-cover" alt="Aura Shot">
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Bracelet+Aura')" class="border border-[#8B4513]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Aura+Shot" class="w-full h-20 object-cover" alt="Aura Shot">
                     </button>
-                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/5C3A23/FFF2E2?text=Detailed+Beads')" class="border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
-                        <img src="https://placehold.co/150x150/5C3A23/FFF2E2?text=Detail+Zoom" class="w-full h-20 object-cover" alt="Detail zoom">
+                    <button onclick="changeProductImage(this, 'https://placehold.co/600x600/8B4513/FFF1E0?text=Detailed+Beads')" class="border border-[#8B4513]/20 p-1 bg-white/40 sharp-edge focus:outline-none">
+                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Detail+Zoom" class="w-full h-20 object-cover" alt="Detail zoom">
                     </button>
                 </div>
             </div>
@@ -229,25 +265,25 @@
             <div class="lg:col-span-6 flex flex-col justify-between" data-aos="fade-left">
                 <div>
                     <!-- Breadcrumbs & Category -->
-                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
-                    <h1 class="text-4xl md:text-5xl font-bold text-[#8E5936] mb-3 leading-tight">Karungali Bracelet with Rudraksha</h1>
-                    <p class="text-base text-[#8E5936]/80 italic mb-6">Combining Karungali and Rudraksha for protection and positivity.</p>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-[#8B4513] mb-3 leading-tight">Karungali Bracelet with Rudraksha</h1>
+                    <p class="text-base text-[#8B4513]/80 italic mb-6">Combining Karungali and Rudraksha for protection and positivity.</p>
                     
                     <!-- Pricing Structure -->
                     <div class="flex items-center space-x-4 mb-8">
-                        <span class="text-4xl font-black text-[#8E5936]">₹599</span>
+                        <span class="text-4xl font-black text-[#8B4513]">₹599</span>
                         <span class="text-lg line-through opacity-50">₹699</span>
-                        <span class="bg-[#8E5936] text-[#FFF2E2] px-3 py-1 font-bold text-xs uppercase tracking-widest sharp-edge">12% OFF</span>
+                        <span class="bg-[#8B4513] text-[#FFF1E0] px-3 py-1 font-bold text-xs uppercase tracking-widest sharp-edge">12% OFF</span>
                     </div>
 
                     <!-- Options 1: Select Beads count (Segmented controllers with sharp edges) -->
                     <div class="mb-6">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Beads</label>
                         <div class="flex space-x-3">
-                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
+                            <button onclick="selectOption(this, 'beads')" class="beads-option-btn px-4 py-8 border-2 border-[#8B4513] bg-[#8B4513] text-[#FFF1E0] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
                                 <span class="-mt-2">20 Beads</span>
                             </button>
-                            <button onclick="selectOption(this, 'beads')" class="bead-option-btn px-4 py-8 border border-[#8E5936]/30 bg-[#8E5936]/20 hover:bg-[#8E5936]/30 text-[#8E5936] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
+                            <button onclick="selectOption(this, 'beads')" class="beads-option-btn px-4 py-8 border border-[#8B4513]/30 bg-[#8B4513]/20 hover:bg-[#8B4513]/30 text-[#8B4513] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
                                 <span class="-mt-2">27 Beads</span>
                             </button>
                         </div>
@@ -268,20 +304,20 @@
                     <!-- Quantity Control -->
                     <div class="mb-8">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Quantity</label>
-                        <div class="inline-flex items-center border border-[#8E5936]/30 bg-white/40 sharp-edge">
-                            <button onclick="adjustQuantity(-1)" class="px-4 py-2 text-lg font-bold text-[#8E5936] hover:bg-[#8E5936]/10 focus:outline-none">-</button>
-                            <input type="text" id="quantityVal" value="1" readonly class="w-12 text-center bg-transparent text-[#8E5936] font-bold text-sm focus:outline-none">
-                            <button onclick="adjustQuantity(1)" class="px-4 py-2 text-lg font-bold text-[#8E5936] hover:bg-[#8E5936]/10 focus:outline-none">+</button>
+                        <div class="inline-flex items-center border border-[#8B4513]/30 bg-white/40 sharp-edge">
+                            <button onclick="adjustQuantity(-1)" class="px-4 py-2 text-lg font-bold text-[#8B4513] hover:bg-[#8B4513]/10 focus:outline-none">-</button>
+                            <input type="text" id="quantityVal" value="1" readonly class="w-12 text-center bg-transparent text-[#8B4513] font-bold text-sm focus:outline-none">
+                            <button onclick="adjustQuantity(1)" class="px-4 py-2 text-lg font-bold text-[#8B4513] hover:bg-[#8B4513]/10 focus:outline-none">+</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action CTA Buttons (Full width sharp edges) -->
                 <div class="space-y-4">
-                    <button onclick="showHeartAnimation(event)" class="shining-button w-full py-4 bg-[#8E5936] text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase hover:bg-[#5c3a23] transition shadow-lg sharp-edge">
+                    <button onclick="showHeartAnimation(event)" class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
                         Buy Now
                     </button>
-                    <button class="w-full py-4 bg-transparent border-2 border-[#8E5936] text-[#8E5936] hover:bg-[#8E5936] hover:text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
+                    <button class="w-full py-4 bg-transparent border-2 border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase transition sharp-edge">
                         Add to Cart
                     </button>
                 </div>
@@ -291,63 +327,63 @@
     </main>
 
     <!-- Product Technical Specs & Authenticity Certificate Details Block -->
-    <section class="py-20 bg-[#8E5936]/5 relative z-10 border-t border-b border-[#8E5936]/10">
+    <section class="py-20 bg-[#8B4513]/5 relative z-10 border-t border-b border-[#8B4513]/10">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16">
             
             <!-- Left Side Specifications Panel (6 Columns sharp edge) -->
             <div class="lg:col-span-7 space-y-12" data-aos="fade-right">
                 <div>
-                    <h2 class="text-3xl font-bold mb-6 text-[#8E5936]">Product Specifications</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-[#8B4513]">Product Specifications</h2>
                     
                     <!-- Details Table -->
-                    <div class="border border-[#8E5936]/20 bg-white/40 sharp-edge overflow-hidden">
+                    <div class="border border-[#8B4513]/20 bg-white/40 sharp-edge overflow-hidden">
                         <table class="w-full text-left text-sm">
-                            <tr class="border-b border-[#8E5936]/10">
+                            <tr class="border-b border-[#8B4513]/10">
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75 w-1/3">Product Name</td>
-                                <td class="p-4 text-[#8E5936]">Karungali Bracelet with Rudraksha</td>
+                                <td class="p-4 text-[#8B4513]">Karungali Bracelet with Rudraksha</td>
                             </tr>
-                            <tr class="border-b border-[#8E5936]/10">
+                            <tr class="border-b border-[#8B4513]/10">
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Material</td>
-                                <td class="p-4 text-[#8E5936]">Pure Karungali Wood & Natural Rudraksha Beads</td>
+                                <td class="p-4 text-[#8B4513]">Pure Karungali Wood & Natural Rudraksha Beads</td>
                             </tr>
-                            <tr class="border-b border-[#8E5936]/10">
+                            <tr class="border-b border-[#8B4513]/10">
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Beads Count</td>
-                                <td class="p-4 text-[#8E5936]">54 Beads : 108 Beads</td>
+                                <td class="p-4 text-[#8B4513]">54 Beads : 108 Beads</td>
                             </tr>
                             <tr>
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Finish</td>
-                                <td class="p-4 text-[#8E5936]">Silver Plated Caps</td>
+                                <td class="p-4 text-[#8B4513]">Silver Plated Caps</td>
                             </tr>
                         </table>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 text-[#8E5936]">Quality Assurance</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-[#8B4513]">Quality Assurance</h3>
                     <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="font-medium text-[#8E5936]/90">100% Natural Karungali Wood</span>
+                            <span class="font-medium text-[#8B4513]/90">100% Natural Karungali Wood</span>
                         </li>
                         <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="font-medium text-[#8E5936]/90">Handcrafted by Skilled Artisans</span>
+                            <span class="font-medium text-[#8B4513]/90">Handcrafted by Skilled Artisans</span>
                         </li>
                         <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="font-medium text-[#8E5936]/90">Quality Checked & Approved</span>
+                            <span class="font-medium text-[#8B4513]/90">Quality Checked & Approved</span>
                         </li>
                         <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8E5936]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="font-medium text-[#8E5936]/90">Eco-friendly & Sustainable</span>
+                            <span class="font-medium text-[#8B4513]/90">Eco-friendly & Sustainable</span>
                         </li>
                     </ul>
                 </div>
@@ -356,28 +392,28 @@
             <!-- Right Side Security Certificate (5 Columns sharp edge) -->
             <div class="lg:col-span-5" data-aos="fade-left">
                 <!-- Visual Certificate Layout representation -->
-                <div class="border-2 border-dashed border-[#8E5936]/50 bg-white/60 p-8 shadow-inner sharp-edge relative">
+                <div class="border-2 border-dashed border-[#8B4513]/50 bg-white/60 p-8 shadow-inner sharp-edge relative">
                     <!-- Fine filigree style design inside borders -->
-                    <div class="absolute inset-2 border border-[#8E5936]/10 pointer-events-none"></div>
+                    <div class="absolute inset-2 border border-[#8B4513]/10 pointer-events-none"></div>
                     
                     <div class="relative z-10 text-center">
-                        <span class="serif-font italic text-[#8E5936]/70 text-sm block mb-1">Rudra Nethra Sanctum Seal</span>
-                        <h3 class="serif-font font-bold text-2xl tracking-widest text-[#8E5936] border-b border-[#8E5936]/20 pb-4 mb-6">CERTIFICATE OF AUTHENTICITY</h3>
+                        <span class="serif-font italic text-[#8B4513]/70 text-sm block mb-1">Rudra Nethra Sanctum Seal</span>
+                        <h3 class="serif-font font-bold text-2xl tracking-widest text-[#8B4513] border-b border-[#8B4513]/20 pb-4 mb-6">CERTIFICATE OF AUTHENTICITY</h3>
                         
                         <p class="text-sm opacity-80 leading-relaxed mb-6">
                             This certifies that the product is made from
                         </p>
                         
-                        <h4 class="serif-font text-3xl font-extrabold text-[#8E5936] mb-8">100% Genuine Karungali Wood</h4>
+                        <h4 class="serif-font text-3xl font-extrabold text-[#8B4513] mb-8">100% Genuine Karungali Wood</h4>
                         
                         <p class="text-[10px] uppercase tracking-widest font-semibold opacity-60 mb-2">Verification Code</p>
-                        <div class="bg-[#8E5936]/10 py-3 px-6 font-mono font-bold text-[#8E5936] tracking-wider text-base inline-block sharp-edge select-all">
+                        <div class="bg-[#8B4513]/10 py-3 px-6 font-mono font-bold text-[#8B4513] tracking-wider text-base inline-block sharp-edge select-all">
                             KGN-2025-XXXX
                         </div>
                         
-                        <div class="mt-8 pt-6 border-t border-[#8E5936]/10 text-[11px] opacity-70">
+                        <div class="mt-8 pt-6 border-t border-[#8B4513]/10 text-[11px] opacity-70">
                             <p class="mb-2">For any authenticity concerns, please contact:</p>
-                            <a href="mailto:support@rudhranethra.com" class="font-bold underline hover:text-[#5c3a23]">support@rudhranethra.com</a>
+                            <a href="mailto:support@rudhranethra.com" class="font-bold underline hover:text-[#8B4513]">support@rudhranethra.com</a>
                         </div>
                     </div>
                 </div>
@@ -393,9 +429,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
             <!-- Left Side Score Display (4 Columns) -->
-            <div class="lg:col-span-4 bg-white/40 p-8 border border-[#8E5936]/10 sharp-edge" data-aos="fade-right">
+            <div class="lg:col-span-4 bg-white/40 p-8 border border-[#8B4513]/10 sharp-edge" data-aos="fade-right">
                 <div class="text-center mb-8">
-                    <span class="text-6xl font-black text-[#8E5936]">4.6</span>
+                    <span class="text-6xl font-black text-[#8B4513]">4.6</span>
                     <span class="text-sm opacity-60 block mt-2">out of 5 stars</span>
                     <div class="flex justify-center text-amber-500 mt-2 text-xl">★★★★★</div>
                     <span class="text-xs opacity-50 block mt-1">(1,242 customer ratings)</span>
@@ -405,42 +441,42 @@
                 <div class="space-y-3">
                     <div class="flex items-center text-xs">
                         <span class="w-8 opacity-75">5★</span>
-                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8E5936]" style="width: 85%;"></div>
+                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8B4513]" style="width: 85%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">85%</span>
                     </div>
                     <div class="flex items-center text-xs">
                         <span class="w-8 opacity-75">4★</span>
-                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8E5936]" style="width: 10%;"></div>
+                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8B4513]" style="width: 10%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">10%</span>
                     </div>
                     <div class="flex items-center text-xs">
                         <span class="w-8 opacity-75">3★</span>
-                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8E5936]" style="width: 3%;"></div>
+                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8B4513]" style="width: 3%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">3%</span>
                     </div>
                     <div class="flex items-center text-xs">
                         <span class="w-8 opacity-75">2★</span>
-                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8E5936]" style="width: 1%;"></div>
+                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">1%</span>
                     </div>
                     <div class="flex items-center text-xs">
                         <span class="w-8 opacity-75">1★</span>
-                        <div class="flex-1 h-3 bg-[#8E5936]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8E5936]" style="width: 1%;"></div>
+                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                            <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
                         </div>
                         <span class="w-8 text-right opacity-75">1%</span>
                     </div>
                 </div>
 
-                <button class="w-full mt-8 py-3.5 bg-transparent border border-[#8E5936] text-[#8E5936] hover:bg-[#8E5936] hover:text-[#FFF2E2] transition text-xs font-bold uppercase tracking-wider sharp-edge">
+                <button onclick="alert('Write Review feature is coming soon!')" class="w-full mt-8 py-3.5 bg-transparent border border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] transition text-xs font-bold uppercase tracking-wider sharp-edge">
                     Write Review
                 </button>
             </div>
@@ -449,48 +485,48 @@
             <div class="lg:col-span-8 space-y-8" data-aos="fade-left">
                 
                 <!-- Feedback 1 -->
-                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 shape-heart">S</div>
+                            <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">S</div>
                             <div>
-                                <h4 class="font-bold text-[#8E5936]">Sara</h4>
+                                <h4 class="font-bold text-[#8B4513]">Sara</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★★</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">2 days ago</span>
                     </div>
-                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"Beautiful product! Exceeded my expectations."</p>
+                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"Beautiful product! Exceeded my expectations."</p>
                 </div>
 
                 <!-- Feedback 2 -->
-                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936]/80 text-white flex items-center justify-center font-bold mr-3 shape-heart">MT</div>
+                            <div class="w-10 h-10 bg-[#8B4513]/80 text-white flex items-center justify-center font-bold mr-3 shape-heart">MT</div>
                             <div>
-                                <h4 class="font-bold text-[#8E5936]">Mike T.</h4>
+                                <h4 class="font-bold text-[#8B4513]">Mike T.</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★☆</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">1 week ago</span>
                     </div>
-                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"Good quality, but shipping took longer than expected."</p>
+                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"Good quality, but shipping took longer than expected."</p>
                 </div>
 
                 <!-- Feedback 3 -->
-                <div class="p-6 bg-white/40 border border-[#8E5936]/10 sharp-edge">
+                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8E5936] text-white flex items-center justify-center font-bold mr-3 shape-heart">P</div>
+                            <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">P</div>
                             <div>
-                                <h4 class="font-bold text-[#8E5936]">praba</h4>
+                                <h4 class="font-bold text-[#8B4513]">praba</h4>
                                 <div class="flex text-amber-500 text-xs">★★★★★</div>
                             </div>
                         </div>
                         <span class="text-xs opacity-50">2 weeks ago</span>
                     </div>
-                    <p class="text-sm text-[#8E5936]/90 leading-relaxed italic">"loving it! Perfect for daily use."</p>
+                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"loving it! Perfect for daily use."</p>
                 </div>
 
             </div>
@@ -500,17 +536,17 @@
 
     <!-- Immersive Pre-Footer Banner & CTA -->
     <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
-        <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF2E2 0%,transparent 100%)"></div>
+        <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
         <div class="absolute inset-0 z-0">
             <img src="image/img%20-1.jpg" class="w-full h-full object-cover object-center opacity-25" alt="Immersive Graphic">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
         </div>
 
         <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF2E2]/60 mb-4 block">Elevate Your Sacred Space</span>
-            <h2 class="text-5xl md:text-6xl text-[#FFF2E2] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
-            <p class="text-lg text-[#FFF2E2]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
-            <a href="products.html" class="shining-button inline-block px-10 py-4 bg-[#8E5936] text-[#FFF2E2] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
+            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
+            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+            <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+            <a href="products.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
                 EXPLORE THE COLLECTION
             </a>
         </div>
@@ -520,48 +556,48 @@
 
     <!-- Footer Area -->
     <div id="footer-spacer"></div>
-    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-16 px-6 text-[#FFF2E2]/80" id="footer-contact">
+    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-16 px-6 text-[#FFF1E0]/80" id="footer-contact">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="col-span-2 md:col-span-1">
-                <h3 class="text-3xl font-bold mb-4 text-[#FFF2E2]">Rudra Nethra</h3>
+                <h3 class="text-3xl font-bold mb-4 text-[#FFF1E0]">Rudra Nethra</h3>
                 <p class="text-sm">Awaken your third eye.</p>
             </div>
             <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Quick Links</h4>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="index.html" class="hover:text-[#8E5936] transition">Home</a></li>
-                    <li><a href="products.html" class="hover:text-[#8E5936] transition">Products</a></li>
-                    <li><a href="about.html" class="hover:text-[#8E5936] transition">About Us</a></li>
-                    <li><a href="combo.html" class="hover:text-[#8E5936] transition">Combo Offer</a></li>
-                    <li><a href="contact.html" class="hover:text-[#8E5936] transition">Contact</a></li>
+                    <li><a href="index.html" class="hover:text-[#8B4513] transition">Home</a></li>
+                    <li><a href="products.html" class="hover:text-[#8B4513] transition">Products</a></li>
+                    <li><a href="about.html" class="hover:text-[#8B4513] transition">About Us</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8B4513] transition">Combo Offer</a></li>
+                    <li><a href="contact.html" class="hover:text-[#8B4513] transition">Contact</a></li>
                 </ul>
             </div>
              <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Products</h4>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Products</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali malai</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Bracelet</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Necklace</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Ring</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Damru Bracelet</a></li>
+                    <li><a href="#" class="hover:text-[#8B4513] transition">Karungali malai</a></li>
+                    <li><a href="#" class="hover:text-[#8B4513] transition">Karungali Bracelet</a></li>
+                    <li><a href="#" class="hover:text-[#8B4513] transition">Karungali Necklace</a></li>
+                    <li><a href="#" class="hover:text-[#8B4513] transition">Karungali Ring</a></li>
+                    <li><a href="#" class="hover:text-[#8B4513] transition">Karungali Damru Bracelet</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Contact Us</h4>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Contact Us</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="tel:+919025895191" class="hover:text-[#8E5936] transition">+919025895191</a></li>
-                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
+                    <li><a href="tel:+919025895191" class="hover:text-[#8B4513] transition">+919025895191</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8B4513] transition">info@rudranethra.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
+        <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF1E0]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
             <div class="mt-4 md:mt-0 flex space-x-4">
-                <a href="#" class="hover:text-[#8E5936] transition">Privacy Policy</a>
+                <a href="#" class="hover:text-[#8B4513] transition">Privacy Policy</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#8E5936] transition">Terms of Service</a>
+                <a href="#" class="hover:text-[#8B4513] transition">Terms of Service</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#8E5936] transition">Shipping Policy</a>
+                <a href="#" class="hover:text-[#8B4513] transition">Shipping Policy</a>
             </div>
         </div>
     </footer>
@@ -600,9 +636,9 @@
             // Manage Active Button States
             const btns = btn.parentElement.querySelectorAll('button');
             btns.forEach(b => {
-                b.className = "border border-[#8E5936]/20 p-1 bg-white/40 sharp-edge focus:outline-none";
+                b.className = "border border-[#8B4513]/20 p-1 bg-white/40 sharp-edge focus:outline-none";
             });
-            btn.className = "border-2 border-[#8E5936] p-1 bg-white/40 sharp-edge focus:outline-none";
+            btn.className = "border-2 border-[#8B4513] p-1 bg-white/40 sharp-edge focus:outline-none";
         }
 
         // Option selection button styles toggling
@@ -613,24 +649,24 @@
                 buttons.forEach(btn => btn.classList.remove('selected-heart'));
                 button.classList.add('selected-heart');
             } else if (type === 'beads') {
-                if (button.classList.contains('bg-[#8E5936]')) {
+                if (button.classList.contains('bg-[#8B4513]')) {
                     // Already selected, so unpick
-                    button.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
-                    button.classList.add('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
+                    button.classList.remove('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
+                    button.classList.add('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
                     return;
                 }
                 buttons.forEach(btn => {
-                    btn.classList.remove('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
-                    btn.classList.add('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
+                    btn.classList.remove('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
+                    btn.classList.add('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
                 });
-                button.classList.remove('bg-[#8E5936]/20', 'text-[#8E5936]', 'hover:bg-[#8E5936]/30');
-                button.classList.add('bg-[#8E5936]', 'text-[#FFF2E2]', 'border-2');
+                button.classList.remove('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
+                button.classList.add('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
             } else {
                 buttons.forEach(btn => {
-                    btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8E5936]/30 text-[#8E5936] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8E5936]`;
+                    btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8B4513]/30 text-[#8B4513] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8B4513]`;
                 });
                 // Adjust style for active selected element
-                button.className = `${type}-option-btn px-5 py-2.5 border-2 border-[#8E5936] bg-[#8E5936] text-[#FFF2E2] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition`;
+                button.className = `${type}-option-btn px-5 py-2.5 border-2 border-[#8B4513] bg-[#8B4513] text-[#FFF1E0] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition`;
             }
         }
 
@@ -658,5 +694,40 @@
             }, 1500);
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+
+            function toggleMenu(show) {
+                if(show) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                    }
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                        backdrop.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                }
+            }
+
+            if(mobileMenuBtn && mobileMenu && closeMobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => toggleMenu(true));
+                closeMobileMenu.addEventListener('click', () => toggleMenu(false));
+                if(backdrop) {
+                    backdrop.addEventListener('click', () => toggleMenu(false));
+                }
+            }
+        });
+    </script>
 </body>
 </html>
+
+
+
