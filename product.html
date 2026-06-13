@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,16 +80,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-            .nav-text-glow {
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.8), 1px 1px 2px rgba(255,255,255,1);
+                    .nav-text-glow {
+            text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
         }
         .active-page {
-            text-shadow: 0 0 12px #8B4513, 0 0 24px #8B4513;
-            color: #FFF1E0 !important;
-            background-color: #8B4513;
-            padding: 4px 12px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(139,69,19,0.5);
+            text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
+            color: #8B4513 !important;
+            font-weight: 800;
         }
     </style>
 </head>
@@ -251,18 +248,18 @@
         <div class="flex flex-col md:flex-row justify-between items-center border-b border-[#8B4513]/20 pb-6 mb-12 gap-4">
             <!-- Text Filter Tabs -->
             <div class="flex flex-wrap gap-2" id="filterTabs">
-                <button onclick="setCategoryFilter('all')" class="tab-btn px-5 py-2 bg-[#8B4513] text-[#FFF1E0] text-xs uppercase tracking-wider font-semibold transition rounded-none">All</button>
-                <button onclick="setCategoryFilter('malas')" class="tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none">Malas</button>
-                <button onclick="setCategoryFilter('bracelets')" class="tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none">Bracelets</button>
-                <button onclick="setCategoryFilter('idols')" class="tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none">Idols</button>
-                <button onclick="setCategoryFilter('planks')" class="tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none">Holy Planks</button>
-                <button onclick="setCategoryFilter('accessories')" class="tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none">Accessories</button>
+                <button onclick="setCategoryFilter('all')" class="tab-btn px-6 py-2.5 bg-[#8B4513] text-[#FFF1E0] text-xs uppercase tracking-wider font-bold transition rounded-full shadow-md">All</button>
+                <button onclick="setCategoryFilter('malas')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Malas</button>
+                <button onclick="setCategoryFilter('bracelets')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Bracelets</button>
+                <button onclick="setCategoryFilter('idols')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Idols</button>
+                <button onclick="setCategoryFilter('planks')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Holy Planks</button>
+                <button onclick="setCategoryFilter('accessories')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Accessories</button>
             </div>
             
             <!-- Sorting Control -->
             <div class="flex items-center space-x-2">
                 <label for="sortSelector" class="text-xs uppercase tracking-wider font-semibold opacity-60">Sort By:</label>
-                <select id="sortSelector" onchange="sortProducts(this.value)" class="bg-transparent border border-[#8B4513]/30 text-xs p-2 text-[#8B4513] focus:outline-none rounded-none">
+                <select id="sortSelector" onchange="sortProducts(this.value)" class="bg-[#8B4513]/5 border border-[#8B4513]/20 text-xs py-2.5 px-4 text-[#8B4513] font-semibold focus:outline-none rounded-full">
                     <option value="featured">Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -460,9 +457,9 @@
             tabs.forEach(tab => {
                 const tabCategory = tab.getAttribute('onclick').match(/'([^']+)'/)[1];
                 if (tabCategory === category) {
-                    tab.className = "tab-btn px-5 py-2 bg-[#8B4513] text-[#FFF1E0] text-xs uppercase tracking-wider font-semibold transition rounded-none";
+                    tab.className = "tab-btn px-6 py-2.5 bg-[#8B4513] text-[#FFF1E0] text-xs uppercase tracking-wider font-bold transition rounded-full shadow-md";
                 } else {
-                    tab.className = "tab-btn px-5 py-2 bg-transparent text-[#8B4513] border border-[#8B4513]/30 text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/10 transition rounded-none";
+                    tab.className = "tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full";
                 }
             });
 
@@ -511,5 +508,6 @@
     </script>
 </body>
 </html>
+
 
 
