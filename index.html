@@ -328,8 +328,11 @@
 <body class="overflow-x-hidden">
 
     <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 transition-all duration-500" id="nav-container">
-            <a href="#home" class="text-2xl font-bold tracking-tighter text-[#8E5936]">RUDRA NETHRA</a>
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
+            <a href="#home" class="flex items-center gap-2 md:gap-3 shrink-0">
+                <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
+                <span class="hidden md:inline-block text-base md:text-2xl font-bold tracking-tighter text-[#8E5936] whitespace-nowrap">RUDRA NETHRA</span>
+            </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
                 <a href="#home" class="hover:text-[#5c3a23]">Home</a>
                 <div class="relative group">
@@ -355,7 +358,7 @@
                 <a href="#about" class="hover:text-[#5c3a23]">About</a>
                 <a href="contact.html" class="hover:text-[#5c3a23]">Contact</a>
             </div>
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
                  <!-- Simple modern cart icon -->
                  <a href="cart.html" class="text-[#8E5936] hover:text-[#5c3a23] transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -363,10 +366,35 @@
                     </svg>
                     <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                  </a>
-                <button onclick="window.location.href='product.html'" class="shining-button px-6 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-sm hover:bg-[#5c3a23] transition font-medium">Shop Now</button>
+                <button onclick="window.location.href='product.html'" class="shining-button px-4 md:px-6 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-xs md:text-sm hover:bg-[#5c3a23] transition font-medium whitespace-nowrap">Shop Now</button>
+                 <!-- Mobile Menu Toggle Button -->
+                 <button id="mobile-menu-btn" class="md:hidden text-[#8E5936] hover:text-[#5c3a23] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                 </button>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/50 z-[55] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-64 bg-[#FFF2E2] z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-6 shadow-2xl border-l border-[#8E5936]/10">
+        <button id="close-mobile-menu" class="absolute top-8 right-6 text-[#8E5936] focus:outline-none hover:text-[#5c3a23] transition-colors" aria-label="Close Menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-xl text-[#8E5936] font-bold">
+            <a href="index.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Home</a>
+            <a href="product.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Products</a>
+            <a href="combo.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Combo Offer</a>
+            <a href="about.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-[#5c3a23] transition-colors">Contact</a>
+        </div>
+    </div>
 
     <!-- Main Content Wrapper for Parallax Effect -->
     <div class="relative z-20 bg-[#FFF2E2] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
@@ -1027,6 +1055,38 @@
             });
 
         })(); // End initArtAnimation IIFE
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+
+            function toggleMenu(show) {
+                if(show) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                    }
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                        backdrop.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                }
+            }
+
+            if(mobileMenuBtn && mobileMenu && closeMobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => toggleMenu(true));
+                closeMobileMenu.addEventListener('click', () => toggleMenu(false));
+                if(backdrop) {
+                    backdrop.addEventListener('click', () => toggleMenu(false));
+                }
+            }
+        });
     </script>
 </body>
 </html>

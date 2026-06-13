@@ -1,76 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Sacred Combo Offers | Rudra Nethra</title>
-    <meta name="description" content="Discover our auspicious sacred bundle combinations of authenticated Karungali wood products, consecrated together under Vedic rituals.">
+    <meta name="description"
+        content="Discover our auspicious sacred bundle combinations of authenticated Karungali wood products, consecrated together under Vedic rituals.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { font-family: 'Inter', sans-serif; background-color: #FFF2E2; color: #8E5936; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FFF2E2; }
-        ::-webkit-scrollbar-thumb { background: #8E5936; border-radius: 4px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFF2E2;
+            color: #8E5936;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF2E2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #8E5936;
+            border-radius: 4px;
+        }
 
         /* ── Navbar ── */
-        .navbar-transition { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .navbar-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .glass-nav {
-            background: rgba(255,242,226,0.80);
+            background: rgba(255, 242, 226, 0.80);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(142,89,54,0.2);
+            border: 1px solid rgba(142, 89, 54, 0.2);
             border-radius: 9999px;
         }
 
         /* ── Shining button ── */
-        .shining-button { position: relative; overflow: hidden; }
+        .shining-button {
+            position: relative;
+            overflow: hidden;
+        }
+
         .shining-button::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,242,226,0.55), transparent);
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 242, 226, 0.55), transparent);
             transform: skewX(-25deg);
             animation: shine 4s infinite;
         }
-        @keyframes shine { 0%{left:-100%} 20%{left:150%} 100%{left:150%} }
+
+        @keyframes shine {
+            0% {
+                left: -100%
+            }
+
+            20% {
+                left: 150%
+            }
+
+            100% {
+                left: 150%
+            }
+        }
 
         /* ── Product drawer ── */
         .product-drawer {
-            visibility: hidden; opacity: 0;
+            visibility: hidden;
+            opacity: 0;
             transform: translateY(-10px);
             transition: all 0.3s ease;
             backdrop-filter: blur(20px);
-            background: rgba(255,242,226,0.92) !important;
-            border: 1px solid rgba(142,89,54,0.18);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
+            background: rgba(255, 242, 226, 0.92) !important;
+            border: 1px solid rgba(142, 89, 54, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
         }
-        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+
+        .group:hover .product-drawer {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* ── Enhanced dropdown items ── */
         .enhanced-dropdown-item {
-            display: block; text-align: center; padding: 12px;
+            display: block;
+            text-align: center;
+            padding: 12px;
             border-radius: 12px;
-            background: linear-gradient(135deg,#A8704D,#8E5936);
+            background: linear-gradient(135deg, #A8704D, #8E5936);
             border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .enhanced-dropdown-item:hover {
             transform: scale(1.06) translateY(-5px);
             border-color: #D4A373;
-            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
+            box-shadow: 0 15px 30px rgba(142, 89, 54, 0.4);
         }
-        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
+
+        .enhanced-dropdown-item img {
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
         .enhanced-dropdown-item span {
             color: #FFF2E2 !important;
-            display: block; margin-top: 8px;
-            font-size: 12px; font-weight: 600;
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 600;
             letter-spacing: .05em;
-            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
         }
 
         /* ── Floating particles removed as requested ── */
@@ -78,125 +146,222 @@
         /* ── Countdown timer ── */
         .timer-box {
             border-radius: 16px;
-            background: rgba(255,255,255,.45);
-            border: 1px solid rgba(142,89,54,.2);
+            background: rgba(255, 255, 255, .45);
+            border: 1px solid rgba(142, 89, 54, .2);
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px -4px rgba(142,89,54,.12);
+            box-shadow: 0 8px 20px -4px rgba(142, 89, 54, .12);
         }
+
         .timer-digit {
-            background: linear-gradient(135deg,#8E5936,#a8704d);
+            background: linear-gradient(135deg, #8E5936, #a8704d);
             color: #FFF2E2;
             border-radius: 10px;
             padding: 10px 16px;
             min-width: 58px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(142,89,54,.3);
+            box-shadow: 0 4px 12px rgba(142, 89, 54, .3);
             transition: transform .15s ease;
         }
-        .timer-digit:hover { transform: translateY(-2px); }
+
+        .timer-digit:hover {
+            transform: translateY(-2px);
+        }
 
         /* ── Combo cards ── */
         .combo-card {
             border-radius: 20px !important;
-            transition: all .5s cubic-bezier(.165,.84,.44,1);
-            background: rgba(255,255,255,.7);
+            transition: all .5s cubic-bezier(.165, .84, .44, 1);
+            background: rgba(255, 255, 255, .7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(142,89,54,.1);
-            box-shadow: 0 4px 24px -4px rgba(142,89,54,.07);
+            border: 1px solid rgba(142, 89, 54, .1);
+            box-shadow: 0 4px 24px -4px rgba(142, 89, 54, .07);
             overflow: hidden;
             position: relative;
         }
+
         .combo-card::before {
             content: '';
-            position: absolute; inset: 0;
+            position: absolute;
+            inset: 0;
             border-radius: 20px;
-            background: linear-gradient(135deg,rgba(255,242,226,.25),rgba(142,89,54,.04));
+            background: linear-gradient(135deg, rgba(255, 242, 226, .25), rgba(142, 89, 54, .04));
             opacity: 0;
             transition: opacity .4s;
-            pointer-events: none; z-index: 0;
+            pointer-events: none;
+            z-index: 0;
         }
-        .combo-card:hover { transform: translateY(-14px) scale(1.02); box-shadow: 0 30px 60px -10px rgba(142,89,54,.28), 0 0 0 2px rgba(142,89,54,.22); }
-        .combo-card:hover::before { opacity: 1; }
-        .combo-card > * { position: relative; z-index: 1; }
 
-        .card-img { transition: transform .7s cubic-bezier(.165,.84,.44,1); border-radius: 20px 20px 0 0; }
-        .combo-card:hover .card-img { transform: scale(1.07); }
+        .combo-card:hover {
+            transform: translateY(-14px) scale(1.02);
+            box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .28), 0 0 0 2px rgba(142, 89, 54, .22);
+        }
+
+        .combo-card:hover::before {
+            opacity: 1;
+        }
+
+        .combo-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-img {
+            transition: transform .7s cubic-bezier(.165, .84, .44, 1);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .combo-card:hover .card-img {
+            transform: scale(1.07);
+        }
 
         /* ── Savings badges ── */
-        .savings-badge { background: linear-gradient(135deg,#8E5936,#a8704d); border-radius: 6px; box-shadow: 0 3px 8px rgba(142,89,54,.35); }
-        .bestseller-badge { background: linear-gradient(135deg,#b45309,#d97706); border-radius: 6px; box-shadow: 0 3px 8px rgba(180,83,9,.35); }
+        .savings-badge {
+            background: linear-gradient(135deg, #8E5936, #a8704d);
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(142, 89, 54, .35);
+        }
+
+        .bestseller-badge {
+            background: linear-gradient(135deg, #b45309, #d97706);
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(180, 83, 9, .35);
+        }
 
         /* ── Pulse glow for bestseller ── */
         @keyframes pulse-glow {
-            0%,100% { box-shadow: 0 30px 60px -10px rgba(142,89,54,.22), 0 0 0 2px rgba(142,89,54,.16); }
-            50%      { box-shadow: 0 30px 60px -10px rgba(142,89,54,.44), 0 0 0 4px rgba(142,89,54,.32); }
+
+            0%,
+            100% {
+                box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .22), 0 0 0 2px rgba(142, 89, 54, .16);
+            }
+
+            50% {
+                box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .44), 0 0 0 4px rgba(142, 89, 54, .32);
+            }
         }
-        .bestseller-card { animation: pulse-glow 3s ease-in-out infinite; }
+
+        .bestseller-card {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
 
         /* ── Selector cards ── */
         .selector-card {
-            border-radius: 0px; /* Sharp outer edge */
-            transition: all .4s cubic-bezier(.165,.84,.44,1);
-            border: 2px solid rgba(142,89,54,.1);
-            background: white; cursor: pointer; overflow: hidden; position: relative;
+            border-radius: 0px;
+            /* Sharp outer edge */
+            transition: all .4s cubic-bezier(.165, .84, .44, 1);
+            border: 2px solid rgba(142, 89, 54, .1);
+            background: white;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
         }
-        .selector-card:hover { border-color: rgba(142,89,54,.5); transform: translateY(-4px); box-shadow: 0 12px 24px -6px rgba(142,89,54,.2); }
-        .selector-card.selected { border-color: #8E5936; background: rgba(142,89,54,.06); box-shadow: 0 0 0 3px rgba(142,89,54,.2), 0 12px 24px -6px rgba(142,89,54,.22); }
+
+        .selector-card:hover {
+            border-color: rgba(142, 89, 54, .5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -6px rgba(142, 89, 54, .2);
+        }
+
+        .selector-card.selected {
+            border-color: #8E5936;
+            background: rgba(142, 89, 54, .06);
+            box-shadow: 0 0 0 3px rgba(142, 89, 54, .2), 0 12px 24px -6px rgba(142, 89, 54, .22);
+        }
+
         .selector-card.selected::after {
             content: '✓';
-            position: absolute; top: 10px; right: 10px;
-            width: 28px; height: 28px;
-            background: #8E5936; color: #FFF2E2;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: 700; line-height: 28px; text-align: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            background: #8E5936;
+            color: #FFF2E2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 28px;
+            text-align: center;
         }
+
         .selector-card img {
-            border-radius: 8px; /* little round corner for inner image */
+            border-radius: 8px;
+            /* little round corner for inner image */
         }
 
         /* ── Checkout panel ── */
-        .checkout-panel { border-radius: 20px; background: white; border: 1px solid rgba(142,89,54,.12); box-shadow: 0 20px 40px -8px rgba(142,89,54,.12); }
+        .checkout-panel {
+            border-radius: 20px;
+            background: white;
+            border: 1px solid rgba(142, 89, 54, .12);
+            box-shadow: 0 20px 40px -8px rgba(142, 89, 54, .12);
+        }
 
         /* ── Section title underline ── */
-        .section-title-line { display: inline-block; position: relative; }
+        .section-title-line {
+            display: inline-block;
+            position: relative;
+        }
+
         .section-title-line::after {
             content: '';
-            position: absolute; bottom: -8px; left: 0;
-            width: 60px; height: 3px;
-            background: linear-gradient(90deg,#8E5936,transparent); border-radius: 2px;
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #8E5936, transparent);
+            border-radius: 2px;
         }
 
         /* ── Banner top-fade ── */
         .banner-top-fade {
-            position: absolute; top: 0; left: 0; right: 0;
-            height: 120px; z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            z-index: 2;
             background: linear-gradient(to bottom, #FFF2E2 0%, transparent 100%);
             pointer-events: none;
         }
     </style>
 </head>
+
 <body class="overflow-x-hidden">
 
     <!-- Navigation Bar -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-4 md:px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-4 transition-all duration-500" id="nav-container">
-            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter text-[#8E5936]">RUDRA NETHRA</a>
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500"
+            id="nav-container">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
+                <span class="hidden md:inline-block text-base md:text-2xl font-bold tracking-tighter text-[#8E5936] whitespace-nowrap">RUDRA NETHRA</span>
+            </a>
+            <div
+                class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8E5936]">
                 <a href="index.html" class="hover:text-[#5c3a23] transition">Home</a>
                 <div class="relative group">
                     <a href="index.html#store" class="hover:text-[#5c3a23] cursor-pointer transition">Products</a>
-                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 rounded-2xl w-[520px]">
+                    <div
+                        class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 rounded-2xl w-[520px]">
                         <div class="grid grid-cols-3 gap-4 text-center">
                             <a href="product.html" class="enhanced-dropdown-item">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Mala" class="rounded-md w-full" alt="Mala">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Mala"
+                                    class="rounded-md w-full" alt="Mala">
                                 <span>Mala Beads</span>
                             </a>
                             <a href="product.html" class="enhanced-dropdown-item">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Bracelet" class="rounded-md w-full" alt="Bracelet">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Bracelet"
+                                    class="rounded-md w-full" alt="Bracelet">
                                 <span>Bracelets</span>
                             </a>
                             <a href="product.html" class="enhanced-dropdown-item">
-                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Idol" class="rounded-md w-full" alt="Idol">
+                                <img src="https://placehold.co/150x150/8E5936/FFF2E2?text=Idol"
+                                    class="rounded-md w-full" alt="Idol">
                                 <span>Deity Idols</span>
                             </a>
                         </div>
@@ -205,240 +370,365 @@
                 <a href="combo.html" class="hover:text-[#5c3a23] font-bold transition">Combo Offer</a>
                 <a href="contact.html" class="hover:text-[#5c3a23] transition">Contact</a>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
                 <a href="cart.html" class="text-[#8E5936] hover:text-[#5c3a23] transition relative" aria-label="Cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
-                    <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                    <span id="navCartCount"
+                        class="absolute -top-1.5 -right-1.5 bg-[#8E5936] text-[#FFF2E2] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                 </a>
-                <button onclick="window.location.href='product.html'" class="shining-button px-5 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-sm hover:bg-[#5c3a23] transition font-medium">Shop Now</button>
+                <button onclick="window.location.href='product.html'"
+                    class="shining-button px-4 md:px-6 py-2 bg-[#8E5936] text-[#FFF2E2] rounded-full text-xs md:text-sm hover:bg-[#5c3a23] transition font-medium whitespace-nowrap">Shop
+                    Now</button>
+                 <!-- Mobile Menu Toggle Button -->
+                 <button id="mobile-menu-btn" class="md:hidden text-[#8E5936] hover:text-[#5c3a23] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                 </button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/50 z-[55] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-64 bg-[#FFF2E2] z-[60] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-24 px-6 shadow-2xl border-l border-[#8E5936]/10">
+        <button id="close-mobile-menu" class="absolute top-8 right-6 text-[#8E5936] focus:outline-none hover:text-[#5c3a23] transition-colors" aria-label="Close Menu">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-6 text-xl text-[#8E5936] font-bold">
+            <a href="index.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Home</a>
+            <a href="product.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Products</a>
+            <a href="combo.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">Combo Offer</a>
+            <a href="about.html" class="hover:text-[#5c3a23] border-b border-[#8E5936]/20 pb-4 transition-colors">About</a>
+            <a href="contact.html" class="hover:text-[#5c3a23] transition-colors">Contact</a>
+        </div>
+    </div>
+
     <!-- Main Content Wrapper for Parallax Effect -->
     <div class="relative z-20 bg-[#FFF2E2] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
-    <!-- Hero Header with Particles -->
-    <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero" style="background: linear-gradient(135deg, #FFF2E2 0%, #f5e0c8 50%, #FFF2E2 100%);">
-        <!-- Header Background -->
+        <!-- Hero Header with Particles -->
+        <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
+            style="background: linear-gradient(135deg, #FFF2E2 0%, #f5e0c8 50%, #FFF2E2 100%);">
+            <!-- Header Background -->
 
-        <div class="relative z-10 px-4">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 mb-4 block" data-aos="fade-down" data-aos-delay="100">Auspicious Bundles</span>
-            <h1 class="text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-[#8E5936] leading-tight" data-aos="zoom-in" data-aos-delay="200">Sacred Combinations</h1>
-            <p class="text-base md:text-lg font-light max-w-xl mx-auto text-[#8E5936]/75 leading-relaxed mb-10 px-4" data-aos="fade-up" data-aos-delay="300">
-                Carefully paired ensembles of authenticated Karungali wood products, consecrated together under Vedic rituals to amplify their energetic fields.
-            </p>
+            <div class="relative z-10 px-4">
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 mb-4 block"
+                    data-aos="fade-down" data-aos-delay="100">Auspicious Bundles</span>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl mb-6 tracking-tight text-[#8E5936] leading-tight"
+                    data-aos="zoom-in" data-aos-delay="200">Sacred Combinations</h1>
+                <p class="text-base md:text-lg font-light max-w-xl mx-auto text-[#8E5936]/75 leading-relaxed mb-10 px-4"
+                    data-aos="fade-up" data-aos-delay="300">
+                    Carefully paired ensembles of authenticated Karungali wood products, consecrated together under
+                    Vedic rituals to amplify their energetic fields.
+                </p>
 
-            <!-- Countdown Timer -->
-            <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-6" data-aos="fade-up" data-aos-delay="400">
-                <span class="text-xs uppercase tracking-wider font-bold text-[#8E5936]">Next Consecration Window Closes In:</span>
-                <div class="flex gap-4">
-                    <div class="flex flex-col items-center"><span id="days" class="text-3xl font-bold text-[#8E5936]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Days</span></div>
-                    <div class="flex flex-col items-center"><span id="hours" class="text-3xl font-bold text-[#8E5936]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Hrs</span></div>
-                    <div class="flex flex-col items-center"><span id="minutes" class="text-3xl font-bold text-[#8E5936]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Min</span></div>
-                    <div class="flex flex-col items-center"><span id="seconds" class="text-3xl font-bold text-[#8E5936]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Sec</span></div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Featured Combos Section -->
-    <section class="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-14 md:mb-20" data-aos="fade-up">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 block mb-2">Handpicked for You</span>
-            <h2 class="text-3xl md:text-5xl section-title-line">Featured Sacred Combos</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-
-            <!-- Combo Card 1 -->
-            <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="0">
-                <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                    <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Ultimate+Protection+Set" class="card-img w-full h-56 md:h-64 object-cover" alt="Ultimate Protection Trio">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                    <span class="savings-badge absolute top-4 left-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 28%</span>
-                </div>
-                <div class="p-5 md:p-6 flex-1 flex flex-col">
-                    <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Personal Protection</span>
-                    <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Ultimate Protection Trio</h3>
-                    <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Malai (108 Beads, 8mm)</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Protection Bracelet</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Sacred Car Hanging</li>
-                    </ul>
-                    <div class="flex flex-wrap items-center gap-2 mb-5">
-                        <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹2,499</span>
-                        <span class="text-sm line-through opacity-40">₹3,499</span>
-                        <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save ₹1,000</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                        <button class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Add Combo</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Combo Card 2 — Bestseller -->
-            <div class="combo-card bestseller-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                    <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Divine+Home+Sanctuary" class="card-img w-full h-56 md:h-64 object-cover" alt="Divine Home Sanctuary">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                    <span class="bestseller-badge absolute top-4 left-4 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase">⭐ BEST SELLER</span>
-                    <span class="savings-badge absolute top-4 right-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 25%</span>
-                </div>
-                <div class="p-5 md:p-6 flex-1 flex flex-col">
-                    <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Home Harmony</span>
-                    <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Divine Home Sanctuary</h3>
-                    <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Ganesha Deity Idol (3 inch)</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Consecrated Holy Sitting Plank</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Aromatic Incense Holder</li>
-                    </ul>
-                    <div class="flex flex-wrap items-center gap-2 mb-5">
-                        <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹4,499</span>
-                        <span class="text-sm line-through opacity-40">₹5,999</span>
-                        <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save ₹1,500</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                        <button class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Add Combo</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Combo Card 3 -->
-            <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                    <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Daily+Grounding+Duo" class="card-img w-full h-56 md:h-64 object-cover" alt="Daily Grounding Duo">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                    <span class="savings-badge absolute top-4 left-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 26%</span>
-                </div>
-                <div class="p-5 md:p-6 flex-1 flex flex-col">
-                    <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Daily Wear</span>
-                    <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Daily Grounding Duo</h3>
-                    <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Elastic Bracelet (10mm)</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Pure Copper-Capped Karungali Ring</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Free consecrated coin set included</li>
-                    </ul>
-                    <div class="flex flex-wrap items-center gap-2 mb-5">
-                        <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹1,399</span>
-                        <span class="text-sm line-through opacity-40">₹1,899</span>
-                        <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save ₹500</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                        <button class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Add Combo</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Interactive Bundle Builder -->
-    <section class="py-20 md:py-28 px-4 md:px-6" style="background: linear-gradient(135deg, rgba(142,89,54,.05) 0%, #FFF2E2 50%, rgba(142,89,54,.04) 100%);">
-        <div class="max-w-5xl mx-auto text-center mb-14 md:mb-20" data-aos="fade-up">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 block mb-2">Your Custom Alliance</span>
-            <h2 class="text-3xl md:text-5xl mb-4 section-title-line">Build Your Own Sacred Bundle</h2>
-            <p class="text-sm text-[#8E5936]/75 max-w-xl mx-auto mt-8">Select any <strong>three</strong> consecrated Karungali items below to automatically unlock a flat <strong>20% discount</strong> on checkout.</p>
-        </div>
-
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-            <!-- Product Selector -->
-            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6" id="customSelectorGrid">
-
-                <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="0" onclick="toggleSelection(this,'Mala Beads',1200)">
-                    <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Mala+Beads" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Mala">
-                    <h4 class="font-bold text-base md:text-lg">Mala Beads (108, 8mm)</h4>
-                    <p class="text-sm text-[#8E5936]/75">₹1,200</p>
-                </div>
-
-                <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="100" onclick="toggleSelection(this,'Deity Idol',1800)">
-                    <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Deity+Idol" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Idol">
-                    <h4 class="font-bold text-base md:text-lg">Ganesha Deity Idol</h4>
-                    <p class="text-sm text-[#8E5936]/75">₹1,800</p>
-                </div>
-
-                <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="200" onclick="toggleSelection(this,'Protection Bracelet',600)">
-                    <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Bracelet" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Bracelet">
-                    <h4 class="font-bold text-base md:text-lg">Protection Bracelet</h4>
-                    <p class="text-sm text-[#8E5936]/75">₹600</p>
-                </div>
-
-                <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="300" onclick="toggleSelection(this,'Holy Plank',2000)">
-                    <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Holy+Plank" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Plank">
-                    <h4 class="font-bold text-base md:text-lg">Consecrated Holy Plank</h4>
-                    <p class="text-sm text-[#8E5936]/75">₹2,000</p>
-                </div>
-
-            </div>
-
-            <!-- Checkout Panel -->
-            <div class="lg:col-span-4" data-aos="fade-left" data-aos-delay="200">
-                <div class="checkout-panel p-6 md:p-8 sticky top-32">
-                    <h4 class="text-xl md:text-2xl font-bold border-b border-[#8E5936]/10 pb-4 mb-6">Your Custom Bundle</h4>
-                    <ul class="space-y-4 text-sm min-h-[80px]" id="bundleSelections">
-                        <li class="opacity-50 italic">No products selected yet.</li>
-                    </ul>
-                    <div class="border-t border-[#8E5936]/10 pt-6 mt-6">
-                        <div class="flex justify-between font-semibold text-sm mb-2">
-                            <span>Subtotal:</span>
-                            <span id="subtotalVal">₹0</span>
+                <!-- Countdown Timer -->
+                <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-6" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <span class="text-xs uppercase tracking-wider font-bold text-[#8E5936]">Next Consecration Window
+                        Closes In:</span>
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center"><span id="days"
+                                class="text-3xl font-bold text-[#8E5936]">00</span><span
+                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Days</span>
                         </div>
-                        <div class="flex justify-between font-semibold text-sm text-green-700 mb-6">
-                            <span>Bundle Offer (20% Off):</span>
-                            <span id="discountVal">₹0</span>
+                        <div class="flex flex-col items-center"><span id="hours"
+                                class="text-3xl font-bold text-[#8E5936]">00</span><span
+                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Hrs</span>
                         </div>
-                        <div class="flex justify-between font-bold text-xl border-t border-[#8E5936]/10 pt-4 mb-6">
-                            <span>Final Total:</span>
-                            <span id="finalTotalVal">₹0</span>
+                        <div class="flex flex-col items-center"><span id="minutes"
+                                class="text-3xl font-bold text-[#8E5936]">00</span><span
+                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Min</span>
                         </div>
-                        <button id="addBundleBtn" disabled class="shining-button w-full py-4 bg-[#8E5936]/35 text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase cursor-not-allowed rounded-xl transition-all duration-300">
-                            Add Custom Bundle to Cart
-                        </button>
+                        <div class="flex flex-col items-center"><span id="seconds"
+                                class="text-3xl font-bold text-[#8E5936]">00</span><span
+                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8E5936]/70">Sec</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Immersive Pre-Footer Banner with smooth top fade -->
-    <section class="relative min-h-[480px] md:min-h-[560px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-4 md:px-6 py-20 z-10">
-        <!-- Smooth cream-to-transparent fade at TOP -->
-        <div class="banner-top-fade"></div>
-        <!-- Full-width cover image -->
-        <div class="absolute inset-0 z-0">
-            <img src="image/img%20-1.jpg" class="w-full h-full object-cover object-center opacity-25" alt="Immersive Graphic">
-            <!-- dark vignette overlay -->
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
-        </div>
+        <!-- Featured Combos Section -->
+        <section class="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-14 md:mb-20" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 block mb-2">Handpicked
+                    for You</span>
+                <h2 class="text-3xl md:text-5xl section-title-line">Featured Sacred Combos</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
 
-        <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF2E2]/60 mb-4 block">Elevate Your Sacred Space</span>
-            <h2 class="text-3xl sm:text-5xl md:text-6xl text-[#FFF2E2] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
-            <p class="text-base md:text-lg text-[#FFF2E2]/75 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
-            <a href="index.html#store" class="shining-button inline-block px-8 md:px-10 py-4 bg-[#8E5936] text-[#FFF2E2] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
-                EXPLORE THE COLLECTION
-            </a>
-        </div>
-    </section>
+                <!-- Combo Card 1 -->
+                <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="0">
+                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
+                        <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Ultimate+Protection+Set"
+                            class="card-img w-full h-56 md:h-64 object-cover" alt="Ultimate Protection Trio">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
+                        <span
+                            class="savings-badge absolute top-4 left-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
+                            28%</span>
+                    </div>
+                    <div class="p-5 md:p-6 flex-1 flex flex-col">
+                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Personal
+                            Protection</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Ultimate Protection Trio</h3>
+                        <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Malai (108
+                                Beads, 8mm)</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Protection
+                                Bracelet</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Sacred Car Hanging
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹2,499</span>
+                            <span class="text-sm line-through opacity-40">₹3,499</span>
+                            <span
+                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
+                                save ₹1,000</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                                </svg>
+                                <span>Add Combo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combo Card 2 — Bestseller -->
+                <div class="combo-card bestseller-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
+                        <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Divine+Home+Sanctuary"
+                            class="card-img w-full h-56 md:h-64 object-cover" alt="Divine Home Sanctuary">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
+                        <span
+                            class="bestseller-badge absolute top-4 left-4 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase">⭐
+                            BEST SELLER</span>
+                        <span
+                            class="savings-badge absolute top-4 right-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
+                            25%</span>
+                    </div>
+                    <div class="p-5 md:p-6 flex-1 flex flex-col">
+                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Home Harmony</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Divine Home Sanctuary</h3>
+                        <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Ganesha
+                                Deity Idol (3 inch)</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Consecrated Holy
+                                Sitting Plank</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Aromatic Incense
+                                Holder</li>
+                        </ul>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹4,499</span>
+                            <span class="text-sm line-through opacity-40">₹5,999</span>
+                            <span
+                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
+                                save ₹1,500</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                                </svg>
+                                <span>Add Combo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combo Card 3 -->
+                <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
+                        <img src="https://placehold.co/500x350/8E5936/FFF2E2?text=Daily+Grounding+Duo"
+                            class="card-img w-full h-56 md:h-64 object-cover" alt="Daily Grounding Duo">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
+                        <span
+                            class="savings-badge absolute top-4 left-4 text-[#FFF2E2] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
+                            26%</span>
+                    </div>
+                    <div class="p-5 md:p-6 flex-1 flex flex-col">
+                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Daily Wear</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#8E5936] mt-1 mb-4">Daily Grounding Duo</h3>
+                        <ul class="space-y-2 text-sm text-[#8E5936]/80 flex-1 mb-6">
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Karungali Elastic
+                                Bracelet (10mm)</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Pure Copper-Capped
+                                Karungali Ring</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-[#8E5936] shrink-0"></span>Free consecrated coin
+                                set included</li>
+                        </ul>
+                        <div class="flex flex-wrap items-center gap-2 mb-5">
+                            <span class="text-2xl md:text-3xl font-extrabold text-[#8E5936]">₹1,399</span>
+                            <span class="text-sm line-through opacity-40">₹1,899</span>
+                            <span
+                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
+                                save ₹500</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936]/10 text-[#5c3a23] hover:bg-[#8E5936]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
+                            <button
+                                class="w-1/2 py-3 bg-[#8E5936] text-[#FFF2E2] hover:bg-[#5c3a23] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                                </svg>
+                                <span>Add Combo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive Bundle Builder -->
+        <section class="py-20 md:py-28 px-4 md:px-6"
+            style="background: linear-gradient(135deg, rgba(142,89,54,.05) 0%, #FFF2E2 50%, rgba(142,89,54,.04) 100%);">
+            <div class="max-w-5xl mx-auto text-center mb-14 md:mb-20" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#8E5936]/60 block mb-2">Your Custom
+                    Alliance</span>
+                <h2 class="text-3xl md:text-5xl mb-4 section-title-line">Build Your Own Sacred Bundle</h2>
+                <p class="text-sm text-[#8E5936]/75 max-w-xl mx-auto mt-8">Select any <strong>three</strong> consecrated
+                    Karungali items below to automatically unlock a flat <strong>20% discount</strong> on checkout.</p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+                <!-- Product Selector -->
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6" id="customSelectorGrid">
+
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="0"
+                        onclick="toggleSelection(this,'Mala Beads',1200)">
+                        <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Mala+Beads"
+                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Mala">
+                        <h4 class="font-bold text-base md:text-lg">Mala Beads (108, 8mm)</h4>
+                        <p class="text-sm text-[#8E5936]/75">₹1,200</p>
+                    </div>
+
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="100"
+                        onclick="toggleSelection(this,'Deity Idol',1800)">
+                        <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Deity+Idol"
+                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Idol">
+                        <h4 class="font-bold text-base md:text-lg">Ganesha Deity Idol</h4>
+                        <p class="text-sm text-[#8E5936]/75">₹1,800</p>
+                    </div>
+
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="200"
+                        onclick="toggleSelection(this,'Protection Bracelet',600)">
+                        <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Bracelet"
+                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Bracelet">
+                        <h4 class="font-bold text-base md:text-lg">Protection Bracelet</h4>
+                        <p class="text-sm text-[#8E5936]/75">₹600</p>
+                    </div>
+
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="300"
+                        onclick="toggleSelection(this,'Holy Plank',2000)">
+                        <img src="https://placehold.co/300x160/8E5936/FFF2E2?text=Holy+Plank"
+                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Plank">
+                        <h4 class="font-bold text-base md:text-lg">Consecrated Holy Plank</h4>
+                        <p class="text-sm text-[#8E5936]/75">₹2,000</p>
+                    </div>
+
+                </div>
+
+                <!-- Checkout Panel -->
+                <div class="lg:col-span-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="checkout-panel p-6 md:p-8 sticky top-32">
+                        <h4 class="text-xl md:text-2xl font-bold border-b border-[#8E5936]/10 pb-4 mb-6">Your Custom
+                            Bundle</h4>
+                        <ul class="space-y-4 text-sm min-h-[80px]" id="bundleSelections">
+                            <li class="opacity-50 italic">No products selected yet.</li>
+                        </ul>
+                        <div class="border-t border-[#8E5936]/10 pt-6 mt-6">
+                            <div class="flex justify-between font-semibold text-sm mb-2">
+                                <span>Subtotal:</span>
+                                <span id="subtotalVal">₹0</span>
+                            </div>
+                            <div class="flex justify-between font-semibold text-sm text-green-700 mb-6">
+                                <span>Bundle Offer (20% Off):</span>
+                                <span id="discountVal">₹0</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-xl border-t border-[#8E5936]/10 pt-4 mb-6">
+                                <span>Final Total:</span>
+                                <span id="finalTotalVal">₹0</span>
+                            </div>
+                            <button id="addBundleBtn" disabled
+                                class="shining-button w-full py-4 bg-[#8E5936]/35 text-[#FFF2E2] font-semibold text-xs tracking-widest uppercase cursor-not-allowed rounded-xl transition-all duration-300">
+                                Add Custom Bundle to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Immersive Pre-Footer Banner with smooth top fade -->
+        <section
+            class="relative min-h-[480px] md:min-h-[560px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-4 md:px-6 py-20 z-10">
+            <!-- Smooth cream-to-transparent fade at TOP -->
+            <div class="banner-top-fade"></div>
+            <!-- Full-width cover image -->
+            <div class="absolute inset-0 z-0">
+                <img src="image/img%20-1.jpg" class="w-full h-full object-cover object-center opacity-25"
+                    alt="Immersive Graphic">
+                <!-- dark vignette overlay -->
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
+            </div>
+
+            <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF2E2]/60 mb-4 block">Elevate Your
+                    Sacred Space</span>
+                <h2
+                    class="text-3xl sm:text-5xl md:text-6xl text-[#FFF2E2] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">
+                    Awaken The Energy Within</h2>
+                <p class="text-base md:text-lg text-[#FFF2E2]/75 mb-10 max-w-xl mx-auto">Experience the shielding aura
+                    of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+                <a href="index.html#store"
+                    class="shining-button inline-block px-8 md:px-10 py-4 bg-[#8E5936] text-[#FFF2E2] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
+                    EXPLORE THE COLLECTION
+                </a>
+            </div>
+        </section>
 
     </div> <!-- End Main Content Wrapper -->
 
     <!-- Footer Area -->
     <div id="footer-spacer"></div>
-    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-12 md:pt-16 px-4 md:px-6 text-[#FFF2E2]/80" id="footer-contact">
+    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-12 md:pt-16 px-4 md:px-6 text-[#FFF2E2]/80"
+        id="footer-contact">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             <div class="col-span-2 md:col-span-1">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4 text-[#FFF2E2]">Rudra Nethra</h3>
@@ -466,11 +756,13 @@
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2] text-sm">Contact Us</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="tel:+919025895191" class="hover:text-[#8E5936] transition">+91 90258 95191</a></li>
-                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
+                    <li><a href="mailto:info@rudranethra.com"
+                            class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-8 md:mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-3">
+        <div
+            class="max-w-7xl mx-auto mt-8 md:mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-3">
             <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
             <div class="flex space-x-4">
                 <a href="#" class="hover:text-[#8E5936] transition">Privacy Policy</a>
@@ -518,10 +810,10 @@
         function updateTimer() {
             const diff = targetDate - new Date();
             if (diff < 0) return;
-            document.getElementById('days').innerText    = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
-            document.getElementById('hours').innerText   = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-            document.getElementById('minutes').innerText = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
-            document.getElementById('seconds').innerText = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
         }
         setInterval(updateTimer, 1000);
         updateTimer();
@@ -542,7 +834,7 @@
         }
         function renderBundle() {
             const list = document.getElementById('bundleSelections');
-            const btn  = document.getElementById('addBundleBtn');
+            const btn = document.getElementById('addBundleBtn');
             list.innerHTML = '';
             if (!selectedItems.length) {
                 list.innerHTML = '<li class="opacity-50 italic">No products selected yet.</li>';
@@ -559,20 +851,52 @@
         }
         function updateTotals(sub) {
             const disc = selectedItems.length === 3 ? Math.round(sub * .2) : 0;
-            document.getElementById('subtotalVal').innerText   = '₹' + sub;
-            document.getElementById('discountVal').innerText   = '-₹' + disc;
+            document.getElementById('subtotalVal').innerText = '₹' + sub;
+            document.getElementById('discountVal').innerText = '-₹' + disc;
             document.getElementById('finalTotalVal').innerText = '₹' + (sub - disc);
         }
         function enableBtn(btn) {
             btn.disabled = false;
-            btn.classList.remove('bg-[#8E5936]/35','cursor-not-allowed');
-            btn.classList.add('bg-[#8E5936]','hover:bg-[#5c3a23]','cursor-pointer');
+            btn.classList.remove('bg-[#8E5936]/35', 'cursor-not-allowed');
+            btn.classList.add('bg-[#8E5936]', 'hover:bg-[#5c3a23]', 'cursor-pointer');
         }
         function disableBtn(btn) {
             btn.disabled = true;
-            btn.classList.add('bg-[#8E5936]/35','cursor-not-allowed');
-            btn.classList.remove('bg-[#8E5936]','hover:bg-[#5c3a23]','cursor-pointer');
+            btn.classList.add('bg-[#8E5936]/35', 'cursor-not-allowed');
+            btn.classList.remove('bg-[#8E5936]', 'hover:bg-[#5c3a23]', 'cursor-pointer');
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+
+            function toggleMenu(show) {
+                if(show) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                    }
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    if(backdrop) {
+                        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                        backdrop.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                }
+            }
+
+            if(mobileMenuBtn && mobileMenu && closeMobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => toggleMenu(true));
+                closeMobileMenu.addEventListener('click', () => toggleMenu(false));
+                if(backdrop) {
+                    backdrop.addEventListener('click', () => toggleMenu(false));
+                }
+            }
+        });
     </script>
 </body>
 </html>
