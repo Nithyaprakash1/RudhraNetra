@@ -576,13 +576,13 @@
                 /* 2 full 360° rotations across the complete animation. */
                 rotTarget = -p * Math.PI * 4;
 
-                /* Move Center -> Down Right -> Down Left */
+                /* Move Center -> Down Right -> Down Left (slanted > shape) */
                 if (p < 0.48) {
                     txT = lerp(0, SIDE, ease(cl(p / 0.48)));
-                    tyT = lerp(0, TY_MAX, ease(cl(p / 0.48)));
+                    tyT = lerp(0, TY_MAX * 0.5, ease(cl(p / 0.48)));
                 } else {
                     txT = lerp(SIDE, -SIDE, ease(cl((p - 0.48) / 0.52)));
-                    tyT = TY_MAX; // Stays perfectly horizontal across the bottom!
+                    tyT = lerp(TY_MAX * 0.5, TY_MAX, ease(cl((p - 0.48) / 0.52)));
                 }
 
                 /* Left points (appear while moving to Down Right, disappear when moving to Center) */
@@ -651,7 +651,7 @@
             /* ── Unified wheel/touch handler ── */
             function onWheel(e) {
                 const rect   = section.getBoundingClientRect();
-                const atEdge = Math.abs(rect.top) <= 10;  // section top ≈ viewport top
+                const atEdge = Math.abs(rect.top) <= 150;  // section top ≈ viewport top (increased threshold to catch fast scrolls)
 
                 if (!locked && atEdge) {
                     /* Enter from top on downward scroll */
