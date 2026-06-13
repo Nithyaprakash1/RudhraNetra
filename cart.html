@@ -36,31 +36,84 @@
             color: #8B4513 !important;
             font-weight: 800;
         }
+    
+        /* Product Drawer & Enhanced Dropdown Styles */
+        .product-drawer {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(25px);
+            background: rgba(255, 242, 226, 0.85) !important;
+            border: 1px solid rgba(142, 89, 54, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            z-index: 50;
+        }
+        .group:hover .product-drawer {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .enhanced-dropdown-item {
+            position: relative;
+            background: linear-gradient(135deg, #A8704D 0%, #8B4513 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+        }
+        .enhanced-dropdown-item:hover {
+            transform: scale(1.05) translateY(-5px);
+            border-color: #D4A373;
+            box-shadow: 0 15px 30px rgba(142, 89, 54, 0.4);
+        }
+        .enhanced-dropdown-item img {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .enhanced-dropdown-item span {
+            color: #FFF1E0 !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden pt-32">
 
     <!-- Navbar -->
-    <nav class="fixed top-6 left-0 right-0 z-50 px-6" id="navbar">
+        <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
             <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
                 <img src="image/1.svg" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
-                
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest text-[#8B4513]">
                 <a href="index.html" class="hover:text-[#8B4513] nav-text-glow">Home</a>
-                <a href="product.html" class="hover:text-[#8B4513] nav-text-glow">Products</a>
+                <div class="relative group">
+                    <a href="product.html" class="hover:text-[#8B4513] cursor-pointer nav-text-glow">Products</a>
+                    <div class="product-drawer absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
+                                <span class="text-xs font-semibold block mt-2">Mala Beads</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
+                                <span class="text-xs font-semibold block mt-2">Bracelets</span>
+                            </a>
+                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
+                                <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <a href="combo.html" class="hover:text-[#8B4513] nav-text-glow">Combo Offer</a>
                 <a href="about.html" class="hover:text-[#8B4513] nav-text-glow">About</a>
                 <a href="contact.html" class="hover:text-[#8B4513] nav-text-glow">Contact</a>
             </div>
             <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
-                <a href="cart.html" class="text-[#8B4513] hover:text-[#8B4513] transition relative" aria-label="Cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                    </svg>
-                    <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-                 </a>
+
+                <button onclick="window.location.href='product.html'" class="shining-button px-4 md:px-6 py-2 bg-[#8B4513] text-[#FFF1E0] rounded-full text-xs md:text-sm hover:bg-[#8B4513] transition font-medium whitespace-nowrap">Shop Now</button>
                  <!-- Mobile Menu Toggle Button -->
                  <button id="mobile-menu-btn" class="md:hidden text-[#8B4513] hover:text-[#8B4513] focus:outline-none transition-colors ml-2" aria-label="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,6 +141,7 @@
             <a href="about.html" class="hover:text-[#8B4513] border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] transition-colors">Contact</a>
         </div>
+    </div>
     </div>
 
     <!-- Main Content Wrapper for Parallax Effect -->
