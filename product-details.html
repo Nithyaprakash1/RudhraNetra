@@ -263,14 +263,16 @@
             to   { transform: translateY(0);   opacity: 1; }
         }
         #star-picker span {
-            transition: color 0.15s, transform 0.15s;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: inline-block;
             padding: 0 4px;
+            filter: drop-shadow(0 0 0 rgba(245,158,11,0));
         }
         #star-picker span:hover,
         #star-picker span.filled {
             color: #F59E0B;
-            transform: scale(1.3);
+            transform: scale(1.4) rotate(8deg);
+            filter: drop-shadow(0 0 10px rgba(245,158,11,0.8));
         }
         .rating-bar-fill { transition: width 0.8s cubic-bezier(0.22,1,0.36,1); }
         /* Success overlay */
@@ -283,29 +285,55 @@
             transition: opacity 0.4s;
         }
         #review-success.visible { opacity: 1; pointer-events: all; }
+        
+        /* Unimaginable Animation CSS */
         .success-checkmark {
-            width: 80px; height: 80px;
+            width: 100px; height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #A8704D, #8B4513);
+            background: linear-gradient(135deg, #F59E0B, #8B4513);
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 24px;
-            animation: bounceIn 0.6s cubic-bezier(0.22,1,0.36,1);
+            box-shadow: 0 0 40px rgba(245,158,11,0.8), inset 0 0 20px rgba(255,255,255,0.5);
+            animation: godBurst 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+            z-index: 10;
         }
-        @keyframes bounceIn {
-            0%   { transform: scale(0.3); opacity: 0; }
-            60%  { transform: scale(1.15); }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes godBurst {
+            0%   { transform: scale(0) rotate(-180deg); opacity: 0; filter: brightness(2) drop-shadow(0 0 100px #F59E0B); }
+            50%  { transform: scale(1.3) rotate(10deg); filter: brightness(1.5) drop-shadow(0 0 60px #F59E0B); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: brightness(1) drop-shadow(0 0 30px #F59E0B); }
         }
-        .success-checkmark svg { width: 40px; height: 40px; }
+        .success-checkmark svg { width: 50px; height: 50px; animation: strokeDraw 1s ease-out forwards; }
+        @keyframes strokeDraw {
+            0% { stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0; }
+            50% { opacity: 1; }
+            100% { stroke-dasharray: 100; stroke-dashoffset: 0; opacity: 1; }
+        }
+        .shockwave {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,158,11,0.8) 0%, rgba(245,158,11,0) 70%);
+            transform: translate(-50%, -50%) scale(0);
+            animation: shockwaveExpand 1s ease-out forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes shockwaveExpand {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(15); opacity: 0; }
+        }
         .confetti-dot {
             position: absolute;
-            width: 10px; height: 10px;
             border-radius: 50%;
-            animation: confettiFall 1s ease forwards;
+            box-shadow: 0 0 10px currentColor;
+            animation: epicExplosion 1.5s cubic-bezier(0.1, 1, 0.3, 1) forwards;
         }
-        @keyframes confettiFall {
-            0%   { transform: translate(0,0) rotate(0deg); opacity: 1; }
-            100% { transform: translate(var(--dx), 120px) rotate(360deg); opacity: 0; }
+        @keyframes epicExplosion {
+            0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50%  { opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(var(--scale)); opacity: 0; }
         }
     </style>
 </head>
@@ -961,28 +989,59 @@ function submitReview() {
 function showSuccessAnimation() {
     const overlay = document.getElementById('review-success');
     overlay.classList.add('visible');
+    
+    // Add shockwave
+    const shockwave = document.createElement('div');
+    shockwave.className = 'shockwave';
+    overlay.appendChild(shockwave);
+    
+    // Screen shake effect
+    document.body.style.animation = 'none';
+    requestAnimationFrame(() => {
+        document.body.style.animation = 'epicExplosion 0.5s ease-in-out';
+    });
 
-    // Burst confetti
-    const colors = ['#A8704D','#8B4513','#F59E0B','#FFF1E0','#5c3a23'];
-    for (let i = 0; i < 18; i++) {
+    // Massive particle explosion
+    const colors = ['#A8704D','#8B4513','#F59E0B','#FFF1E0','#5c3a23', '#FFD700', '#FFA500'];
+    for (let i = 0; i < 60; i++) {
         const dot = document.createElement('div');
         dot.className = 'confetti-dot';
-        dot.style.background = colors[i % colors.length];
-        dot.style.left = (40 + Math.random() * 20) + 'vw';
-        dot.style.top = (40 + Math.random() * 10) + 'vh';
-        dot.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
-        dot.style.animationDelay = (Math.random() * 0.3) + 's';
+        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Start from center
+        dot.style.left = '50vw';
+        dot.style.top = '50vh';
+        
+        // Random explode coordinates
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 50 + Math.random() * 250;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        dot.style.setProperty('--tx', `${tx}px`);
+        dot.style.setProperty('--ty', `${ty}px`);
+        dot.style.setProperty('--scale', 0.5 + Math.random() * 1.5);
+        
+        // Randomize size
+        const size = 5 + Math.random() * 10;
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        
+        dot.style.animationDelay = (Math.random() * 0.1) + 's';
+        dot.style.animationDuration = (0.8 + Math.random() * 0.8) + 's';
+        
         overlay.appendChild(dot);
     }
 
     // Auto-dismiss after 2.5s
     setTimeout(() => {
         overlay.classList.remove('visible');
-        // Remove confetti dots
+        document.body.style.animation = ''; // remove shake
+        // Remove confetti dots and shockwave
         setTimeout(() => {
-            overlay.querySelectorAll('.confetti-dot').forEach(d => d.remove());
-        }, 400);
-    }, 2500);
+            overlay.querySelectorAll('.confetti-dot, .shockwave').forEach(d => d.remove());
+        }, 500);
+    }, 2800);
 }
 
 // Close panel when clicking backdrop
@@ -1007,14 +1066,14 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             </div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="flex flex-col gap-5 mb-6">
             <div>
-                <label class="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#8B4513] mb-1">Your Name</label>
-                <input type="text" id="reviewerName" placeholder="Enter your full name" class="w-full p-3 bg-white border border-[#8B4513]/20 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] focus:outline-none transition-all shadow-sm">
+                <label class="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#8B4513] mb-2">Your Name</label>
+                <input type="text" id="reviewerName" placeholder="Enter your full name" class="w-full p-4 bg-white border border-[#8B4513]/20 rounded-xl focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]/50 focus:outline-none transition-all shadow-sm h-16 md:h-20 text-sm md:text-base">
             </div>
             <div>
-                <label class="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#8B4513] mb-1">Your Review</label>
-                <textarea id="reviewText" placeholder="Tell us what you think..." class="w-full p-3 bg-white border border-[#8B4513]/20 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] focus:outline-none transition-all h-24 md:h-32 resize-none shadow-sm"></textarea>
+                <label class="block text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#8B4513] mb-2">Your Review</label>
+                <textarea id="reviewText" placeholder="Tell us what you think..." class="w-full p-4 bg-white border border-[#8B4513]/20 rounded-xl focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]/50 focus:outline-none transition-all h-16 md:h-20 resize-none shadow-sm text-sm md:text-base align-top"></textarea>
             </div>
         </div>
         
