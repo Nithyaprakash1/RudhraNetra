@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -473,7 +473,7 @@
                         <div class="p-6 pt-0">
                             <span class="text-[10px] uppercase tracking-widest font-bold opacity-60">${p.category}</span>
                             <h3 class="text-xl font-bold mt-1 mb-2 text-[#8B4513]">${p.name}</h3>
-                            <p class="text-lg font-extrabold mb-4">?${p.price}</p>
+                            <p class="text-lg font-extrabold mb-4">&#8377;${p.price}</p>
                             <div class="flex space-x-2">
                                  <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider">Details</button>
                                  <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, 'https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}'); event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition text-xs uppercase tracking-wider flex items-center justify-center space-x-2">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -901,7 +901,7 @@
             let sub = 0;
             selectedItems.forEach(i => {
                 sub += i.price;
-                list.innerHTML += `<li class="flex justify-between text-sm py-2 border-b border-[#8B4513]/8"><span class="font-medium">${i.name}</span><span>?${i.price}</span></li>`;
+                list.innerHTML += `<li class="flex justify-between text-sm py-2 border-b border-[#8B4513]/8"><span class="font-medium">${i.name}</span><span>&#8377;${i.price}</span></li>`;
             });
             updateTotals(sub);
             selectedItems.length === 3 ? enableBtn(btn) : disableBtn(btn);
