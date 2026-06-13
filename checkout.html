@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const state = document.getElementById('c_state').value;
         
         if(!name || !email || !phone || !addr1 || !pincode || !city || !state) {
-            alert("Please fill in ALL your Contact and Shipping details (Name, Email, Phone, Address, PIN, City, State) before proceeding to payment.");
+            showCustomAlert("Please fill in ALL your Contact and Shipping details (Name, Email, Phone, Address, PIN, City, State) before proceeding to payment.");
             return;
         }
         
@@ -625,11 +625,11 @@ document.addEventListener('DOMContentLoaded', function() {
             "description": "Secure Checkout",
             "image": "image/logo.png",
             "handler": function (response){
-                alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                showCustomAlert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
                 // Redirect to success page or clear cart
                 localStorage.removeItem('rudra_cart');
                 localStorage.removeItem('rudraCart');
-                window.location.href = 'index.html';
+                setTimeout(() => { window.location.href = 'index.html'; }, 2000);
             },
             "prefill": {
                 "name": name,
@@ -645,12 +645,50 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         var rzp1 = new Razorpay(options);
         rzp1.on('payment.failed', function (response){
-                alert("Payment Failed. Reason: " + response.error.description);
+                showCustomAlert("Payment Failed. Reason: " + response.error.description);
         });
         rzp1.open();
         }
     }
 });
+
+// Custom Alert Function
+function showCustomAlert(message) {
+    const alertBox = document.getElementById('custom-alert');
+    const alertMessage = document.getElementById('custom-alert-message');
+    alertMessage.innerText = message;
+    alertBox.classList.remove('hidden');
+    // Trigger reflow
+    void alertBox.offsetWidth;
+    alertBox.classList.remove('opacity-0', 'scale-95');
+    alertBox.classList.add('opacity-100', 'scale-100');
+}
+
+function closeCustomAlert() {
+    const alertBox = document.getElementById('custom-alert');
+    alertBox.classList.remove('opacity-100', 'scale-100');
+    alertBox.classList.add('opacity-0', 'scale-95');
+    setTimeout(() => {
+        alertBox.classList.add('hidden');
+    }, 300); // Wait for transition to finish
+}
 </script>
+
+<!-- Custom Alert Modal -->
+<div id="custom-alert" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden opacity-0 scale-95 transition-all duration-300 ease-out bg-black/40 backdrop-blur-sm">
+    <div class="bg-[#FFF8F0] border-2 border-[#8B4513] rounded-2xl shadow-[0_20px_60px_rgba(139,69,19,0.3)] max-w-md w-full p-8 text-center relative transform transition-transform">
+        <div class="w-16 h-16 bg-[#8B4513]/10 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-8 h-8 text-[#8B4513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+        </div>
+        <h3 class="text-xl font-bold text-[#8B4513] mb-3">Action Required</h3>
+        <p id="custom-alert-message" class="text-sm text-[#8B4513]/80 mb-8 leading-relaxed"></p>
+        <button onclick="closeCustomAlert()" class="shining-button w-full py-4 bg-[#8B4513] text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase hover:bg-[#8B4513] transition shadow-lg sharp-edge">
+            Got it
+        </button>
+    </div>
+</div>
+
 </body>
 </html>
