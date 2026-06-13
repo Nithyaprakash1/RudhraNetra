@@ -953,25 +953,20 @@
         function addToCartWithOptions() {
             const item = getCartItemOptions();
             
-            // Add to the main cart (rudraCart)
-            let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
-            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
-            if (existingItemIndex > -1) {
-                cart[existingItemIndex].quantity += item.quantity;
+            // Delegate to the global window.addToCart to handle storage and trigger the flying cart animation
+            if (typeof window.addToCart === 'function') {
+                window.addToCart(item.name, item.price, item.image, item.quantity);
             } else {
-                cart.push(item);
-            localStorage.setItem('rudraCart', JSON.stringify(cart));
-            
-            // Trigger beautiful Toast
-            showCartToast(item.quantity, item.name);
-            
-            // Play flying cart animation if available
-            if (typeof playCartAnimation === 'function') {
-                playCartAnimation(window.event, item.image, function() {
-                    if (typeof updateNavCartCount === 'function') {
-                        updateNavCartCount();
-                    }
-                });
+                // Fallback if script isn't loaded
+                let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
+                const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+                if (existingItemIndex > -1) {
+                    cart[existingItemIndex].quantity += item.quantity;
+                } else {
+                    cart.push(item);
+                }
+                localStorage.setItem('rudraCart', JSON.stringify(cart));
+                alert(`Added ${item.quantity}x ${item.name} to cart!`);
             }
         }
 
@@ -1223,100 +1218,5 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     </div>
 </div>
 
-<style>
-@keyframes slideInRight {
-    0% { transform: translateX(120%); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideOutRight {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(120%); opacity: 0; }
-}
-@keyframes shrinkProgress {
-    0% { width: 100%; }
-    100% { width: 0%; }
-}
-.animate-toast-in {
-    animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-.animate-toast-out {
-    animation: slideOutRight 0.4s ease-in forwards;
-}
-.animate-progress {
-    animation: shrinkProgress 3s linear forwards;
-}
-</style>
-
-<!-- Premium Cart Toast Notification -->
-<div id="cart-toast" class="fixed bottom-6 right-6 z-[100] hidden items-center bg-[#FFF8F0] border border-[#8B4513]/20 rounded-xl shadow-[0_20px_50px_rgba(139,69,19,0.3)] w-80 overflow-hidden group">
-    <!-- Left Accent line -->
-    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#D2B48C] to-[#8B4513]"></div>
-    
-    <div class="flex items-center p-4 pl-6 w-full">
-        <!-- Icon -->
-        <div class="w-12 h-12 bg-[#8B4513]/10 rounded-full flex items-center justify-center flex-shrink-0 relative">
-            <svg class="w-6 h-6 text-[#8B4513] animate-[pulse_2s_infinite]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <div class="absolute inset-0 rounded-full border border-[#8B4513]/40 animate-ping opacity-20"></div>
-        </div>
-        
-        <!-- Text -->
-        <div class="ml-4 flex-1">
-            <h4 class="text-[#8B4513] font-bold text-[15px] tracking-wide mb-0.5">Added to Cart!</h4>
-            <p id="toast-message" class="text-xs text-[#8B4513]/70 font-medium leading-snug line-clamp-2"></p>
-        </div>
-        
-        <!-- Close Button -->
-        <button onclick="closeCartToast()" class="ml-2 text-[#8B4513]/40 hover:text-[#8B4513] transition p-1.5 rounded-full hover:bg-[#8B4513]/10">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-    </div>
-    
-    <!-- Progress Bar -->
-    <div class="h-1 bg-[#8B4513]/10 w-full absolute bottom-0 left-0">
-        <div id="toast-progress" class="h-full bg-gradient-to-r from-[#D2B48C] to-[#8B4513] w-full origin-left"></div>
-    </div>
-</div>
-
-<script>
-let toastTimeout;
-
-function showCartToast(qty, name) {
-    const toast = document.getElementById('cart-toast');
-    const msg = document.getElementById('toast-message');
-    const progress = document.getElementById('toast-progress');
-    
-    msg.innerText = `${qty}x ${name}`;
-    
-    // Reset classes and hide quickly
-    toast.classList.remove('hidden', 'animate-toast-out');
-    progress.classList.remove('animate-progress');
-    
-    // Force reflow
-    void toast.offsetWidth;
-    
-    // Animate in and start progress
-    toast.classList.add('flex', 'animate-toast-in');
-    progress.classList.add('animate-progress');
-    
-    // Auto dismiss after 3s
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        closeCartToast();
-    }, 3000);
-}
-
-function closeCartToast() {
-    const toast = document.getElementById('cart-toast');
-    toast.classList.remove('animate-toast-in');
-    toast.classList.add('animate-toast-out');
-    
-    setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('flex', 'animate-toast-out');
-    }, 400); // Matches slideOutRight duration
-}
-</script>
-
 </body>
+
