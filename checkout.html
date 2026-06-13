@@ -505,7 +505,7 @@
                     <!-- Payment Button -->
                     <button id="rzp-button1" class="w-full py-4 bg-gradient-to-r from-[#8B4513] to-[#A8704D] text-[#FFF1E0] font-bold uppercase tracking-widest rounded-xl hover:shadow-[0_10px_20px_rgba(139,69,19,0.3)] transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                        Pay Securely via Razorpay
+                        PAY SECURELY
                     </button>
                     
                     <div class="mt-6 flex items-center justify-center gap-4 opacity-60 grayscale">
@@ -643,11 +643,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 "color": "#8B4513"
             }
         };
-        var rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (response){
-                showCustomAlert("Payment Failed. Reason: " + response.error.description);
-        });
-        rzp1.open();
+
+        if (options.key.includes("dummykey")) {
+            showCustomAlert("Test Mode: Payment flow simulated successfully! Please replace the dummy Razorpay key in the code with your actual key to accept real payments.");
+            setTimeout(() => {
+                localStorage.removeItem('rudra_cart');
+                localStorage.removeItem('rudraCart');
+                window.location.href = 'index.html';
+            }, 3000);
+            return;
+        }
+
+        try {
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response){
+                    showCustomAlert("Payment Failed. Reason: " + response.error.description);
+            });
+            rzp1.open();
+        } catch (error) {
+            console.error("Razorpay Error:", error);
+            showCustomAlert("Payment gateway failed to initialize. Please check your API key and internet connection.");
+        }
         }
     }
 });
