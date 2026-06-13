@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -251,6 +251,61 @@
             font-size: 12px; font-weight: 600;
             letter-spacing: .05em;
             text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        }
+
+        /* ── Review Panel Styles ── */
+        #review-panel { backdrop-filter: blur(4px); }
+        #review-panel > div {
+            animation: panelSlideIn 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+        @keyframes panelSlideIn {
+            from { transform: translateY(40px); opacity: 0; }
+            to   { transform: translateY(0);   opacity: 1; }
+        }
+        #star-picker span {
+            transition: color 0.15s, transform 0.15s;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        #star-picker span:hover,
+        #star-picker span.filled {
+            color: #F59E0B;
+            transform: scale(1.3);
+        }
+        .rating-bar-fill { transition: width 0.8s cubic-bezier(0.22,1,0.36,1); }
+        /* Success overlay */
+        #review-success {
+            position: fixed; inset: 0; z-index: 100;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: rgba(255,241,224,0.96);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        #review-success.visible { opacity: 1; pointer-events: all; }
+        .success-checkmark {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A8704D, #8B4513);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
+            animation: bounceIn 0.6s cubic-bezier(0.22,1,0.36,1);
+        }
+        @keyframes bounceIn {
+            0%   { transform: scale(0.3); opacity: 0; }
+            60%  { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .success-checkmark svg { width: 40px; height: 40px; }
+        .confetti-dot {
+            position: absolute;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            animation: confettiFall 1s ease forwards;
+        }
+        @keyframes confettiFall {
+            0%   { transform: translate(0,0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--dx), 120px) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -540,50 +595,64 @@
                     <span class="text-sm opacity-60 block mt-2">out of 5 stars</span>
                     <div class="flex justify-center text-amber-500 mt-2 text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <span class="text-xs opacity-50 block mt-1">(1,242 customer ratings)</span>
-                </div>
-
-                <!-- Star Progress bars -->
-                <div class="space-y-3">
-                    <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">5?</span>
-                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8B4513]" style="width: 85%;"></div>
+                    <div class="space-y-3 mt-6" id="rating-bars">
+                        <div class="flex items-center text-xs">
+                            <span class="w-8 opacity-75">5&#9733;</span>
+                            <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar5" style="width: 85%;"></div>
+                            </div>
+                            <span class="w-8 text-right opacity-75" id="pct5">85%</span>
                         </div>
-                        <span class="w-8 text-right opacity-75">85%</span>
-                    </div>
-                    <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">4?</span>
-                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8B4513]" style="width: 10%;"></div>
+                        <div class="flex items-center text-xs">
+                            <span class="w-8 opacity-75">4&#9733;</span>
+                            <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar4" style="width: 10%;"></div>
+                            </div>
+                            <span class="w-8 text-right opacity-75" id="pct4">10%</span>
                         </div>
-                        <span class="w-8 text-right opacity-75">10%</span>
-                    </div>
-                    <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">3?</span>
-                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8B4513]" style="width: 3%;"></div>
+                        <div class="flex items-center text-xs">
+                            <span class="w-8 opacity-75">3&#9733;</span>
+                            <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar3" style="width: 3%;"></div>
+                            </div>
+                            <span class="w-8 text-right opacity-75" id="pct3">3%</span>
                         </div>
-                        <span class="w-8 text-right opacity-75">3%</span>
-                    </div>
-                    <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">2?</span>
-                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
+                        <div class="flex items-center text-xs">
+                            <span class="w-8 opacity-75">2&#9733;</span>
+                            <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar2" style="width: 1%;"></div>
+                            </div>
+                            <span class="w-8 text-right opacity-75" id="pct2">1%</span>
                         </div>
-                        <span class="w-8 text-right opacity-75">1%</span>
-                    </div>
-                    <div class="flex items-center text-xs">
-                        <span class="w-8 opacity-75">1?</span>
-                        <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                            <div class="h-full bg-[#8B4513]" style="width: 1%;"></div>
+                        <div class="flex items-center text-xs">
+                            <span class="w-8 opacity-75">1&#9733;</span>
+                            <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar1" style="width: 1%;"></div>
+                            </div>
+                            <span class="w-8 text-right opacity-75" id="pct1">1%</span>
                         </div>
-                        <span class="w-8 text-right opacity-75">1%</span>
                     </div>
                 </div>
 
-                <button onclick="alert('Write Review feature is coming soon!')" class="w-full mt-8 py-3.5 bg-transparent border border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] transition text-xs font-bold uppercase tracking-wider sharp-edge">
+                <button onclick="openReviewPanel()" class="w-full mt-8 py-3.5 bg-transparent border border-[#8B4513] text-[#8B4513] hover:bg-[#8B4513] hover:text-[#FFF1E0] transition text-xs font-bold uppercase tracking-wider sharp-edge">
                     Write Review
                 </button>
+            </div>
+
+            <!-- Review Panel Overlay (Hidden by default) -->
+            <div id="review-panel" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden p-6">
+                <div class="bg-[#FFF1E0] p-8 w-full max-w-lg shadow-2xl sharp-edge border-2 border-[#8B4513]">
+                    <h3 class="text-xl font-bold text-[#8B4513] mb-4">Leave a Review</h3>
+                    <div id="star-picker" class="flex text-2xl mb-4 cursor-pointer text-[#8B4513]/30">
+                        <span onclick="setRating(1)">&#9733;</span><span onclick="setRating(2)">&#9733;</span><span onclick="setRating(3)">&#9733;</span><span onclick="setRating(4)">&#9733;</span><span onclick="setRating(5)">&#9733;</span>
+                    </div>
+                    <input type="text" id="reviewerName" placeholder="Your Name" class="w-full p-3 mb-4 bg-transparent border border-[#8B4513]/30 focus:border-[#8B4513] focus:outline-none">
+                    <textarea id="reviewText" placeholder="Your Feedback" class="w-full p-3 mb-4 bg-transparent border border-[#8B4513]/30 focus:border-[#8B4513] focus:outline-none h-32"></textarea>
+                    <div class="flex space-x-4">
+                        <button onclick="closeReviewPanel()" class="flex-1 py-3 border border-[#8B4513] text-[#8B4513] text-xs font-bold uppercase">Cancel</button>
+                        <button onclick="submitReview()" class="flex-1 py-3 bg-[#8B4513] text-[#FFF1E0] text-xs font-bold uppercase">Submit</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Side Customer Feedbacks List (8 Columns) -->
@@ -821,11 +890,123 @@
         });
     </script>
 <script src="cart-anim.js"></script>
+
+<!-- Review Success Overlay -->
+<div id="review-success">
+    <div style="position:relative;">
+        <div class="success-checkmark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFF1E0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+    </div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#8B4513;margin-bottom:8px;">Thank You!</h3>
+    <p style="color:#8B4513;opacity:0.7;font-size:0.95rem;">Your rating has been recorded.</p>
+</div>
+
+<script>
+/* ── Review Panel Logic ── */
+let selectedRating = 0;
+
+// Counts (base data)
+const ratingCounts = { 5: 1055, 4: 124, 3: 37, 2: 13, 1: 13 };
+
+function openReviewPanel() {
+    selectedRating = 0;
+    document.getElementById('reviewerName').value = '';
+    document.getElementById('reviewText').value = '';
+    updateStarPicker(0);
+    const panel = document.getElementById('review-panel');
+    panel.classList.remove('hidden');
+    panel.querySelector('div').style.animation = 'none';
+    requestAnimationFrame(() => { panel.querySelector('div').style.animation = ''; });
+    document.body.style.overflow = 'hidden';
+}
+
+function closeReviewPanel() {
+    document.getElementById('review-panel').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+function setRating(n) {
+    selectedRating = n;
+    updateStarPicker(n);
+}
+
+function updateStarPicker(n) {
+    const stars = document.querySelectorAll('#star-picker span');
+    stars.forEach((s, i) => {
+        s.classList.toggle('filled', i < n);
+    });
+}
+
+function submitReview() {
+    if (!selectedRating) { alert('Please select a star rating.'); return; }
+    const name = document.getElementById('reviewerName').value.trim();
+    if (!name) { alert('Please enter your name.'); return; }
+
+    // Update counts
+    ratingCounts[selectedRating]++;
+    const total = Object.values(ratingCounts).reduce((a,b) => a+b, 0);
+
+    // Recalculate weighted average
+    let weightedSum = 0;
+    for (let s = 1; s <= 5; s++) weightedSum += s * ratingCounts[s];
+    const newAvg = (weightedSum / total).toFixed(1);
+
+    // Update the displayed score
+    const scoreEl = document.querySelector('.text-6xl.font-black');
+    if (scoreEl) scoreEl.textContent = newAvg;
+
+    // Update rating bars
+    for (let s = 1; s <= 5; s++) {
+        const pct = Math.round((ratingCounts[s] / total) * 100);
+        const bar = document.getElementById('bar' + s);
+        const pctEl = document.getElementById('pct' + s);
+        if (bar) bar.style.width = pct + '%';
+        if (pctEl) pctEl.textContent = pct + '%';
+    }
+
+    // Close the panel
+    closeReviewPanel();
+
+    // Show success overlay with confetti
+    showSuccessAnimation();
+}
+
+function showSuccessAnimation() {
+    const overlay = document.getElementById('review-success');
+    overlay.classList.add('visible');
+
+    // Burst confetti
+    const colors = ['#A8704D','#8B4513','#F59E0B','#FFF1E0','#5c3a23'];
+    for (let i = 0; i < 18; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'confetti-dot';
+        dot.style.background = colors[i % colors.length];
+        dot.style.left = (40 + Math.random() * 20) + 'vw';
+        dot.style.top = (40 + Math.random() * 10) + 'vh';
+        dot.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
+        dot.style.animationDelay = (Math.random() * 0.3) + 's';
+        overlay.appendChild(dot);
+    }
+
+    // Auto-dismiss after 2.5s
+    setTimeout(() => {
+        overlay.classList.remove('visible');
+        // Remove confetti dots
+        setTimeout(() => {
+            overlay.querySelectorAll('.confetti-dot').forEach(d => d.remove());
+        }, 400);
+    }, 2500);
+}
+
+// Close panel when clicking backdrop
+document.getElementById('review-panel').addEventListener('click', function(e) {
+    if (e.target === this) closeReviewPanel();
+});
+</script>
+
 </body>
-</html>
-
-
-
-
 
 
