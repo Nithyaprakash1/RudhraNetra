@@ -455,21 +455,21 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-[#8B4513]/70 mb-2">Address *</label>
-                            <input type="text" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all mb-3" placeholder="House/Flat No., Building Name">
-                            <input type="text" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="Street Address, Area">
+                            <input type="text" id="c_address1" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all mb-3" placeholder="House/Flat No., Building Name">
+                            <input type="text" id="c_address2" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="Street Address, Area">
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
                             <div class="col-span-2 md:col-span-1">
                                 <label class="block text-xs font-bold uppercase tracking-widest text-[#8B4513]/70 mb-2">PIN Code *</label>
-                                <input type="text" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="000000">
+                                <input type="text" id="c_pincode" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="000000">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-widest text-[#8B4513]/70 mb-2">City *</label>
-                                <input type="text" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="City">
+                                <input type="text" id="c_city" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="City">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-widest text-[#8B4513]/70 mb-2">State *</label>
-                                <input type="text" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="State">
+                                <input type="text" id="c_state" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] outline-none transition-all" placeholder="State">
                             </div>
                         </div>
                     </div>
@@ -604,11 +604,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const name = document.getElementById('c_name').value;
         const email = document.getElementById('c_email').value;
         const phone = document.getElementById('c_phone').value;
+        const addr1 = document.getElementById('c_address1').value;
+        const addr2 = document.getElementById('c_address2').value;
+        const pincode = document.getElementById('c_pincode').value;
+        const city = document.getElementById('c_city').value;
+        const state = document.getElementById('c_state').value;
         
-        if(!name || !email || !phone) {
-            alert("Please fill in your Contact and Shipping details before proceeding to payment.");
+        if(!name || !email || !phone || !addr1 || !pincode || !city || !state) {
+            alert("Please fill in ALL your Contact and Shipping details (Name, Email, Phone, Address, PIN, City, State) before proceeding to payment.");
             return;
         }
+        
+        const fullAddress = `${addr1}, ${addr2 ? addr2 + ', ' : ''}${city}, ${state} - ${pincode}`;
 
         var options = {
             "key": "rzp_test_dummykey12345", // Replace with actual Razorpay Key ID
@@ -630,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "contact": phone
             },
             "notes": {
-                "address": "Rudra Nethra Corporate Office"
+                "address": fullAddress
             },
             "theme": {
                 "color": "#8B4513"
