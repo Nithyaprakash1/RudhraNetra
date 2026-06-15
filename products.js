@@ -1,4 +1,4 @@
-﻿const masterProducts = [
+const masterProducts = [
     {
         "id":  1,
         "isFeatured":  true,
@@ -21,10 +21,10 @@
         "price":  849,
         "name":  "Karungali Malai with Rudraksha 54 \u0026 108 beads",
         "images":  [
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_with_Rudraksha_b…_202606111208.jpeg",
                        "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_on_stone_202606111233.jpeg",
                        "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_worn_202606111231.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_Tamil_…_202606111227.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_with_Rudraksha_b…_202606111208.jpeg"
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_Tamil_…_202606111227.jpeg"
                    ],
         "oldPrice":  1500
     },
@@ -169,7 +169,12 @@
         "isFeatured":  false,
         "oldPrice":  1265,
         "images":  [
-
+                       "image/Product Images (1-11)/Golden spaced Bracelet/4.jpeg",
+                       "image/Product Images (1-11)/Golden spaced Bracelet/1.jpeg",
+                       "image/Product Images (1-11)/Golden spaced Bracelet/2.jpeg",
+                       "image/Product Images (1-11)/Golden spaced Bracelet/3.jpeg",
+                       "image/Product Images (1-11)/Golden spaced Bracelet/5.jpeg",
+                       "image/Product Images (1-11)/Golden spaced Bracelet/6.jpeg"
                    ],
         "price":  1100,
         "category":  "bracelets"
@@ -180,7 +185,12 @@
         "isFeatured":  false,
         "oldPrice":  650,
         "images":  [
-
+                       "image/Product Images (1-11)/Matte finished bracelet/3.jpeg",
+                       "image/Product Images (1-11)/Matte finished bracelet/1.jpeg",
+                       "image/Product Images (1-11)/Matte finished bracelet/2.jpeg",
+                       "image/Product Images (1-11)/Matte finished bracelet/4.jpeg",
+                       "image/Product Images (1-11)/Matte finished bracelet/5.jpeg",
+                       "image/Product Images (1-11)/Matte finished bracelet/6.jpeg"
                    ],
         "price":  399,
         "category":  "bracelets"
@@ -191,7 +201,11 @@
         "isFeatured":  true,
         "oldPrice":  1500,
         "images":  [
-
+                       "image/Product Images (1-11)/Karungali dollor/2.jpeg",
+                       "image/Product Images (1-11)/Karungali dollor/1.jpeg",
+                       "image/Product Images (1-11)/Karungali dollor/3.jpeg",
+                       "image/Product Images (1-11)/Karungali dollor/4.jpeg",
+                       "image/Product Images (1-11)/Karungali dollor/5.jpeg"
                    ],
         "price":  699,
         "category":  "necklaces"
@@ -202,7 +216,12 @@
         "isFeatured":  false,
         "oldPrice":  1600,
         "images":  [
-
+                       "image/Product Images (1-11)/Murugan Dollor/4.jpeg",
+                       "image/Product Images (1-11)/Murugan Dollor/1.jpeg",
+                       "image/Product Images (1-11)/Murugan Dollor/2.jpeg",
+                       "image/Product Images (1-11)/Murugan Dollor/3.jpeg",
+                       "image/Product Images (1-11)/Murugan Dollor/5.jpeg",
+                       "image/Product Images (1-11)/Murugan Dollor/Murugan_Karungali_Necklace_featu…_202606111822.jpeg"
                    ],
         "price":  1149,
         "category":  "necklaces"
@@ -213,7 +232,12 @@
         "isFeatured":  false,
         "oldPrice":  1600,
         "images":  [
-
+                       "image/Product Images (1-11)/Shivan Dollor/3.jpeg",
+                       "image/Product Images (1-11)/Shivan Dollor/1.jpeg",
+                       "image/Product Images (1-11)/Shivan Dollor/2.jpeg",
+                       "image/Product Images (1-11)/Shivan Dollor/4.jpeg",
+                       "image/Product Images (1-11)/Shivan Dollor/5.jpeg",
+                       "image/Product Images (1-11)/Shivan Dollor/6.jpeg"
                    ],
         "price":  1249,
         "category":  "necklaces"
@@ -224,7 +248,11 @@
         "isFeatured":  false,
         "oldPrice":  1550,
         "images":  [
-
+                       "image/Product Images (1-11)/Thirisul dollor/2.jpeg",
+                       "image/Product Images (1-11)/Thirisul dollor/1.jpeg",
+                       "image/Product Images (1-11)/Thirisul dollor/3.jpeg",
+                       "image/Product Images (1-11)/Thirisul dollor/4.jpeg",
+                       "image/Product Images (1-11)/Thirisul dollor/5.jpeg"
                    ],
         "price":  1249,
         "category":  "necklaces"
@@ -235,7 +263,11 @@
         "isFeatured":  false,
         "oldPrice":  1700,
         "images":  [
-
+                       "image/Product Images (1-11)/OM vel dollor/2.jpeg",
+                       "image/Product Images (1-11)/OM vel dollor/1.jpeg",
+                       "image/Product Images (1-11)/OM vel dollor/3.jpeg",
+                       "image/Product Images (1-11)/OM vel dollor/4.jpeg",
+                       "image/Product Images (1-11)/OM vel dollor/5.jpeg"
                    ],
         "price":  1549,
         "category":  "necklaces"
@@ -246,7 +278,10 @@
         "isFeatured":  false,
         "oldPrice":  1650,
         "images":  [
-
+                       "image/Product Images (1-11)/Vel dollor/South_Indian_necklace_ebony_wood_202606111632.jpeg",
+                       "image/Product Images (1-11)/Vel dollor/South_Indian_necklace_on_model_202606111655.jpeg",
+                       "image/Product Images (1-11)/Vel dollor/South_Indian_necklace_worn_model_202606111646.jpeg",
+                       "image/Product Images (1-11)/Vel dollor/South_Indian_spiritual_necklace_…_202606111630.jpeg"
                    ],
         "price":  1249,
         "category":  "necklaces"
@@ -257,7 +292,12 @@
         "isFeatured":  false,
         "oldPrice":  1875,
         "images":  [
-
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/3.jpeg",
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/1.jpeg",
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/2.jpeg",
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/4.jpeg",
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/5.jpeg",
+                       "image/Product Images (1-11)/Rudraksha malai with vel dollor/6.jpeg"
                    ],
         "price":  1800,
         "category":  "necklaces"
@@ -268,7 +308,12 @@
         "isFeatured":  false,
         "oldPrice":  1750,
         "images":  [
-
+                       "image/Product Images (1-11)/Rudraksha dollor/4.jpeg",
+                       "image/Product Images (1-11)/Rudraksha dollor/1.jpeg",
+                       "image/Product Images (1-11)/Rudraksha dollor/2.jpeg",
+                       "image/Product Images (1-11)/Rudraksha dollor/3.jpeg",
+                       "image/Product Images (1-11)/Rudraksha dollor/5.jpeg",
+                       "image/Product Images (1-11)/Rudraksha dollor/Karungali_necklace_feature_infog…_202606111859.jpeg"
                    ],
         "price":  1249,
         "category":  "necklaces"
