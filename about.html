@@ -243,6 +243,10 @@
 
         /* Mobile layout fixes */
         @media (max-width: 768px) {
+            #showcase-sticky::before,
+            .pattern-bg-layer {
+                background-size: 110px 110px !important;
+            }
             .feature-panel {
                 width: 88vw;
                 max-width: none;
@@ -760,7 +764,7 @@
 
         <!-- Spacer with same pattern background, no gap -->
         <div style="height: 20vh; background-color: #FFF2E2; position:relative; overflow:hidden;">
-            <div style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238E5936' stroke-width='0.8' stroke-opacity='0.12'%3E%3Ccircle cx='100' cy='100' r='50'/%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3Cpath d='M100 20 Q120 60 180 100 Q120 140 100 180 Q80 140 20 100 Q80 60 100 20 Z'/%3E%3Cpath d='M43 43 Q70 70 100 20 Q130 70 157 43 Q130 100 180 100 Q130 130 157 157 Q100 130 100 180 Q70 130 43 157 Q70 100 20 100 Q70 70 43 43 Z'/%3E%3Cline x1='100' y1='0' x2='100' y2='200' stroke-opacity='0.07'/%3E%3Cline x1='0' y1='100' x2='200' y2='100' stroke-opacity='0.07'/%3E%3C/g%3E%3C/svg%3E\");background-size:220px 220px;"></div>
+            <div class="pattern-bg-layer" style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238E5936' stroke-width='0.8' stroke-opacity='0.12'%3E%3Ccircle cx='100' cy='100' r='50'/%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3Cpath d='M100 20 Q120 60 180 100 Q120 140 100 180 Q80 140 20 100 Q80 60 100 20 Z'/%3E%3Cpath d='M43 43 Q70 70 100 20 Q130 70 157 43 Q130 100 180 100 Q130 130 157 157 Q100 130 100 180 Q70 130 43 157 Q70 100 20 100 Q70 70 43 43 Z'/%3E%3Cline x1='100' y1='0' x2='100' y2='200' stroke-opacity='0.07'/%3E%3Cline x1='0' y1='100' x2='200' y2='100' stroke-opacity='0.07'/%3E%3C/g%3E%3C/svg%3E\");background-size:220px 220px;"></div>
         </div>
 
         <!-- Immersive Pre-Footer Banner & CTA -->
