@@ -110,7 +110,7 @@
 
         /* Outer scroll spacer — gives scroll distance for the pin */
         #art-scroll-section {
-            height: 195vh;   
+            height: 320vh;   /* Stretched track height to significantly slow down the animations */
             position: relative;
             background-color: #1E110A;
         }
@@ -244,7 +244,7 @@
         /* Mobile: reduce parallax & simplify */
         @media (max-width: 768px) {
             #art-scroll-section {
-                height: 160vh;
+                height: 240vh;   /* Stretched track height on mobile */
             }
             #art-headline {
                 font-size: clamp(36px, 10vw, 64px);
@@ -525,8 +525,8 @@
             </div>
 
             <!-- Layer 2 (fore): Text overlay
-                 Fades IN during Phase A (scroll 0%–20%).
-                 Fades OUT during Phase B (scroll 65%–75%) as video zooms out. -->
+                 Fades IN during Phase A (scroll 0%–15%).
+                 Fades OUT during Phase B (scroll 60%–68%) as video zooms out. -->
             <div id="art-text-overlay">
 
                 <!-- Eyebrow: letter-spaced label, appears first -->
@@ -1038,47 +1038,50 @@
                GSAP Timeline Mapping
             ================================================================ */
 
-            /* ── Phase 1: Video Zoom Out (Initiates later, runs 0.55 -> 0.75) ── */
-            tl.to(videoWrapper, {
-                scale: endScale,
-                borderRadius: endRadius + 'px',
-                ease: 'power1.inOut',
-                duration: 0.20          
-            }, 0.55);                   
-
-            /* ── Phase 2: Text Zoom & Fade In (0.00 -> 0.20) ── */
+            /* ── Phase 1: Text Zoom & Fade In (0.00 -> 0.15) ── */
             tl.to(textOverlay, {
                 opacity: 1,
                 scale: 1.00,
                 ease: 'power2.out',
-                duration: 0.20
+                duration: 0.15
             }, 0.00);
 
-            tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.02);
-            tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.12 }, 0.04);
-            tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.06);
-            tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.10);
+            tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.02);
+            tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.10 }, 0.04);
+            tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.06);
+            tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.08);
 
-            /* ── Phase 3: Corner Aside Paragraph Vanish (0.25 -> 0.50) ── */
+            /* ── Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) ── */
             tl.to(cornerAside, {
                 opacity: 0,
                 y: 15,
                 ease: 'power1.in',
-                duration: 0.25
-            }, 0.25);
+                duration: 0.20
+            }, 0.20);
 
-            /* ── Phase 4: Text Overlay Fade & Exit (STAYS visible 0.20 -> 0.65, fades 0.65 -> 0.75) ── */
+            /* ── Phase 3: Text Pause / Hold (0.15 -> 0.60) ── */
+            // The text remains completely static and readable for 45% of the timeline track
+
+            /* ── Phase 4: Text Overlay Fade & Exit (Fades out 0.60 -> 0.68) ── */
             tl.to(textOverlay, {
                 opacity: 0,
                 y: textExitY,
-                scale: 1.10,
-                ease: 'power1.in',
-                duration: 0.10
-            }, 0.65);
+                scale: 1.08,
+                ease: 'power1.inOut',
+                duration: 0.08
+            }, 0.60);
 
-            /* ── Phase 5: Cinematic Pause / Clear Viewport Hold (0.75 -> 1.00) ── */
+            /* ── Phase 5: Video Zoom Out (Initiates later, runs 0.68 -> 0.82) ── */
+            tl.to(videoWrapper, {
+                scale: endScale,
+                borderRadius: endRadius + 'px',
+                ease: 'power1.inOut',
+                duration: 0.14          
+            }, 0.68);                   
+
+            /* ── Phase 6: Prolonged Video Pause / Hold (0.82 -> 1.00) ── */
             // Deliberately empty duration buffer block to anchor the static card video
-            tl.to({}, { duration: 0.25 }, 0.75);
+            tl.to({}, { duration: 0.18 }, 0.82);
 
             // Connect layout to the Pinning Trigger
             ScrollTrigger.create({
