@@ -1272,7 +1272,22 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         
         const oldPriceEl = priceEl.nextElementSibling;
         if(oldPriceEl && oldPriceEl.tagName === 'SPAN') {
-            oldPriceEl.innerHTML = '&#8377;' + Math.round(product.price * 1.15); 
+            oldPriceEl.innerHTML = '&#8377;' + product.oldPrice; 
+            const discountEl = oldPriceEl.nextElementSibling;
+            if (discountEl && discountEl.tagName === 'SPAN') {
+                const oldP = product.oldPrice;
+                const newP = product.price;
+                if (oldP > newP) {
+                    const discount = Math.round(((oldP - newP) / oldP) * 100);
+                    discountEl.innerHTML = discount + '% OFF';
+                    discountEl.style.display = 'inline-block';
+                    oldPriceEl.style.display = 'inline-block';
+                } else {
+                    // Hide if there is no discount (e.g., price increased)
+                    discountEl.style.display = 'none';
+                    oldPriceEl.style.display = 'none';
+                }
+            }
         }
         
         const tds = document.querySelectorAll('td.p-4.text-\\[\\#8B4513\\]');
@@ -1350,6 +1365,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     });
 </script>
 </body>
+
 
 
 
