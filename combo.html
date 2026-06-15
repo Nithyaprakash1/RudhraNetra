@@ -86,38 +86,9 @@
             box-shadow: 0 8px 20px rgba(139,69,19,0.35);
         }
 
-        /* ── Product Dropdown Drawer ── */
-        .product-drawer {
-            visibility: hidden; opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-            background: linear-gradient(145deg, #FFF1E0, #F3E5D3);
-            border: 1px solid rgba(142,89,54,0.18);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
-        }
-        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+        
 
-        /* ── Enhanced dropdown items ── */
-        .enhanced-dropdown-item {
-            display: block; text-align: center; padding: 12px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#A8704D,#8E5936);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-        }
-        .enhanced-dropdown-item:hover {
-            transform: scale(1.06) translateY(-5px);
-            border-color: #D4A373;
-            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
-        }
-        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
-        .enhanced-dropdown-item span {
-            color: #FFF2E2 !important;
-            display: block; margin-top: 8px;
-            font-size: 12px; font-weight: 600;
-            letter-spacing: .05em;
-            text-shadow: 0 1px 2px rgba(0,0,0,.5);
-        }
+        
 
         /* ── Countdown timer ── */
         .timer-box {
@@ -265,7 +236,7 @@
 
         /* ── Nav colors ── */
         .nav-text-glow { text-shadow: 0 0 8px rgba(139,69,19,0.4); }
-        .active-page { text-shadow: 0 0 12px rgba(139,69,19,0.8); color:#FFF1E0 !important; font-weight:800; }
+        . { text-shadow: 0 0 12px rgba(139,69,19,0.8); color:#FFF1E0 !important; font-weight:800; }
         .nav-links, .nav-cart, .nav-mobile-btn { color:#FFF1E0; transition:color 0.3s ease; }
         .nav-link { transition:color 0.3s ease; }
         .nav-link:hover { color:#8B4513 !important; }
@@ -282,7 +253,7 @@
         .glass-nav .nav-link:hover { color:#5c3a23 !important; }
         .glass-nav .nav-shop-btn { background-color:#8B4513 !important; color:#FFF1E0 !important; border:1px solid #8B4513 !important; }
         .glass-nav .nav-shop-btn:hover { background-color:#5c3a23 !important; border-color:#5c3a23 !important; }
-        .glass-nav .active-page { color:#8B4513 !important; text-shadow: 0 0 12px rgba(139,69,19,0.4); }
+        .glass-nav . { color:#8B4513 !important; text-shadow: 0 0 12px rgba(139,69,19,0.4); }
 
         /* ── Modal ── */
         #comboModal {
@@ -345,7 +316,41 @@
         }
 
         /* ── Smooth anchor scrolling already handled via CSS scroll-behavior ── */
-    </style>
+            /* Gold Energy Glow & Shimmer */
+        .gold-energy-glow {
+            color: #FFE1A8;
+            font-weight: 700;
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(
+                120deg, 
+                #FFE1A8 0%, 
+                #FFF8E7 25%, 
+                #FFE1A8 50%, 
+                #D4A373 75%, 
+                #FFE1A8 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gold-shimmer-glow 6s linear infinite;
+            text-shadow: 0 0 15px rgba(255, 225, 168, 0.25);
+        }
+        @keyframes gold-shimmer-glow {
+            0% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
+            50% {
+                background-position: 100% center;
+                filter: drop-shadow(0 0 8px rgba(255, 225, 168, 0.45));
+            }
+            100% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
+        }
+</style>
 </head>
 
 <body class="overflow-x-hidden">
@@ -362,32 +367,32 @@
                 <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Home</a>
                 <div class="relative group">
                     <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-0 mt-4 p-4 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
-                        <div class="grid grid-cols-5 gap-3 text-center">
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Mala">
-                                <span class="text-xs font-semibold block mt-2">Mala Beads</span>
+                                        <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 absolute top-full left-0 mt-2 py-2 bg-[#F6EDE2] shadow-xl rounded-2xl w-64 border border-[#8B4513]/10">
+                        <div class="flex flex-col">
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI MALAI</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Bracelet">
-                                <span class="text-xs font-semibold block mt-2">Bracelets</span>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI BRACELET</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Idol">
-                                <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI NECKLACE</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Planks">
-                                <span class="text-xs font-semibold block mt-2">Holy Planks</span>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI RING</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Accessories" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Accessories">
-                                <span class="text-xs font-semibold block mt-2">Accessories</span>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest">
+                                <span>KARUNGALI DAMRU BRACELET</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
                         </div>
                     </div>
                 </div>
-                <a href="combo.html" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">Combo Offer</a>
+                <a href="combo.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Combo Offer</a>
                 <a href="about.html" class="hover:text-[#8B4513] nav-link nav-text-glow">About</a>
                 <a href="contact.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Contact</a>
             </div>
@@ -421,7 +426,7 @@
         <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
             <a href="index.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
             <a href="product.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Products</a>
-            <a href="combo.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors active-page">Combo Offer</a>
+            <a href="combo.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors ">Combo Offer</a>
             <a href="about.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
         </div>
@@ -702,7 +707,7 @@
             </div>
             <div class="relative z-10 max-w-3xl mx-auto mt-8" data-aos="fade-up">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
-                <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+                <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight">Awaken The <span class="gold-energy-glow">Energy</span> Within</h2>
                 <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
                 <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
                     EXPLORE THE COLLECTION
@@ -725,7 +730,7 @@
                 <ul class="space-y-2 text-sm">
                     <li><a href="index.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
                     <li><a href="index.html#store" class="hover:text-[#8B4513] nav-link transition">Products</a></li>
-                    <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition active-page">Combo Offer</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition ">Combo Offer</a></li>
                     <li><a href="about.html" class="hover:text-[#8B4513] nav-link transition">About Us</a></li>
                     <li><a href="contact.html" class="hover:text-[#8B4513] nav-link transition">Contact</a></li>
                 </ul>
@@ -1106,7 +1111,28 @@
         });
     </script>
     <script src="cart-anim.js"></script>
+            <script id="active-footer-script">
+        document.addEventListener("DOMContentLoaded", function() {
+            const footerLinks = document.querySelectorAll("footer a");
+            let currentPath = window.location.pathname.split("/").pop();
+            if(!currentPath || currentPath === "") currentPath = "index.html";
+            footerLinks.forEach(link => {
+                const href = link.getAttribute("href");
+                if(href && href.split("#")[0] === currentPath) {
+                    link.style.color = "#8B4513";
+                    link.style.fontWeight = "bold";
+                    link.style.textShadow = "none";
+                    link.classList.remove("text-[#FFF1E0]");
+                    
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
 
 

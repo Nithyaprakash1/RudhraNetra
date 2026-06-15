@@ -73,7 +73,7 @@
                     .nav-text-glow {
             text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
         }
-        .active-page {
+        . {
             text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
             color: #FFF1E0 !important;
             font-weight: 800;
@@ -111,44 +111,49 @@
             border-color: #5c3a23 !important;
         }
         
-        .glass-nav .active-page {
+        .glass-nav . {
             color: #8B4513 !important;
             text-shadow: 0 0 12px rgba(139, 69, 19, 0.4);
         }
     
         
     
-        /* ── Product Dropdown Drawer ── */
-        .product-drawer {
-            visibility: hidden; opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-            background: linear-gradient(145deg, #FFF1E0, #F3E5D3);
-            border: 1px solid rgba(142,89,54,0.18);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18);
-        }
-        .group:hover .product-drawer { visibility: visible; opacity: 1; transform: translateY(0); }
+        
 
-        /* ── Enhanced dropdown items ── */
-        .enhanced-dropdown-item {
-            display: block; text-align: center; padding: 12px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#A8704D,#8E5936);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        
+            /* Gold Energy Glow & Shimmer */
+        .gold-energy-glow {
+            color: #FFE1A8;
+            font-weight: 700;
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(
+                120deg, 
+                #FFE1A8 0%, 
+                #FFF8E7 25%, 
+                #FFE1A8 50%, 
+                #D4A373 75%, 
+                #FFE1A8 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gold-shimmer-glow 6s linear infinite;
+            text-shadow: 0 0 15px rgba(255, 225, 168, 0.25);
         }
-        .enhanced-dropdown-item:hover {
-            transform: scale(1.06) translateY(-5px);
-            border-color: #D4A373;
-            box-shadow: 0 15px 30px rgba(142,89,54,0.4);
-        }
-        .enhanced-dropdown-item img { border-radius: 8px; display: block; margin: 0 auto; }
-        .enhanced-dropdown-item span {
-            color: #FFF2E2 !important;
-            display: block; margin-top: 8px;
-            font-size: 12px; font-weight: 600;
-            letter-spacing: .05em;
-            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        @keyframes gold-shimmer-glow {
+            0% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
+            50% {
+                background-position: 100% center;
+                filter: drop-shadow(0 0 8px rgba(255, 225, 168, 0.5));
+            }
+            100% {
+                background-position: 200% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
         }
     </style>
 </head>
@@ -165,31 +170,31 @@
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
                 <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
-                    <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow active-page flex items-center gap-1">
+                    <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow  flex items-center gap-1">
                         Products
                         <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
-                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 absolute top-full left-0 mt-2 py-2 bg-[#FFF1E0] shadow-xl rounded-xl w-60 border border-[#8B4513]/10">
+                                        <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 absolute top-full left-0 mt-2 py-2 bg-[#F6EDE2] shadow-xl rounded-2xl w-64 border border-[#8B4513]/10">
                         <div class="flex flex-col">
-                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
-                                <span>Karungali malai</span>
-                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI MALAI</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
-                                <span>Karungali Bracelet</span>
-                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI BRACELET</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
-                                <span>Karungali Necklace</span>
-                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI NECKLACE</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
-                                <span>Karungali Ring</span>
-                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest border-b border-[#8B4513]/10">
+                                <span>KARUNGALI RING</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
-                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold">
-                                <span>Karungali Damru Bracelet</span>
-                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
+                            <a href="product.html" class="px-6 py-4 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-[13px] font-bold uppercase tracking-widest">
+                                <span>KARUNGALI DAMRU BRACELET</span>
+                                <svg class="w-3 h-3 opacity-70" viewBox="0 0 24 24" fill="currentColor"><path d="M9 5l7 7-7 7z"></path></svg>
                             </a>
                         </div>
                     </div>
@@ -229,7 +234,7 @@
         </button>
         <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
             <a href="index.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
-            <a href="product.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors active-page">Products</a>
+            <a href="product.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors ">Products</a>
             <a href="combo.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Combo Offer</a>
             <a href="about.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
@@ -263,7 +268,7 @@
             </div>
             
             <!-- Category Circles Row -->
-            <div class="flex justify-start md:justify-center items-center space-x-8 md:space-x-12 pb-4 scrollbar-none">
+                        <div class="flex justify-start md:justify-center items-center space-x-8 md:space-x-12 pb-4 scrollbar-none">
                 
                 <!-- Circle 1 (All) -->
                 <button onclick="setCategoryFilter('all')" class="category-circle-btn flex flex-col items-center group focus:outline-none shrink-0">
@@ -289,28 +294,12 @@
                     <span class="text-xs font-bold uppercase tracking-wider mt-3 text-[#8B4513]/70 group-hover:text-[#8B4513] nav-link">Bracelets</span>
                 </button>
 
-                <!-- Circle 4 (Idols) -->
-                <button onclick="setCategoryFilter('idols')" class="category-circle-btn flex flex-col items-center group focus:outline-none shrink-0">
+                <!-- Circle 4 (Necklaces) -->
+                <button onclick="setCategoryFilter('necklaces')" class="category-circle-btn flex flex-col items-center group focus:outline-none shrink-0">
                     <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-transparent p-1 group-hover:border-[#8B4513] group-hover:scale-105 transition-all duration-300 shadow-md">
-                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idols" class="w-full h-full object-cover rounded-full" alt="Idols Category">
+                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Necklaces" class="w-full h-full object-cover rounded-full" alt="Necklaces Category">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider mt-3 text-[#8B4513]/70 group-hover:text-[#8B4513] nav-link">Deity Idols</span>
-                </button>
-
-                <!-- Circle 5 (Planks) -->
-                <button onclick="setCategoryFilter('planks')" class="category-circle-btn flex flex-col items-center group focus:outline-none shrink-0">
-                    <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-transparent p-1 group-hover:border-[#8B4513] group-hover:scale-105 transition-all duration-300 shadow-md">
-                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="w-full h-full object-cover rounded-full" alt="Planks Category">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider mt-3 text-[#8B4513]/70 group-hover:text-[#8B4513] nav-link">Holy Planks</span>
-                </button>
-
-                <!-- Circle 6 (Accessories) -->
-                <button onclick="setCategoryFilter('accessories')" class="category-circle-btn flex flex-col items-center group focus:outline-none shrink-0">
-                    <div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-transparent p-1 group-hover:border-[#8B4513] group-hover:scale-105 transition-all duration-300 shadow-md">
-                        <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Rings" class="w-full h-full object-cover rounded-full" alt="Accessories Category">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider mt-3 text-[#8B4513]/70 group-hover:text-[#8B4513] nav-link">Accessories</span>
+                    <span class="text-xs font-bold uppercase tracking-wider mt-3 text-[#8B4513]/70 group-hover:text-[#8B4513] nav-link">Necklaces</span>
                 </button>
 
             </div>
@@ -322,13 +311,11 @@
         <!-- Filter Bar -->
         <div class="flex flex-col md:flex-row justify-between items-center border-b border-[#8B4513]/20 pb-6 mb-12 gap-4">
             <!-- Text Filter Tabs -->
-            <div class="flex flex-wrap gap-2" id="filterTabs">
+                        <div class="flex flex-wrap gap-2" id="filterTabs">
                 <button onclick="setCategoryFilter('all')" class="tab-btn px-6 py-2.5 bg-[#8B4513] text-[#FFF1E0] text-xs uppercase tracking-wider font-bold transition rounded-full shadow-md">All</button>
                 <button onclick="setCategoryFilter('malas')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Malas</button>
                 <button onclick="setCategoryFilter('bracelets')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Bracelets</button>
-                <button onclick="setCategoryFilter('idols')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Idols</button>
-                <button onclick="setCategoryFilter('planks')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Holy Planks</button>
-                <button onclick="setCategoryFilter('accessories')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Accessories</button>
+                <button onclick="setCategoryFilter('necklaces')" class="tab-btn px-6 py-2.5 bg-[#8B4513]/10 text-[#8B4513] text-xs uppercase tracking-wider font-semibold hover:bg-[#8B4513]/20 transition rounded-full">Necklaces</button>
             </div>
             
             <!-- Sorting Control -->
@@ -357,7 +344,7 @@
         </div>
         <div class="relative z-10 max-w-3xl mx-auto mt-8" data-aos="fade-up">
             <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
-            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight">Awaken The <span class="gold-energy-glow">Energy</span> Within</h2>
             <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
             <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
                 EXPLORE THE COLLECTION
@@ -379,7 +366,7 @@
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="index.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition active-page">Products</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition ">Products</a></li>
                     <li><a href="about.html" class="hover:text-[#8B4513] nav-link transition">About Us</a></li>
                     <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition">Combo Offer</a></li>
                     <li><a href="contact.html" class="hover:text-[#8B4513] nav-link transition">Contact</a></li>
@@ -442,17 +429,29 @@
             }
         });
 
-        // Seeded Products Data
+                // Seeded Products Data
         const masterProducts = [
-            { id: 1, name: "Karungali Malai (108 Beads)", category: "malas", price: 1200, isFeatured: true },
-            { id: 2, name: "Ganesha Deity Idol (3 inches)", category: "idols", price: 1800, isFeatured: true },
-            { id: 3, name: "Karungali Protection Bracelet", category: "bracelets", price: 599, isFeatured: true },
-            { id: 4, name: "Consecrated Holy Sitting Plank", category: "planks", price: 2000, isFeatured: false },
-            { id: 5, name: "Karungali Copper Capped Ring", category: "accessories", price: 399, isFeatured: false },
-            { id: 6, name: "Shiva Damru Bracelet (10mm)", category: "bracelets", price: 799, isFeatured: false },
-            { id: 7, name: "Silver Capped Mala (54 Beads)", category: "malas", price: 2499, isFeatured: false },
-            { id: 8, name: "Durga Maa Protection Hanging", category: "accessories", price: 450, isFeatured: false },
-            { id: 9, name: "Murugan Vel Holy Slab", category: "planks", price: 1500, isFeatured: false }
+            { id: 1, name: "Classic Karungali Malai 54 & 108 beads", category: "malas", price: 1200, isFeatured: true },
+            { id: 2, name: "Karungali Malai with Rudraksha 54 & 108 beads", category: "malas", price: 1500, isFeatured: true },
+            { id: 3, name: "Polished Black Karungali Malai 54 & 108 beads", category: "malas", price: 1800, isFeatured: false },
+            { id: 4, name: "Silver Spaced Karungali Malai 54 & 108 beads", category: "malas", price: 2400, isFeatured: false },
+            { id: 5, name: "Copper Karungali Malai 54 & 108 beads", category: "malas", price: 1600, isFeatured: false },
+            { id: 6, name: "Red Accent Karungali Malai 54 & 108 beads", category: "malas", price: 1400, isFeatured: false },
+            { id: 7, name: "Matte Finish Karungali Malai 54 & 108 beads", category: "malas", price: 1300, isFeatured: false },
+            { id: 8, name: "Classic Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 600, isFeatured: true },
+            { id: 9, name: "Karungali Bracelet with Rudraksha 20 & 27 beads", category: "bracelets", price: 800, isFeatured: false },
+            { id: 10, name: "Polished Black Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 900, isFeatured: false },
+            { id: 11, name: "Red Accent Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 700, isFeatured: false },
+            { id: 12, name: "Golden Spaced Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 1100, isFeatured: false },
+            { id: 13, name: "Matte Finish Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 650, isFeatured: false },
+            { id: 14, name: "Karungali Necklace with Karungali Dollar 54 Beads", category: "necklaces", price: 1500, isFeatured: true },
+            { id: 15, name: "Karungali Necklace with Murugan Dollar 54 Beads", category: "necklaces", price: 1600, isFeatured: false },
+            { id: 16, name: "Karungali Necklace with Shivan Dollar 54 Beads", category: "necklaces", price: 1600, isFeatured: false },
+            { id: 17, name: "Karungali Necklace with Thirisul Dollar 54 Beads", category: "necklaces", price: 1550, isFeatured: false },
+            { id: 18, name: "Karungali Necklace with OM Vel Dollar 54 Beads", category: "necklaces", price: 1700, isFeatured: false },
+            { id: 19, name: "Karungali Necklace with Vel Dollar 54 Beads", category: "necklaces", price: 1650, isFeatured: false },
+            { id: 20, name: "Karungali Rudraksha Necklace with Vel Dollar 54 Beads", category: "necklaces", price: 1800, isFeatured: false },
+            { id: 21, name: "Karungali Necklace with Rudraksha Dollar 54 Beads", category: "necklaces", price: 1750, isFeatured: false }
         ];
 
         let activeFilter = 'all';
@@ -488,12 +487,11 @@
                             <h3 class="text-xl font-bold mt-1 mb-2 text-[#8B4513]">${p.name}</h3>
                             <p class="text-lg font-extrabold mb-4">&#8377;${p.price}</p>
                             <div class="flex space-x-2">
-                                 <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider">Details</button>
-                                 <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, 'https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}'); event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition text-xs uppercase tracking-wider flex items-center justify-center space-x-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                 <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="flex-1 py-3 rounded-none font-medium bg-[#8B4513]/20 text-[#8B4513] hover:bg-[#8B4513]/30 transition text-sm tracking-wide">View Product</button>
+                                 <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, 'https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}'); event.stopPropagation();" class="px-5 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513]/90 transition text-sm flex items-center justify-center" aria-label="Add to Cart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
                                     </svg>
-                                    <span>Add to Cart</span>
                                  </button>
                             </div>
                         </div>
@@ -581,8 +579,30 @@
         });
     </script>
 <script src="cart-anim.js"></script>
+            <script id="active-footer-script">
+        document.addEventListener("DOMContentLoaded", function() {
+            const footerLinks = document.querySelectorAll("footer a");
+            let currentPath = window.location.pathname.split("/").pop();
+            if(!currentPath || currentPath === "") currentPath = "index.html";
+            footerLinks.forEach(link => {
+                const href = link.getAttribute("href");
+                if(href && href.split("#")[0] === currentPath) {
+                    link.style.color = "#8B4513";
+                    link.style.fontWeight = "bold";
+                    link.style.textShadow = "none";
+                    link.classList.remove("text-[#FFF1E0]");
+                    
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
