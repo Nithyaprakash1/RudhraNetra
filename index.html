@@ -27,8 +27,8 @@
             background: rgba(255, 242, 226, 0.75);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(142, 89, 54, 0.2);
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: 0.35rem;
+            padding-bottom: 0.35rem;
             border-radius: 9999px;
         }
         
@@ -68,8 +68,40 @@
             100% { left: 150%; }
         }
 
-        /* Product Drawer */
-        
+        /* Gold Energy Glow & Shimmer */
+        .gold-energy-glow {
+            color: #FFE1A8;
+            font-weight: 700;
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(
+                120deg, 
+                #FFE1A8 0%, 
+                #FFF8E7 25%, 
+                #FFE1A8 50%, 
+                #D4A373 75%, 
+                #FFE1A8 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gold-shimmer-glow 6s linear infinite;
+            text-shadow: 0 0 15px rgba(255, 225, 168, 0.25);
+        }
+        @keyframes gold-shimmer-glow {
+            0% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
+            50% {
+                background-position: 100% center;
+                filter: drop-shadow(0 0 8px rgba(255, 225, 168, 0.45));
+            }
+            100% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 2px rgba(255, 225, 168, 0.25));
+            }
+        }
 
         /* ============================================================
            ART OF KARUNGALI — GSAP ScrollTrigger Scroll-Story Section
@@ -78,7 +110,7 @@
 
         /* Outer scroll spacer — gives scroll distance for the pin */
         #art-scroll-section {
-            height: 180vh;   /* Reduced from 280vh — less scroll distance needed */
+            height: 195vh;   /* Refined height for comfortable pacing and video pauses */
             position: relative;
             background-color: #1E110A;
         }
@@ -165,13 +197,13 @@
 
         #art-headline {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(52px, 9vw, 130px);
+            font-size: clamp(48px, 8vw, 110px);
             font-weight: 900;
-            line-height: 0.92;
+            line-height: 0.95;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             color: #fff;
-            margin: 0 0 32px;
+            margin: 0 0 24px;
             opacity: 0;
             transform: translateY(30px) scale(0.97) translateZ(0);
             will-change: opacity, transform;
@@ -179,12 +211,6 @@
 
         #art-body {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(14px, 1.5vw, 17px);
-            font-weight: 300;
-            line-height: 1.7;
-            color: rgba(255, 242, 226, 0.78);
-            max-width: 520px;
-            margin: 0 auto 40px;
             opacity: 0;
             transform: translateY(20px) translateZ(0);
             will-change: opacity, transform;
@@ -215,12 +241,10 @@
             border-color: rgba(255, 242, 226, 0.8);
         }
 
-        /* Card inset effect is achieved by adding padding to #art-sticky-stage via GSAP */
-
         /* Mobile: reduce parallax & simplify */
         @media (max-width: 768px) {
             #art-scroll-section {
-                height: 160vh;   /* Reduced from 220vh */
+                height: 160vh;
             }
             #art-headline {
                 font-size: clamp(36px, 10vw, 64px);
@@ -252,7 +276,7 @@
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee 45s linear infinite; /* Slightly slower for 6 cards */
+            animation: marquee 45s linear infinite; 
         }
         .marquee-track:hover {
             animation-play-state: paused;
@@ -313,7 +337,7 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
             letter-spacing: 0.05em;
         }
-                    .nav-text-glow {
+        .nav-text-glow {
             text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
         }
         .active-page {
@@ -321,7 +345,7 @@
             color: #FFF1E0 !important;
             font-weight: 800;
         }
-            /* Dynamic Navbar Colors */
+        /* Dynamic Navbar Colors */
         .nav-links, .nav-cart, .nav-mobile-btn {
             color: #FFF1E0;
             transition: color 0.3s ease;
@@ -362,38 +386,31 @@
 </head>
 <body class="overflow-x-hidden">
 
-        <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
-            <a href="index.html" class="flex items-center gap-2.5 md:gap-3.5 shrink-0">
-                <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-10 md:h-14 w-auto">
-                <span class="w-[1px] h-6 md:h-8 bg-[#8B4513]/30 block"></span>
-                <img src="image/logo_text.png" alt="Rudra Nethra Text" class="h-8 md:h-12 w-auto object-contain">
+    <nav class="fixed top-4 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-2 md:py-2.5 transition-all duration-500 glass-nav" id="nav-container">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                <img src="image/logo.png" alt="Rudra Nethra" class="h-8 md:h-14 w-auto transition-all">
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
                 <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">Home</a>
                 <div class="relative group">
-                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-0 mt-4 p-4 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
-                        <div class="grid grid-cols-5 gap-3 text-center">
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Mala">
+                    <a href="#store" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow flex items-center gap-1">
+                        Products 
+                        <span class="text-[10px] inline-block transition-transform duration-300 group-hover:rotate-90 font-bold">&gt;</span>
+                    </a>
+                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
                                 <span class="text-xs font-semibold block mt-2">Mala Beads</span>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Bracelet">
+                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
                                 <span class="text-xs font-semibold block mt-2">Bracelets</span>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Idol">
+                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
                                 <span class="text-xs font-semibold block mt-2">Deity Idols</span>
-                            </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Planks">
-                                <span class="text-xs font-semibold block mt-2">Holy Planks</span>
-                            </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Accessories" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Accessories">
-                                <span class="text-xs font-semibold block mt-2">Accessories</span>
                             </a>
                         </div>
                     </div>
@@ -438,7 +455,6 @@
             <a href="about.html" class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
         </div>
-    </div>
     </div>
 
     <!-- Main Content Wrapper for Parallax Effect -->
@@ -502,9 +518,15 @@
                 <div id="art-overlay" aria-hidden="true"></div>
             </div>
 
+            <!-- Side Corner Aside: small paragraph that vanishes quickly when scrolled -->
+            <div id="art-corner-aside" class="absolute bottom-8 right-8 max-w-[200px] text-right pointer-events-none z-10 font-sans transition-all duration-300">
+                <p class="text-[10px] uppercase tracking-widest text-white/50 mb-1">Authentic Heritage</p>
+                <p class="text-xs text-white/70 leading-relaxed">Each piece is mindfully harvested and consecrated through traditional Vedic rituals.</p>
+            </div>
+
             <!-- Layer 2 (fore): Text overlay
-                 Fades IN during Phase A (scroll 0%–35%).
-                 Fades OUT during Phase B (scroll 45%–75%) as video shrinks. -->
+                 Fades IN during Phase A (scroll 0%–25%).
+                 Fades OUT during Phase B (scroll 40%–55%) as video zooms out. -->
             <div id="art-text-overlay">
 
                 <!-- Eyebrow: letter-spaced label, appears first -->
@@ -515,15 +537,15 @@
                     Experience the<br>Beauty of Karungali
                 </h2>
 
-                <!-- Supporting body copy -->
-                <p id="art-body">
-                    Karungali (Ebony) is deeply revered in tradition for its
-                    electromagnetic properties. It absorbs negative vibrations,
-                    cleanses your environment, and invites divine prosperity.
-                </p>
+                <!-- Supporting body copy with shortened storytelling -->
+                <div id="art-body" class="max-w-md mx-auto text-sm md:text-base leading-relaxed font-light text-center">
+                    <p class="text-white">
+                        Sacred Ebony wood meticulously crafted to absorb negativity, purify your spatial energies, and invite profound divine abundance.
+                    </p>
+                </div>
 
                 <!-- CTA — appears last, after all text is visible -->
-                <a href="#store" id="art-cta" aria-label="Explore the Karungali collection">
+                <a href="#store" id="art-cta" aria-label="Explore the Karungali collection" class="mt-8">
                     Explore the Collection
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                         <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5"
@@ -536,9 +558,48 @@
         </div><!-- /art-sticky-stage -->
     </div><!-- /art-scroll-section -->
 
-    <!-- Certification Section (The video container fully fades away as we scroll here) -->
-    <section id="certification" class="py-24 px-6 bg-[#8B4513]/5 relative z-30">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <!-- Certification Section with Soft Blending Floral Background Line Art -->
+    <section id="certification" class="py-24 px-6 bg-[#8B4513]/5 relative z-30 overflow-hidden">
+        
+        <!-- Large Decorative Floral SVG Background Left -->
+        <div class="absolute -left-20 -bottom-20 w-[450px] h-[450px] opacity-10 pointer-events-none select-none z-0 text-[#8B4513] rotate-12">
+            <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
+                <!-- Center Bud -->
+                <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
+                <!-- Inner Left Petal -->
+                <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
+                <!-- Inner Right Petal -->
+                <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
+                <!-- Outer Left Petal -->
+                <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
+                <!-- Outer Right Petal -->
+                <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
+                <!-- Bottom support leaves -->
+                <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
+                <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
+            </svg>
+        </div>
+
+        <!-- Large Decorative Floral SVG Background Right -->
+        <div class="absolute -right-24 -top-24 w-[500px] h-[500px] opacity-15 pointer-events-none select-none z-0 text-[#8B4513] -rotate-45">
+            <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
+                <!-- Center Bud -->
+                <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
+                <!-- Inner Left Petal -->
+                <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
+                <!-- Inner Right Petal -->
+                <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
+                <!-- Outer Left Petal -->
+                <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
+                <!-- Outer Right Petal -->
+                <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
+                <!-- Bottom support leaves -->
+                <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
+                <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="md:w-1/2 rounded-2xl ethereal-glow" data-aos="fade-right">
                  <img src="image/certificate.png" class="w-full rounded-2xl border border-[#8B4513]/20 transition-all duration-300 relative z-10" alt="Certificate of Authenticity">
             </div>
@@ -760,7 +821,7 @@
         </div>
     </section>
 
-    <!-- Immersive Pre-Footer Banner & CTA -->
+    <!-- Immersive Pre-Footer Banner & CTA (Glow effect now hosted here) -->
     <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-30">
         <!-- Smooth top fade from cream to transparent -->
         <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
@@ -772,8 +833,8 @@
 
         <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
             <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
-            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
-            <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight">Awaken The <span class="gold-energy-glow">Energy</span> Within</h2>
+            <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the protective energy of consecrated Karungali, meticulously crafted to enrich your spiritual journey.</p>
             <button onclick="window.location.href='product.html'" class="shining-button px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
                 EXPLORE THE COLLECTION
             </button>
@@ -836,15 +897,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
-        // Cart Logic Global for Index
-        
-
-        
-
-        
-
         /* ------------------------------------------------------------------
-           GLOBAL UTILITIES (unchanged)
+           GLOBAL UTILITIES
         ------------------------------------------------------------------ */
         AOS.init({ duration: 1000, once: true });
 
@@ -858,20 +912,39 @@
         }
         window.addEventListener('resize', updateFooterSpacer);
         window.addEventListener('load', updateFooterSpacer);
-        // Set initial height immediately
         updateFooterSpacer();
 
-        // Navbar glass effect on scroll — UNTOUCHED
+        // Navbar smart scroll behavior & glass styling
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('navbar');
+        const heroSection = document.getElementById('home');
+
         window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
             const navContainer = document.getElementById('nav-container');
-            if (window.scrollY > 50) {
+            const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight;
+
+            // Glass background toggle
+            if (currentScrollY > 50) {
                 navContainer.classList.add('glass-nav');
             } else {
                 navContainer.classList.remove('glass-nav');
             }
+
+            // Hide/Show logic
+            if (currentScrollY <= heroHeight - 100) {
+                navbar.style.transform = 'translateY(0)';
+            } else {
+                if (currentScrollY > lastScrollY) {
+                    navbar.style.transform = 'translateY(-150%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            }
+            lastScrollY = currentScrollY;
         });
 
-        // Dynamic Product Grid — UNTOUCHED
+        // Dynamic Product Grid (Add To Cart configured with Icon Only)
         const products = [
             "Mala Beads", "Deity Idol", "Protection Bracelet",
             "Holy Plank", "Incense Holder", "Meditation Base"
@@ -886,12 +959,11 @@
                     <div class="p-4 pt-0">
                         <h3 class="text-xl font-bold mb-4 text-[#8B4513]">${p}</h3>
                         <div class="flex space-x-2">
-                            <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-sm">View Product</button>
-                            <button onclick="addToCart('${p}', 1200, 'https://placehold.co/400x500/8B4513/FFF1E0?text=${p.replace(' ','+')}'); event.stopPropagation();" class="w-1/2 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition text-sm flex items-center justify-center space-x-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                            <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="flex-1 py-3 rounded-none font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-sm">View Product</button>
+                            <button onclick="addToCart('${p}', 1200, 'https://placehold.co/400x500/8B4513/FFF1E0?text=${p.replace(' ','+')}'); event.stopPropagation();" class="px-5 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513]/90 transition text-sm flex items-center justify-center" aria-label="Add to Cart">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                 </svg>
-                                <span>Add to Cart</span>
                             </button>
                         </div>
                     </div>
@@ -901,37 +973,10 @@
 
         /* ------------------------------------------------------------------
            THE ART OF KARUNGALI — GSAP SCROLLTRIGGER ANIMATION
-
-           Animation breakdown (matches reference fortumars.com/Kalz/):
-
-           Phase A — Text reveal (0% → 35%):
-             • Eyebrow, headline, body, CTA fade/slide in on entry.
-             • Video stays at scale(1.35) — full cinematic bleed.
-             • Feels like a "hold" at the beginning of the pin.
-
-           Phase B — Zoom-out + text fade (45% → 85%):
-             • Video scale(1.35) → scale(0.88).
-             • Shrinking below 1.0 exposes the dark bg as margin on all sides.
-             • border-radius 0px → 20px (matches reference card corners).
-             • Text overlay fades out + translates up.
-
-           Phase C — Card hold (85% → 100%):
-             • Video held at scale(0.88) with border-radius 20px.
-             • Dark margin visible all around — identical to reference end state.
-             • Section exits naturally into the next section.
-
-           Performance:
-             • Only transform + opacity (no layout reflows).
-             • GPU-accelerated via scale / translate3d.
-             • scrub: 1.2 = smooth, non-snappy premium feel.
-             • Animation controlled 100% by scroll — no autoplay.
         ------------------------------------------------------------------ */
         (function initArtAnimation() {
-
-            // Guard: skip on reduced-motion preference
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                // Just show everything statically
-                gsap.set(['#art-eyebrow', '#art-headline', '#art-body', '#art-cta'], {
+                gsap.set(['#art-eyebrow', '#art-headline', '#art-body', '#art-cta', '#art-corner-aside'], {
                     opacity: 1,
                     y: 0,
                     scale: 1
@@ -939,34 +984,25 @@
                 return;
             }
 
-            // Register the plugin
             gsap.registerPlugin(ScrollTrigger);
-
             const isMobile = window.innerWidth <= 768;
 
-            /* ---- Element references ---- */
             const videoWrapper   = document.getElementById('art-video-wrapper');
             const textOverlay    = document.getElementById('art-text-overlay');
             const eyebrow        = document.getElementById('art-eyebrow');
             const headline       = document.getElementById('art-headline');
             const bodyText       = document.getElementById('art-body');
             const cta            = document.getElementById('art-cta');
+            const cornerAside    = document.getElementById('art-corner-aside');
             const scrollSection  = document.getElementById('art-scroll-section');
             const stickyStage    = document.getElementById('art-sticky-stage');
 
-            /* ---- Responsive values ---- */
-            // Desktop: 1.35 → 0.88  |  Mobile: 1.2 → 0.86
-            // Scaling below 1.0 reveals the dark #1E110A background as margin
-            // on all four sides — creates the reference "card with inset" look.
             const startScale     = isMobile ? 1.2  : 1.35;
             const endScale       = isMobile ? 0.86 : 0.88;
-            // Card border-radius at fully zoomed-out state (matches reference)
-            const endRadius      = isMobile ? 16   : 20;   // px
-            // Text parallax upward movement during fade-out
-            const textExitY      = isMobile ? -20  : -30;  // px
+            const endRadius      = isMobile ? 16   : 20;   
+            const textExitY      = isMobile ? -20  : -35;  
 
-            /* ---- Set initial states ---- */
-            // Video wrapper: starts zoomed in, no border-radius
+            // Set initial video frame state
             gsap.set(videoWrapper, {
                 scale: startScale,
                 borderRadius: '0px',
@@ -974,7 +1010,12 @@
                 force3D: true
             });
 
-            // Text elements: all start invisible (will animate in Phase A)
+            // Set initial centered text states (starts shrunk slightly to zoom in)
+            gsap.set(textOverlay, {
+                scale: 0.85,
+                opacity: 0,
+                force3D: true
+            });
             gsap.set([eyebrow, headline, bodyText, cta], {
                 opacity: 0,
                 force3D: true
@@ -984,94 +1025,74 @@
             gsap.set(bodyText,  { y: 20 });
             gsap.set(cta,       { y: 16 });
 
-            /* ---- Master GSAP timeline ---- */
-            // Total scroll distance = 280vh (section height) - 100vh (sticky) = 180vh
-            // ScrollTrigger maps this 180vh of scroll to the timeline's duration.
-
-            const tl = gsap.timeline({
-                defaults: {
-                    ease: 'none'   // linear by default — scrub handles the easing feel
-                }
+            // Set initial corner paragraph state
+            gsap.set(cornerAside, {
+                opacity: 1,
+                y: 0,
+                force3D: true
             });
 
-            /* ================================================================
-               PARALLEL TIMELINE
-               Both text-reveal and video-zoom start at scroll position 0
-               and run simultaneously — no sequential phases.
+            const tl = gsap.timeline({ defaults: { ease: 'none' } });
 
-               0.00 → 0.30  Text slides IN (staggered: eyebrow → headline → body → CTA)
-               0.00 → 0.85  Video zooms out 1.35 → 0.88  (full duration)
-               0.00 → 0.85  border-radius 0px → 20px     (full duration)
-               0.30 → 0.48  Text HOLD (fully visible while zoom continues)
-               0.48 → 0.80  Text fades OUT + moves up
-               0.85 → 1.00  Card hold — scroll exits to next section
+            /* ================================================================
+               GSAP Timeline Mapping (Scrubbed with pauses for maximum clarity)
             ================================================================ */
 
-            /* ── VIDEO ZOOM-OUT — starts at 0, runs the full timeline ── */
+            /* ── Phase 1: Video Zoom Out (Initiates mid-scroll) ── */
             tl.to(videoWrapper, {
                 scale: endScale,
                 borderRadius: endRadius + 'px',
                 ease: 'power1.inOut',
-                duration: 0.85          // spans almost the whole scroll
-            }, 0.00);                   // starts immediately at first scroll pixel
+                duration: 0.20          
+            }, 0.50);                   
 
-            /* ── TEXT IN — parallel with zoom, staggered entry ── */
-            // Eyebrow: first to appear
-            tl.to(eyebrow, {
-                opacity: 1, y: 0,
+            /* ── Phase 2: Text Zoom & Fade In (0.00 -> 0.25) ── */
+            tl.to(textOverlay, {
+                opacity: 1,
+                scale: 1.05,
                 ease: 'power2.out',
-                duration: 0.18
+                duration: 0.25
             }, 0.00);
 
-            // Headline: slight delay after eyebrow
-            tl.to(headline, {
-                opacity: 1, y: 0, scale: 1,
-                ease: 'power2.out',
-                duration: 0.18
-            }, 0.04);
+            tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.02);
+            tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.15 }, 0.05);
+            tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.08);
+            tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.12);
 
-            // Body copy: after headline starts
-            tl.to(bodyText, {
-                opacity: 1, y: 0,
-                ease: 'power2.out',
-                duration: 0.16
-            }, 0.10);
+            /* ── Phase 3: Corner Aside Paragraph Vanish (0.15 -> 0.40) ── */
+            tl.to(cornerAside, {
+                opacity: 0,
+                y: 15,
+                ease: 'power1.in',
+                duration: 0.25
+            }, 0.15);
 
-            // CTA: last to appear
-            tl.to(cta, {
-                opacity: 1, y: 0,
-                ease: 'power2.out',
-                duration: 0.14
-            }, 0.16);
-
-            /* ── TEXT HOLD between 0.30 → 0.48 (implicit, no tween needed) ── */
-
-            /* ── TEXT OUT — fades while zoom is still progressing ── */
+            /* ── Phase 4: Text Overlay Fade & Exit (0.40 -> 0.55) ── */
             tl.to(textOverlay, {
                 opacity: 0,
                 y: textExitY,
+                scale: 1.15,
                 ease: 'power1.in',
-                duration: 0.32          // fades out 0.48 → 0.80
-            }, 0.48);
+                duration: 0.15
+            }, 0.40);
 
-            /* ── HOLD at card state (0.85 → 1.0) ── */
-            tl.to({}, { duration: 0.15 }, 0.85);
+            /* ── Phase 5: Cinematic Pause / Clear Viewport Hold (0.70 -> 1.00) ── */
+            // Deliberately empty duration buffer block to anchor the static card video
+            tl.to({}, { duration: 0.30 }, 0.70);
 
-            /* ---- Attach ScrollTrigger ---- */
+            // Connect layout to the Pinning Trigger
             ScrollTrigger.create({
                 animation: tl,
-                trigger: scrollSection,          // The 280vh scroll container
-                start: 'top top',                // Pin starts when section top hits viewport top
-                end: 'bottom bottom',            // Pin releases when section bottom hits viewport bottom
-                scrub: 1.2,                      // Smooth lag — 1.2s of natural feel
-                pin: stickyStage,                // Pin the 100vh sticky stage
-                pinSpacing: false,               // Section already has height built in
-                anticipatePin: 1,                // Prevent jitter on fast scroll
-                invalidateOnRefresh: true,       // Recalculate on window resize
-                // markers: false               // Set to true for debugging
+                trigger: scrollSection,          
+                start: 'top top',                
+                end: 'bottom bottom',            
+                scrub: 1.2,                      
+                pin: stickyStage,                
+                pinSpacing: false,               
+                anticipatePin: 1,                
+                invalidateOnRefresh: true
             });
 
-            /* ---- Resize handler: refresh ScrollTrigger on breakpoint change ---- */
             let resizeTimer;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
@@ -1079,8 +1100,7 @@
                     ScrollTrigger.refresh();
                 }, 200);
             });
-
-        })(); // End initArtAnimation IIFE
+        })(); 
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1117,12 +1137,3 @@
 <script src="cart-anim.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
