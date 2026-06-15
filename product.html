@@ -392,6 +392,7 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="products.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
@@ -418,31 +419,7 @@
             }
         });
 
-                // Seeded Products Data
-        const masterProducts = [
-            { id: 1, name: "Classic Karungali Malai 54 & 108 beads", category: "malas", price: 1200, isFeatured: true },
-            { id: 2, name: "Karungali Malai with Rudraksha 54 & 108 beads", category: "malas", price: 1500, isFeatured: true },
-            { id: 3, name: "Polished Black Karungali Malai 54 & 108 beads", category: "malas", price: 1800, isFeatured: false },
-            { id: 4, name: "Silver Spaced Karungali Malai 54 & 108 beads", category: "malas", price: 2400, isFeatured: false },
-            { id: 5, name: "Copper Karungali Malai 54 & 108 beads", category: "malas", price: 1600, isFeatured: false },
-            { id: 6, name: "Red Accent Karungali Malai 54 & 108 beads", category: "malas", price: 1400, isFeatured: false },
-            { id: 7, name: "Matte Finish Karungali Malai 54 & 108 beads", category: "malas", price: 1300, isFeatured: false },
-            { id: 8, name: "Classic Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 600, isFeatured: true },
-            { id: 9, name: "Karungali Bracelet with Rudraksha 20 & 27 beads", category: "bracelets", price: 800, isFeatured: false },
-            { id: 10, name: "Polished Black Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 900, isFeatured: false },
-            { id: 11, name: "Red Accent Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 700, isFeatured: false },
-            { id: 12, name: "Golden Spaced Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 1100, isFeatured: false },
-            { id: 13, name: "Matte Finish Karungali Bracelet 20 & 27 beads", category: "bracelets", price: 650, isFeatured: false },
-            { id: 14, name: "Karungali Necklace with Karungali Dollar 54 Beads", category: "necklaces", price: 1500, isFeatured: true },
-            { id: 15, name: "Karungali Necklace with Murugan Dollar 54 Beads", category: "necklaces", price: 1600, isFeatured: false },
-            { id: 16, name: "Karungali Necklace with Shivan Dollar 54 Beads", category: "necklaces", price: 1600, isFeatured: false },
-            { id: 17, name: "Karungali Necklace with Thirisul Dollar 54 Beads", category: "necklaces", price: 1550, isFeatured: false },
-            { id: 18, name: "Karungali Necklace with OM Vel Dollar 54 Beads", category: "necklaces", price: 1700, isFeatured: false },
-            { id: 19, name: "Karungali Necklace with Vel Dollar 54 Beads", category: "necklaces", price: 1650, isFeatured: false },
-            { id: 20, name: "Karungali Rudraksha Necklace with Vel Dollar 54 Beads", category: "necklaces", price: 1800, isFeatured: false },
-            { id: 21, name: "Karungali Necklace with Rudraksha Dollar 54 Beads", category: "necklaces", price: 1750, isFeatured: false }
-        ];
-
+                // Seeded Products Data loaded from products.js
         let activeFilter = 'all';
         let activeSort = 'featured';
 
@@ -466,18 +443,19 @@
 
             // Render
             filtered.forEach((p, i) => {
+                const imgSrc = (p.images && p.images.length > 0) ? p.images[0] : `https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}`;
                 grid.innerHTML += `
-                    <div onclick="window.location.href='product-details.html'" class="sharp-card cursor-pointer group bg-white/40 border border-[#8B4513]/10 shadow-lg p-0 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="${(i % 3) * 100}">
+                    <div onclick="window.location.href='product-details.html?id=${p.id}'" class="sharp-card cursor-pointer group bg-white/40 border border-[#8B4513]/10 shadow-lg p-0 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="${(i % 3) * 100}">
                         <div class="p-4">
-                            <img src="https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}" class="w-full h-80 object-cover rounded-md mb-4" alt="${p.name}">
+                            <img src="${imgSrc}" class="w-full h-80 object-cover rounded-md mb-4" alt="${p.name}">
                         </div>
                         <div class="p-6 pt-0">
                             <span class="text-[10px] uppercase tracking-widest font-bold opacity-60">${p.category}</span>
                             <h3 class="text-xl font-bold mt-1 mb-2 text-[#8B4513]">${p.name}</h3>
                             <p class="text-lg font-extrabold mb-4">&#8377;${p.price}</p>
                             <div class="flex space-x-2">
-                                 <button onclick="window.location.href='product-details.html'; event.stopPropagation();" class="flex-1 py-3 rounded-none font-medium bg-[#8B4513]/20 text-[#8B4513] hover:bg-[#8B4513]/30 transition text-sm tracking-wide">View Product</button>
-                                 <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, 'https://placehold.co/400x400/8B4513/FFF1E0?text=${p.name.replace(/ /g, '+')}'); event.stopPropagation();" class="px-5 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513]/90 transition text-sm flex items-center justify-center" aria-label="Add to Cart">
+                                 <button onclick="window.location.href='product-details.html?id=${p.id}'; event.stopPropagation();" class="flex-1 py-3 rounded-none font-medium bg-[#8B4513]/20 text-[#8B4513] hover:bg-[#8B4513]/30 transition text-sm tracking-wide">View Product</button>
+                                 <button onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${imgSrc}'); event.stopPropagation();" class="px-5 py-3 rounded-none font-medium bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513]/90 transition text-sm flex items-center justify-center" aria-label="Add to Cart">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375 0 1 1-.75 0 .375 0 0 1 .75 0Zm7.5 0a.375 0 1 1-.75 0 .375 0 0 1 .75 0Z" />
                                     </svg>
@@ -587,6 +565,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
