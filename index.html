@@ -110,7 +110,7 @@
 
         /* Outer scroll spacer — gives scroll distance for the pin */
         #art-scroll-section {
-            height: 195vh;   /* Refined height for comfortable pacing and video pauses */
+            height: 195vh;   
             position: relative;
             background-color: #1E110A;
         }
@@ -525,8 +525,8 @@
             </div>
 
             <!-- Layer 2 (fore): Text overlay
-                 Fades IN during Phase A (scroll 0%–25%).
-                 Fades OUT during Phase B (scroll 40%–55%) as video zooms out. -->
+                 Fades IN during Phase A (scroll 0%–20%).
+                 Fades OUT during Phase B (scroll 65%–75%) as video zooms out. -->
             <div id="art-text-overlay">
 
                 <!-- Eyebrow: letter-spaced label, appears first -->
@@ -821,7 +821,7 @@
         </div>
     </section>
 
-    <!-- Immersive Pre-Footer Banner & CTA (Glow effect now hosted here) -->
+    <!-- Immersive Pre-Footer Banner & CTA -->
     <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-30">
         <!-- Smooth top fade from cream to transparent -->
         <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
@@ -1035,50 +1035,50 @@
             const tl = gsap.timeline({ defaults: { ease: 'none' } });
 
             /* ================================================================
-               GSAP Timeline Mapping (Scrubbed with pauses for maximum clarity)
+               GSAP Timeline Mapping
             ================================================================ */
 
-            /* ── Phase 1: Video Zoom Out (Initiates mid-scroll) ── */
+            /* ── Phase 1: Video Zoom Out (Initiates later, runs 0.55 -> 0.75) ── */
             tl.to(videoWrapper, {
                 scale: endScale,
                 borderRadius: endRadius + 'px',
                 ease: 'power1.inOut',
                 duration: 0.20          
-            }, 0.50);                   
+            }, 0.55);                   
 
-            /* ── Phase 2: Text Zoom & Fade In (0.00 -> 0.25) ── */
+            /* ── Phase 2: Text Zoom & Fade In (0.00 -> 0.20) ── */
             tl.to(textOverlay, {
                 opacity: 1,
-                scale: 1.05,
+                scale: 1.00,
                 ease: 'power2.out',
-                duration: 0.25
+                duration: 0.20
             }, 0.00);
 
-            tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.02);
-            tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.15 }, 0.05);
-            tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.08);
-            tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.15 }, 0.12);
+            tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.02);
+            tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.12 }, 0.04);
+            tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.06);
+            tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.12 }, 0.10);
 
-            /* ── Phase 3: Corner Aside Paragraph Vanish (0.15 -> 0.40) ── */
+            /* ── Phase 3: Corner Aside Paragraph Vanish (0.25 -> 0.50) ── */
             tl.to(cornerAside, {
                 opacity: 0,
                 y: 15,
                 ease: 'power1.in',
                 duration: 0.25
-            }, 0.15);
+            }, 0.25);
 
-            /* ── Phase 4: Text Overlay Fade & Exit (0.40 -> 0.55) ── */
+            /* ── Phase 4: Text Overlay Fade & Exit (STAYS visible 0.20 -> 0.65, fades 0.65 -> 0.75) ── */
             tl.to(textOverlay, {
                 opacity: 0,
                 y: textExitY,
-                scale: 1.15,
+                scale: 1.10,
                 ease: 'power1.in',
-                duration: 0.15
-            }, 0.40);
+                duration: 0.10
+            }, 0.65);
 
-            /* ── Phase 5: Cinematic Pause / Clear Viewport Hold (0.70 -> 1.00) ── */
+            /* ── Phase 5: Cinematic Pause / Clear Viewport Hold (0.75 -> 1.00) ── */
             // Deliberately empty duration buffer block to anchor the static card video
-            tl.to({}, { duration: 0.30 }, 0.70);
+            tl.to({}, { duration: 0.25 }, 0.75);
 
             // Connect layout to the Pinning Trigger
             ScrollTrigger.create({
