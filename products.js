@@ -3,30 +3,30 @@
         "id":  1,
         "isFeatured":  true,
         "category":  "malas",
-        "price":  1200,
+        "price":  749,
         "name":  "Classic Karungali Malai 54 \u0026 108 beads",
         "images":  [
+                       "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg",
                        "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (4).jpeg",
                        "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg",
-                       "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg",
                        "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (1).jpeg",
-                       "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg"
+                       "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg"
                    ],
-        "oldPrice":  749
+        "oldPrice":  1200
     },
     {
         "id":  2,
         "isFeatured":  true,
         "category":  "malas",
-        "price":  1500,
+        "price":  849,
         "name":  "Karungali Malai with Rudraksha 54 \u0026 108 beads",
         "images":  [
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_Tamil_…_202606111227.jpeg",
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_on_stone_202606111233.jpeg",
                        "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_worn_202606111231.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_with_Rudraksha_b…_202606111208.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_on_stone_202606111233.jpeg"
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_Tamil_…_202606111227.jpeg",
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_with_Rudraksha_b…_202606111208.jpeg"
                    ],
-        "oldPrice":  849
+        "oldPrice":  1500
     },
     {
         "id":  3,
@@ -47,7 +47,7 @@
         "id":  4,
         "isFeatured":  false,
         "category":  "malas",
-        "price":  2400,
+        "price":  949,
         "name":  "Silver Spaced Karungali Malai 54 \u0026 108 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
@@ -56,13 +56,13 @@
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg"
                    ],
-        "oldPrice":  949
+        "oldPrice":  2400
     },
     {
         "id":  5,
         "isFeatured":  false,
         "category":  "malas",
-        "price":  1600,
+        "price":  1299,
         "name":  "Copper Karungali Malai 54 \u0026 108 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_worn_202606111654.jpeg",
@@ -71,7 +71,7 @@
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Karungali_Malai_Tamil_Nadu_202606111652.jpeg",
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg"
                    ],
-        "oldPrice":  1299
+        "oldPrice":  1600
     },
     {
         "id":  6,
@@ -92,7 +92,7 @@
         "id":  7,
         "isFeatured":  false,
         "category":  "malas",
-        "price":  1300,
+        "price":  849,
         "name":  "Matte Finish Karungali Malai 54 \u0026 108 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 7 (Matte Finish Karungali Malai (54  108 Beads))/Karungali_Malai_on_stand_202606111725.jpeg",
@@ -101,13 +101,13 @@
                        "image/Product Images (1-11)/Product 7 (Matte Finish Karungali Malai (54  108 Beads))/Matte_Finish_Karungali_Malai_202606111725.jpeg",
                        "image/Product Images (1-11)/Product 7 (Matte Finish Karungali Malai (54  108 Beads))/Karungali_Malai_worn_by_model_202606111726.jpeg"
                    ],
-        "oldPrice":  849
+        "oldPrice":  1300
     },
     {
         "id":  8,
         "isFeatured":  true,
         "category":  "bracelets",
-        "price":  600,
+        "price":  399,
         "name":  "Classic Karungali Bracelet 20 \u0026 27 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
@@ -116,13 +116,13 @@
                        "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_handcrafted_T…_202606111731.jpeg",
                        "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_ped…_202606111730.jpeg"
                    ],
-        "oldPrice":  399
+        "oldPrice":  600
     },
     {
         "id":  9,
         "isFeatured":  false,
         "category":  "bracelets",
-        "price":  800,
+        "price":  599,
         "name":  "Karungali Bracelet with Rudraksha 20 \u0026 27 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 9 (Karungali Bracelet with Rudraksha (20  27 Beads))/Karungali_bracelet_with_Rudraksha_202606111735.jpeg",
@@ -131,13 +131,13 @@
                        "image/Product Images (1-11)/Product 9 (Karungali Bracelet with Rudraksha (20  27 Beads))/Karungali_bracelet_with_Rudraksha_202606111733.jpeg",
                        "image/Product Images (1-11)/Product 9 (Karungali Bracelet with Rudraksha (20  27 Beads))/Karungali_bracelet_with_Rudraksha_202606111734 (1).jpeg"
                    ],
-        "oldPrice":  599
+        "oldPrice":  800
     },
     {
         "id":  10,
         "isFeatured":  false,
         "category":  "bracelets",
-        "price":  900,
+        "price":  499,
         "name":  "Polished Black Karungali Bracelet 20 \u0026 27 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 10 (Polished Black Karungali Bracelet (20  27 Beads))/Black_Karungali_bracelet_on_stand_202606111739.jpeg",
@@ -146,13 +146,13 @@
                        "image/Product Images (1-11)/Product 10 (Polished Black Karungali Bracelet (20  27 Beads))/Black_Karungali_bracelet_on_pede…_202606111739.jpeg",
                        "image/Product Images (1-11)/Product 10 (Polished Black Karungali Bracelet (20  27 Beads))/Black_Karungali_bracelet_on_wood_202606111739.jpeg"
                    ],
-        "oldPrice":  499
+        "oldPrice":  900
     },
     {
         "id":  11,
         "isFeatured":  false,
         "category":  "bracelets",
-        "price":  700,
+        "price":  599,
         "name":  "Red Accent Karungali Bracelet 20 \u0026 27 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 11 (ed Accent Karungali Bracelet (20  27 Beads))/Red_Karungali_bracelet_on_pedestal_202606111744.jpeg",
@@ -161,7 +161,7 @@
                        "image/Product Images (1-11)/Product 11 (ed Accent Karungali Bracelet (20  27 Beads))/Red_Accent_Karungali_Bracelet_di…_202606111745.jpeg",
                        "image/Product Images (1-11)/Product 11 (ed Accent Karungali Bracelet (20  27 Beads))/Red_Accent_Karungali_Bracelet_202606111744.jpeg"
                    ],
-        "oldPrice":  599
+        "oldPrice":  700
     },
     {
         "id":  12,
@@ -178,77 +178,77 @@
         "id":  13,
         "name":  "Matte Finish Karungali Bracelet 20 \u0026 27 beads",
         "isFeatured":  false,
-        "oldPrice":  399,
+        "oldPrice":  650,
         "images":  [
 
                    ],
-        "price":  650,
+        "price":  399,
         "category":  "bracelets"
     },
     {
         "id":  14,
         "name":  "Karungali Necklace with Karungali Dollar 54 Beads",
         "isFeatured":  true,
-        "oldPrice":  699,
+        "oldPrice":  1500,
         "images":  [
 
                    ],
-        "price":  1500,
+        "price":  699,
         "category":  "necklaces"
     },
     {
         "id":  15,
         "name":  "Karungali Necklace with Murugan Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1149,
+        "oldPrice":  1600,
         "images":  [
 
                    ],
-        "price":  1600,
+        "price":  1149,
         "category":  "necklaces"
     },
     {
         "id":  16,
         "name":  "Karungali Necklace with Shivan Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1249,
+        "oldPrice":  1600,
         "images":  [
 
                    ],
-        "price":  1600,
+        "price":  1249,
         "category":  "necklaces"
     },
     {
         "id":  17,
         "name":  "Karungali Necklace with Thirisul Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1249,
+        "oldPrice":  1550,
         "images":  [
 
                    ],
-        "price":  1550,
+        "price":  1249,
         "category":  "necklaces"
     },
     {
         "id":  18,
         "name":  "Karungali Necklace with OM Vel Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1549,
+        "oldPrice":  1700,
         "images":  [
 
                    ],
-        "price":  1700,
+        "price":  1549,
         "category":  "necklaces"
     },
     {
         "id":  19,
         "name":  "Karungali Necklace with Vel Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1249,
+        "oldPrice":  1650,
         "images":  [
 
                    ],
-        "price":  1650,
+        "price":  1249,
         "category":  "necklaces"
     },
     {
@@ -266,11 +266,11 @@
         "id":  21,
         "name":  "Karungali Necklace with Rudraksha Dollar 54 Beads",
         "isFeatured":  false,
-        "oldPrice":  1249,
+        "oldPrice":  1750,
         "images":  [
 
                    ],
-        "price":  1750,
+        "price":  1249,
         "category":  "necklaces"
     }
 ];
