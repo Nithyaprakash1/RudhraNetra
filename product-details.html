@@ -493,9 +493,9 @@
             <div class="lg:col-span-6 flex flex-col justify-between" data-aos="fade-left">
                 <div>
                     <!-- Breadcrumbs & Category -->
-                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
+                    <span id="product-breadcrumb" class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
                     <h1 class="text-4xl md:text-5xl font-bold text-[#8B4513] mb-3 leading-tight">Karungali Bracelet with Rudraksha</h1>
-                    <p class="text-base text-[#8B4513]/80 italic mb-6">Combining Karungali and Rudraksha for protection and positivity.</p>
+                    <p id="product-description" class="text-base text-[#8B4513]/80 italic mb-6">Combining Karungali and Rudraksha for protection and positivity.</p>
                     
                     <!-- Pricing Structure -->
                     <div class="flex items-center space-x-4 mb-8">
@@ -572,15 +572,15 @@
                             </tr>
                             <tr class="border-b border-[#8B4513]/10">
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Material</td>
-                                <td class="p-4 text-[#8B4513]">Pure Karungali Wood & Natural Rudraksha Beads</td>
+                                <td id="spec-material" class="p-4 text-[#8B4513]">Pure Karungali Wood & Natural Rudraksha Beads</td>
                             </tr>
                             <tr class="border-b border-[#8B4513]/10">
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Beads Count</td>
-                                <td class="p-4 text-[#8B4513]">54 Beads : 108 Beads</td>
+                                <td id="spec-beads" class="p-4 text-[#8B4513]">54 Beads : 108 Beads</td>
                             </tr>
                             <tr>
                                 <td class="p-4 font-semibold text-xs uppercase opacity-75">Finish</td>
-                                <td class="p-4 text-[#8B4513]">Silver Plated Caps</td>
+                                <td id="spec-finish" class="p-4 text-[#8B4513]">Silver Plated Caps</td>
                             </tr>
                         </table>
                     </div>
@@ -1278,6 +1278,50 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         const tds = document.querySelectorAll('td.p-4.text-\\[\\#8B4513\\]');
         if(tds.length > 0) tds[0].textContent = product.name;
         
+        const breadcrumbEl = document.getElementById('product-breadcrumb');
+        if(breadcrumbEl) {
+            breadcrumbEl.textContent = 'Premium Wear / Consecrated ' + product.category.charAt(0).toUpperCase() + product.category.slice(1);
+        }
+        
+        const descEl = document.getElementById('product-description');
+        if(descEl) {
+            if(product.name.toLowerCase().includes('rudraksha')) {
+                descEl.textContent = 'Combining Karungali and Rudraksha for protection and positivity.';
+            } else {
+                descEl.textContent = 'Handcrafted Karungali for profound spiritual protection and grounding.';
+            }
+        }
+        
+        const btn1 = document.getElementById('beads-btn-1');
+        const btn2 = document.getElementById('beads-btn-2');
+        if(btn1 && btn2) {
+            if(product.category === 'bracelets') {
+                btn1.innerHTML = '<span class="-mt-2">20 Beads</span>';
+                btn2.innerHTML = '<span class="-mt-2">27 Beads</span>';
+            } else {
+                btn1.innerHTML = '<span class="-mt-2">54 Beads</span>';
+                btn2.innerHTML = '<span class="-mt-2">108 Beads</span>';
+            }
+        }
+        
+        const specMaterial = document.getElementById('spec-material');
+        if(specMaterial) {
+            specMaterial.textContent = product.name.toLowerCase().includes('rudraksha') ? 'Pure Karungali Wood & Natural Rudraksha Beads' : 'Pure Karungali Wood';
+        }
+        
+        const specBeads = document.getElementById('spec-beads');
+        if(specBeads) {
+            specBeads.textContent = product.category === 'bracelets' ? '20 Beads : 27 Beads' : '54 Beads : 108 Beads';
+        }
+        
+        const specFinish = document.getElementById('spec-finish');
+        if(specFinish) {
+            if(product.name.toLowerCase().includes('silver')) specFinish.textContent = 'Silver Plated Caps';
+            else if(product.name.toLowerCase().includes('copper')) specFinish.textContent = 'Copper Plated Caps';
+            else if(product.name.toLowerCase().includes('matte')) specFinish.textContent = 'Matte Finish';
+            else specFinish.textContent = 'Polished Finish';
+        }
+        
         const mainImg = document.getElementById('mainProductImg');
         const thumbsContainer = document.querySelector('.grid.grid-cols-4.gap-4');
         
@@ -1306,6 +1350,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     });
 </script>
 </body>
+
 
 
 
