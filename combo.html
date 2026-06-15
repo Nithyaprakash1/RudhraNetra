@@ -13,11 +13,14 @@
         rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        html,
-        body {
+        /* ── Font display fix (no FOUT) ── */
+        @font-face { font-display: swap; }
+
+        html, body {
             overflow-x: hidden;
             width: 100%;
             max-width: 100vw;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -26,356 +29,63 @@
             color: #8B4513;
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFF1E0; }
+        ::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 4px; }
 
-        ::-webkit-scrollbar-track {
-            background: #FFF1E0;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #8B4513;
-            border-radius: 4px;
-        }
-
-        /* -- Navbar -- */
-        .navbar-transition {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* ── Navbar ── */
+        .navbar-transition { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .glass-nav {
-            background: rgba(255, 242, 226, 0.80);
+            background: rgba(255, 242, 226, 0.90);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(142, 89, 54, 0.2);
             border-radius: 9999px;
+            box-shadow: 0 4px 24px rgba(139,69,19,0.12);
         }
 
-        /* -- Shining button -- */
-        .shining-button {
-            position: relative;
-            overflow: hidden;
-        }
-
+        /* ── Shining button ── */
+        .shining-button { position: relative; overflow: hidden; }
         .shining-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 242, 226, 0.55), transparent);
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,242,226,0.55), transparent);
             transform: skewX(-25deg);
             animation: shine 4s infinite;
         }
-
         @keyframes shine {
-            0% {
-                left: -100%
-            }
-
-            20% {
-                left: 150%
-            }
-
-            100% {
-                left: 150%
-            }
+            0%   { left: -100% }
+            20%  { left: 150% }
+            100% { left: 150% }
         }
 
-        /* -- Product drawer -- */
-        .product-drawer {
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(20px);
-            background: rgba(255, 242, 226, 0.92) !important;
-            border: 1px solid rgba(142, 89, 54, 0.18);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
+        /* ── Button hover effects ── */
+        button, a[href] {
+            transition: all 0.25s ease;
+        }
+        .btn-outline-brown {
+            transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-outline-brown:hover {
+            background: rgba(139,69,19,0.15) !important;
+            transform: scale(1.03);
+        }
+        .btn-brown {
+            transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-brown:hover {
+            background: #5c3a23 !important;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(139,69,19,0.35);
         }
 
-        .group:hover .product-drawer {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* -- Enhanced dropdown items -- */
-        .enhanced-dropdown-item {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #A8704D, #8B4513);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .enhanced-dropdown-item:hover {
-            transform: scale(1.06) translateY(-5px);
-            border-color: #D4A373;
-            box-shadow: 0 15px 30px rgba(142, 89, 54, 0.4);
-        }
-
-        .enhanced-dropdown-item img {
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .enhanced-dropdown-item span {
-            color: #FFF1E0 !important;
-            display: block;
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .05em;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
-        }
-
-        /* -- Floating particles removed as requested -- */
-
-        /* -- Countdown timer -- */
-        .timer-box {
-            border-radius: 16px;
-            background: rgba(255, 255, 255, .45);
-            border: 1px solid rgba(142, 89, 54, .2);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px -4px rgba(142, 89, 54, .12);
-        }
-
-        .timer-digit {
-            background: linear-gradient(135deg, #8B4513, #a8704d);
-            color: #FFF1E0;
-            border-radius: 10px;
-            padding: 10px 16px;
-            min-width: 58px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(142, 89, 54, .3);
-            transition: transform .15s ease;
-        }
-
-        .timer-digit:hover {
-            transform: translateY(-2px);
-        }
-
-        /* -- Combo cards -- */
-        .combo-card {
-            border-radius: 20px !important;
-            transition: all .5s cubic-bezier(.165, .84, .44, 1);
-            background: rgba(255, 255, 255, .7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(142, 89, 54, .1);
-            box-shadow: 0 4px 24px -4px rgba(142, 89, 54, .07);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .combo-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 242, 226, .25), rgba(142, 89, 54, .04));
-            opacity: 0;
-            transition: opacity .4s;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .combo-card:hover {
-            transform: translateY(-14px) scale(1.02);
-            box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .28), 0 0 0 2px rgba(142, 89, 54, .22);
-        }
-
-        .combo-card:hover::before {
-            opacity: 1;
-        }
-
-        .combo-card>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-img {
-            transition: transform .7s cubic-bezier(.165, .84, .44, 1);
-            border-radius: 20px 20px 0 0;
-        }
-
-        .combo-card:hover .card-img {
-            transform: scale(1.07);
-        }
-
-        /* -- Savings badges -- */
-        .savings-badge {
-            background: linear-gradient(135deg, #8B4513, #a8704d);
-            border-radius: 6px;
-            box-shadow: 0 3px 8px rgba(142, 89, 54, .35);
-        }
-
-        .bestseller-badge {
-            background: linear-gradient(135deg, #b45309, #d97706);
-            border-radius: 6px;
-            box-shadow: 0 3px 8px rgba(180, 83, 9, .35);
-        }
-
-        /* -- Pulse glow for bestseller -- */
-        @keyframes pulse-glow {
-
-            0%,
-            100% {
-                box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .22), 0 0 0 2px rgba(142, 89, 54, .16);
-            }
-
-            50% {
-                box-shadow: 0 30px 60px -10px rgba(142, 89, 54, .44), 0 0 0 4px rgba(142, 89, 54, .32);
-            }
-        }
-
-        .bestseller-card {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        /* -- Selector cards -- */
-        .selector-card {
-            border-radius: 0px;
-            /* Sharp outer edge */
-            transition: all .4s cubic-bezier(.165, .84, .44, 1);
-            border: 2px solid rgba(142, 89, 54, .1);
-            background: white;
-            cursor: pointer;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .selector-card:hover {
-            border-color: rgba(142, 89, 54, .5);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -6px rgba(142, 89, 54, .2);
-        }
-
-        .selector-card.selected {
-            border-color: #8B4513;
-            background: rgba(142, 89, 54, .06);
-            box-shadow: 0 0 0 3px rgba(142, 89, 54, .2), 0 12px 24px -6px rgba(142, 89, 54, .22);
-        }
-
-        .selector-card.selected::after {
-            content: '?';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            background: #8B4513;
-            color: #FFF1E0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 28px;
-            text-align: center;
-        }
-
-        .selector-card img {
-            border-radius: 8px;
-            /* little round corner for inner image */
-        }
-
-        /* -- Checkout panel -- */
-        .checkout-panel {
-            border-radius: 20px;
-            background: white;
-            border: 1px solid rgba(142, 89, 54, .12);
-            box-shadow: 0 20px 40px -8px rgba(142, 89, 54, .12);
-        }
-
-        /* -- Section title underline -- */
-        .section-title-line {
-            display: inline-block;
-            position: relative;
-        }
-
-        .section-title-line::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #8B4513, transparent);
-            border-radius: 2px;
-        }
-
-        /* -- Banner top-fade -- */
-        .banner-top-fade {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            z-index: 2;
-            background: linear-gradient(to bottom, #FFF1E0 0%, transparent 100%);
-            pointer-events: none;
-        }
-                    .nav-text-glow {
-            text-shadow: 0 0 8px rgba(139, 69, 19, 0.4);
-        }
-        .active-page {
-            text-shadow: 0 0 12px rgba(139, 69, 19, 0.8);
-            color: #FFF1E0 !important;
-            font-weight: 800;
-        }
-            /* Dynamic Navbar Colors */
-        .nav-links, .nav-cart, .nav-mobile-btn {
-            color: #FFF1E0;
-            transition: color 0.3s ease;
-        }
-        .nav-link { transition: color 0.3s ease; }
-        .nav-link:hover { color: #8B4513 !important; }
-        .nav-shop-btn {
-            background-color: transparent !important;
-            color: #FFF1E0 !important;
-            border: 1px solid #FFF1E0 !important;
-            transition: all 0.3s ease;
-        }
-        .nav-shop-btn:hover {
-            background-color: #FFF1E0 !important;
-            color: #8B4513 !important;
-        }
-
-        /* Glass state */
-        .glass-nav .nav-links, .glass-nav .nav-cart, .glass-nav .nav-mobile-btn {
-            color: #8B4513 !important;
-        }
-        .glass-nav .nav-link:hover { color: #5c3a23 !important; }
-        .glass-nav .nav-shop-btn {
-            background-color: #8B4513 !important;
-            color: #FFF1E0 !important;
-            border: 1px solid #8B4513 !important;
-        }
-        .glass-nav .nav-shop-btn:hover {
-            background-color: #5c3a23 !important;
-            border-color: #5c3a23 !important;
-        }
-        
-        .glass-nav .active-page {
-            color: #8B4513 !important;
-            text-shadow: 0 0 12px rgba(139, 69, 19, 0.4);
-        }
-    
-        
-    
         /* ── Product Dropdown Drawer ── */
         .product-drawer {
             visibility: hidden; opacity: 0;
@@ -408,34 +118,271 @@
             letter-spacing: .05em;
             text-shadow: 0 1px 2px rgba(0,0,0,.5);
         }
+
+        /* ── Countdown timer ── */
+        .timer-box {
+            border-radius: 16px;
+            background: rgba(255,255,255,.45);
+            border: 1px solid rgba(142,89,54,.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px -4px rgba(142,89,54,.12);
+        }
+        .timer-digit {
+            background: linear-gradient(135deg,#8B4513,#a8704d);
+            color: #FFF1E0;
+            border-radius: 10px;
+            padding: 10px 16px;
+            min-width: 58px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(142,89,54,.3);
+            transition: transform .15s ease;
+        }
+        .timer-digit:hover { transform: translateY(-2px); }
+
+        /* ── Combo cards (with stagger fade-in on load) ── */
+        .combo-card {
+            border-radius: 20px !important;
+            transition: transform .4s cubic-bezier(.165,.84,.44,1), box-shadow .4s ease;
+            background: rgba(255,255,255,.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(142,89,54,.1);
+            box-shadow: 0 4px 24px -4px rgba(142,89,54,.07);
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .combo-card.card-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow .4s ease;
+        }
+        .combo-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg,rgba(255,242,226,.25),rgba(142,89,54,.04));
+            opacity: 0; transition: opacity .4s;
+            pointer-events: none; z-index: 0;
+        }
+        .combo-card:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow: 0 24px 50px -8px rgba(142,89,54,.28), 0 0 0 2px rgba(142,89,54,.18);
+        }
+        .combo-card:hover::before { opacity: 1; }
+        .combo-card > * { position: relative; z-index: 1; }
+
+        .card-img {
+            transition: transform .7s cubic-bezier(.165,.84,.44,1);
+            border-radius: 20px 20px 0 0;
+        }
+        .combo-card:hover .card-img { transform: scale(1.06); }
+
+        /* ── Savings badges ── */
+        .savings-badge {
+            background: linear-gradient(135deg,#8B4513,#a8704d);
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(142,89,54,.35);
+        }
+        .bestseller-badge {
+            background: linear-gradient(135deg,#b45309,#d97706);
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(180,83,9,.35);
+        }
+
+        /* ── Pulse glow for bestseller ── */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 30px 60px -10px rgba(142,89,54,.22), 0 0 0 2px rgba(142,89,54,.16); }
+            50%       { box-shadow: 0 30px 60px -10px rgba(142,89,54,.44), 0 0 0 4px rgba(142,89,54,.32); }
+        }
+        .bestseller-card { animation: pulse-glow 3s ease-in-out infinite; }
+
+        /* ── Selector cards ── */
+        .selector-card {
+            border-radius: 12px;
+            transition: all .4s cubic-bezier(.165,.84,.44,1);
+            border: 2px solid rgba(142,89,54,.1);
+            background: white;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        .selector-card:hover {
+            border-color: rgba(142,89,54,.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -6px rgba(142,89,54,.2);
+        }
+        .selector-card.selected {
+            border-color: #8B4513;
+            background: rgba(142,89,54,.06);
+            box-shadow: 0 0 0 3px rgba(142,89,54,.2), 0 12px 24px -6px rgba(142,89,54,.22);
+        }
+        .selector-card.selected::after {
+            content: '✓';
+            position: absolute; top: 10px; right: 10px;
+            width: 28px; height: 28px;
+            background: #8B4513; color: #FFF1E0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700;
+            line-height: 28px; text-align: center;
+        }
+        .selector-card img { border-radius: 8px; }
+
+        /* ── Checkout panel ── */
+        .checkout-panel {
+            border-radius: 20px; background: white;
+            border: 1px solid rgba(142,89,54,.12);
+            box-shadow: 0 20px 40px -8px rgba(142,89,54,.12);
+        }
+
+        /* ── Bundle panel slide-in animation ── */
+        @keyframes bundle-slide-in {
+            from { opacity:0; transform: translateX(12px); }
+            to   { opacity:1; transform: translateX(0); }
+        }
+        .bundle-item-enter {
+            animation: bundle-slide-in 0.35s cubic-bezier(.175,.885,.32,1.275) forwards;
+        }
+
+        /* ── Section title underline ── */
+        .section-title-line { display: inline-block; position: relative; }
+        .section-title-line::after {
+            content: '';
+            position: absolute; bottom: -8px; left: 0;
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg,#8B4513,transparent);
+            border-radius: 2px;
+        }
+
+        /* ── Banner top-fade ── */
+        .banner-top-fade {
+            position: absolute; top:0; left:0; right:0;
+            height: 120px; z-index: 2;
+            background: linear-gradient(to bottom,#FFF1E0 0%,transparent 100%);
+            pointer-events: none;
+        }
+
+        /* ── Nav colors ── */
+        .nav-text-glow { text-shadow: 0 0 8px rgba(139,69,19,0.4); }
+        .active-page { text-shadow: 0 0 12px rgba(139,69,19,0.8); color:#FFF1E0 !important; font-weight:800; }
+        .nav-links, .nav-cart, .nav-mobile-btn { color:#FFF1E0; transition:color 0.3s ease; }
+        .nav-link { transition:color 0.3s ease; }
+        .nav-link:hover { color:#8B4513 !important; }
+        .nav-shop-btn {
+            background-color:transparent !important;
+            color:#FFF1E0 !important;
+            border:1px solid #FFF1E0 !important;
+            transition:all 0.3s ease;
+        }
+        .nav-shop-btn:hover { background-color:#FFF1E0 !important; color:#8B4513 !important; }
+
+        /* Glass state */
+        .glass-nav .nav-links, .glass-nav .nav-cart, .glass-nav .nav-mobile-btn { color:#8B4513 !important; }
+        .glass-nav .nav-link:hover { color:#5c3a23 !important; }
+        .glass-nav .nav-shop-btn { background-color:#8B4513 !important; color:#FFF1E0 !important; border:1px solid #8B4513 !important; }
+        .glass-nav .nav-shop-btn:hover { background-color:#5c3a23 !important; border-color:#5c3a23 !important; }
+        .glass-nav .active-page { color:#8B4513 !important; text-shadow: 0 0 12px rgba(139,69,19,0.4); }
+
+        /* ── Modal ── */
+        #comboModal {
+            position: fixed; inset:0; z-index:9000;
+            display:flex; align-items:flex-end; justify-content:center;
+            background:rgba(0,0,0,0);
+            pointer-events:none;
+            transition: background 0.35s ease;
+        }
+        #comboModal.open {
+            background:rgba(0,0,0,0.5);
+            pointer-events:auto;
+        }
+        #modalSheet {
+            background:#FFF1E0;
+            width:100%; max-width:560px;
+            border-radius:24px 24px 0 0;
+            padding:32px 28px 40px;
+            transform: translateY(110%);
+            transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.1);
+            max-height:90vh;
+            overflow-y:auto;
+            box-shadow: 0 -20px 60px rgba(139,69,19,0.25);
+            position:relative;
+        }
+        @media (min-width:640px) {
+            #comboModal { align-items:center; }
+            #modalSheet {
+                border-radius:24px;
+                max-height:80vh;
+                transform: scale(0.88) translateY(0);
+                transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.1), opacity 0.35s ease;
+                opacity:0;
+            }
+            #comboModal.open #modalSheet { transform:scale(1) translateY(0); opacity:1; }
+        }
+        #comboModal.open #modalSheet { transform: translateY(0); opacity:1; }
+        #modalSheet::-webkit-scrollbar { width:4px; }
+        #modalSheet::-webkit-scrollbar-thumb { background:#8B4513; border-radius:4px; }
+
+        /* ── Toast ── */
+        #comboToast {
+            position:fixed; bottom:32px; right:28px; z-index:10000;
+            background:#8B4513; color:#FFF1E0;
+            padding:14px 22px; border-radius:14px;
+            font-family:'Inter',sans-serif; font-size:14px; font-weight:500;
+            box-shadow:0 12px 30px rgba(139,69,19,0.35);
+            display:flex; align-items:center; gap:10px;
+            transform:translateY(80px) scale(0.9);
+            opacity:0;
+            transition:all 0.45s cubic-bezier(0.175,0.885,0.32,1.275);
+            pointer-events:none;
+        }
+        #comboToast.show { transform:translateY(0) scale(1); opacity:1; }
+
+        /* ── Mobile responsiveness tweaks ── */
+        @media (max-width:640px) {
+            .combo-card { border-radius:16px !important; }
+            #comboModal { align-items:flex-end; }
+        }
+
+        /* ── Smooth anchor scrolling already handled via CSS scroll-behavior ── */
     </style>
 </head>
 
 <body class="overflow-x-hidden">
 
-    <!-- Navigation Bar -->
-        <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
+    <!-- ════════════════════════════ NAVBAR ════════════════════════════ -->
+    <nav class="fixed top-6 left-0 right-0 z-50 px-4 md:px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav" id="nav-container">
-            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
-                <img src="image/logo.png" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
+            <a href="index.html" class="flex items-center gap-2.5 md:gap-3.5 shrink-0">
+                <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-10 md:h-14 w-auto">
+                <span class="w-[1px] h-6 md:h-8 bg-[#8B4513]/30 block"></span>
+                <img src="image/logo_text.png" alt="Rudra Nethra Text" class="h-8 md:h-12 w-auto object-contain">
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
-                <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
+                <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Home</a>
                 <div class="relative group">
                     <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
-                        <div class="grid grid-cols-3 gap-4 text-center">
-                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2" alt="Mala">
+                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-0 mt-4 p-4 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                        <div class="grid grid-cols-5 gap-3 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Mala">
                                 <span class="text-xs font-semibold block mt-2">Mala Beads</span>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2" alt="Bracelet">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Bracelet">
                                 <span class="text-xs font-semibold block mt-2">Bracelets</span>
                             </a>
-                             <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2" alt="Idol">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Idol">
                                 <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Planks">
+                                <span class="text-xs font-semibold block mt-2">Holy Planks</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Accessories" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Accessories">
+                                <span class="text-xs font-semibold block mt-2">Accessories</span>
                             </a>
                         </div>
                     </div>
@@ -445,20 +392,18 @@
                 <a href="contact.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Contact</a>
             </div>
             <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
-                 <!-- Simple modern cart icon -->
-                 <a href="cart.html" class="nav-cart transition relative" aria-label="Cart">
+                <a href="cart.html" class="nav-cart transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
                     <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-                 </a>
+                </a>
                 <button onclick="window.location.href='product.html'" class="shining-button px-4 md:px-6 py-2 rounded-full text-xs md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop Now</button>
-                 <!-- Mobile Menu Toggle Button -->
-                 <button id="mobile-menu-btn" class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2" aria-label="Open Menu">
+                <button id="mobile-menu-btn" class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2" aria-label="Open Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
-                 </button>
+                </button>
             </div>
         </div>
     </nav>
@@ -481,16 +426,13 @@
             <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
         </div>
     </div>
-    </div>
 
-    <!-- Main Content Wrapper for Parallax Effect -->
+    <!-- ════════════════════════════ MAIN CONTENT ════════════════════════════ -->
     <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
-        <!-- Hero Header with Particles -->
+        <!-- Hero Header -->
         <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
-            style="background: linear-gradient(135deg, #FFF1E0 0%, #f5e0c8 50%, #FFF1E0 100%);">
-            <!-- Header Background -->
-
+            style="background:linear-gradient(135deg,#FFF1E0 0%,#f5e0c8 50%,#FFF1E0 100%);">
             <div class="relative z-10 px-4">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-4 block"
                     data-aos="fade-down" data-aos-delay="100">Auspicious Bundles</span>
@@ -503,27 +445,13 @@
                 </p>
 
                 <!-- Countdown Timer -->
-                <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-6" data-aos="fade-up"
-                    data-aos-delay="400">
-                    <span class="text-xs uppercase tracking-wider font-bold text-[#8B4513]">Next Consecration Window
-                        Closes In:</span>
+                <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-6" data-aos="fade-up" data-aos-delay="400">
+                    <span class="text-xs uppercase tracking-wider font-bold text-[#8B4513]">Next Consecration Window Closes In:</span>
                     <div class="flex gap-4">
-                        <div class="flex flex-col items-center"><span id="days"
-                                class="text-3xl font-bold text-[#8B4513]">00</span><span
-                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Days</span>
-                        </div>
-                        <div class="flex flex-col items-center"><span id="hours"
-                                class="text-3xl font-bold text-[#8B4513]">00</span><span
-                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Hrs</span>
-                        </div>
-                        <div class="flex flex-col items-center"><span id="minutes"
-                                class="text-3xl font-bold text-[#8B4513]">00</span><span
-                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Min</span>
-                        </div>
-                        <div class="flex flex-col items-center"><span id="seconds"
-                                class="text-3xl font-bold text-[#8B4513]">00</span><span
-                                class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Sec</span>
-                        </div>
+                        <div class="flex flex-col items-center"><span id="days" class="text-3xl font-bold text-[#8B4513]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Days</span></div>
+                        <div class="flex flex-col items-center"><span id="hours" class="text-3xl font-bold text-[#8B4513]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Hrs</span></div>
+                        <div class="flex flex-col items-center"><span id="minutes" class="text-3xl font-bold text-[#8B4513]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Min</span></div>
+                        <div class="flex flex-col items-center"><span id="seconds" class="text-3xl font-bold text-[#8B4513]">00</span><span class="text-[10px] uppercase font-sans font-bold mt-1 text-[#8B4513]/70">Sec</span></div>
                     </div>
                 </div>
             </div>
@@ -532,53 +460,57 @@
         <!-- Featured Combos Section -->
         <section class="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
             <div class="text-center mb-14 md:mb-20" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Handpicked
-                    for You</span>
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Handpicked for You</span>
                 <h2 class="text-3xl md:text-5xl section-title-line">Featured Sacred Combos</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+            <!-- Cards grid — stagger set via JS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="comboGrid">
 
                 <!-- Combo Card 1 -->
-                <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="0">
+                <div class="combo-card flex flex-col"
+                    data-combo-name="Ultimate Protection Trio"
+                    data-combo-category="Personal Protection"
+                    data-combo-items='["Karungali Malai (108 Beads, 8mm)","Karungali Protection Bracelet","Sacred Car Hanging"]'
+                    data-combo-price="2499"
+                    data-combo-original="3499"
+                    data-combo-savings="1000"
+                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Ultimate+Protection+Set"
+                    data-combo-link="product-details.html?combo=protection-trio">
                     <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
                         <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Ultimate+Protection+Set"
                             class="card-img w-full h-56 md:h-64 object-cover" alt="Ultimate Protection Trio">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span
-                            class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
-                            28%</span>
+                        <span class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 28%</span>
                     </div>
                     <div class="p-5 md:p-6 flex-1 flex flex-col">
-                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Personal
-                            Protection</span>
+                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Personal Protection</span>
                         <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Ultimate Protection Trio</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-6">
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Malai (108
-                                Beads, 8mm)</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Protection
-                                Bracelet</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Sacred Car Hanging
-                            </li>
+                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Malai (108 Beads, 8mm)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Protection Bracelet</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Sacred Car Hanging</li>
                         </ul>
+                        <!-- View product link -->
+                        <a href="product-details.html?combo=protection-trio"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                            </svg>
+                            View Product Details
+                        </a>
                         <div class="flex flex-wrap items-center gap-2 mb-5">
                             <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;2,499</span>
                             <span class="text-sm line-through opacity-40">&#8377;3,499</span>
-                            <span
-                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
-                                save &#8377;1,000</span>
+                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;1,000</span>
                         </div>
                         <div class="flex space-x-2">
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                            <button onclick="openComboModal(this.closest('.combo-card'))"
+                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
+                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
+                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
                                 </svg>
                                 <span>Add Combo</span>
                             </button>
@@ -586,49 +518,51 @@
                     </div>
                 </div>
 
-                <!-- Combo Card 2 � Bestseller -->
-                <div class="combo-card bestseller-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                <!-- Combo Card 2 — Bestseller -->
+                <div class="combo-card bestseller-card flex flex-col"
+                    data-combo-name="Divine Home Sanctuary"
+                    data-combo-category="Home Harmony"
+                    data-combo-items='["Karungali Ganesha Deity Idol (3 inch)","Consecrated Holy Sitting Plank","Aromatic Incense Holder"]'
+                    data-combo-price="4499"
+                    data-combo-original="5999"
+                    data-combo-savings="1500"
+                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Divine+Home+Sanctuary"
+                    data-combo-link="product-details.html?combo=home-sanctuary">
                     <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
                         <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Divine+Home+Sanctuary"
                             class="card-img w-full h-56 md:h-64 object-cover" alt="Divine Home Sanctuary">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span
-                            class="bestseller-badge absolute top-4 left-4 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase">?
-                            BEST SELLER</span>
-                        <span
-                            class="savings-badge absolute top-4 right-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
-                            25%</span>
+                        <span class="bestseller-badge absolute top-4 left-4 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase">&#11088; BEST SELLER</span>
+                        <span class="savings-badge absolute top-4 right-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 25%</span>
                     </div>
                     <div class="p-5 md:p-6 flex-1 flex flex-col">
                         <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Home Harmony</span>
                         <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Divine Home Sanctuary</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-6">
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Ganesha
-                                Deity Idol (3 inch)</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Consecrated Holy
-                                Sitting Plank</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Aromatic Incense
-                                Holder</li>
+                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Ganesha Deity Idol (3 inch)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Consecrated Holy Sitting Plank</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Aromatic Incense Holder</li>
                         </ul>
+                        <!-- View product link -->
+                        <a href="product-details.html?combo=home-sanctuary"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                            </svg>
+                            View Product Details
+                        </a>
                         <div class="flex flex-wrap items-center gap-2 mb-5">
                             <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;4,499</span>
                             <span class="text-sm line-through opacity-40">&#8377;5,999</span>
-                            <span
-                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
-                                save &#8377;1,500</span>
+                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;1,500</span>
                         </div>
                         <div class="flex space-x-2">
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                            <button onclick="openComboModal(this.closest('.combo-card'))"
+                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
+                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
+                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
                                 </svg>
                                 <span>Add Combo</span>
                             </button>
@@ -637,45 +571,49 @@
                 </div>
 
                 <!-- Combo Card 3 -->
-                <div class="combo-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                <div class="combo-card flex flex-col"
+                    data-combo-name="Daily Grounding Duo"
+                    data-combo-category="Daily Wear"
+                    data-combo-items='["Karungali Elastic Bracelet (10mm)","Pure Copper-Capped Karungali Ring","Free consecrated coin set included"]'
+                    data-combo-price="1399"
+                    data-combo-original="1899"
+                    data-combo-savings="500"
+                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Daily+Grounding+Duo"
+                    data-combo-link="product-details.html?combo=daily-grounding">
                     <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
                         <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Daily+Grounding+Duo"
                             class="card-img w-full h-56 md:h-64 object-cover" alt="Daily Grounding Duo">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span
-                            class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE
-                            26%</span>
+                        <span class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 26%</span>
                     </div>
                     <div class="p-5 md:p-6 flex-1 flex flex-col">
                         <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Daily Wear</span>
                         <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Daily Grounding Duo</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-6">
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Elastic
-                                Bracelet (10mm)</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Pure Copper-Capped
-                                Karungali Ring</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Free consecrated coin
-                                set included</li>
+                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Elastic Bracelet (10mm)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Pure Copper-Capped Karungali Ring</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Free consecrated coin set included</li>
                         </ul>
+                        <!-- View product link -->
+                        <a href="product-details.html?combo=daily-grounding"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                            </svg>
+                            View Product Details
+                        </a>
                         <div class="flex flex-wrap items-center gap-2 mb-5">
                             <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;1,399</span>
                             <span class="text-sm line-through opacity-40">&#8377;1,899</span>
-                            <span
-                                class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You
-                                save &#8377;500</span>
+                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;500</span>
                         </div>
                         <div class="flex space-x-2">
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider sharp-edge">Details</button>
-                            <button
-                                class="w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] hover:bg-[#8B4513] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 sharp-edge shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                            <button onclick="openComboModal(this.closest('.combo-card'))"
+                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
+                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
+                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
                                 </svg>
                                 <span>Add Combo</span>
                             </button>
@@ -688,47 +626,37 @@
 
         <!-- Interactive Bundle Builder -->
         <section class="py-20 md:py-28 px-4 md:px-6"
-            style="background: linear-gradient(135deg, rgba(142,89,54,.05) 0%, #FFF1E0 50%, rgba(142,89,54,.04) 100%);">
+            style="background:linear-gradient(135deg,rgba(142,89,54,.05) 0%,#FFF1E0 50%,rgba(142,89,54,.04) 100%);">
             <div class="max-w-5xl mx-auto text-center mb-14 md:mb-20" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Your Custom
-                    Alliance</span>
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Your Custom Alliance</span>
                 <h2 class="text-3xl md:text-5xl mb-4 section-title-line">Build Your Own Sacred Bundle</h2>
-                <p class="text-sm text-[#8B4513]/75 max-w-xl mx-auto mt-8">Select any <strong>three</strong> consecrated
-                    Karungali items below to automatically unlock a flat <strong>20% discount</strong> on checkout.</p>
+                <p class="text-sm text-[#8B4513]/75 max-w-xl mx-auto mt-8">Select any <strong>three</strong> consecrated Karungali items below to automatically unlock a flat <strong>20% discount</strong> on checkout.</p>
             </div>
 
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
                 <!-- Product Selector -->
                 <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6" id="customSelectorGrid">
 
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="0"
-                        onclick="toggleSelection(this,'Mala Beads',1200)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Mala+Beads"
-                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Mala">
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="0" onclick="toggleSelection(this,'Mala Beads',1200)">
+                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Mala+Beads" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Mala">
                         <h4 class="font-bold text-base md:text-lg">Mala Beads (108, 8mm)</h4>
                         <p class="text-sm text-[#8B4513]/75">&#8377;1,200</p>
                     </div>
 
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="100"
-                        onclick="toggleSelection(this,'Deity Idol',1800)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Deity+Idol"
-                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Idol">
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="100" onclick="toggleSelection(this,'Deity Idol',1800)">
+                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Deity+Idol" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Idol">
                         <h4 class="font-bold text-base md:text-lg">Ganesha Deity Idol</h4>
                         <p class="text-sm text-[#8B4513]/75">&#8377;1,800</p>
                     </div>
 
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="200"
-                        onclick="toggleSelection(this,'Protection Bracelet',600)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Bracelet"
-                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Bracelet">
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="200" onclick="toggleSelection(this,'Protection Bracelet',600)">
+                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Bracelet" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Bracelet">
                         <h4 class="font-bold text-base md:text-lg">Protection Bracelet</h4>
                         <p class="text-sm text-[#8B4513]/75">&#8377;600</p>
                     </div>
 
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="300"
-                        onclick="toggleSelection(this,'Holy Plank',2000)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Holy+Plank"
-                            class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Plank">
+                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="300" onclick="toggleSelection(this,'Holy Plank',2000)">
+                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Holy+Plank" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Plank">
                         <h4 class="font-bold text-base md:text-lg">Consecrated Holy Plank</h4>
                         <p class="text-sm text-[#8B4513]/75">&#8377;2,000</p>
                     </div>
@@ -738,9 +666,8 @@
                 <!-- Checkout Panel -->
                 <div class="lg:col-span-4" data-aos="fade-left" data-aos-delay="200">
                     <div class="checkout-panel p-6 md:p-8 sticky top-32">
-                        <h4 class="text-xl md:text-2xl font-bold border-b border-[#8B4513]/10 pb-4 mb-6">Your Custom
-                            Bundle</h4>
-                        <ul class="space-y-4 text-sm min-h-[80px]" id="bundleSelections">
+                        <h4 class="text-xl md:text-2xl font-bold border-b border-[#8B4513]/10 pb-4 mb-6">Your Custom Bundle</h4>
+                        <ul class="space-y-3 text-sm min-h-[80px]" id="bundleSelections">
                             <li class="opacity-50 italic">No products selected yet.</li>
                         </ul>
                         <div class="border-t border-[#8B4513]/10 pt-6 mt-6">
@@ -766,33 +693,31 @@
             </div>
         </section>
 
-        <!-- Immersive Pre-Footer Banner & CTA -->
-    <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
-        <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
-        <div class="absolute inset-0 z-0">
-            <img src="image/New images for each pages/combo-new.jpg" class="w-full h-full object-cover object-center opacity-40" alt="Immersive Graphic">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
-        </div>
-        <div class="relative z-10 max-w-3xl mx-auto mt-8" data-aos="fade-up">
-            <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
-            <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
-            <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
-            <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
-                EXPLORE THE COLLECTION
-            </a>
-        </div>
-    </section>
+        <!-- Immersive Pre-Footer Banner -->
+        <section class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
+            <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none" style="background:linear-gradient(to bottom,#FFF1E0 0%,transparent 100%)"></div>
+            <div class="absolute inset-0 z-0">
+                <img src="image/New images for each pages/combo-new.jpg" class="w-full h-full object-cover object-center opacity-40" alt="Immersive Graphic">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1E110A]/60"></div>
+            </div>
+            <div class="relative z-10 max-w-3xl mx-auto mt-8" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/60 mb-4 block">Elevate Your Sacred Space</span>
+                <h2 class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">Awaken The Energy Within</h2>
+                <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated Karungali crafted lovingly for your spiritual journey.</p>
+                <a href="product.html" class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#5c3a23] transition-all font-medium tracking-wider text-sm shadow-2xl">
+                    EXPLORE THE COLLECTION
+                </a>
+            </div>
+        </section>
 
-    
-</div> <!-- End Main Content Wrapper -->
+    </div><!-- End Main Content Wrapper -->
 
-            <!-- Footer Area -->
+    <!-- ════════════════════════════ FOOTER ════════════════════════════ -->
     <div id="footer-spacer"></div>
-    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-12 md:pt-16 px-4 md:px-6 text-[#FFF1E0]/80"
-        id="footer-contact">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+    <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-10 md:pt-16 px-4 md:px-6 text-[#FFF1E0]/80" id="footer-contact">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
             <div class="col-span-2 md:col-span-1">
-                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-[#FFF1E0]">Rudra Nethra</h3>
+                <h3 class="text-xl md:text-3xl font-bold mb-3 text-[#FFF1E0]">Rudra Nethra</h3>
                 <p class="text-sm">Awaken your third eye.</p>
             </div>
             <div>
@@ -818,29 +743,93 @@
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0] text-sm">Contact Us</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="tel:+919025895191" class="hover:text-[#8B4513] nav-link transition">+91 90258 95191</a></li>
-                    <li><a href="mailto:info@rudranethra.com"
-                            class="hover:text-[#8B4513] nav-link transition">info@rudranethra.com</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8B4513] nav-link transition">info@rudranethra.com</a></li>
                 </ul>
             </div>
         </div>
-        <div
-            class="max-w-7xl mx-auto mt-8 md:mt-12 py-6 border-t border-[#FFF1E0]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-3">
+        <div class="max-w-7xl mx-auto mt-8 md:mt-12 py-5 border-t border-[#FFF1E0]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center gap-3">
             <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
-            <div class="flex space-x-4">
+            <div class="flex flex-wrap justify-center gap-3">
                 <a href="privacy-policy.html" class="hover:text-[#8B4513] nav-link transition">Privacy Policy</a>
-                <span>|</span>
+                <span class="opacity-40">|</span>
                 <a href="terms-of-service.html" class="hover:text-[#8B4513] nav-link transition">Terms of Service</a>
-                <span>|</span>
+                <span class="opacity-40">|</span>
                 <a href="shipping-policy.html" class="hover:text-[#8B4513] nav-link transition">Shipping Policy</a>
             </div>
         </div>
     </footer>
 
+    <!-- ════════════════════════════ COMBO DETAILS MODAL ════════════════════════════ -->
+    <div id="comboModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div id="modalSheet">
+            <!-- Close button -->
+            <button onclick="closeComboModal()" aria-label="Close"
+                class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-[#8B4513]/10 hover:bg-[#8B4513]/20 transition text-[#8B4513]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Drag handle (mobile) -->
+            <div class="w-10 h-1 bg-[#8B4513]/20 rounded-full mx-auto mb-6 md:hidden"></div>
+
+            <div id="modalImg" class="w-full h-48 object-cover rounded-2xl mb-6 bg-[#8B4513]/10 overflow-hidden">
+                <img id="modalImgEl" src="" alt="" class="w-full h-full object-cover">
+            </div>
+
+            <span id="modalCategory" class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-1"></span>
+            <h3 id="modalTitle" class="text-2xl md:text-3xl font-bold text-[#8B4513] mb-4"></h3>
+
+            <ul id="modalItems" class="space-y-2 text-sm text-[#8B4513]/80 mb-6"></ul>
+
+            <div class="border-t border-[#8B4513]/10 pt-5 space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span class="text-[#8B4513]/60">Original Price</span>
+                    <span id="modalOriginal" class="line-through text-[#8B4513]/50"></span>
+                </div>
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Combo Price</span>
+                    <span id="modalPrice" class="text-[#8B4513]"></span>
+                </div>
+                <div class="flex justify-between text-sm font-semibold text-green-700">
+                    <span>You Save</span>
+                    <span id="modalSavings"></span>
+                </div>
+            </div>
+
+            <button id="modalAddBtn" onclick="addComboToCartFromModal()"
+                class="btn-brown mt-6 w-full py-4 bg-[#8B4513] text-[#FFF1E0] rounded-xl font-semibold tracking-widest text-sm uppercase shining-button flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                </svg>
+                Add to Cart
+            </button>
+            <!-- View Full Product link (shown inside modal) -->
+            <a id="modalProductLink" href="product-details.html"
+                class="mt-3 w-full flex items-center justify-center gap-2 py-3 border border-[#8B4513]/30 rounded-xl text-[#8B4513] text-xs font-semibold uppercase tracking-widest hover:bg-[#8B4513]/8 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                </svg>
+                View Full Product Page
+            </a>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════ TOAST ════════════════════════════ -->
+    <div id="comboToast">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px;height:20px;flex-shrink:0">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+        <span id="comboToastMsg">Combo added to cart!</span>
+    </div>
+
+    <!-- ════════════════════════════ SCRIPTS ════════════════════════════ -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, offset: 60 });
+        // ── AOS Init ──
+        AOS.init({ duration: 900, once: true, offset: 60 });
 
-        // Footer spacer
+        // ── Footer spacer ──
         function updateFooterSpacer() {
             const footer = document.getElementById('footer-contact');
             const spacer = document.getElementById('footer-spacer');
@@ -850,118 +839,274 @@
         window.addEventListener('load', updateFooterSpacer);
         updateFooterSpacer();
 
-        // Navbar scroll glass
+        // ── Navbar scroll glass + shadow ──
         window.addEventListener('scroll', () => {
             const nc = document.getElementById('nav-container');
-            if (window.scrollY > 50) nc.classList.add('glass-nav');
-            else nc.classList.remove('glass-nav');
+            if (window.scrollY > 50) {
+                nc.classList.add('glass-nav');
+            } else {
+                nc.classList.remove('glass-nav');
+            }
         });
 
-        // Cart count
-        
-        
-
-        // Countdown timer
+        // ── Countdown timer ──
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 3);
         function updateTimer() {
             const diff = targetDate - new Date();
             if (diff < 0) return;
-            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            document.getElementById('days').innerText    = String(Math.floor(diff / 86400000)).padStart(2,'0');
+            document.getElementById('hours').innerText   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+            document.getElementById('minutes').innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+            document.getElementById('seconds').innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
         }
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Bundle builder
+        // ── Staggered card fade-in on page load ──
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('#comboGrid .combo-card');
+            cards.forEach((card, i) => {
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease';
+                    card.classList.add('card-visible');
+                }, 200 + i * 120);
+            });
+        });
+
+        // ── MODAL state ──
+        let _currentModalCard = null;
+
+        function openComboModal(card) {
+            _currentModalCard = card;
+            const name     = card.dataset.comboName;
+            const category = card.dataset.comboCategory;
+            const items    = JSON.parse(card.dataset.comboItems);
+            const price    = parseInt(card.dataset.comboPrice);
+            const original = parseInt(card.dataset.comboOriginal);
+            const savings  = parseInt(card.dataset.comboSavings);
+            const image    = card.dataset.comboImage;
+            const link     = card.dataset.comboLink || 'product-details.html';
+
+            document.getElementById('modalImgEl').src = image;
+            document.getElementById('modalImgEl').alt = name;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('modalTitle').textContent = name;
+            document.getElementById('modalOriginal').innerHTML = '&#8377;' + original.toLocaleString('en-IN');
+            document.getElementById('modalPrice').innerHTML    = '&#8377;' + price.toLocaleString('en-IN');
+            document.getElementById('modalSavings').innerHTML  = '&#8377;' + savings.toLocaleString('en-IN');
+
+            // Update the product page link
+            const linkEl = document.getElementById('modalProductLink');
+            if (linkEl) linkEl.href = link;
+
+            const ul = document.getElementById('modalItems');
+            ul.innerHTML = '';
+            items.forEach(item => {
+                ul.innerHTML += `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>${item}</li>`;
+            });
+
+            const modal = document.getElementById('comboModal');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeComboModal() {
+            const modal = document.getElementById('comboModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+            _currentModalCard = null;
+        }
+
+        // Close on backdrop click
+        document.getElementById('comboModal').addEventListener('click', function(e) {
+            if (e.target === this) closeComboModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeComboModal();
+        });
+
+        function addComboToCartFromModal() {
+            if (_currentModalCard) {
+                addComboToCart(_currentModalCard, document.getElementById('modalAddBtn'));
+                closeComboModal();
+            }
+        }
+
+        // ── Add combo to cart (localStorage) ──
+        function addComboToCart(card, btn) {
+            const name  = card.dataset.comboName;
+            const price = parseInt(card.dataset.comboPrice);
+            const image = card.dataset.comboImage;
+
+            let cart = JSON.parse(localStorage.getItem('rudraCart') || '[]');
+            const existing = cart.find(i => i.name === name);
+
+            if (existing) {
+                showComboToast('This combo is already in your cart!', true);
+                return;
+            }
+
+            cart.push({ name, price, image, quantity: 1, category: card.dataset.comboCategory });
+            localStorage.setItem('rudraCart', JSON.stringify(cart));
+
+            // Flying animation
+            if (typeof playCartAnimation === 'function') {
+                playCartAnimation(window.event, image, () => updateNavCartCount());
+            } else {
+                updateNavCartCount();
+            }
+
+            showComboToast('&#8377; ' + name + ' added to cart!');
+            animateBtn(btn);
+        }
+
+        function animateBtn(btn) {
+            if (!btn) return;
+            btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>Added!</span>';
+            btn.classList.add('bg-green-700');
+            btn.classList.remove('bg-[#8B4513]');
+            setTimeout(() => {
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg><span>Add Combo</span>';
+                btn.classList.remove('bg-green-700');
+                btn.classList.add('bg-[#8B4513]');
+            }, 2000);
+        }
+
+        function updateNavCartCount() {
+            let cart = JSON.parse(localStorage.getItem('rudraCart') || '[]');
+            let total = cart.reduce((s, i) => s + (i.quantity || 1), 0);
+            document.querySelectorAll('#navCartCount').forEach(el => {
+                el.innerText = total;
+                el.style.transform = 'scale(1.6)';
+                setTimeout(() => el.style.transform = 'scale(1)', 250);
+            });
+        }
+
+        // ── Toast helper ──
+        let _toastTimer;
+        function showComboToast(msg, isWarning = false) {
+            const t = document.getElementById('comboToast');
+            document.getElementById('comboToastMsg').innerHTML = msg;
+            t.style.background = isWarning ? '#b45309' : '#8B4513';
+            t.classList.add('show');
+            clearTimeout(_toastTimer);
+            _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+        }
+
+        // ── Bundle builder ──
         const selectedItems = [];
+
         function toggleSelection(card, itemName, price) {
             const idx = selectedItems.findIndex(i => i.name === itemName);
             if (idx > -1) {
                 selectedItems.splice(idx, 1);
                 card.classList.remove('selected');
             } else {
-                if (selectedItems.length >= 3) { alert('You can select a maximum of 3 sacred elements.'); return; }
+                if (selectedItems.length >= 3) {
+                    showComboToast('You can select a maximum of 3 sacred elements.', true);
+                    return;
+                }
                 selectedItems.push({ name: itemName, price });
                 card.classList.add('selected');
             }
             renderBundle();
         }
+
         function renderBundle() {
             const list = document.getElementById('bundleSelections');
-            const btn = document.getElementById('addBundleBtn');
+            const btn  = document.getElementById('addBundleBtn');
             list.innerHTML = '';
             if (!selectedItems.length) {
                 list.innerHTML = '<li class="opacity-50 italic">No products selected yet.</li>';
                 updateTotals(0);
-                disableBtn(btn); return;
+                disableBtn(btn);
+                return;
             }
             let sub = 0;
-            selectedItems.forEach(i => {
-                sub += i.price;
-                list.innerHTML += `<li class="flex justify-between text-sm py-2 border-b border-[#8B4513]/8"><span class="font-medium">${i.name}</span><span>&#8377;${i.price}</span></li>`;
+            selectedItems.forEach((item, idx) => {
+                sub += item.price;
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center text-sm py-2 border-b border-[#8B4513]/10 bundle-item-enter';
+                li.style.animationDelay = (idx * 60) + 'ms';
+                li.innerHTML = `
+                    <span class="font-medium">${item.name}</span>
+                    <span class="font-semibold">&#8377;${item.price.toLocaleString('en-IN')}</span>
+                `;
+                list.appendChild(li);
             });
             updateTotals(sub);
             selectedItems.length === 3 ? enableBtn(btn) : disableBtn(btn);
         }
+
         function updateTotals(sub) {
-            const disc = selectedItems.length === 3 ? Math.round(sub * .2) : 0;
-            document.getElementById('subtotalVal').innerText = '?' + sub;
-            document.getElementById('discountVal').innerText = '-?' + disc;
-            document.getElementById('finalTotalVal').innerText = '?' + (sub - disc);
+            const disc  = selectedItems.length === 3 ? Math.round(sub * 0.2) : 0;
+            const final = sub - disc;
+            document.getElementById('subtotalVal').innerHTML   = '&#8377;' + sub.toLocaleString('en-IN');
+            document.getElementById('discountVal').innerHTML   = disc ? '-&#8377;' + disc.toLocaleString('en-IN') : '&#8377;0';
+            document.getElementById('finalTotalVal').innerHTML = '&#8377;' + final.toLocaleString('en-IN');
         }
+
         function enableBtn(btn) {
             btn.disabled = false;
             btn.classList.remove('bg-[#8B4513]/35', 'cursor-not-allowed');
-            btn.classList.add('bg-[#8B4513]', 'hover:bg-[#8B4513]', 'cursor-pointer');
+            btn.classList.add('bg-[#8B4513]', 'cursor-pointer');
+            btn.onclick = addBundleToCart;
         }
+
         function disableBtn(btn) {
             btn.disabled = true;
             btn.classList.add('bg-[#8B4513]/35', 'cursor-not-allowed');
-            btn.classList.remove('bg-[#8B4513]', 'hover:bg-[#8B4513]', 'cursor-pointer');
+            btn.classList.remove('bg-[#8B4513]', 'cursor-pointer');
+            btn.onclick = null;
         }
-    </script>
-    <script>
+
+        function addBundleToCart() {
+            if (selectedItems.length !== 3) return;
+            const sub   = selectedItems.reduce((s, i) => s + i.price, 0);
+            const disc  = Math.round(sub * 0.2);
+            const final = sub - disc;
+            const name  = 'Custom Sacred Bundle (' + selectedItems.map(i => i.name).join(', ') + ')';
+
+            let cart = JSON.parse(localStorage.getItem('rudraCart') || '[]');
+            const existing = cart.find(i => i.name === name);
+            if (!existing) {
+                cart.push({ name, price: final, image: '', quantity: 1, category: 'Custom Bundle' });
+                localStorage.setItem('rudraCart', JSON.stringify(cart));
+            }
+            updateNavCartCount();
+            showComboToast('Custom Bundle added to cart!');
+        }
+
+        // ── Mobile menu ──
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            updateNavCartCount();
+            const btn      = document.getElementById('mobile-menu-btn');
+            const menu     = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('close-mobile-menu');
             const backdrop = document.getElementById('mobile-menu-backdrop');
 
             function toggleMenu(show) {
-                if(show) {
-                    mobileMenu.classList.remove('translate-x-full');
-                    if(backdrop) {
-                        backdrop.classList.remove('opacity-0', 'pointer-events-none');
-                        backdrop.classList.add('opacity-100', 'pointer-events-auto');
-                    }
+                if (show) {
+                    menu.classList.remove('translate-x-full');
+                    if (backdrop) { backdrop.classList.remove('opacity-0','pointer-events-none'); backdrop.classList.add('opacity-100','pointer-events-auto'); }
                 } else {
-                    mobileMenu.classList.add('translate-x-full');
-                    if(backdrop) {
-                        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
-                        backdrop.classList.add('opacity-0', 'pointer-events-none');
-                    }
+                    menu.classList.add('translate-x-full');
+                    if (backdrop) { backdrop.classList.remove('opacity-100','pointer-events-auto'); backdrop.classList.add('opacity-0','pointer-events-none'); }
                 }
             }
 
-            if(mobileMenuBtn && mobileMenu && closeMobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => toggleMenu(true));
-                closeMobileMenu.addEventListener('click', () => toggleMenu(false));
-                if(backdrop) {
-                    backdrop.addEventListener('click', () => toggleMenu(false));
-                }
+            if (btn && menu && closeBtn) {
+                btn.addEventListener('click', () => toggleMenu(true));
+                closeBtn.addEventListener('click', () => toggleMenu(false));
+                if (backdrop) backdrop.addEventListener('click', () => toggleMenu(false));
             }
         });
     </script>
-<script src="cart-anim.js"></script>
+    <script src="cart-anim.js"></script>
 </body>
 </html>
-
-
-
-
-
 
 

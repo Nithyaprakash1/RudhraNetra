@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -143,13 +143,23 @@
             background: #FFF2E2;
         }
 
-        /* Bead wrapper — JS moves horizontally, canvas renders inside */
+        #showcase-sticky::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238E5936' stroke-width='0.8' stroke-opacity='0.12'%3E%3Ccircle cx='100' cy='100' r='50'/%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3Cpath d='M100 20 Q120 60 180 100 Q120 140 100 180 Q80 140 20 100 Q80 60 100 20 Z'/%3E%3Cpath d='M43 43 Q70 70 100 20 Q130 70 157 43 Q130 100 180 100 Q130 130 157 157 Q100 130 100 180 Q70 130 43 157 Q70 100 20 100 Q70 70 43 43 Z'/%3E%3Cline x1='100' y1='0' x2='100' y2='200' stroke-opacity='0.07'/%3E%3Cline x1='0' y1='100' x2='200' y2='100' stroke-opacity='0.07'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 220px 220px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Bead wrapper — starts upper-center, JS moves it \ then / diagonally */
         #bead-wrap {
             position: absolute;
             width: 350px;
             height: 350px;
             left: 50%;
-            top: 50%;
+            top: 38%;   /* start upper-center, will move DOWN during animation */
             transform: translate(-50%, -50%);
             will-change: transform;
             z-index: 2;
@@ -168,12 +178,10 @@
         /* Feature point panels */
         .feature-panel {
             position: absolute;
-            top: 85%;
-            transform: translateY(-50%);
-            width: min(350px, 42vw);
+            width: min(340px, 36vw);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
             z-index: 3;
             pointer-events: none;
         }
@@ -184,12 +192,21 @@
         }
 
         #features-left {
-            left: 11vw;
-            top: 65%;
+            left: 5vw;
+            /* Vertically centered around bead's right-side position:
+               bead at 38%+14% = 52% of 100vh ≈ 400px.
+               Two cards ≈ 340px total. Center panel at 400px → top = 400-170 = 230px */
+            top: 210px;
+            visibility: hidden;
         }
 
         #features-right {
-            right: 11vw;
+            right: 5vw;
+            /* Vertically centered around bead's left-side position:
+               bead at 38%+26% = 64% of 100vh ≈ 491px.
+               Two cards ≈ 340px. Center at 491px → top = 491-170 = 321px */
+            top: 300px;
+            visibility: hidden;
         }
 
         .feat-item {
@@ -197,14 +214,14 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            margin-bottom: 20px;
+            /* margin-bottom removed — use parent gap only */
             background: rgba(255, 241, 224, 0.45);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(139, 69, 19, 0.15);
             padding: 18px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
+            /* Removed CSS transition because JS requestAnimationFrame is already doing smooth lerping. Mixing them causes severe lag. */
         }
 
         #features-left .feat-item {
@@ -255,81 +272,81 @@
             line-height: 1.5;
         }
 
-        /* Mobile: wider, shorter cards stacked horizontally */
+        /* Mobile layout fixes */
         @media (max-width: 768px) {
             .feature-panel {
-                width: 90vw;
-                position: static;
-                top: unset;
-                transform: none;
+                width: 68vw;
+                max-width: 320px;
+                position: absolute;
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
+                z-index: 10;
             }
 
             #features-left {
-                top: unset;
-                left: unset;
+                left: 3vw;
+                top: 160px;
             }
 
             #features-right {
-                right: unset;
-                margin-top: 200px;  /* push well below navbar on mobile */
+                right: 3vw;
+                top: 220px;
             }
 
             .feat-item {
-                padding: 12px 16px 28px;
-                margin-bottom: 10px;
-                gap: 10px;
+                padding: 12px 12px;
+                margin-bottom: 6px;
+                gap: 8px;
                 min-height: unset;
                 position: relative;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                border-radius: 12px;
             }
 
             .feat-text h3 {
-                font-size: 0.92rem;
+                font-size: 0.95rem;
                 margin-bottom: 2px;
             }
 
+            /* NO text clipping on mobile — let text breathe */
             .feat-text p {
-                font-size: 0.74rem;
+                font-size: 0.82rem;
                 line-height: 1.4;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                display: block;
+                overflow: visible;
+                -webkit-line-clamp: unset;
+                -webkit-box-orient: unset;
             }
 
             .feat-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 15px;
+                width: 30px;
+                height: 30px;
                 flex-shrink: 0;
             }
 
             .feat-icon .material-icons {
-                font-size: 16px;
-            }
-
-            /* Tap hint — centered at the bottom of the card */
-            .feat-item::after {
-                content: 'tap to view';
-                position: absolute;
-                bottom: 7px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 0.58rem;
-                color: #A8704D;
-                opacity: 0.65;
-                letter-spacing: 0.08em;
-                text-transform: lowercase;
-                white-space: nowrap;
+                font-size: 14px;
             }
 
             /* Mobile bottom-sheet modal */
             #feat-modal-overlay {
                 display: flex;
+            }
+        }
+
+        /* Extra small screens (375px and below) */
+        @media (max-width: 400px) {
+            .feat-item {
+                padding: 14px 12px;
+                gap: 10px;
+            }
+            .feat-text h3 {
+                font-size: 0.82rem;
+            }
+            .feat-text p {
+                font-size: 0.72rem;
             }
         }
 
@@ -487,41 +504,11 @@
             }
         }
 
-        /* Mobile */
+        /* Mobile override — tighter panels */
         @media (max-width: 768px) {
             #bead-wrap {
                 width: 220px;
                 height: 220px;
-            }
-
-            .feature-panel {
-                width: 43vw;
-                gap: 18px;
-            }
-
-            .feat-text h3 {
-                font-size: 0.76rem;
-            }
-
-            .feat-text p {
-                font-size: 0.68rem;
-            }
-
-            .feat-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .feat-icon .material-icons {
-                font-size: 14px;
-            }
-
-            #features-left {
-                left: 1vw;
-            }
-
-            #features-right {
-                right: 1vw;
             }
         }
 
@@ -637,33 +624,39 @@
 <body class="overflow-x-hidden">
 
     <!-- Navigation Bar -->
-    <nav class="fixed top-6 left-0 right-0 z-50 px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-8 py-3 md:py-4 transition-all duration-500 glass-nav"
+    <nav class="fixed top-6 left-0 right-0 z-50 px-2 md:px-6 navbar-transition" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-3 md:px-8 py-2 md:py-4 transition-all duration-500 glass-nav"
             id="nav-container">
-            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
-                <img src="image/logo.png" alt="Rudra Nethra" class="h-10 md:h-20 w-auto">
+            <a href="index.html" class="flex items-center gap-1.5 md:gap-3.5 shrink-0">
+                <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-8 md:h-14 w-auto">
+                <span class="w-[1px] h-5 md:h-8 bg-[#8B4513]/30 block"></span>
+                <img src="image/logo_text.png" alt="Rudra Nethra Text" class="h-6 md:h-12 w-auto object-contain">
             </a>
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
                 <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
                     <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div
-                        class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-1/2 -translate-x-1/2 mt-4 p-6 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
-                        <div class="grid grid-cols-3 gap-4 text-center">
-                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala"
-                                    class="rounded-md mx-auto mb-2" alt="Mala">
+                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-0 mt-4 p-4 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
+                        <div class="grid grid-cols-5 gap-3 text-center">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Mala">
                                 <span class="text-xs font-semibold block mt-2">Mala Beads</span>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet"
-                                    class="rounded-md mx-auto mb-2" alt="Bracelet">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Bracelet">
                                 <span class="text-xs font-semibold block mt-2">Bracelets</span>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-3 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol"
-                                    class="rounded-md mx-auto mb-2" alt="Idol">
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Idol">
                                 <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Planks">
+                                <span class="text-xs font-semibold block mt-2">Holy Planks</span>
+                            </a>
+                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
+                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Accessories" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Accessories">
+                                <span class="text-xs font-semibold block mt-2">Accessories</span>
                             </a>
                         </div>
                     </div>
@@ -672,11 +665,11 @@
                 <a href="about.html" class="hover:text-[#8B4513] nav-link nav-text-glow active-page">About</a>
                 <a href="contact.html" class="hover:text-[#8B4513] nav-link nav-text-glow">Contact</a>
             </div>
-            <div class="flex items-center space-x-3 md:space-x-6 shrink-0">
+            <div class="flex items-center space-x-2 md:space-x-6 shrink-0">
                 <!-- Simple modern cart icon -->
                 <a href="cart.html" class="nav-cart transition relative" aria-label="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
+                        stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
@@ -684,7 +677,7 @@
                         class="absolute -top-1.5 -right-1.5 bg-[#8B4513] text-[#FFF1E0] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
                 </a>
                 <button onclick="window.location.href='product.html'"
-                    class="shining-button px-4 md:px-6 py-2 rounded-full text-xs md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop
+                    class="shining-button px-3 md:px-6 py-1.5 md:py-2 rounded-full text-[10px] md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop
                     Now</button>
                 <!-- Mobile Menu Toggle Button -->
                 <button id="mobile-menu-btn"
@@ -809,8 +802,10 @@
             </div>
         </section>
 
-        <!-- Spacer to prevent the next section from disturbing the bead animation's bottom edge -->
-        <div style="height: 20vh; background-color: #FFF2E2;"></div>
+        <!-- Spacer with same pattern background, no gap -->
+        <div style="height: 20vh; background-color: #FFF2E2; position:relative; overflow:hidden;">
+            <div style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238E5936' stroke-width='0.8' stroke-opacity='0.12'%3E%3Ccircle cx='100' cy='100' r='50'/%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3Cpath d='M100 20 Q120 60 180 100 Q120 140 100 180 Q80 140 20 100 Q80 60 100 20 Z'/%3E%3Cpath d='M43 43 Q70 70 100 20 Q130 70 157 43 Q130 100 180 100 Q130 130 157 157 Q100 130 100 180 Q70 130 43 157 Q70 100 20 100 Q70 70 43 43 Z'/%3E%3Cline x1='100' y1='0' x2='100' y2='200' stroke-opacity='0.07'/%3E%3Cline x1='0' y1='100' x2='200' y2='100' stroke-opacity='0.07'/%3E%3C/g%3E%3C/svg%3E\");background-size:220px 220px;"></div>
+        </div>
 
         <!-- Immersive Pre-Footer Banner & CTA -->
         <section
@@ -828,7 +823,7 @@
                 <h2
                     class="text-5xl md:text-6xl text-[#FFF1E0] mb-6 leading-tight animate-[pulse_3s_ease-in-out_infinite]">
                     Awaken The Energy Within</h2>
-                <p class="text-lg nav-links/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated
+                <p class="text-lg text-[#FFF1E0]/80 mb-10 max-w-xl mx-auto">Experience the shielding aura of consecrated
                     Karungali crafted lovingly for your spiritual journey.</p>
                 <a href="product.html"
                     class="shining-button inline-block px-10 py-4 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#8B4513] transition-all font-medium tracking-wider text-sm shadow-2xl">
@@ -942,7 +937,7 @@
             if (!section || !beadImage) return;
 
             /* ── Virtual scroll + bidirectional scroll-lock state ── */
-            const TOTAL = 2500;        // virtual pixels for full animation
+            const TOTAL = 4500;        // virtual pixels for full animation
             let vScroll = 0;         // 0 … TOTAL
             let locked = false;
             let frozenY = 0;         // scrollY while locked
@@ -970,38 +965,94 @@
             }
 
             /* ── Map vScroll to animation targets ── */
+            /*
+             * ANIMATION TIMELINE  (TOTAL = 4500 virtual px)
+             *
+             * p 0.00–0.12 : Bead glides CENTER → upper-RIGHT  (no cards)
+             * p 0.12–0.20 : fl1 fades in (LEFT panel), bead frozen upper-right
+             * p 0.20–0.28 : fl2 fades in (LEFT panel)
+             * p 0.28–0.50 : FREEZE — both left cards & bead hold still
+             * p 0.50–0.56 : Left cards HARD fade out
+             * p 0.56–0.70 : Bead moves diagonal upper-right → lower-left  (“/”)
+             * p 0.70–0.78 : fr1 fades in (RIGHT panel), bead frozen lower-left
+             * p 0.78–0.86 : fr2 fades in (RIGHT panel)
+             * p 0.86–1.00 : FREEZE — both right cards & bead hold still
+             */
+            /* ── Map vScroll to animation targets ──
+             *
+             * BEAD PATH (\ then / then |):
+             * p 0.00–0.12 : center → lower-right  (\  path, bead goes DOWN+RIGHT)
+             * p 0.12–0.50 : FREEZE lower-right. Left cards fade in.
+             * p 0.50–0.56 : Left cards fade out.
+             * p 0.56–0.70 : lower-right → even-lower-left  (/  path, DOWN+LEFT)
+             * p 0.70–0.85 : FREEZE lower-left. Right cards fade in.
+             * p 0.85–1.00 : lower-left → move DOWN  (| path) while right cards stay still.
+             */
             function calcTargets() {
-                const p = cl(vScroll / TOTAL);
-                const isMobile = window.innerWidth <= 768;
-                const SIDE = isMobile ? 8 : 18;     // smaller horizontal offset on mobile
-                const TY_MAX = isMobile ? 25 : 38;  // increased vertical depth for both left and right
+                const p      = cl(vScroll / TOTAL);
+                const SIDE_R = 18;   // vw right
+                const SIDE_L = 20;   // vw left
+                const TY_R   = 14;   // vh down when bead is on right (bead at 38+14=52%)
+                const TY_L   = 26;   // vh down when bead is on left  (bead at 38+26=64%)
+                const TY_END = 41;   // final vh down (bead moves straight down)
 
-                /* 2 full 360° rotations across the complete animation. */
-                rotTarget = -p * Math.PI * 4;
-
-                /* Move Center -> Down Right -> Down Left (slanted > shape) */
-                if (p < 0.48) {
-                    txT = lerp(0, SIDE, ease(cl(p / 0.48)));
-                    tyT = lerp(0, TY_MAX * 0.5, ease(cl(p / 0.48)));
+                if (p < 0.12) {
+                    /* \ : move DOWN-RIGHT */
+                    const k = ease(cl(p / 0.12));
+                    txT = lerp(0,      SIDE_R, k);
+                    tyT = lerp(0,      TY_R,   k);
+                } else if (p < 0.56) {
+                    /* Freeze at lower-right */
+                    txT = SIDE_R;  tyT = TY_R;
+                } else if (p < 0.70) {
+                    /* / : continue DOWN-LEFT */
+                    const k = ease(cl((p - 0.56) / 0.14));
+                    txT = lerp(SIDE_R, -SIDE_L, k);
+                    tyT = lerp(TY_R,    TY_L,   k);
+                } else if (p < 0.90) {
+                    /* Freeze at lower-left */
+                    txT = -SIDE_L;  tyT = TY_L;
                 } else {
-                    txT = lerp(SIDE, -SIDE, ease(cl((p - 0.48) / 0.52)));
-                    tyT = lerp(TY_MAX * 0.5, TY_MAX, ease(cl((p - 0.48) / 0.52)));
+                    /* | : move straight DOWN */
+                    const k = ease(cl((p - 0.90) / 0.10));
+                    txT = -SIDE_L;
+                    tyT = lerp(TY_L, TY_END, k);
                 }
 
-                /* Left points (appear while moving to Down Right, disappear when moving to Center) */
-                const fl1_fadeIn = prog(0.05, 0.15);
-                const fl2_fadeIn = prog(0.15, 0.25);
-                const fl_fadeOut = Math.pow(ease(cl((p - 0.35) / 0.15)), 0.5); // Starts fading out after 0.35
+                rotTarget = -p * Math.PI * 4;
 
-                fl1oT = fl1_fadeIn * (1 - fl_fadeOut);
-                fl2oT = fl2_fadeIn * (1 - fl_fadeOut);
+                /* LEFT CARDS visible while bead is at lower-right (p 0.12–0.56)
+                   BOTH cards appear at exactly the same time — zero stagger */
+                const leftOn = (p >= 0.12 && p < 0.56);
+                if (leftOn) {
+                    const lp = cl((p - 0.12) / 0.44);
+                    const lFade = ease(cl(lp / 0.10));  /* fast fade: done in 10% of window */
+                    fl1oT = lFade;   /* card 1 — simultaneous */
+                    fl2oT = lFade;   /* card 2 — exactly same opacity as card 1 */
+                    if (p > 0.50) {
+                        const out = ease(cl((p - 0.50) / 0.06));
+                        fl1oT *= (1 - out);
+                        fl2oT *= (1 - out);
+                    }
+                } else {
+                    fl1oT = fl2oT = 0;
+                    fl1o  = fl2o  = 0;  /* hard zero — no ghost */
+                }
 
-                /* Right points (appear while moving to Down Left) */
-                const fr1_fadeIn = prog(0.70, 0.80);
-                const fr2_fadeIn = prog(0.80, 0.90);
+                /* RIGHT CARDS visible as soon as bead is mostly on the left (p >= 0.65)
+                   BOTH cards appear at exactly the same time — zero stagger */
+                const rightOn = (p >= 0.65);
+                if (rightOn) {
+                    const rp = cl((p - 0.65) / 0.35);
+                    const rFade = ease(cl(rp / 0.10));  /* fast fade: done in 10% of window */
+                    fr1oT = rFade;   /* card 1 — simultaneous */
+                    fr2oT = rFade;   /* card 2 — exactly same opacity as card 1 */
+                } else {
+                    fr1oT = fr2oT = 0;
+                    fr1o  = fr2o  = 0;  /* hard zero — no ghost */
+                }
 
-                fr1oT = fr1_fadeIn;
-                fr2oT = fr2_fadeIn;
+                /* NOTE: visibility is set in render() based on ACTUAL opacity, not target */
 
                 hOp = cl(1 - p / 0.06);
             }
@@ -1009,41 +1060,59 @@
             function render() {
                 calcTargets();
 
-                rotAngle = lerp(rotAngle, rotTarget, 0.07);   // silky-smooth lerp
+                rotAngle = lerp(rotAngle, rotTarget, 0.07);
                 tx = lerp(tx, txT, 0.09);
                 ty = lerp(ty, tyT, 0.09);
 
-                // Smoothly lerp the opacities
-                fl1o = lerp(fl1o, fl1oT, 0.08);
-                fl2o = lerp(fl2o, fl2oT, 0.08);
-                fr1o = lerp(fr1o, fr1oT, 0.08);
-                fr2o = lerp(fr2o, fr2oT, 0.08);
+                /* Use faster lerp (0.15) so cards appear quickly with no perceptible delay */
+                fl1o = lerp(fl1o, fl1oT, 0.15);
+                fl2o = lerp(fl2o, fl2oT, 0.15);
+                fr1o = lerp(fr1o, fr1oT, 0.15);
+                fr2o = lerp(fr2o, fr2oT, 0.15);
 
-                // Calculate current translations based on smoothed opacities
-                fl1x = lerp(-60, 0, fl1o);
-                fl2x = lerp(-60, 0, fl2o);
-                fr1x = lerp(60, 0, fr1o);
-                fr2x = lerp(60, 0, fr2o);
+                // Slide-in directions: left cards from left, right cards from right
+                const fl1x = lerp(-40, 0, fl1o);
+                const fl2x = lerp(-40, 0, fl2o);
+                const fr1x = lerp( 40, 0, fr1o);
+                const fr2x = lerp( 40, 0, fr2o);
 
-                // Rotate the actual image element itself around its Z-axis
                 beadImage.style.transform = `rotate(${rotAngle}rad)`;
-                beadWrap.style.transform = `translate(calc(-50% + ${tx}vw), calc(-50% + ${ty}vh))`;
+                beadWrap.style.transform  = `translate(calc(-50% + ${tx}vw), calc(-50% + ${ty}vh))`;
 
-                fl1.style.opacity = fl1o; fl1.style.transform = `translateX(${fl1x}px)`;
-                fl2.style.opacity = fl2o; fl2.style.transform = `translateX(${fl2x}px)`;
-                fr1.style.opacity = fr1o; fr1.style.transform = `translateX(${fr1x}px)`;
-                fr2.style.opacity = fr2o; fr2.style.transform = `translateX(${fr2x}px)`;
+                fl1.style.opacity = fl1o;  fl1.style.transform = `translateX(${fl1x}px)`;
+                fl2.style.opacity = fl2o;  fl2.style.transform = `translateX(${fl2x}px)`;
+                fr1.style.opacity = fr1o;  fr1.style.transform = `translateX(${fr1x}px)`;
+                fr2.style.opacity = fr2o;  fr2.style.transform = `translateX(${fr2x}px)`;
                 if (hint) hint.style.opacity = hOp;
+
+                /* Visibility driven by ACTUAL opacity — bullet-proof for all scroll directions */
+                const FL = document.getElementById('features-left');
+                const FR = document.getElementById('features-right');
+                FL.style.visibility = (fl1o > 0.02 || fl2o > 0.02) ? 'visible' : 'hidden';
+                FR.style.visibility = (fr1o > 0.02 || fr2o > 0.02) ? 'visible' : 'hidden';
 
                 rafId = requestAnimationFrame(render);
             }
 
             /* ── Scroll-lock helpers ── */
+            function resetAnim(initV) {
+                vScroll  = initV;
+                const p  = cl(initV / TOTAL);
+                /* Snap bead tx/ty to match the exact curve position */
+                if (p >= 0.90) { tx = -20; ty = 41; }        /* end of move-down */
+                else if (p >= 0.70) { tx = -20; ty = 26; }    /* lower-left freeze */
+                else if (p >= 0.12) { tx =  18; ty = 14; }   /* lower-right freeze */
+                else { tx = 0; ty = 0; }                       /* start center */
+                rotAngle = rotTarget = -p * Math.PI * 4;
+                /* Hard-reset all opacities — critical for glitch-free reverse scroll */
+                fl1o = fl2o = fr1o = fr2o = 0;
+                fl1oT = fl2oT = fr1oT = fr2oT = 0;
+            }
             function lockScroll(initV) {
                 if (locked) return;
-                locked = true;
-                vScroll = initV;
-                frozenY = sectionDocTop();   // pin page here (section top at viewport top)
+                locked   = true;
+                resetAnim(initV);
+                frozenY  = sectionDocTop();
                 window.scrollTo(0, frozenY);
             }
             function unlockScroll(to) {
@@ -1233,3 +1302,4 @@
 </body>
 
 </html>
+
