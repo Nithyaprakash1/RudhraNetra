@@ -192,7 +192,7 @@
         }
 
         #features-left {
-            left: 5vw;
+            left: 15vw;
             /* Vertically centered around bead's right-side position:
                bead at 38%+14% = 52% of 100vh ≈ 400px.
                Two cards ≈ 340px total. Center panel at 400px → top = 400-170 = 230px */
@@ -201,7 +201,7 @@
         }
 
         #features-right {
-            right: 5vw;
+            right: 15vw;
             /* Vertically centered around bead's left-side position:
                bead at 38%+26% = 64% of 100vh ≈ 491px.
                Two cards ≈ 340px. Center at 491px → top = 491-170 = 321px */
@@ -275,27 +275,29 @@
         /* Mobile layout fixes */
         @media (max-width: 768px) {
             .feature-panel {
-                width: 68vw;
-                max-width: 320px;
+                width: 88vw;
+                max-width: none;
                 position: absolute;
                 flex-direction: column;
-                gap: 8px;
+                height: auto;
+                gap: 16px;
                 z-index: 10;
             }
 
             #features-left {
-                left: 3vw;
-                top: 160px;
+                left: 6vw;
+                top: 22vh;
             }
 
             #features-right {
-                right: 3vw;
-                top: 220px;
+                right: 6vw;
+                top: unset;
+                bottom: 6vh;
             }
 
             .feat-item {
-                padding: 12px 12px;
-                margin-bottom: 6px;
+                padding: 10px 10px;
+                margin-bottom: 0px;
                 gap: 8px;
                 min-height: unset;
                 position: relative;
@@ -305,14 +307,19 @@
                 border-radius: 12px;
             }
 
+            #bead-wrap {
+                width: 240px;
+                height: 240px;
+            }
+
             .feat-text h3 {
-                font-size: 0.95rem;
+                font-size: 13px;
                 margin-bottom: 2px;
             }
 
             /* NO text clipping on mobile — let text breathe */
             .feat-text p {
-                font-size: 0.82rem;
+                font-size: 11px;
                 line-height: 1.4;
                 display: block;
                 overflow: visible;
@@ -512,11 +519,11 @@
             }
         }
 
-        /* Dynamic Navbar Colors */
+        /* Dynamic Navbar Colors - ALWAYS DARK FOR ABOUT PAGE */
         .nav-links,
         .nav-cart,
         .nav-mobile-btn {
-            color: #FFF1E0;
+            color: #8B4513;
             transition: color 0.3s ease;
         }
 
@@ -525,19 +532,19 @@
         }
 
         .nav-link:hover {
-            color: #8B4513 !important;
+            color: #5c3a23 !important;
         }
 
         .nav-shop-btn {
-            background-color: transparent !important;
+            background-color: #8B4513 !important;
             color: #FFF1E0 !important;
-            border: 1px solid #FFF1E0 !important;
+            border: 1px solid #8B4513 !important;
             transition: all 0.3s ease;
         }
 
         .nav-shop-btn:hover {
-            background-color: #FFF1E0 !important;
-            color: #8B4513 !important;
+            background-color: #5c3a23 !important;
+            border-color: #5c3a23 !important;
         }
 
         /* Glass state */
@@ -635,28 +642,31 @@
             <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest nav-links">
                 <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
-                    <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow">Products</a>
-                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-500 absolute top-full left-0 mt-4 p-4 bg-[#FFF1E0] shadow-2xl rounded-2xl w-[600px] border border-[#8B4513]/10">
-                        <div class="grid grid-cols-5 gap-3 text-center">
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Mala" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Mala">
-                                <span class="text-xs font-semibold block mt-2">Mala Beads</span>
+                    <a href="product.html" class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow flex items-center gap-1">
+                        Products
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <div class="product-drawer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 absolute top-full left-0 mt-2 py-2 bg-[#FFF1E0] shadow-xl rounded-xl w-60 border border-[#8B4513]/10">
+                        <div class="flex flex-col">
+                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
+                                <span>Karungali malai</span>
+                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Bracelet" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Bracelet">
-                                <span class="text-xs font-semibold block mt-2">Bracelets</span>
+                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
+                                <span>Karungali Bracelet</span>
+                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Idol" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Idol">
-                                <span class="text-xs font-semibold block mt-2">Deity Idols</span>
+                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
+                                <span>Karungali Necklace</span>
+                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Planks" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Planks">
-                                <span class="text-xs font-semibold block mt-2">Holy Planks</span>
+                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold border-b border-[#8B4513]/10">
+                                <span>Karungali Ring</span>
+                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
                             </a>
-                            <a href="product.html" class="enhanced-dropdown-item p-2.5 transition block">
-                                <img src="https://placehold.co/150x150/8B4513/FFF1E0?text=Accessories" class="rounded-md mx-auto mb-2 w-full aspect-square object-cover" alt="Accessories">
-                                <span class="text-xs font-semibold block mt-2">Accessories</span>
+                            <a href="product.html" class="px-5 py-3 hover:bg-[#8B4513]/5 transition flex items-center justify-between text-[#8B4513] text-sm font-semibold">
+                                <span>Karungali Damru Bracelet</span>
+                                <svg class="w-5 h-5 opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M10 17l5-5-5-5v10z"></path></svg>
                             </a>
                         </div>
                     </div>
@@ -726,8 +736,8 @@
         <!-- About Hero -->
         <section class="pt-40 pb-10 md:pt-52 md:pb-12 px-4 md:px-6 text-center">
             <div class="max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl text-[#8E5936] mb-5" data-aos="fade-up">About Us</h1>
-                <p class="text-[#8E5936]/70 text-base md:text-lg leading-relaxed" data-aos="fade-up"
+                <h1 class="text-4xl md:text-5xl lg:text-6xl text-[#8B4513] mb-5 font-bold" data-aos="fade-up">About Us</h1>
+                <p class="text-[#8B4513]/90 text-base md:text-lg leading-relaxed font-medium" data-aos="fade-up"
                     data-aos-delay="80">
                     Every Karungali bead we craft carries centuries of sacred tradition —
                     ethically sourced, ritually consecrated, and lovingly finished by hand.
@@ -809,7 +819,7 @@
 
         <!-- Immersive Pre-Footer Banner & CTA -->
         <section
-            class="relative min-h-[500px] bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
+            class="relative min-h-screen bg-[#1E110A] overflow-hidden flex flex-col justify-center items-center text-center px-6 py-20 z-10">
             <div class="absolute top-0 left-0 right-0 h-28 z-10 pointer-events-none"
                 style="background:linear-gradient(to bottom,#FFF2E2 0%,transparent 100%)"></div>
             <div class="absolute inset-0 z-0">
@@ -1055,6 +1065,14 @@
                 /* NOTE: visibility is set in render() based on ACTUAL opacity, not target */
 
                 hOp = cl(1 - p / 0.06);
+
+                /* Fade bead out smoothly right before the scroll unlocks to prevent overlapping the footer abruptly */
+                if (p > 0.95) {
+                    const fade = cl((p - 0.95) / 0.05);
+                    document.getElementById('bead-wrap').style.opacity = 1 - fade;
+                } else {
+                    document.getElementById('bead-wrap').style.opacity = 1;
+                }
             }
 
             function render() {
