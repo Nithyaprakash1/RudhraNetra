@@ -622,26 +622,46 @@
 
 
                 // Fetch Reviews
-                const qReviews = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
-                const reviewsSnap = await getDocs(qReviews);
-                let reviewsHtml = '';
+                let allReviews = [];
                 
-                reviewsSnap.forEach((doc) => {
-                    const data = doc.data();
-                    const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now';
+                try {
+                    const qReviews = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+                    const reviewsSnap = await getDocs(qReviews);
+                    reviewsSnap.forEach((doc) => {
+                        const data = doc.data();
+                        allReviews.push({
+                            name: data.name || 'Anonymous',
+                            rating: data.rating || 5,
+                            reviewText: data.reviewText || data.text || '',
+                            date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
+                            timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
+                        });
+                    });
+                } catch(e) {
+                    console.warn("Firebase reviews fetch failed, falling back to local storage.", e);
+                }
+
+                // Merge local reviews
+                const localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+                allReviews = [...allReviews, ...localReviews];
+                
+                // Sort by timestamp desc
+                allReviews.sort((a, b) => b.timestamp - a.timestamp);
+
+                let reviewsHtml = '';
+                allReviews.forEach(data => {
                     const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
-                    
                     reviewsHtml += `
-                        <tr>
+                        <tr class="hover:bg-[#8B4513]/5 transition-colors">
                             <td class="font-bold">${data.name}</td>
                             <td class="text-yellow-500">${stars}</td>
                             <td class="text-sm opacity-80 max-w-md">${data.reviewText || '<i>No written comment</i>'}</td>
-                            <td class="text-xs opacity-60">${date}</td>
+                            <td class="text-xs opacity-60">${data.date}</td>
                         </tr>
                     `;
                 });
 
-                document.getElementById('metricReviews').innerHTML = reviewsSnap.size;
+                document.getElementById('metricReviews').innerHTML = allReviews.length;
                 document.querySelector('#reviewsTable tbody').innerHTML = reviewsHtml || `<tr><td colspan="4" class="text-center opacity-50">No reviews found.</td></tr>`;
 
             } catch(e) {

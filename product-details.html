@@ -1979,15 +1979,27 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         if (!name) { alert('Please enter your name.'); return; }
 
         try {
-            await addDoc(commentsRef, {
+            await addDoc(collection(db, "reviews"), {
+                productId: productId,
                 name: name,
                 rating: rating,
-                text: text,
+                reviewText: text,
                 timestamp: serverTimestamp()
             });
         } catch (err) {
             console.warn("Could not save to DB due to rules, but continuing local update.", err.message);
         }
+
+        const localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+        localReviews.push({
+            productId: productId,
+            name: name,
+            rating: rating,
+            reviewText: text,
+            date: new Date().toLocaleDateString(),
+            timestamp: Date.now()
+        });
+        localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
         
         // Locally increase the ratings
         window.localExtraCount++;
