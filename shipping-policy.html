@@ -410,5 +410,22 @@
         });
     </script>
     <script src="cart-anim.js"></script>
+    <script id="active-footer-script">
+        document.addEventListener("DOMContentLoaded", function () {
+            const footerLinks = document.querySelectorAll("footer a");
+            let currentPath = window.location.pathname.split("/").pop();
+            if (!currentPath || currentPath === "") currentPath = "index.html";
+            footerLinks.forEach(link => {
+                const href = link.getAttribute("href");
+                if (href && href.split("#")[0] === currentPath) {
+                    link.style.color = "#8B4513";
+                    link.style.fontWeight = "bold";
+                    link.style.textShadow = "none";
+                    link.classList.remove("text-[#FFF1E0]");
+
+                }
+            });
+        });
+    </script>
 </body>
 </html>
