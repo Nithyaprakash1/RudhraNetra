@@ -739,35 +739,35 @@
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">5&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar5" style="width: 85%;"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar5" style="width: 0%;" data-width="85%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct5">85%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">4&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar4" style="width: 10%;"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar4" style="width: 0%;" data-width="10%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct4">10%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">3&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar3" style="width: 3%;"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar3" style="width: 0%;" data-width="3%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct3">3%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">2&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar2" style="width: 1%;"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar2" style="width: 0%;" data-width="1%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct2">1%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">1&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar1" style="width: 1%;"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar1" style="width: 0%;" data-width="1%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct1">1%</span>
                         </div>
@@ -1854,7 +1854,12 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const pct = Math.round((counts[s] / count) * 100);
             const bar = document.getElementById('bar' + s);
             const pctEl = document.getElementById('pct' + s);
-            if (bar) bar.style.width = pct + '%';
+            if (bar) {
+                bar.setAttribute('data-width', pct + '%');
+                if (window.ratingBarsIntersected) {
+                    bar.style.width = pct + '%';
+                }
+            }
             if (pctEl) pctEl.textContent = pct + '%';
         }
     }, (error) => {
@@ -1898,6 +1903,25 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             alert("Failed to submit review. Error: " + err.message);
         }
     };
+    // Intersection Observer for rating bars animation
+    window.ratingBarsIntersected = false;
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    window.ratingBarsIntersected = true;
+                    const bars = entry.target.querySelectorAll('.rating-bar-fill');
+                    bars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width') || '0%';
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        const container = document.getElementById('rating-bars');
+        if(container) observer.observe(container);
+    });
 </script>
 
 
