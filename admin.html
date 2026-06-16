@@ -409,11 +409,32 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Upload Image</label>
-                    <input type="file" id="newProdImg" required accept="image/*" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    <label class="block text-sm font-semibold mb-2 text-[#8B4513]">Upload Image</label>
+                    <div id="dropZone" class="w-full border-2 border-dashed border-[#8B4513]/30 rounded-xl p-8 text-center cursor-pointer hover:border-[#8B4513] hover:bg-[#8B4513]/5 transition-all duration-300 relative group overflow-hidden bg-white/40">
+                        <input type="file" id="newProdImg" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <div class="relative z-0 pointer-events-none flex flex-col items-center justify-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-[#8B4513]/10 flex items-center justify-center text-[#8B4513] group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-[#8B4513]">Drag & Drop your image here</p>
+                                <p class="text-xs opacity-60 mt-1">or click to browse from computer</p>
+                            </div>
+                        </div>
+                        <div id="imagePreviewContainer" class="absolute inset-0 bg-white/90 backdrop-blur-sm hidden items-center justify-center p-2 z-20">
+                            <img id="imagePreview" class="max-h-full max-w-full rounded shadow-md object-contain">
+                            <button type="button" id="removeImgBtn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg transition-transform hover:scale-110 pointer-events-auto">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" id="saveProductBtn" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4 flex items-center justify-center">
-                    Save Product
+                <button type="submit" id="saveProductBtn" class="w-full relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] font-bold uppercase tracking-widest py-4 rounded-xl shadow-[0_10px_20px_rgba(139,69,19,0.3)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(139,69,19,0.4)] transition-all duration-300 mt-6 group">
+                    <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                        Save Product
+                    </span>
                 </button>
             </form>
         </div>
@@ -544,6 +565,64 @@
             }
         }
         loadProducts();
+
+        // --- Drag & Drop Image Logic ---
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('newProdImg');
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const removeImgBtn = document.getElementById('removeImgBtn');
+
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                    previewContainer.classList.add('flex');
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        removeImgBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // prevent opening file dialog
+            fileInput.value = ''; // clear input
+            previewContainer.classList.add('hidden');
+            previewContainer.classList.remove('flex');
+            imagePreview.src = '';
+        });
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('border-[#8B4513]', 'bg-[#8B4513]/10'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('border-[#8B4513]', 'bg-[#8B4513]/10'), false);
+        });
+
+        dropZone.addEventListener('drop', function(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if(files && files.length > 0) {
+                fileInput.files = files; // Assign files to input
+                const event = new Event('change', { bubbles: true });
+                fileInput.dispatchEvent(event); // Trigger change event for preview
+            }
+        }, false);
+
+        // Make modal closing also reset form & image
+        const closeBtn = document.querySelector('#addProductModalContent button');
+        closeBtn.addEventListener('click', () => {
+            document.getElementById('addProductForm').reset();
+            removeImgBtn.click();
+        });
 
         window.deleteProduct = function(id) {
             const modal = document.getElementById('customConfirmModal');
