@@ -655,6 +655,18 @@
                 
                 allReviews = [...allReviews, ...localReviews];
                 
+                // Deduplicate by name and review text since Firebase server timestamp and local timestamp might differ slightly
+                const uniqueReviews = [];
+                const seen = new Set();
+                for (const review of allReviews) {
+                    const key = review.name + '|' + review.reviewText;
+                    if (!seen.has(key)) {
+                        seen.add(key);
+                        uniqueReviews.push(review);
+                    }
+                }
+                allReviews = uniqueReviews;
+                
                 // Sort by timestamp desc
                 allReviews.sort((a, b) => b.timestamp - a.timestamp);
 
