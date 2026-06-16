@@ -1807,36 +1807,6 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             totalRating += data.rating || 5;
             let ratingVal = data.rating || 5;
             if (counts[ratingVal] !== undefined) counts[ratingVal]++;
-            
-            // Format date
-            let dateStr = 'Just now';
-            if(data.timestamp) {
-                const date = data.timestamp.toDate();
-                dateStr = date.toLocaleDateString();
-            }
-
-            // Render HTML
-            const stars = '&#9733;'.repeat(ratingVal) + '&#9734;'.repeat(5 - ratingVal);
-            const initial = data.name ? data.name.charAt(0).toUpperCase() : 'U';
-            const name = data.name || 'Anonymous';
-            const text = data.text || '';
-
-            const html = `
-            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 transition-all duration-300 cursor-default">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md">${initial}</div>
-                        <div>
-                            <h4 class="font-bold text-[#8B4513]">${name}</h4>
-                            <div class="flex text-amber-500 text-xs">${stars}</div>
-                        </div>
-                    </div>
-                    <span class="text-xs opacity-50">${dateStr}</span>
-                </div>
-                <p class="text-sm text-[#8B4513]/90 leading-relaxed italic flex-1">"${text}"</p>
-            </div>
-            `;
-            container.innerHTML += html;
         });
 
         // Generate deterministic dummy reviews based on productId
