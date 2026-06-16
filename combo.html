@@ -235,25 +235,25 @@
         }
 
         /* ── Nav colors ── */
-        .nav-text-glow { text-shadow: 0 0 8px rgba(139,69,19,0.4); }
-        .active-nav-link { text-shadow: 0 0 12px rgba(139,69,19,0.8); color:#FFF1E0 !important; font-weight:800; }
-        .nav-links, .nav-cart, .nav-mobile-btn { color:#FFF1E0; transition:color 0.3s ease; }
+        .nav-text-glow { text-shadow: none; }
+        .active-nav-link { text-shadow: none; color:#8B4513 !important; font-weight:800; }
+        .nav-links, .nav-cart, .nav-mobile-btn { color:#8B4513; transition:color 0.3s ease; }
         .nav-link { transition:color 0.3s ease; }
-        .nav-link:hover { color:#8B4513 !important; }
+        .nav-link:hover { color:#5c3a23 !important; }
         .nav-shop-btn {
             background-color:transparent !important;
-            color:#FFF1E0 !important;
-            border:1px solid #FFF1E0 !important;
+            color:#8B4513 !important;
+            border:1px solid #8B4513 !important;
             transition:all 0.3s ease;
         }
-        .nav-shop-btn:hover { background-color:#FFF1E0 !important; color:#8B4513 !important; }
+        .nav-shop-btn:hover { background-color:#8B4513 !important; color:#FFF1E0 !important; }
 
         /* Glass state */
         .glass-nav .nav-links, .glass-nav .nav-cart, .glass-nav .nav-mobile-btn { color:#8B4513 !important; }
         .glass-nav .nav-link:hover { color:#5c3a23 !important; }
         .glass-nav .nav-shop-btn { background-color:#8B4513 !important; color:#FFF1E0 !important; border:1px solid #8B4513 !important; }
         .glass-nav .nav-shop-btn:hover { background-color:#5c3a23 !important; border-color:#5c3a23 !important; }
-        .glass-nav .active-nav-link { color:#8B4513 !important; text-shadow: 0 0 12px rgba(139,69,19,0.4); }
+        .glass-nav .active-nav-link { color:#8B4513 !important; text-shadow: none; }
 
         /* ── Modal ── */
         #comboModal {
@@ -454,7 +454,6 @@
             </div>
         </header>
 
-        <!-- Featured Combos Section -->
         <section class="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
             <div class="text-center mb-14 md:mb-20" data-aos="fade-up">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Handpicked for You</span>
@@ -463,228 +462,58 @@
 
             <!-- Cards grid — stagger set via JS -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="comboGrid">
-
-                <!-- Combo Card 1 -->
-                <div class="combo-card flex flex-col"
-                    data-combo-name="Ultimate Protection Trio"
-                    data-combo-category="Personal Protection"
-                    data-combo-items='["Karungali Malai (108 Beads, 8mm)","Karungali Protection Bracelet","Sacred Car Hanging"]'
-                    data-combo-price="2499"
-                    data-combo-original="3499"
-                    data-combo-savings="1000"
-                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Ultimate+Protection+Set"
-                    data-combo-link="product-details.html?combo=protection-trio">
-                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                        <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Ultimate+Protection+Set"
-                            class="card-img w-full h-56 md:h-64 object-cover" alt="Ultimate Protection Trio">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 28%</span>
-                    </div>
-                    <div class="p-5 md:p-6 flex-1 flex flex-col">
-                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Personal Protection</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Ultimate Protection Trio</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Malai (108 Beads, 8mm)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Protection Bracelet</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Sacred Car Hanging</li>
-                        </ul>
-                        <!-- View product link -->
-                        <a href="product-details.html?combo=protection-trio"
-                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                            </svg>
-                            View Product Details
-                        </a>
-                        <div class="flex flex-wrap items-center gap-2 mb-5">
-                            <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;2,499</span>
-                            <span class="text-sm line-through opacity-40">&#8377;3,499</span>
-                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;1,000</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button onclick="openComboModal(this.closest('.combo-card'))"
-                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
-                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
-                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
-                                </svg>
-                                <span>Add Combo</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Combo Card 2 — Bestseller -->
-                <div class="combo-card bestseller-card flex flex-col"
-                    data-combo-name="Divine Home Sanctuary"
-                    data-combo-category="Home Harmony"
-                    data-combo-items='["Karungali Ganesha Deity Idol (3 inch)","Consecrated Holy Sitting Plank","Aromatic Incense Holder"]'
-                    data-combo-price="4499"
-                    data-combo-original="5999"
-                    data-combo-savings="1500"
-                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Divine+Home+Sanctuary"
-                    data-combo-link="product-details.html?combo=home-sanctuary">
-                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                        <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Divine+Home+Sanctuary"
-                            class="card-img w-full h-56 md:h-64 object-cover" alt="Divine Home Sanctuary">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span class="bestseller-badge absolute top-4 left-4 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase">&#11088; BEST SELLER</span>
-                        <span class="savings-badge absolute top-4 right-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 25%</span>
-                    </div>
-                    <div class="p-5 md:p-6 flex-1 flex flex-col">
-                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Home Harmony</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Divine Home Sanctuary</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Ganesha Deity Idol (3 inch)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Consecrated Holy Sitting Plank</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Aromatic Incense Holder</li>
-                        </ul>
-                        <!-- View product link -->
-                        <a href="product-details.html?combo=home-sanctuary"
-                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                            </svg>
-                            View Product Details
-                        </a>
-                        <div class="flex flex-wrap items-center gap-2 mb-5">
-                            <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;4,499</span>
-                            <span class="text-sm line-through opacity-40">&#8377;5,999</span>
-                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;1,500</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button onclick="openComboModal(this.closest('.combo-card'))"
-                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
-                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
-                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
-                                </svg>
-                                <span>Add Combo</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Combo Card 3 -->
-                <div class="combo-card flex flex-col"
-                    data-combo-name="Daily Grounding Duo"
-                    data-combo-category="Daily Wear"
-                    data-combo-items='["Karungali Elastic Bracelet (10mm)","Pure Copper-Capped Karungali Ring","Free consecrated coin set included"]'
-                    data-combo-price="1399"
-                    data-combo-original="1899"
-                    data-combo-savings="500"
-                    data-combo-image="https://placehold.co/500x350/8B4513/FFF1E0?text=Daily+Grounding+Duo"
-                    data-combo-link="product-details.html?combo=daily-grounding">
-                    <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
-                        <img src="https://placehold.co/500x350/8B4513/FFF1E0?text=Daily+Grounding+Duo"
-                            class="card-img w-full h-56 md:h-64 object-cover" alt="Daily Grounding Duo">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-                        <span class="savings-badge absolute top-4 left-4 text-[#FFF1E0] px-3 py-1 font-bold tracking-widest text-[10px] uppercase">SAVE 26%</span>
-                    </div>
-                    <div class="p-5 md:p-6 flex-1 flex flex-col">
-                        <span class="text-xs uppercase tracking-widest font-semibold opacity-60">Daily Wear</span>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">Daily Grounding Duo</h3>
-                        <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Karungali Elastic Bracelet (10mm)</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Pure Copper-Capped Karungali Ring</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#8B4513] shrink-0"></span>Free consecrated coin set included</li>
-                        </ul>
-                        <!-- View product link -->
-                        <a href="product-details.html?combo=daily-grounding"
-                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B4513] hover:text-[#5c3a23] underline underline-offset-2 mb-4 transition group/link">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                            </svg>
-                            View Product Details
-                        </a>
-                        <div class="flex flex-wrap items-center gap-2 mb-5">
-                            <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;1,399</span>
-                            <span class="text-sm line-through opacity-40">&#8377;1,899</span>
-                            <span class="ml-auto text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">You save &#8377;500</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button onclick="openComboModal(this.closest('.combo-card'))"
-                                class="btn-outline-brown w-1/2 py-3 bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition font-medium text-xs uppercase tracking-wider rounded-lg">Details</button>
-                            <button onclick="addComboToCart(this.closest('.combo-card'), this)"
-                                class="btn-brown w-1/2 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
-                                </svg>
-                                <span>Add Combo</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Combos will be injected here by javascript below -->
             </div>
         </section>
 
-        <!-- Interactive Bundle Builder -->
-        <section class="py-20 md:py-28 px-4 md:px-6"
+        <!-- The Power of Synergy Section -->
+        <section class="py-20 md:py-28 px-4 md:px-6 relative overflow-hidden"
             style="background:linear-gradient(135deg,rgba(142,89,54,.05) 0%,#FFF1E0 50%,rgba(142,89,54,.04) 100%);">
-            <div class="max-w-5xl mx-auto text-center mb-14 md:mb-20" data-aos="fade-up">
-                <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Your Custom Alliance</span>
-                <h2 class="text-3xl md:text-5xl mb-4 section-title-line">Build Your Own Sacred Bundle</h2>
-                <p class="text-sm text-[#8B4513]/75 max-w-xl mx-auto mt-8">Select any <strong>three</strong> consecrated Karungali items below to automatically unlock a flat <strong>20% discount</strong> on checkout.</p>
-            </div>
-
-            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-                <!-- Product Selector -->
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6" id="customSelectorGrid">
-
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="0" onclick="toggleSelection(this,'Mala Beads',1200)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Mala+Beads" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Mala">
-                        <h4 class="font-bold text-base md:text-lg">Mala Beads (108, 8mm)</h4>
-                        <p class="text-sm text-[#8B4513]/75">&#8377;1,200</p>
-                    </div>
-
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="100" onclick="toggleSelection(this,'Deity Idol',1800)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Deity+Idol" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Idol">
-                        <h4 class="font-bold text-base md:text-lg">Ganesha Deity Idol</h4>
-                        <p class="text-sm text-[#8B4513]/75">&#8377;1,800</p>
-                    </div>
-
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="200" onclick="toggleSelection(this,'Protection Bracelet',600)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Bracelet" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Bracelet">
-                        <h4 class="font-bold text-base md:text-lg">Protection Bracelet</h4>
-                        <p class="text-sm text-[#8B4513]/75">&#8377;600</p>
-                    </div>
-
-                    <div class="selector-card p-4" data-aos="fade-right" data-aos-delay="300" onclick="toggleSelection(this,'Holy Plank',2000)">
-                        <img src="https://placehold.co/300x160/8B4513/FFF1E0?text=Holy+Plank" class="w-full h-36 md:h-40 object-cover mb-4 rounded-lg" alt="Plank">
-                        <h4 class="font-bold text-base md:text-lg">Consecrated Holy Plank</h4>
-                        <p class="text-sm text-[#8B4513]/75">&#8377;2,000</p>
-                    </div>
-
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16 md:mb-24" data-aos="fade-up">
+                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-3">Divine Amplification</span>
+                    <h2 class="text-3xl md:text-5xl mb-6 section-title-line text-[#8B4513] font-bold tracking-tight">The Power of Synergy</h2>
+                    <p class="text-base md:text-lg text-[#8B4513]/75 max-w-2xl mx-auto mt-8 font-light leading-relaxed">
+                        When authenticated Karungali elements are combined, their energetic resonance doesn't just add up—it multiplies. Discover why pairing our sacred artifacts creates a profound auric shield.
+                    </p>
                 </div>
 
-                <!-- Checkout Panel -->
-                <div class="lg:col-span-4" data-aos="fade-left" data-aos-delay="200">
-                    <div class="checkout-panel p-6 md:p-8 sticky top-32">
-                        <h4 class="text-xl md:text-2xl font-bold border-b border-[#8B4513]/10 pb-4 mb-6">Your Custom Bundle</h4>
-                        <ul class="space-y-3 text-sm min-h-[80px]" id="bundleSelections">
-                            <li class="opacity-50 italic">No products selected yet.</li>
-                        </ul>
-                        <div class="border-t border-[#8B4513]/10 pt-6 mt-6">
-                            <div class="flex justify-between font-semibold text-sm mb-2">
-                                <span>Subtotal:</span>
-                                <span id="subtotalVal">&#8377;0</span>
-                            </div>
-                            <div class="flex justify-between font-semibold text-sm text-green-700 mb-6">
-                                <span>Bundle Offer (20% Off):</span>
-                                <span id="discountVal">&#8377;0</span>
-                            </div>
-                            <div class="flex justify-between font-bold text-xl border-t border-[#8B4513]/10 pt-4 mb-6">
-                                <span>Final Total:</span>
-                                <span id="finalTotalVal">&#8377;0</span>
-                            </div>
-                            <button id="addBundleBtn" disabled
-                                class="shining-button w-full py-4 bg-[#8B4513]/35 text-[#FFF1E0] font-semibold text-xs tracking-widest uppercase cursor-not-allowed rounded-xl transition-all duration-300">
-                                Add Custom Bundle to Cart
-                            </button>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    <div class="bg-white/60 backdrop-blur-md border border-[#8B4513]/10 p-8 rounded-3xl shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.12)] transition-all duration-500 hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
                         </div>
+                        <h3 class="text-xl font-bold text-[#8B4513] mb-4">Amplified Energy Field</h3>
+                        <p class="text-[#8B4513]/70 leading-relaxed text-sm">
+                            Wearing a Malai alongside a Bracelet creates a continuous closed loop of grounding energy across your body's meridian points, significantly amplifying your aura.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/60 backdrop-blur-md border border-[#8B4513]/10 p-8 rounded-3xl shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.12)] transition-all duration-500 hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513] mb-4">Complete Protection</h3>
+                        <p class="text-[#8B4513]/70 leading-relaxed text-sm">
+                            While a necklace protects the heart chakra, bracelets guard against energy drain from interactions. Together, they form an impenetrable shield against negativity.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/60 backdrop-blur-md border border-[#8B4513]/10 p-8 rounded-3xl shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.12)] transition-all duration-500 hover:-translate-y-2 group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#8B4513] mb-4">Synchronized Consecration</h3>
+                        <p class="text-[#8B4513]/70 leading-relaxed text-sm">
+                            Our bundles are consecrated together at the exact same auspicious timing (Muhurtham), ensuring their vibrational frequencies are perfectly matched and harmonious.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -993,90 +822,6 @@
             _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
         }
 
-        // ── Bundle builder ──
-        const selectedItems = [];
-
-        function toggleSelection(card, itemName, price) {
-            const idx = selectedItems.findIndex(i => i.name === itemName);
-            if (idx > -1) {
-                selectedItems.splice(idx, 1);
-                card.classList.remove('selected');
-            } else {
-                if (selectedItems.length >= 3) {
-                    showComboToast('You can select a maximum of 3 sacred elements.', true);
-                    return;
-                }
-                selectedItems.push({ name: itemName, price });
-                card.classList.add('selected');
-            }
-            renderBundle();
-        }
-
-        function renderBundle() {
-            const list = document.getElementById('bundleSelections');
-            const btn  = document.getElementById('addBundleBtn');
-            list.innerHTML = '';
-            if (!selectedItems.length) {
-                list.innerHTML = '<li class="opacity-50 italic">No products selected yet.</li>';
-                updateTotals(0);
-                disableBtn(btn);
-                return;
-            }
-            let sub = 0;
-            selectedItems.forEach((item, idx) => {
-                sub += item.price;
-                const li = document.createElement('li');
-                li.className = 'flex justify-between items-center text-sm py-2 border-b border-[#8B4513]/10 bundle-item-enter';
-                li.style.animationDelay = (idx * 60) + 'ms';
-                li.innerHTML = `
-                    <span class="font-medium">${item.name}</span>
-                    <span class="font-semibold">&#8377;${item.price.toLocaleString('en-IN')}</span>
-                `;
-                list.appendChild(li);
-            });
-            updateTotals(sub);
-            selectedItems.length === 3 ? enableBtn(btn) : disableBtn(btn);
-        }
-
-        function updateTotals(sub) {
-            const disc  = selectedItems.length === 3 ? Math.round(sub * 0.2) : 0;
-            const final = sub - disc;
-            document.getElementById('subtotalVal').innerHTML   = '&#8377;' + sub.toLocaleString('en-IN');
-            document.getElementById('discountVal').innerHTML   = disc ? '-&#8377;' + disc.toLocaleString('en-IN') : '&#8377;0';
-            document.getElementById('finalTotalVal').innerHTML = '&#8377;' + final.toLocaleString('en-IN');
-        }
-
-        function enableBtn(btn) {
-            btn.disabled = false;
-            btn.classList.remove('bg-[#8B4513]/35', 'cursor-not-allowed');
-            btn.classList.add('bg-[#8B4513]', 'cursor-pointer');
-            btn.onclick = addBundleToCart;
-        }
-
-        function disableBtn(btn) {
-            btn.disabled = true;
-            btn.classList.add('bg-[#8B4513]/35', 'cursor-not-allowed');
-            btn.classList.remove('bg-[#8B4513]', 'cursor-pointer');
-            btn.onclick = null;
-        }
-
-        function addBundleToCart() {
-            if (selectedItems.length !== 3) return;
-            const sub   = selectedItems.reduce((s, i) => s + i.price, 0);
-            const disc  = Math.round(sub * 0.2);
-            const final = sub - disc;
-            const name  = 'Custom Sacred Bundle (' + selectedItems.map(i => i.name).join(', ') + ')';
-
-            let cart = JSON.parse(localStorage.getItem('rudraCart') || '[]');
-            const existing = cart.find(i => i.name === name);
-            if (!existing) {
-                cart.push({ name, price: final, image: '', quantity: 1, category: 'Custom Bundle' });
-                localStorage.setItem('rudraCart', JSON.stringify(cart));
-            }
-            updateNavCartCount();
-            showComboToast('Custom Bundle added to cart!');
-        }
-
         // ── Mobile menu ──
         document.addEventListener('DOMContentLoaded', () => {
             updateNavCartCount();
@@ -1118,6 +863,227 @@
                     
                 }
             });
+        });
+    </script>
+    <script>
+        const myCombos = [
+            {
+                name: "The Divine Combo",
+                price: 1499,
+                views: "500+",
+                delivery: "Free Delivery",
+                items: ["Classic Karungali Malai (8 mm - 54 Beads)", "Classic Karungali Bracelet (6 mm - 20 Beads)", "Classic Karungali Ring (6 mm)"],
+                images: [
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (4).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wrist_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2", "Variation 3"]
+            },
+            {
+                name: "The Divine Combo",
+                price: 1999,
+                views: "450+",
+                delivery: "Free Delivery",
+                items: ["Classic Karungali Malai (8 mm - 108 Beads)", "Classic Karungali Bracelet (6 mm - 20 Beads)", "Classic Karungali Ring (6 mm)"],
+                images: [
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (4).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_display_block_202606111730.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (1).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wrist_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2", "Variation 3"]
+            },
+            {
+                name: "The Premium Divine Combo",
+                price: 2999,
+                views: "600+",
+                delivery: "Free Delivery",
+                items: ["Polished Black Karungali Malai (8 mm - 54 Beads)", "Matte Finish Bracelet (6 mm - 20 Beads)", "Karungali Necklace with OM Vel Dollar (8 mm - 54 Beads)", "Karungali Ring with Silver coated Band (6 mm)"],
+                images: [
+                    "image/Product Images (1-11)/Product 3  (Polished Black Karungali Malai (54 Beads))/Karungali_Malai_on_display_stand_202606111537.jpeg",
+                    "image/Product Images (1-11)/Matte finished bracelet/3.jpeg",
+                    "image/Product Images (1-11)/OM vel dollor/2.jpeg",
+                    "image/Product Images (1-11)/Product 3  (Polished Black Karungali Malai (54 Beads))/Karungali_Malai_on_granite_floor_202606111250.jpeg",
+                    "image/Product Images (1-11)/Matte finished bracelet/1.jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2"]
+            },
+            {
+                name: "Sita-Ram Combo",
+                price: 2399,
+                views: "550+",
+                delivery: "Free Delivery",
+                items: ["2 Classic Karungali Malas (8 mm - 54 Beads)", "2 Matching Bracelets (6 mm - 20 Beads)"],
+                images: [
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wrist_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (1).jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2"]
+            },
+            {
+                name: "Shubhra Silver Combo",
+                price: 3499,
+                views: "480+",
+                delivery: "Free Delivery",
+                items: ["Silver Coated Karungali Malai (8 mm - 54 Beads)", "Silver Twin Damru Bracelet (6 mm - 20 Beads)", "Karungali Ring with Silver coated Band (6 mm)"],
+                images: [
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc…_202606111456.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_worn_by_model_202606111522.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2", "Variation 3"]
+            },
+            {
+                name: "Parivar Family Combo",
+                price: 1499,
+                views: "520+",
+                delivery: "Free Delivery",
+                items: ["2 Karungali Malas (6mm - 54 Beads)", "1 Karungali Bracelet (6 mm - 20 Beads)"],
+                images: [
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_ped…_202606111730.jpeg"
+                ],
+                variations: []
+            },
+            {
+                name: "Value Pack",
+                price: 799,
+                views: "580+",
+                delivery: "Delivery Fee: ₹149",
+                items: ["Set of 2 Karungali Bracelets(6mm - 20 Beads)"],
+                images: [
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_display_block_202606111730.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wrist_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_handcrafted_T…_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_ped…_202606111730.jpeg"
+                ],
+                variations: ["Variation 1", "Variation 2"]
+            },
+            {
+                name: "Spiritual Combo",
+                price: 1699,
+                views: "470+",
+                delivery: "Delivery Fee: ₹149",
+                items: ["Karungali necklace with karungali dollar (8mm - 54 Beads)", "Mini Damru bracelet (6mm - 20 Beads)", "Natural Karungali Ring (6mm)"],
+                images: [
+                    "image/Product Images (1-11)/Karungali dollor/2.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
+                    "image/Product Images (1-11)/Karungali dollor/1.jpeg",
+                    "image/Product Images (1-11)/Karungali dollor/3.jpeg",
+                    "image/Product Images (1-11)/Karungali dollor/4.jpeg"
+                ],
+                variations: ["Variation 1"]
+            },
+            {
+                name: "Buy 1 Get 1 Combo",
+                price: 1499,
+                views: "500+",
+                delivery: "Free Delivery",
+                items: ["2-Classic Karungali Malai (8 mm - 108 Beads)"],
+                images: [
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (2).jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (4).jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (1).jpeg",
+                    "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg"
+                ],
+                variations: ["Variation 1"]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {            
+            const grid = document.getElementById('comboGrid');
+            if(grid) {
+                grid.innerHTML = '';
+                myCombos.forEach((c, idx) => {
+                    const safeName = c.name.replace(/"/g, '&quot;');
+                    const safeItems = JSON.stringify(c.items).replace(/"/g, '&quot;');
+                    const mainImgId = `combo-img-${idx}`;
+                    
+                    let thumbnailsHtml = '<div class="flex gap-2 p-3 bg-white border-b border-[#8B4513]/10 overflow-x-auto">';
+                    c.images.forEach(img => {
+                        thumbnailsHtml += `<img src="${img}" class="w-12 h-12 object-cover rounded cursor-pointer border-2 border-transparent hover:border-[#8B4513] transition-all" onclick="document.getElementById('${mainImgId}').src=this.src">`;
+                    });
+                    thumbnailsHtml += '</div>';
+
+                    let itemsHtml = '';
+                    c.items.forEach(item => {
+                        itemsHtml += `<li class="flex items-start gap-2 leading-snug"><span class="w-1.5 h-1.5 mt-1.5 rounded-full bg-[#8B4513] shrink-0"></span>${item}</li>`;
+                    });
+
+                    grid.innerHTML += `
+                        <div class="combo-card flex flex-col h-full"
+                            data-combo-name="${safeName}"
+                            data-combo-category="Combo"
+                            data-combo-items="${safeItems}"
+                            data-combo-price="${c.price}"
+                            data-combo-original="${c.price + 500}"
+                            data-combo-savings="500"
+                            data-combo-image="${c.images[0]}"
+                            data-combo-link="product-details.html?combo=${idx}">
+                            
+                            <div class="relative overflow-hidden flex-shrink-0" style="border-radius:20px 20px 0 0">
+                                <img id="${mainImgId}" src="${c.images[0]}"
+                                    class="card-img w-full h-56 md:h-64 object-cover" alt="${safeName}">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent pointer-events-none"></div>
+                                <div class="absolute top-4 left-4 flex items-center bg-black/60 backdrop-blur text-[#FFF1E0] px-2 py-1 text-[10px] font-semibold uppercase tracking-wider rounded shadow-lg">
+                                    <span class="relative flex h-2 w-2 mr-1.5">
+                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                    </span>
+                                    ${c.views} views
+                                </div>
+                            </div>
+                            
+                            ${thumbnailsHtml}
+
+                            <div class="p-5 md:p-6 flex-1 flex flex-col bg-white/40">
+                                <h3 class="text-xl md:text-2xl font-bold text-[#8B4513] mt-1 mb-4">${c.name}</h3>
+                                <ul class="space-y-2 text-sm text-[#8B4513]/80 flex-1 mb-4">
+                                    ${itemsHtml}
+                                </ul>
+                                
+                                <div class="flex flex-col gap-1 mb-6">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-2xl md:text-3xl font-extrabold text-[#8B4513]">&#8377;${c.price}</span>
+                                        <span class="text-[10px] font-bold text-[#8B4513] bg-[#FFF1E0] border border-[#8B4513]/20 px-2 py-1 rounded-full uppercase">${c.delivery}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex space-x-2 mt-auto">
+                                    <button onclick="window.location.href='product-details.html?combo=${idx}'; event.stopPropagation();" class="flex-1 py-3 rounded-lg font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider flex items-center justify-center">
+                                        View Product
+                                    </button>
+                                    <button onclick="addComboToCart(this.closest('.combo-card'), this); event.stopPropagation();" class="btn-brown flex-1 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
+                                        </svg>
+                                        <span>Buy Now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Trigger visibility for AOS styling
+                setTimeout(() => {
+                    document.querySelectorAll('.combo-card').forEach(el => el.classList.add('card-visible'));
+                }, 100);
+            }
         });
     </script>
 </body>

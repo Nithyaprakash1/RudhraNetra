@@ -179,25 +179,51 @@
         }
     
         
-    
-        
-    
+        /* Custom Round Button Styles */
+        .round-btn {
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            background-color: rgba(139, 69, 19, 0.05);
+            color: #8B4513;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .round-btn:hover {
+            border-color: #8B4513;
+            background-color: rgba(139, 69, 19, 0.15);
+            transform: translateY(-2px);
+        }
+        .selected-round {
+            background-color: #8B4513 !important;
+            color: #FFF1E0 !important;
+            border-color: #8B4513 !important;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4) !important;
+            transform: translateY(-2px);
+        }
+
         /* Dynamic Navbar Colors */
         .nav-links, .nav-cart, .nav-mobile-btn {
-            color: #FFF1E0;
+            color: #8B4513;
             transition: color 0.3s ease;
         }
         .nav-link { transition: color 0.3s ease; }
-        .nav-link:hover { color: #8B4513 !important; }
+        .nav-link:hover { color: #5c2e0b !important; }
         .nav-shop-btn {
             background-color: transparent !important;
-            color: #FFF1E0 !important;
-            border: 1px solid #FFF1E0 !important;
+            color: #8B4513 !important;
+            border: 1px solid #8B4513 !important;
             transition: all 0.3s ease;
         }
         .nav-shop-btn:hover {
-            background-color: #FFF1E0 !important;
-            color: #8B4513 !important;
+            background-color: #8B4513 !important;
+            color: #FFF1E0 !important;
+            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3) !important;
         }
 
         /* Glass state */
@@ -468,7 +494,7 @@
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                         </span>
-                        <span>500+ views</span>
+                        <span id="view-count-display">500+ views</span>
                     </div>
                 </div>
 
@@ -490,7 +516,7 @@
             </div>
 
             <!-- Right Side: Details, Selectors, and CTA (6 Columns) -->
-            <div class="lg:col-span-6 flex flex-col justify-between" data-aos="fade-left">
+            <div class="lg:col-span-6 flex flex-col gap-10" data-aos="fade-left">
                 <div>
                     <!-- Breadcrumbs & Category -->
                     <span id="product-breadcrumb" class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-2 block">Premium Wear / Consecrated Bracelets</span>
@@ -508,11 +534,11 @@
                     <div class="mb-6">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Beads</label>
                         <div class="flex space-x-3">
-                            <button onclick="selectOption(this, 'beads')" class="beads-option-btn px-4 py-8 border-2 border-[#8B4513] bg-[#8B4513] text-[#FFF1E0] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
-                                <span class="-mt-2">20 Beads</span>
+                            <button id="beads-btn-1" onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn selected-round">
+                                <span>20 Beads</span>
                             </button>
-                            <button onclick="selectOption(this, 'beads')" class="beads-option-btn px-4 py-8 border border-[#8B4513]/30 bg-[#8B4513]/20 hover:bg-[#8B4513]/30 text-[#8B4513] text-sm font-semibold tracking-wide uppercase shape-heart focus:outline-none transition w-32 h-24 flex items-center justify-center">
-                                <span class="-mt-2">27 Beads</span>
+                            <button id="beads-btn-2" onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn">
+                                <span>27 Beads</span>
                             </button>
                         </div>
                     </div>
@@ -521,11 +547,11 @@
                     <div class="mb-8">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Size</label>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn heart-btn selected-heart">6mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn heart-btn">7mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn heart-btn">8mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn heart-btn">10mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn heart-btn">12mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn selected-round">6mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">7mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">8mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">10mm</button>
+                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">12mm</button>
                         </div>
                     </div>
 
@@ -708,53 +734,8 @@
             </div>
 
             <!-- Right Side Customer Feedbacks List (8 Columns) -->
-            <div class="lg:col-span-8 space-y-8" data-aos="fade-left">
-                
-                <!-- Feedback 1 -->
-                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">S</div>
-                            <div>
-                                <h4 class="font-bold text-[#8B4513]">Sara</h4>
-                                <div class="flex text-amber-500 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            </div>
-                        </div>
-                        <span class="text-xs opacity-50">2 days ago</span>
-                    </div>
-                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"Beautiful product! Exceeded my expectations."</p>
-                </div>
-
-                <!-- Feedback 2 -->
-                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8B4513]/80 text-white flex items-center justify-center font-bold mr-3 shape-heart">MT</div>
-                            <div>
-                                <h4 class="font-bold text-[#8B4513]">Mike T.</h4>
-                                <div class="flex text-amber-500 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            </div>
-                        </div>
-                        <span class="text-xs opacity-50">1 week ago</span>
-                    </div>
-                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"Good quality, but shipping took longer than expected."</p>
-                </div>
-
-                <!-- Feedback 3 -->
-                <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 shape-heart">P</div>
-                            <div>
-                                <h4 class="font-bold text-[#8B4513]">praba</h4>
-                                <div class="flex text-amber-500 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            </div>
-                        </div>
-                        <span class="text-xs opacity-50">2 weeks ago</span>
-                    </div>
-                    <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"loving it! Perfect for daily use."</p>
-                </div>
-
+            <div class="lg:col-span-8 space-y-8" data-aos="fade-left" id="reviews-list-container">
+                <p class="text-[#8B4513] italic opacity-70">Loading reviews...</p>
             </div>
 
         </div>
@@ -869,27 +850,21 @@
             const buttons = document.querySelectorAll(`.${type}-option-btn`);
             
             if (type === 'size') {
-                buttons.forEach(btn => btn.classList.remove('selected-heart'));
-                button.classList.add('selected-heart');
+                buttons.forEach(btn => btn.classList.remove('selected-round'));
+                button.classList.add('selected-round');
             } else if (type === 'beads') {
-                if (button.classList.contains('bg-[#8B4513]')) {
+                if (button.classList.contains('selected-round')) {
                     // Already selected, so unpick
-                    button.classList.remove('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
-                    button.classList.add('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
+                    button.classList.remove('selected-round');
                     return;
                 }
-                buttons.forEach(btn => {
-                    btn.classList.remove('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
-                    btn.classList.add('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
-                });
-                button.classList.remove('bg-[#8B4513]/20', 'text-[#8B4513]', 'hover:bg-[#8B4513]/30', 'border', 'border-[#8B4513]/30');
-                button.classList.add('bg-[#8B4513]', 'text-[#FFF1E0]', 'border-2', 'border-[#8B4513]');
+                buttons.forEach(btn => btn.classList.remove('selected-round'));
+                button.classList.add('selected-round');
             } else {
                 buttons.forEach(btn => {
-                    btn.className = `${type}-option-btn px-5 py-2.5 border border-[#8B4513]/30 text-[#8B4513] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition hover:border-[#8B4513]`;
+                    btn.className = `${type}-option-btn round-btn`;
                 });
-                // Adjust style for active selected element
-                button.className = `${type}-option-btn px-5 py-2.5 border-2 border-[#8B4513] bg-[#8B4513] text-[#FFF1E0] text-xs font-semibold uppercase tracking-wider sharp-edge focus:outline-none transition`;
+                button.className = `${type}-option-btn round-btn selected-round`;
             }
             updatePriceDisplay();
         }
@@ -908,39 +883,331 @@
         }
 
         function calculateDynamicPrice() {
-            let basePrice = 599;
+            let basePrice = window.currentProduct ? window.currentProduct.price : 599;
+            let oldPrice = window.currentProduct ? window.currentProduct.oldPrice : 699;
             
             // Get selected size
-            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-heart');
+            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-round');
             let size = selectedSizeBtn ? parseInt(selectedSizeBtn.innerText) : 6;
-            if (size > 6) {
-                basePrice += (size - 6) * 50; // Add 50 for every mm above 6
-            }
             
             // Get selected beads
-            let selectedBeadsBtn = document.querySelector('.beads-option-btn.bg-\\[\\#8B4513\\]');
+            let selectedBeadsBtn = document.querySelector('.beads-option-btn.selected-round');
             let beads = selectedBeadsBtn ? parseInt(selectedBeadsBtn.innerText) : 20;
-            if (beads === 27) {
-                basePrice += 100;
+
+            if (window.currentProduct) {
+                if (window.currentProduct.id === 1) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 749;
+                        else if (size === 7) basePrice = 899;
+                        else if (size === 8) basePrice = 999;
+                        else if (size === 10) basePrice = 1299;
+                        else if (size === 12) basePrice = 1499;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 899;
+                        else if (size === 7) basePrice = 999;
+                        else if (size === 8) basePrice = 1299;
+                        else if (size === 10) basePrice = 1499;
+                        else if (size === 12) basePrice = 1799;
+                    }
+                    oldPrice = Math.round(basePrice / 0.62 / 100) * 100;
+                } else if (window.currentProduct.id === 2 || window.currentProduct.id === 3) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 849;
+                        else if (size === 7) basePrice = 999;
+                        else if (size === 8) basePrice = 1199;
+                        else if (size === 10) basePrice = 1399;
+                        else if (size === 12) basePrice = 1599;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 999;
+                        else if (size === 7) basePrice = 1199;
+                        else if (size === 8) basePrice = 1399;
+                        else if (size === 10) basePrice = 1599;
+                        else if (size === 12) basePrice = 1899;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 4) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 949;
+                        else if (size === 7) basePrice = 1099;
+                        else if (size === 8) basePrice = 1299;
+                        else if (size === 10) basePrice = 1599;
+                        else if (size === 12) basePrice = 1799;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 1099;
+                        else if (size === 7) basePrice = 1399;
+                        else if (size === 8) basePrice = 1599;
+                        else if (size === 10) basePrice = 1999;
+                        else if (size === 12) basePrice = 2199;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 5) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1299;
+                        else if (size === 7) basePrice = 1499;
+                        else if (size === 8) basePrice = 1599;
+                        else if (size === 10) basePrice = 1799;
+                        else if (size === 12) basePrice = 1999;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 1799;
+                        else if (size === 7) basePrice = 1999;
+                        else if (size === 8) basePrice = 2199;
+                        else if (size === 10) basePrice = 2499;
+                        else if (size === 12) basePrice = 2799;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 6) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 749;
+                        else if (size === 7) basePrice = 899;
+                        else if (size === 8) basePrice = 999;
+                        else if (size === 10) basePrice = 1299;
+                        else if (size === 12) basePrice = 1499;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 899;
+                        else if (size === 7) basePrice = 999;
+                        else if (size === 8) basePrice = 1199;
+                        else if (size === 10) basePrice = 1499;
+                        else if (size === 12) basePrice = 1799;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 7) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 849;
+                        else if (size === 7) basePrice = 999;
+                        else if (size === 8) basePrice = 1199;
+                        else if (size === 10) basePrice = 1399;
+                        else if (size === 12) basePrice = 1599;
+                    } else if (beads === 108) {
+                        if (size === 6) basePrice = 999;
+                        else if (size === 7) basePrice = 1199;
+                        else if (size === 8) basePrice = 1399;
+                        else if (size === 10) basePrice = 1799;
+                        else if (size === 12) basePrice = 1999;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 8) {
+                    if (beads === 20) {
+                        if (size === 6) basePrice = 399;
+                        else if (size === 7) basePrice = 499;
+                        else if (size === 8) basePrice = 599;
+                        else if (size === 10) basePrice = 699;
+                        else if (size === 12) basePrice = 899;
+                    } else if (beads === 27) {
+                        if (size === 6) basePrice = 499;
+                        else if (size === 7) basePrice = 599;
+                        else if (size === 8) basePrice = 799;
+                        else if (size === 10) basePrice = 899;
+                        else if (size === 12) basePrice = 999;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 9) {
+                    if (beads === 20) {
+                        if (size === 6) basePrice = 599;
+                        else if (size === 7) basePrice = 699;
+                        else if (size === 8) basePrice = 799;
+                        else if (size === 10) basePrice = 899;
+                        else if (size === 12) basePrice = 1099;
+                    } else if (beads === 27) {
+                        if (size === 6) basePrice = 699;
+                        else if (size === 7) basePrice = 799;
+                        else if (size === 8) basePrice = 899;
+                        else if (size === 10) basePrice = 999;
+                        else if (size === 12) basePrice = 1199;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 10) {
+                    if (beads === 20) {
+                        if (size === 6) basePrice = 499;
+                        else if (size === 7) basePrice = 599;
+                        else if (size === 8) basePrice = 699;
+                        else if (size === 10) basePrice = 799;
+                        else if (size === 12) basePrice = 999;
+                    } else if (beads === 27) {
+                        if (size === 6) basePrice = 599;
+                        else if (size === 7) basePrice = 699;
+                        else if (size === 8) basePrice = 799;
+                        else if (size === 10) basePrice = 999;
+                        else if (size === 12) basePrice = 1099;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 11 || window.currentProduct.id === 12) {
+                    if (beads === 20) {
+                        if (size === 6) basePrice = 599;
+                        else if (size === 7) basePrice = 699;
+                        else if (size === 8) basePrice = 799;
+                        else if (size === 10) basePrice = 899;
+                        else if (size === 12) basePrice = 1099;
+                    } else if (beads === 27) {
+                        if (size === 6) basePrice = 699;
+                        else if (size === 7) basePrice = 799;
+                        else if (size === 8) basePrice = 899;
+                        else if (size === 10) basePrice = 1099;
+                        else if (size === 12) basePrice = 1199;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 13) {
+                    if (beads === 20) {
+                        if (size === 6) basePrice = 399;
+                        else if (size === 7) basePrice = 499;
+                        else if (size === 8) basePrice = 599;
+                        else if (size === 10) basePrice = 699;
+                        else if (size === 12) basePrice = 899;
+                    } else if (beads === 27) {
+                        if (size === 6) basePrice = 499;
+                        else if (size === 7) basePrice = 599;
+                        else if (size === 8) basePrice = 799;
+                        else if (size === 10) basePrice = 899;
+                        else if (size === 12) basePrice = 999;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 14) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 699;
+                        else if (size === 7) basePrice = 899;
+                        else if (size === 8) basePrice = 999;
+                        else if (size === 10) basePrice = 1249;
+                        else if (size === 12) basePrice = 1499;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 15) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1149;
+                        else if (size === 7) basePrice = 1349;
+                        else if (size === 8) basePrice = 1849;
+                        else if (size === 10) basePrice = 2099;
+                        else if (size === 12) basePrice = 2499;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 16) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1249;
+                        else if (size === 7) basePrice = 1449;
+                        else if (size === 8) basePrice = 1899;
+                        else if (size === 10) basePrice = 2249;
+                        else if (size === 12) basePrice = 2499;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 17) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1249;
+                        else if (size === 7) basePrice = 1449;
+                        else if (size === 8) basePrice = 1699;
+                        else if (size === 10) basePrice = 1899;
+                        else if (size === 12) basePrice = 2049;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 18) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1549;
+                        else if (size === 7) basePrice = 1799;
+                        else if (size === 8) basePrice = 1849;
+                        else if (size === 10) basePrice = 1899;
+                        else if (size === 12) basePrice = 2499;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 19) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1249;
+                        else if (size === 7) basePrice = 1449;
+                        else if (size === 8) basePrice = 1699;
+                        else if (size === 10) basePrice = 1899;
+                        else if (size === 12) basePrice = 2749;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 20) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1875;
+                        else if (size === 7) basePrice = 2125;
+                        else if (size === 8) basePrice = 2499;
+                        else if (size === 10) basePrice = 2699;
+                        else if (size === 12) basePrice = 2899;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.id === 21) {
+                    if (beads === 54) {
+                        if (size === 6) basePrice = 1249;
+                        else if (size === 7) basePrice = 1499;
+                        else if (size === 8) basePrice = 1699;
+                        else if (size === 10) basePrice = 1899;
+                        else if (size === 12) basePrice = 2249;
+                    }
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
+                } else if (window.currentProduct.category === 'malas') {
+                    if (size === 7) basePrice += 150;
+                    else if (size === 8) basePrice += 250;
+                    else if (size === 10) basePrice += 550;
+                    else if (size === 12) basePrice += 750;
+
+                    if (beads === 108) basePrice += 250;
+                    
+                    oldPrice = Math.round(basePrice / 0.62 / 100) * 100;
+                } else if (window.currentProduct.category === 'bracelets') {
+                    if (size > 6) basePrice += (size - 6) * 50;
+                    if (beads === 27) basePrice += 100;
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio));
+                } else if (window.currentProduct.category === 'necklaces') {
+                    if (size > 6) basePrice += (size - 6) * 50;
+                    const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
+                    oldPrice = Math.round(basePrice / (1 - discountRatio));
+                }
             }
             
-            return basePrice;
+            return { price: basePrice, oldPrice: oldPrice };
         }
 
         function updatePriceDisplay() {
             const priceElement = document.getElementById('product-price');
             if (priceElement) {
                 const qty = parseInt(document.getElementById('quantityVal').value) || 1;
-                const totalCalculated = calculateDynamicPrice() * qty;
+                const dynamic = calculateDynamicPrice();
+                const totalCalculated = dynamic.price * qty;
+                const totalOld = dynamic.oldPrice * qty;
+                
                 priceElement.innerHTML = '&#8377;' + totalCalculated;
+                
+                const oldPriceEl = priceElement.nextElementSibling;
+                if(oldPriceEl && oldPriceEl.tagName === 'SPAN') {
+                    oldPriceEl.innerHTML = '&#8377;' + totalOld; 
+                    const discountEl = oldPriceEl.nextElementSibling;
+                    if (discountEl && discountEl.tagName === 'SPAN') {
+                        const discount = Math.round(((totalOld - totalCalculated) / totalOld) * 100);
+                        discountEl.innerHTML = discount + '% OFF';
+                        if (discount > 0) {
+                            discountEl.style.display = 'inline-block';
+                            oldPriceEl.style.display = 'inline-block';
+                        } else {
+                            discountEl.style.display = 'none';
+                            oldPriceEl.style.display = 'none';
+                        }
+                    }
+                }
             }
         }
 
         function getCartItemOptions() {
-            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-heart');
+            let selectedSizeBtn = document.querySelector('.size-option-btn.selected-round');
             let size = selectedSizeBtn ? selectedSizeBtn.innerText : '6mm';
             
-            let selectedBeadsBtn = document.querySelector('.beads-option-btn.bg-\\[\\#8B4513\\]');
+            let selectedBeadsBtn = document.querySelector('.beads-option-btn.selected-round');
             let beads = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace('\n', ' ') : '20 Beads';
             
             let qty = parseInt(document.getElementById('quantityVal').value) || 1;
@@ -1066,6 +1333,7 @@ function closeReviewPanel() {
 
 function setRating(n) {
     selectedRating = n;
+    window.selectedRating = n;
     updateStarPicker(n);
 }
 
@@ -1216,7 +1484,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             </div>
         </div>
         
-        <button onclick="submitReview()" class="w-full py-3 md:py-4 mt-2 bg-gradient-to-r from-[#8B4513] to-[#5c2e0b] text-[#FFF1E0] text-sm font-bold uppercase tracking-widest rounded-xl hover:shadow-[0_10px_20px_rgba(139,69,19,0.3)] transform hover:-translate-y-1 transition-all duration-300">
+        <button onclick="submitReviewFirebase()" class="w-full py-3 md:py-4 mt-2 bg-gradient-to-r from-[#8B4513] to-[#5c2e0b] text-[#FFF1E0] text-sm font-bold uppercase tracking-widest rounded-xl hover:shadow-[0_10px_20px_rgba(139,69,19,0.3)] transform hover:-translate-y-1 transition-all duration-300">
             Post Review
         </button>
     </div>
@@ -1262,33 +1530,11 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const found = masterProducts.find(p => p.id == parseInt(productId));
             if (found) product = found;
         }
+        window.currentProduct = product;
         
         document.title = product.name + ' | Rudra Nethra';
         const h1s = document.querySelectorAll('h1');
         if(h1s.length > 0) h1s[0].textContent = product.name;
-        
-        const priceEl = document.getElementById('product-price');
-        if(priceEl) priceEl.innerHTML = '&#8377;' + product.price;
-        
-        const oldPriceEl = priceEl.nextElementSibling;
-        if(oldPriceEl && oldPriceEl.tagName === 'SPAN') {
-            oldPriceEl.innerHTML = '&#8377;' + product.oldPrice; 
-            const discountEl = oldPriceEl.nextElementSibling;
-            if (discountEl && discountEl.tagName === 'SPAN') {
-                const oldP = product.oldPrice;
-                const newP = product.price;
-                if (oldP > newP) {
-                    const discount = Math.round(((oldP - newP) / oldP) * 100);
-                    discountEl.innerHTML = discount + '% OFF';
-                    discountEl.style.display = 'inline-block';
-                    oldPriceEl.style.display = 'inline-block';
-                } else {
-                    // Hide if there is no discount (e.g., price increased)
-                    discountEl.style.display = 'none';
-                    oldPriceEl.style.display = 'none';
-                }
-            }
-        }
         
         const tds = document.querySelectorAll('td.p-4.text-\\[\\#8B4513\\]');
         if(tds.length > 0) tds[0].textContent = product.name;
@@ -1311,11 +1557,16 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         const btn2 = document.getElementById('beads-btn-2');
         if(btn1 && btn2) {
             if(product.category === 'bracelets') {
-                btn1.innerHTML = '<span class="-mt-2">20 Beads</span>';
-                btn2.innerHTML = '<span class="-mt-2">27 Beads</span>';
+                btn1.innerHTML = '<span>20 Beads</span>';
+                btn2.innerHTML = '<span>27 Beads</span>';
+                btn2.style.display = 'inline-block';
+            } else if(product.category === 'necklaces') {
+                btn1.innerHTML = '<span>54 Beads</span>';
+                btn2.style.display = 'none';
             } else {
-                btn1.innerHTML = '<span class="-mt-2">54 Beads</span>';
-                btn2.innerHTML = '<span class="-mt-2">108 Beads</span>';
+                btn1.innerHTML = '<span>54 Beads</span>';
+                btn2.innerHTML = '<span>108 Beads</span>';
+                btn2.style.display = 'inline-block';
             }
         }
         
@@ -1323,11 +1574,18 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         if(specMaterial) {
             specMaterial.textContent = product.name.toLowerCase().includes('rudraksha') ? 'Pure Karungali Wood & Natural Rudraksha Beads' : 'Pure Karungali Wood';
         }
-        
+
         const specBeads = document.getElementById('spec-beads');
         if(specBeads) {
-            specBeads.textContent = product.category === 'bracelets' ? '20 Beads : 27 Beads' : '54 Beads : 108 Beads';
+            if(product.category === 'bracelets') {
+                specBeads.textContent = '20 Beads : 27 Beads';
+            } else if (product.category === 'necklaces') {
+                specBeads.textContent = '54 Beads';
+            } else {
+                specBeads.textContent = '54 Beads : 108 Beads';
+            }
         }
+
         
         const specFinish = document.getElementById('spec-finish');
         if(specFinish) {
@@ -1336,6 +1594,9 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             else if(product.name.toLowerCase().includes('matte')) specFinish.textContent = 'Matte Finish';
             else specFinish.textContent = 'Polished Finish';
         }
+        
+        // Finally, calculate and display the price after all labels have been updated
+        updatePriceDisplay();
         
         const mainImg = document.getElementById('mainProductImg');
         const thumbsContainer = document.querySelector('.grid.grid-cols-4.gap-4');
@@ -1365,6 +1626,172 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     });
 </script>
 </body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+  import { getFirestore, doc, collection, onSnapshot, setDoc, addDoc, increment, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
+    authDomain: "studio-6539281913-cab55.firebaseapp.com",
+    projectId: "studio-6539281913-cab55",
+    storageBucket: "studio-6539281913-cab55.firebasestorage.app",
+    messagingSenderId: "654131616933",
+    appId: "1:654131616933:web:1411cc691a6fe9a700c14c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id') || '1'; // Default to 1 if no id
+    
+    // Setup Realtime Views
+    const productRef = doc(db, 'products', productId);
+    
+    // Increment view count using setDoc with merge in case doc doesn't exist
+    setDoc(productRef, { views: increment(1) }, { merge: true }).catch(err => console.log('Error incrementing views:', err));
+
+    // Listen to views
+    onSnapshot(productRef, (docSnap) => {
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            const viewsEl = document.getElementById('view-count-display');
+            if(viewsEl) {
+                viewsEl.textContent = `${data.views} views`;
+            }
+        }
+    }, (error) => {
+        console.error("Firebase views error:", error);
+    });
+
+    // Setup Realtime Comments
+    const commentsRef = collection(db, `products/${productId}/comments`);
+    const q = query(commentsRef, orderBy('timestamp', 'desc'));
+
+    onSnapshot(q, (snapshot) => {
+        const container = document.getElementById('reviews-list-container');
+        if(!container) return;
+        
+        container.innerHTML = ''; // clear loading/old
+        
+        let totalRating = 0;
+        let counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        let count = 0;
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            count++;
+            totalRating += data.rating || 5;
+            let ratingVal = data.rating || 5;
+            if (counts[ratingVal] !== undefined) counts[ratingVal]++;
+            
+            // Format date
+            let dateStr = 'Just now';
+            if(data.timestamp) {
+                const date = data.timestamp.toDate();
+                dateStr = date.toLocaleDateString();
+            }
+
+            // Render HTML
+            const stars = '&#9733;'.repeat(ratingVal) + '&#9734;'.repeat(5 - ratingVal);
+            const initial = data.name ? data.name.charAt(0).toUpperCase() : 'U';
+            const name = data.name || 'Anonymous';
+            const text = data.text || '';
+
+            const html = `
+            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge mb-4">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 rounded-full">${initial}</div>
+                        <div>
+                            <h4 class="font-bold text-[#8B4513]">${name}</h4>
+                            <div class="flex text-amber-500 text-xs">${stars}</div>
+                        </div>
+                    </div>
+                    <span class="text-xs opacity-50">${dateStr}</span>
+                </div>
+                <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"${text}"</p>
+            </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        if (count === 0) {
+            container.innerHTML = '<p class="text-[#8B4513] italic opacity-70">No reviews yet. Be the first to review!</p>';
+            // Reset summary to 0
+            const scoreEl = document.querySelector('.text-6xl.font-black');
+            if (scoreEl) scoreEl.textContent = '0.0';
+            const ratingsCountEl = document.querySelector('.text-xs.opacity-50.block.mt-1');
+            if(ratingsCountEl && ratingsCountEl.textContent.includes('customer ratings')) {
+                ratingsCountEl.textContent = '(0 customer ratings)';
+            }
+            for (let s = 1; s <= 5; s++) {
+                const bar = document.getElementById('bar' + s);
+                const pctEl = document.getElementById('pct' + s);
+                if (bar) bar.style.width = '0%';
+                if (pctEl) pctEl.textContent = '0%';
+            }
+        } else {
+            // Update Rating Summary UI
+            const avg = (totalRating / count).toFixed(1);
+            const scoreEl = document.querySelector('.text-6xl.font-black');
+            if (scoreEl) scoreEl.textContent = avg;
+            
+            const ratingsCountEl = document.querySelector('.text-xs.opacity-50.block.mt-1');
+            if(ratingsCountEl && ratingsCountEl.textContent.includes('customer ratings')) {
+                ratingsCountEl.textContent = `(${count} customer ratings)`;
+            }
+
+            for (let s = 1; s <= 5; s++) {
+                const pct = Math.round((counts[s] / count) * 100);
+                const bar = document.getElementById('bar' + s);
+                const pctEl = document.getElementById('pct' + s);
+                if (bar) bar.style.width = pct + '%';
+                if (pctEl) pctEl.textContent = pct + '%';
+            }
+        }
+    }, (error) => {
+        console.error("Firebase comments error:", error);
+        const container = document.getElementById('reviews-list-container');
+        if (container) {
+            container.innerHTML = '<p class="text-red-500 italic opacity-70">Error: ' + error.message + '</p>';
+        }
+    });
+
+    // Make submitReview use Firebase
+    window.submitReviewFirebase = async function() {
+        // Find selectedRating from global window object because it was set in a non-module script
+        const rating = window.selectedRating || 5; 
+        if (!window.selectedRating) {
+            alert('Please select a star rating.');
+            return;
+        }
+        
+        const name = document.getElementById('reviewerName').value.trim();
+        const text = document.getElementById('reviewText').value.trim();
+        if (!name) { alert('Please enter your name.'); return; }
+
+        try {
+            await addDoc(commentsRef, {
+                name: name,
+                rating: rating,
+                text: text,
+                timestamp: serverTimestamp()
+            });
+            
+            // Close panel and show success using existing global functions
+            if (typeof window.closeReviewPanel === 'function') {
+                window.closeReviewPanel();
+            }
+            if (typeof window.showSuccessAnimation === 'function') {
+                window.showSuccessAnimation();
+            }
+        } catch (err) {
+            console.error("Error adding document: ", err);
+            alert("Failed to submit review. Error: " + err.message);
+        }
+    };
+</script>
 
 
 
