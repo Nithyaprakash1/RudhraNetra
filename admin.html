@@ -665,6 +665,7 @@
 
                 document.getElementById('metricRevenue').innerHTML = `&#8377;${totalRev.toLocaleString('en-IN')}`;
                 document.getElementById('metricOrders').innerHTML = ordersSnap.size;
+                document.getElementById('metricPending').innerHTML = pendingCount;
                 
                 const fullTbody = document.querySelector('#fullOrdersTable tbody');
                 const recentTbody = document.querySelector('#recentOrdersTable tbody');
