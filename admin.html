@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Rudra Nethra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="products.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0704;
+            color: #FFF1E0;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        
+        .glass-panel {
+            background: rgba(255, 241, 224, 0.03);
+            border: 1px solid rgba(255, 241, 224, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            color: #FFF1E0;
+            opacity: 0.6;
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background: rgba(255, 241, 224, 0.1);
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 1rem; border-bottom: 1px solid rgba(255, 241, 224, 0.1); color: #FFF1E0; opacity: 0.5; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        td { padding: 1rem; border-bottom: 1px solid rgba(255, 241, 224, 0.05); font-size: 0.9rem; }
+        tr:hover td { background: rgba(255, 241, 224, 0.02); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Loader */
+        .loader { border: 3px solid rgba(255,241,224,0.1); border-top: 3px solid #D4A373; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 border-r border-[#FFF1E0]/10 flex flex-col p-6">
+        <div class="mb-10 flex items-center gap-3">
+            <img src="image/logo_icon.png" class="h-8" alt="Logo">
+            <h1 class="text-xl font-bold tracking-wider">Admin</h1>
+        </div>
+
+        <nav class="flex-1 space-y-2">
+            <a class="sidebar-item active" data-target="dashboard-tab">Overview Dashboard</a>
+            <a class="sidebar-item" data-target="orders-tab">Customer Orders</a>
+            <a class="sidebar-item" data-target="reviews-tab">Product Reviews</a>
+            <a class="sidebar-item" data-target="products-tab">Inventory Catalog</a>
+        </nav>
+        
+        <div class="text-xs opacity-40 mt-auto">Logged in as Prathosh</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-10">
+        
+        <!-- Dashboard Tab -->
+        <div id="dashboard-tab" class="tab-content active">
+            <h2 class="text-3xl mb-8">Executive Overview</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                <div class="glass-panel p-6">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Revenue</p>
+                    <p class="text-3xl font-bold text-[#D4A373]" id="metricRevenue"><div class="loader"></div></p>
+                </div>
+                <div class="glass-panel p-6">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Orders</p>
+                    <p class="text-3xl font-bold" id="metricOrders"><div class="loader"></div></p>
+                </div>
+                <div class="glass-panel p-6">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Reviews</p>
+                    <p class="text-3xl font-bold" id="metricReviews"><div class="loader"></div></p>
+                </div>
+                <div class="glass-panel p-6">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Site Views (30 Days)</p>
+                    <p class="text-3xl font-bold">24,532 <span class="text-green-500 text-sm ml-2">↑ 12%</span></p>
+                </div>
+            </div>
+
+            <h3 class="text-xl mb-4">Recent Orders Activity</h3>
+            <div class="glass-panel overflow-hidden">
+                <table id="recentOrdersTable">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4" class="text-center py-6"><div class="loader"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders-tab" class="tab-content">
+            <h2 class="text-3xl mb-8">Customer Orders Directory</h2>
+            <div class="glass-panel overflow-x-auto">
+                <table class="w-full min-w-[800px]" id="fullOrdersTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Customer Details</th>
+                            <th>Items Paid For</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center py-10"><div class="loader"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div id="reviews-tab" class="tab-content">
+            <h2 class="text-3xl mb-8">Product Reviews Database</h2>
+            <div class="glass-panel overflow-hidden">
+                <table id="reviewsTable">
+                    <thead>
+                        <tr>
+                            <th>Reviewer Name</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4" class="text-center py-10"><div class="loader"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="products-tab" class="tab-content">
+            <h2 class="text-3xl mb-8">Inventory Catalog</h2>
+            <div class="glass-panel overflow-hidden">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTbody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
+            authDomain: "studio-6539281913-cab55.firebaseapp.com",
+            projectId: "studio-6539281913-cab55",
+            storageBucket: "studio-6539281913-cab55.firebasestorage.app",
+            messagingSenderId: "654131616933",
+            appId: "1:654131616933:web:1411cc691a6fe9a700c14c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Tab Navigation
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                
+                e.target.classList.add('active');
+                document.getElementById(e.target.dataset.target).classList.add('active');
+            });
+        });
+
+        // Load Products
+        function loadProducts() {
+            const tbody = document.getElementById('productsTbody');
+            if(typeof masterProducts !== 'undefined') {
+                tbody.innerHTML = masterProducts.map(p => `
+                    <tr>
+                        <td class="opacity-60">#${p.id}</td>
+                        <td><img src="${p.image}" class="w-10 h-10 object-cover rounded border border-[#FFF1E0]/20" /></td>
+                        <td class="font-bold">${p.name}</td>
+                        <td class="text-[#D4A373]">&#8377;${p.price.toLocaleString('en-IN')}</td>
+                        <td><span class="bg-[#FFF1E0]/10 px-2 py-1 rounded text-xs">${p.type}</span></td>
+                    </tr>
+                `).join('');
+            }
+        }
+        loadProducts();
+
+        // Fetch Orders & Reviews
+        async function fetchDashboardData() {
+            try {
+                // Fetch Orders
+                const qOrders = query(collection(db, "orders"), orderBy("timestamp", "desc"));
+                const ordersSnap = await getDocs(qOrders);
+                let totalRev = 0;
+                let ordersHtml = '';
+                let recentOrdersHtml = '';
+                
+                ordersSnap.forEach((doc, index) => {
+                    const data = doc.data();
+                    totalRev += data.totalAmount || 0;
+                    
+                    const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now';
+                    const cust = data.customer || {};
+                    const items = data.items || [];
+                    const itemsDesc = items.map(i => `${i.quantity||1}x ${i.name}`).join(', ');
+                    const addressStr = `${cust.address}, ${cust.city}, ${cust.state} - ${cust.pin}`;
+                    
+                    // Full Table Row
+                    ordersHtml += `
+                        <tr>
+                            <td class="text-xs opacity-60 break-all max-w-[80px]">${doc.id}</td>
+                            <td class="whitespace-nowrap">${date}</td>
+                            <td>
+                                <div class="font-bold">${cust.name}</div>
+                                <div class="text-xs opacity-70">${cust.email} | ${cust.phone}</div>
+                                <div class="text-[10px] opacity-50 mt-1">${addressStr}</div>
+                            </td>
+                            <td class="text-xs">${itemsDesc}</td>
+                            <td class="font-bold text-[#D4A373]">&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
+                            <td><span class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs border border-yellow-500/30">${data.status||'Pending'}</span></td>
+                        </tr>
+                    `;
+
+                    // Recent Table Row (only first 5)
+                    if(index < 5) {
+                        recentOrdersHtml += `
+                            <tr>
+                                <td>${cust.name}</td>
+                                <td>${date}</td>
+                                <td>&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
+                                <td><span class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs">${data.status||'Pending'}</span></td>
+                            </tr>
+                        `;
+                    }
+                });
+
+                document.getElementById('metricRevenue').innerHTML = `&#8377;${totalRev.toLocaleString('en-IN')}`;
+                document.getElementById('metricOrders').innerHTML = ordersSnap.size;
+                
+                const fullTbody = document.querySelector('#fullOrdersTable tbody');
+                const recentTbody = document.querySelector('#recentOrdersTable tbody');
+                
+                fullTbody.innerHTML = ordersHtml || `<tr><td colspan="6" class="text-center opacity-50">No orders found.</td></tr>`;
+                recentTbody.innerHTML = recentOrdersHtml || `<tr><td colspan="4" class="text-center opacity-50">No recent activity.</td></tr>`;
+
+
+                // Fetch Reviews
+                const qReviews = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+                const reviewsSnap = await getDocs(qReviews);
+                let reviewsHtml = '';
+                
+                reviewsSnap.forEach((doc) => {
+                    const data = doc.data();
+                    const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now';
+                    const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
+                    
+                    reviewsHtml += `
+                        <tr>
+                            <td class="font-bold">${data.name}</td>
+                            <td class="text-yellow-500">${stars}</td>
+                            <td class="text-sm opacity-80 max-w-md">${data.reviewText || '<i>No written comment</i>'}</td>
+                            <td class="text-xs opacity-60">${date}</td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById('metricReviews').innerHTML = reviewsSnap.size;
+                document.querySelector('#reviewsTable tbody').innerHTML = reviewsHtml || `<tr><td colspan="4" class="text-center opacity-50">No reviews found.</td></tr>`;
+
+            } catch(e) {
+                console.error("Error fetching admin data:", e);
+                document.querySelector('#fullOrdersTable tbody').innerHTML = `<tr><td colspan="6" class="text-center text-red-500">Error loading data. Check console.</td></tr>`;
+            }
+        }
+
+        window.addEventListener('load', fetchDashboardData);
+
+    </script>
+</body>
+</html>
