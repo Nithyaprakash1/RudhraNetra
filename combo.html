@@ -792,6 +792,19 @@
             animateBtn(btn);
         }
 
+        // ── Buy combo now (redirect to checkout) ──
+        function buyComboNow(card) {
+            const name  = card.dataset.comboName;
+            const price = parseInt(card.dataset.comboPrice);
+            const image = card.dataset.comboImage;
+            
+            // Overwrite cart to only have this item for direct checkout
+            let cart = [{ name, price, image, quantity: 1, category: card.dataset.comboCategory }];
+            localStorage.setItem('rudraCart', JSON.stringify(cart));
+            
+            window.location.href = 'checkout.html';
+        }
+
         function animateBtn(btn) {
             if (!btn) return;
             btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>Added!</span>';
@@ -1070,7 +1083,7 @@
                                     <button onclick="window.location.href='product-details.html?combo=${idx}'; event.stopPropagation();" class="flex-1 py-3 rounded-lg font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider flex items-center justify-center">
                                         View Product
                                     </button>
-                                    <button onclick="addComboToCart(this.closest('.combo-card'), this); event.stopPropagation();" class="btn-brown flex-1 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                    <button onclick="buyComboNow(this.closest('.combo-card')); event.stopPropagation();" class="btn-brown flex-1 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
                                         </svg>
