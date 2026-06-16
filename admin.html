@@ -356,83 +356,83 @@
 
     <!-- Add Product Modal -->
     <div id="addProductModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" style="perspective: 1200px;">
-        <div id="addProductModalContent" class="bg-[#FFF1E0] rounded-2xl w-full max-w-lg p-8 shadow-2xl border border-[#8B4513]/20 relative">
+        <div id="addProductModalContent" class="bg-[#FFF1E0] rounded-2xl w-full max-w-lg p-6 shadow-2xl border border-[#8B4513]/20 relative max-h-[95vh] overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-[#8B4513]/20">
             <button onclick="document.getElementById('addProductModal').style.display='none'" class="absolute top-4 right-4 text-[#8B4513] text-2xl leading-none">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-[#8B4513] font-serif">Add New Product</h3>
+            <h3 class="text-xl font-bold mb-4 text-[#8B4513] font-serif">Add New Product</h3>
             
-            <form id="addProductForm" class="space-y-4">
+            <form id="addProductForm" class="space-y-3">
                 <div>
-                    <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Product Name</label>
-                    <input type="text" id="newProdName" required class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Product Name</label>
+                    <input type="text" id="newProdName" required class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Price (₹)</label>
-                        <input type="number" id="newProdPrice" required class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Price (₹)</label>
+                        <input type="number" id="newProdPrice" required class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Old Price (₹) <span class="opacity-50 font-normal">(optional)</span></label>
-                        <input type="number" id="newProdOldPrice" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Old Price (₹) <span class="opacity-50 font-normal">(optional)</span></label>
+                        <input type="number" id="newProdOldPrice" class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Category</label>
-                        <input type="text" id="newProdCat" required placeholder="e.g. malas" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Category</label>
+                        <input type="text" id="newProdCat" required placeholder="e.g. malas" class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Featured</label>
-                        <select id="newProdFeatured" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Featured</label>
+                        <select id="newProdFeatured" class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                             <option value="false">No</option>
                             <option value="true">Yes</option>
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs md:text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
                             Beads
                             <button type="button" onclick="addDynamicField('beadsContainer', 'newProdBeads[]', 'e.g. 54')" class="text-[10px] bg-[#8B4513]/10 text-[#8B4513] px-1.5 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
                         </label>
-                        <div id="beadsContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
-                            <input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">
+                        <div id="beadsContainer" class="space-y-1.5 max-h-24 overflow-y-auto pr-1">
+                            <input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-3 py-1.5 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-xs">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs md:text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
                             Size (mm)
                             <button type="button" onclick="addDynamicField('sizesContainer', 'newProdSize[]', 'e.g. 8mm')" class="text-[10px] bg-[#8B4513]/10 text-[#8B4513] px-1.5 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
                         </label>
-                        <div id="sizesContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
-                            <input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">
+                        <div id="sizesContainer" class="space-y-1.5 max-h-24 overflow-y-auto pr-1">
+                            <input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-3 py-1.5 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-xs">
                         </div>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold mb-2 text-[#8B4513]">Upload Image</label>
-                    <div id="dropZone" class="w-full border-2 border-dashed border-[#8B4513]/30 rounded-xl p-8 text-center cursor-pointer hover:border-[#8B4513] hover:bg-[#8B4513]/5 transition-all duration-300 relative group overflow-hidden bg-white/40">
+                    <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Upload Image</label>
+                    <div id="dropZone" class="w-full border-2 border-dashed border-[#8B4513]/30 rounded-xl p-4 text-center cursor-pointer hover:border-[#8B4513] hover:bg-[#8B4513]/5 transition-all duration-300 relative group overflow-hidden bg-white/40">
                         <input type="file" id="newProdImg" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                        <div class="relative z-0 pointer-events-none flex flex-col items-center justify-center gap-3">
-                            <div class="w-12 h-12 rounded-full bg-[#8B4513]/10 flex items-center justify-center text-[#8B4513] group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <div class="relative z-0 pointer-events-none flex flex-col items-center justify-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-[#8B4513]/10 flex items-center justify-center text-[#8B4513] group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                             </div>
                             <div>
-                                <p class="text-sm font-bold text-[#8B4513]">Drag & Drop your image here</p>
-                                <p class="text-xs opacity-60 mt-1">or click to browse from computer</p>
+                                <p class="text-xs font-bold text-[#8B4513]">Drag & Drop your image here</p>
+                                <p class="text-[10px] opacity-60 mt-0.5">or click to browse from computer</p>
                             </div>
                         </div>
                         <div id="imagePreviewContainer" class="absolute inset-0 bg-white/90 backdrop-blur-sm hidden items-center justify-center p-2 z-20">
                             <img id="imagePreview" class="max-h-full max-w-full rounded shadow-md object-contain">
-                            <button type="button" id="removeImgBtn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg transition-transform hover:scale-110 pointer-events-auto">
+                            <button type="button" id="removeImgBtn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 shadow-lg transition-transform hover:scale-110 pointer-events-auto">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </button>
                         </div>
                     </div>
                 </div>
-                <button type="submit" id="saveProductBtn" class="w-full relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] font-bold uppercase tracking-widest py-4 rounded-xl shadow-[0_10px_20px_rgba(139,69,19,0.3)] hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(139,69,19,0.4)] transition-all duration-300 mt-6 group">
+                <button type="submit" id="saveProductBtn" class="w-full relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-xl shadow-[0_5px_15px_rgba(139,69,19,0.3)] hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,69,19,0.4)] transition-all duration-300 mt-4 group">
                     <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
-                    <span class="relative z-10 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                    <span class="relative z-10 flex items-center justify-center gap-2 text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
                         Save Product
                     </span>
                 </button>
