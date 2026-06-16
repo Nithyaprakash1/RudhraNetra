@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="products.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -61,6 +62,17 @@
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
+
+        .success-3d-flip {
+            animation: flipOut3D 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+            transform-origin: center;
+            transform-style: preserve-3d;
+        }
+        @keyframes flipOut3D {
+            0% { transform: perspective(1000px) rotateY(0deg) scale(1); opacity: 1; }
+            40% { transform: perspective(1000px) rotateY(180deg) scale(1.1); opacity: 0.9; filter: drop-shadow(0 0 40px rgba(255,215,0,0.8)); }
+            100% { transform: perspective(1000px) rotateY(360deg) scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden bg-[#FFF1E0]">
@@ -222,8 +234,8 @@
     </main>
 
     <!-- Add Product Modal -->
-    <div id="addProductModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
-        <div class="bg-[#FFF1E0] rounded-2xl w-full max-w-lg p-8 shadow-2xl border border-[#8B4513]/20 relative">
+    <div id="addProductModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" style="perspective: 1200px;">
+        <div id="addProductModalContent" class="bg-[#FFF1E0] rounded-2xl w-full max-w-lg p-8 shadow-2xl border border-[#8B4513]/20 relative">
             <button onclick="document.getElementById('addProductModal').style.display='none'" class="absolute top-4 right-4 text-[#8B4513] text-2xl leading-none">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-[#8B4513] font-serif">Add New Product</h3>
             
@@ -279,7 +291,7 @@
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Upload Image</label>
                     <input type="file" id="newProdImg" required accept="image/*" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
-                <button type="submit" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4">
+                <button type="submit" id="saveProductBtn" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4 flex items-center justify-center">
                     Save Product
                 </button>
             </form>
@@ -438,13 +450,40 @@
             masterProducts = currentProds;
             
             loadProducts();
-            document.getElementById('addProductModal').style.display = 'none';
-            this.reset();
-            // Reset dynamic fields to 1 input each
-            document.getElementById('beadsContainer').innerHTML = '<input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">';
-            document.getElementById('sizesContainer').innerHTML = '<input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">';
+
+            // --- UNBELIEVABLE 3D ANIMATION ---
+            const submitBtn = document.getElementById('saveProductBtn');
+            const modalContent = document.getElementById('addProductModalContent');
             
-            alert("Product added successfully! Refresh the storefront to see it.");
+            submitBtn.innerHTML = '<div class="loader" style="width:20px;height:20px;border-width:3px;border-top-color:#FFF1E0;"></div>';
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                // Fire golden confetti
+                confetti({
+                    particleCount: 150,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#FFD700', '#FFA500', '#8B4513'],
+                    zIndex: 9999
+                });
+
+                // Trigger 3D flip out
+                modalContent.classList.add('success-3d-flip');
+
+                setTimeout(() => {
+                    document.getElementById('addProductModal').style.display = 'none';
+                    this.reset();
+                    // Reset dynamic fields
+                    document.getElementById('beadsContainer').innerHTML = '<input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">';
+                    document.getElementById('sizesContainer').innerHTML = '<input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">';
+                    
+                    // Reset Animation classes
+                    modalContent.classList.remove('success-3d-flip');
+                    submitBtn.innerHTML = 'Save Product';
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                }, 1000); // Wait for 3D flip to finish
+            }, 600); // Short delay for UX loader
         });
 
         // Fetch Orders & Reviews
