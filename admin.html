@@ -61,7 +61,12 @@
     </style>
 </head>
 <body class="flex h-screen overflow-hidden bg-[#FFF1E0]">
-
+    
+    <!-- Authentication Loading Overlay -->
+    <div id="authOverlay" class="fixed inset-0 z-[9999] bg-[#FFF1E0] flex flex-col items-center justify-center">
+        <div class="loader mb-4" style="width: 48px; height: 48px; border-width: 4px;"></div>
+        <p class="text-[#8B4513] font-bold tracking-widest uppercase animate-pulse">Securing Admin Portal...</p>
+    </div>
     <!-- Sidebar -->
     <aside id="adminSidebar" class="w-64 border-r border-[#8B4513]/20 flex flex-col p-6 absolute md:relative z-50 bg-[#FFF1E0] h-full transition-transform transform -translate-x-full md:translate-x-0">
         <button onclick="document.getElementById('adminSidebar').classList.add('-translate-x-full')" class="md:hidden absolute top-4 right-4 text-[#8B4513] font-bold text-2xl">&times;</button>
@@ -308,9 +313,10 @@
             signInWithEmailAndPassword(auth, pendingEmail, pendingPwd)
                 .then((userCredential) => {
                     console.log("Admin login successful");
+                    document.getElementById('authOverlay').style.display = 'none';
                 })
                 .catch((error) => {
-                    alert('Invalid Admin Credentials.');
+                    alert('Login Failed: ' + error.code + ' - ' + error.message);
                     window.location.href = 'index.html';
                 });
         } else {
@@ -318,6 +324,8 @@
             onAuthStateChanged(auth, (user) => {
                 if (!user) {
                     window.location.href = 'index.html';
+                } else {
+                    document.getElementById('authOverlay').style.display = 'none';
                 }
             });
         }
