@@ -70,6 +70,11 @@
             opacity: 1;
             transform: translateY(0);
         }
+            /* Dynamic Navbar Colors */
+        .nav-links, .nav-cart, .nav-mobile-btn { color: #8B4513 !important; }
+        .nav-link:hover { color: #5c3a23 !important; }
+        .nav-shop-btn { background-color: #8B4513 !important; color: #FFF1E0 !important; border: 1px solid #8B4513 !important; transition: all 0.3s ease; }
+        .nav-shop-btn:hover { background-color: #5c3a23 !important; border-color: #5c3a23 !important; }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -314,48 +319,46 @@
     </section>
 
     <!-- Footer Area -->
-    <footer class="bg-[#120a06] pt-16 px-6 text-[#FFF2E2]/80 relative z-30" id="footer-contact">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="md:col-span-1">
-                <h3 class="text-3xl font-bold mb-4 text-[#FFF2E2]">Rudra Nethra</h3>
+    <footer class="bg-[#120a06] pt-16 px-6 text-[#FFF1E0]/80 relative z-30" id="footer-contact">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="col-span-2 md:col-span-1">
+                <h3 class="text-3xl font-bold mb-4 text-[#FFF1E0]">Rudra Nethra</h3>
                 <p class="text-sm">Awaken your third eye.</p>
             </div>
             <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Quick Links</h4>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="index.html" class="hover:text-[#8E5936] transition">Home</a></li>
-                    <li><a href="products.html" class="hover:text-[#8E5936] transition">Products</a></li>
-                    <li><a href="about.html" class="hover:text-[#8E5936] transition">About Us</a></li>
-                    <li><a href="combo.html" class="hover:text-[#8E5936] transition">Combo Offer</a></li>
-                    <li><a href="contact.html" class="hover:text-[#8E5936] transition">Contact</a></li>
-                </ul>
-            </div>
-             <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Products</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali malai</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Bracelet</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Necklace</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Ring</a></li>
-                    <li><a href="#" class="hover:text-[#8E5936] transition">Karungali Damru Bracelet</a></li>
+                    <li><a href="index.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Products</a></li>
+                    <li><a href="about.html" class="hover:text-[#8B4513] nav-link transition">About Us</a></li>
+                    <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition">Combo Offer</a></li>
+                    <li><a href="contact.html" class="hover:text-[#8B4513] nav-link transition">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF2E2]">Contact Us</h4>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Products</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="tel:+919025895191" class="hover:text-[#8E5936] transition">+919025895191</a></li>
-                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8E5936] transition">info@rudranethra.com</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Malai</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Bracelet</a></li>
+                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Necklace</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Contact Us</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tel:+919025895191" class="hover:text-[#8B4513] nav-link transition">+919025895191</a></li>
+                    <li><a href="mailto:info@rudranethra.com" class="hover:text-[#8B4513] nav-link transition">info@rudranethra.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF2E2]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2025 Rudra Nethra. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto mt-12 py-6 border-t border-[#FFF1E0]/10 text-center text-sm flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2026 Rudra Nethra. All rights reserved.</p>
             <div class="mt-4 md:mt-0 flex space-x-4">
-                <a href="#" class="hover:text-[#8E5936] transition">Privacy Policy</a>
+                <a href="privacy-policy.html" class="hover:text-[#8B4513] nav-link transition">Privacy Policy</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#8E5936] transition">Terms of Service</a>
+                <a href="terms-of-service.html" class="hover:text-[#8B4513] nav-link transition">Terms of Service</a>
                 <span>|</span>
-                <a href="shipping-policy.html" class="hover:text-[#8E5936] transition">Shipping Policy</a>
+                <a href="shipping-policy.html" class="hover:text-[#8B4513] nav-link transition">Shipping Policy</a>
             </div>
         </div>
     </footer>
@@ -374,5 +377,38 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+
+            function toggleMenu(show) {
+                if (show) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                    }
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                        backdrop.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                }
+            }
+
+            if (mobileMenuBtn && mobileMenu && closeMobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => toggleMenu(true));
+                closeMobileMenu.addEventListener('click', () => toggleMenu(false));
+                if (backdrop) {
+                    backdrop.addEventListener('click', () => toggleMenu(false));
+                }
+            }
+        });
+    </script>
+    <script src="cart-anim.js"></script>
 </body>
 </html>
