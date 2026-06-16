@@ -221,6 +221,16 @@
                         </select>
                     </div>
                 </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Beads</label>
+                        <input type="text" id="newProdBeads" placeholder="e.g. 54 & 108" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Size (mm)</label>
+                        <input type="text" id="newProdSize" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    </div>
+                </div>
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Image URL</label>
                     <input type="url" id="newProdImg" required placeholder="https://..." class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
@@ -304,6 +314,8 @@
                 oldPrice: document.getElementById('newProdOldPrice').value ? parseFloat(document.getElementById('newProdOldPrice').value) : null,
                 category: document.getElementById('newProdCat').value,
                 isFeatured: document.getElementById('newProdFeatured').value === "true",
+                beads: document.getElementById('newProdBeads').value,
+                size: document.getElementById('newProdSize').value,
                 images: [document.getElementById('newProdImg').value]
             };
             
@@ -410,15 +422,29 @@
             
             // Render Chart
             const ctx = document.getElementById('viewsChart').getContext('2d');
+            
+            // Create gradient for filled area
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)');
+            gradient.addColorStop(1, 'rgba(139, 69, 19, 0.0)');
+
             new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    labels: ['W1', 'W2', 'W3', 'W4', 'W5'],
                     datasets: [{
                         label: 'Site Views',
-                        data: [1200, 1900, 3000, 5000, 2000, 3000, 4500],
-                        backgroundColor: '#D4A373',
-                        borderRadius: 5
+                        data: [72, 38, 0, 0, 0],
+                        borderColor: '#8B4513',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#8B4513',
+                        pointBorderColor: '#FFF1E0',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
@@ -429,17 +455,44 @@
                         easing: 'easeOutQuart'
                     },
                     plugins: {
-                        legend: { display: false }
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#FFF1E0',
+                            titleColor: '#8B4513',
+                            bodyColor: '#8B4513',
+                            borderColor: 'rgba(139, 69, 19, 0.2)',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' Views';
+                                },
+                                title: function() { return null; } // Hide title to match the image tooltip
+                            }
+                        }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            grid: { color: 'rgba(139, 69, 19, 0.1)' },
-                            ticks: { color: '#8B4513' }
+                            grid: { display: false },
+                            ticks: { 
+                                color: '#8B4513',
+                                callback: function(value) { return value + 'k'; }
+                            },
+                            border: { display: false }
                         },
                         x: {
-                            grid: { display: false },
-                            ticks: { color: '#8B4513' }
+                            grid: { 
+                                color: 'rgba(139, 69, 19, 0.1)',
+                                borderDash: [5, 5],
+                                drawBorder: false
+                            },
+                            ticks: { 
+                                color: '#8B4513',
+                                font: { weight: 'bold' }
+                            },
+                            border: { display: false }
                         }
                     }
                 }
