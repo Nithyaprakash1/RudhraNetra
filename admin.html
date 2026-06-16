@@ -51,6 +51,13 @@
         /* Loader */
         .loader { border: 3px solid rgba(139, 69, 19, 0.1); border-top: 3px solid #8B4513; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 0 auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Custom Animations */
+        .animate-fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden bg-[#FFF1E0]">
@@ -81,50 +88,60 @@
         
         <!-- Dashboard Tab -->
         <div id="dashboard-tab" class="tab-content active">
-            <h2 class="text-2xl md:text-3xl mb-8">Executive Overview</h2>
+            <h2 class="text-2xl md:text-3xl mb-8 animate-fade-in-up">Executive Overview</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-                <div class="glass-panel p-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-10">
+                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-100 hover:scale-105 transition-transform">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Revenue</p>
-                    <p class="text-3xl font-bold text-[#8B4513]" id="metricRevenue"><div class="loader"></div></p>
+                    <p class="text-3xl font-bold font-serif" id="metricRevenue"><div class="loader"></div></p>
                 </div>
-                <div class="glass-panel p-6">
+                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-200 hover:scale-105 transition-transform">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Orders</p>
-                    <p class="text-3xl font-bold" id="metricOrders"><div class="loader"></div></p>
+                    <p class="text-3xl font-bold font-serif" id="metricOrders"><div class="loader"></div></p>
                 </div>
-                <div class="glass-panel p-6">
-                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Reviews</p>
-                    <p class="text-3xl font-bold" id="metricReviews"><div class="loader"></div></p>
+                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Pending</p>
+                    <p class="text-3xl font-bold font-serif text-yellow-600" id="metricPending">0</p>
                 </div>
-                <div class="glass-panel p-6 col-span-1 md:col-span-4 relative h-64 mt-4">
-                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Site Views (Last 7 Days)</p>
-                    <canvas id="viewsChart"></canvas>
+                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Reviews</p>
+                    <p class="text-3xl font-bold font-serif" id="metricReviews"><div class="loader"></div></p>
                 </div>
             </div>
 
-            <h3 class="text-xl mb-4">Recent Orders Activity</h3>
-            <div class="glass-panel overflow-hidden">
-                <table id="recentOrdersTable">
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Date</th>
-                            <th>Total Amount</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="4" class="text-center py-6"><div class="loader"></div></td></tr>
-                    </tbody>
-                </table>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-10">
+                <div class="glass-panel p-4 md:p-6 lg:col-span-2 animate-fade-in-up delay-100">
+                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Site Views (Last 7 Days)</p>
+                    <div class="w-full h-64 md:h-80">
+                        <canvas id="viewsChart"></canvas>
+                    </div>
+                </div>
+                <div class="animate-fade-in-up delay-200">
+                    <h3 class="text-xl mb-4 font-serif">Recent Orders Activity</h3>
+                    <div class="glass-panel overflow-x-auto">
+                        <table class="w-full min-w-[500px]" id="recentOrdersTable">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="4" class="text-center py-6"><div class="loader"></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Orders Tab -->
         <div id="orders-tab" class="tab-content">
-            <h2 class="text-3xl mb-8">Customer Orders Directory</h2>
-            <div class="glass-panel overflow-x-auto">
-                <table class="w-full min-w-[800px]" id="fullOrdersTable">
+            <h2 class="text-2xl md:text-3xl mb-8 animate-fade-in-up">Customer Orders Directory</h2>
+            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
+                <table class="w-full min-w-[900px]" id="fullOrdersTable">
                     <thead>
                         <tr>
                             <th>Order ID</th>
@@ -144,9 +161,9 @@
 
         <!-- Reviews Tab -->
         <div id="reviews-tab" class="tab-content">
-            <h2 class="text-3xl mb-8">Product Reviews Database</h2>
-            <div class="glass-panel overflow-hidden">
-                <table id="reviewsTable">
+            <h2 class="text-2xl md:text-3xl mb-8 animate-fade-in-up">Product Reviews Database</h2>
+            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
+                <table class="w-full min-w-[600px]" id="reviewsTable">
                     <thead>
                         <tr>
                             <th>Reviewer Name</th>
@@ -164,14 +181,14 @@
 
         <!-- Products Tab -->
         <div id="products-tab" class="tab-content">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl">Inventory Catalog</h2>
-                <button onclick="document.getElementById('addProductModal').style.display='flex'" class="bg-[#8B4513] text-[#FFF1E0] px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-[#5c3a23] transition shadow-lg">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-fade-in-up">
+                <h2 class="text-2xl md:text-3xl">Inventory Catalog</h2>
+                <button onclick="document.getElementById('addProductModal').style.display='flex'" class="bg-[#8B4513] text-[#FFF1E0] px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-widest hover:bg-[#5c3a23] transition shadow-lg whitespace-nowrap">
                     + Add Product
                 </button>
             </div>
-            <div class="glass-panel overflow-hidden">
-                <table id="productsTable">
+            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
+                <table class="w-full min-w-[800px]" id="productsTable">
                     <thead>
                         <tr>
                             <th>Product ID</th>
@@ -287,18 +304,24 @@
         function loadProducts() {
             const tbody = document.getElementById('productsTbody');
             if(typeof masterProducts !== 'undefined') {
-                tbody.innerHTML = masterProducts.map(p => `
-                    <tr>
-                        <td class="opacity-60">#${p.id}</td>
-                        <td><img src="${p.images && p.images.length > 0 ? p.images[0] : 'https://placehold.co/100x100/8B4513/FFF1E0?text=No+Image'}" class="w-10 h-10 object-cover rounded border border-[#8B4513]/20" /></td>
-                        <td class="font-bold">${p.name}</td>
-                        <td class="text-[#8B4513] font-bold">&#8377;${p.price.toLocaleString('en-IN')}</td>
-                        <td><span class="bg-[#8B4513]/10 px-2 py-1 rounded text-xs">${p.category || 'Standard'}</span></td>
-                        <td>
-                            <button onclick="deleteProduct(${p.id})" class="text-red-600 hover:text-red-800 font-bold text-xs uppercase tracking-widest bg-red-100 px-3 py-1 rounded">Delete</button>
-                        </td>
-                    </tr>
-                `).join('');
+                tbody.innerHTML = masterProducts.map(p => {
+                    const imgUrl = p.images && p.images.length > 0 ? p.images[0] : 'https://placehold.co/100x100/8B4513/FFF1E0?text=No+Image';
+                    const beadsStr = Array.isArray(p.beads) && p.beads.length ? `<br><span class="text-[10px] uppercase opacity-70">Beads: ${p.beads.join(', ')}</span>` : '';
+                    const sizeStr = Array.isArray(p.sizes) && p.sizes.length ? `<br><span class="text-[10px] uppercase opacity-70">Sizes: ${p.sizes.join(', ')}</span>` : '';
+
+                    return `
+                        <tr class="hover:bg-[#8B4513]/5 transition-colors">
+                            <td class="text-xs opacity-60">#${p.id}</td>
+                            <td><img src="${imgUrl}" class="w-12 h-12 object-cover rounded shadow"></td>
+                            <td class="font-bold min-w-[150px]">${p.name} ${beadsStr} ${sizeStr}</td>
+                            <td class="whitespace-nowrap">&#8377;${p.price.toLocaleString('en-IN')}</td>
+                            <td class="uppercase text-xs tracking-wider opacity-70">${p.category || 'Standard'}</td>
+                            <td>
+                                <button onclick="deleteProduct(${p.id})" class="text-red-500 font-bold hover:bg-red-50 px-3 py-1 rounded transition whitespace-nowrap">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
             }
         }
         loadProducts();
@@ -381,12 +404,14 @@
                 const qOrders = query(collection(db, "orders"), orderBy("timestamp", "desc"));
                 const ordersSnap = await getDocs(qOrders);
                 let totalRev = 0;
+                let pendingCount = 0;
                 let ordersHtml = '';
                 let recentOrdersHtml = '';
                 
                 ordersSnap.forEach((doc, index) => {
                     const data = doc.data();
                     totalRev += data.totalAmount || 0;
+                    if (data.status !== 'Delivered') pendingCount++;
                     
                     const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now';
                     const cust = data.customer || {};
@@ -405,7 +430,7 @@
                                 <div class="text-[10px] opacity-50 mt-1">${addressStr}</div>
                             </td>
                             <td class="text-xs">${itemsDesc}</td>
-                            <td class="font-bold text-[#8B4513]">&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
+                            <td class="font-bold text-[#8B4513] whitespace-nowrap">&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
                             <td><span class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs border border-yellow-500/30">${data.status||'Pending'}</span></td>
                         </tr>
                     `;
