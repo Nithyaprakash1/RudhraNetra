@@ -344,7 +344,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -393,6 +393,37 @@
             signOut(auth).then(() => {
                 window.location.href = 'index.html';
             });
+        };
+
+        window.updateOrderStatus = async function(orderId, newStatus, selectElement) {
+            selectElement.disabled = true;
+            try {
+                const orderRef = doc(db, "orders", orderId);
+                await updateDoc(orderRef, {
+                    status: newStatus
+                });
+                
+                // Show success toast
+                const toast = document.getElementById('customToast');
+                toast.querySelector('span').innerText = 'Order status updated to ' + newStatus;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+                
+                if (newStatus === 'Delivered') {
+                    // Slight visual feedback
+                    selectElement.classList.replace('text-yellow-600', 'text-green-600');
+                    selectElement.classList.replace('border-yellow-600/30', 'border-green-600/30');
+                    selectElement.classList.replace('bg-yellow-600/10', 'bg-green-600/10');
+                } else if (newStatus === 'Shipped') {
+                    selectElement.classList.replace('text-yellow-600', 'text-blue-600');
+                    selectElement.classList.replace('border-yellow-600/30', 'border-blue-600/30');
+                    selectElement.classList.replace('bg-yellow-600/10', 'bg-blue-600/10');
+                }
+            } catch (error) {
+                console.error("Error updating status: ", error);
+                alert("Could not update status due to database permissions.");
+            }
+            selectElement.disabled = false;
         };
 
         // Tab Navigation
@@ -578,6 +609,10 @@
                     const itemsDesc = items.map(i => `${i.quantity||1}x ${i.name}`).join(', ');
                     const addressStr = `${cust.address}, ${cust.city}, ${cust.state} - ${cust.pin}`;
                     
+                    let statusColor = 'yellow';
+                    if (data.status === 'Delivered') statusColor = 'green';
+                    else if (data.status === 'Shipped') statusColor = 'blue';
+
                     // Full Table Row
                     ordersHtml += `
                         <tr class="hover:bg-[#8B4513]/5 transition-colors">
@@ -594,7 +629,13 @@
                             </td>
                             <td class="text-xs min-w-[150px]">${itemsDesc}</td>
                             <td class="font-bold text-[#8B4513] whitespace-nowrap">&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
-                            <td><span class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs border border-yellow-500/30 whitespace-nowrap">${data.status||'Pending'}</span></td>
+                            <td>
+                                <select onchange="updateOrderStatus('${doc.id}', this.value, this)" class="bg-${statusColor}-600/10 text-${statusColor}-600 px-2 py-1 rounded text-xs border border-${statusColor}-600/30 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-${statusColor}-600/50 cursor-pointer font-bold transition-colors">
+                                    <option value="Pending" ${data.status === 'Pending' || !data.status ? 'selected' : ''} class="text-black">Pending</option>
+                                    <option value="Shipped" ${data.status === 'Shipped' ? 'selected' : ''} class="text-black">Shipped</option>
+                                    <option value="Delivered" ${data.status === 'Delivered' ? 'selected' : ''} class="text-black">Delivered</option>
+                                </select>
+                            </td>
                         </tr>
                     `;
 
@@ -605,7 +646,13 @@
                                 <td>${cust.name}</td>
                                 <td>${date}</td>
                                 <td>&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
-                                <td><span class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs">${data.status||'Pending'}</span></td>
+                                <td>
+                                    <select onchange="updateOrderStatus('${doc.id}', this.value, this)" class="bg-${statusColor}-600/10 text-${statusColor}-600 px-2 py-1 rounded text-xs border border-${statusColor}-600/30 focus:outline-none cursor-pointer font-bold transition-colors">
+                                        <option value="Pending" ${data.status === 'Pending' || !data.status ? 'selected' : ''} class="text-black">Pending</option>
+                                        <option value="Shipped" ${data.status === 'Shipped' ? 'selected' : ''} class="text-black">Shipped</option>
+                                        <option value="Delivered" ${data.status === 'Delivered' ? 'selected' : ''} class="text-black">Delivered</option>
+                                    </select>
+                                </td>
                             </tr>
                         `;
                     }
