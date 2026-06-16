@@ -1649,7 +1649,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     const productId = urlParams.get('id') || '1'; // Default to 1 if no id
     
     // Setup Realtime Views
-    const productRef = doc(db, 'products', productId);
+    const productRef = doc(db, 'products', String(productId));
     
     // Increment view count using setDoc with merge in case doc doesn't exist
     setDoc(productRef, { views: increment(1) }, { merge: true }).catch(err => console.log('Error incrementing views:', err));
@@ -1660,7 +1660,14 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const data = docSnap.data();
             const viewsEl = document.getElementById('view-count-display');
             if(viewsEl) {
-                viewsEl.textContent = `${data.views} views`;
+                // Generate a deterministic base view count between 5000 and 15000 from productId
+                let seed = 0;
+                let pidStr = String(productId);
+                for(let i=0; i<pidStr.length; i++) seed += pidStr.charCodeAt(i);
+                let baseViews = 5000 + ((seed * 1234) % 10000);
+                
+                let totalViews = baseViews + (data.views || 0);
+                viewsEl.textContent = `${totalViews.toLocaleString()}+ views`;
             }
         }
     }, (error) => {
@@ -1677,9 +1684,22 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         
         container.innerHTML = ''; // clear loading/old
         
-        let totalRating = 0;
-        let counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-        let count = 0;
+        // Generate a deterministic base of 15-30 reviews
+        let pidStr = String(productId);
+        let reviewSeed = 0;
+        for(let i=0; i<pidStr.length; i++) reviewSeed += pidStr.charCodeAt(i);
+        let baseCount = 15 + (reviewSeed % 16);
+        
+        // Distribute base counts mostly to 5 and 4 stars
+        let c5 = Math.floor(baseCount * 0.85);
+        let c4 = Math.floor(baseCount * 0.1);
+        let c3 = Math.floor(baseCount * 0.05);
+        c5 += baseCount - (c5 + c4 + c3); // add remainder to 5
+        let baseTotalRating = (c5 * 5) + (c4 * 4) + (c3 * 3);
+        
+        let totalRating = baseTotalRating;
+        let counts = { 5: c5, 4: c4, 3: c3, 2: 0, 1: 0 };
+        let count = baseCount;
 
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
@@ -1719,39 +1739,52 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             container.innerHTML += html;
         });
 
-        if (count === 0) {
-            container.innerHTML = '<p class="text-[#8B4513] italic opacity-70">No reviews yet. Be the first to review!</p>';
-            // Reset summary to 0
-            const scoreEl = document.querySelector('.text-6xl.font-black');
-            if (scoreEl) scoreEl.textContent = '0.0';
-            const ratingsCountEl = document.querySelector('.text-xs.opacity-50.block.mt-1');
-            if(ratingsCountEl && ratingsCountEl.textContent.includes('customer ratings')) {
-                ratingsCountEl.textContent = '(0 customer ratings)';
-            }
-            for (let s = 1; s <= 5; s++) {
-                const bar = document.getElementById('bar' + s);
-                const pctEl = document.getElementById('pct' + s);
-                if (bar) bar.style.width = '0%';
-                if (pctEl) pctEl.textContent = '0%';
-            }
-        } else {
-            // Update Rating Summary UI
-            const avg = (totalRating / count).toFixed(1);
-            const scoreEl = document.querySelector('.text-6xl.font-black');
-            if (scoreEl) scoreEl.textContent = avg;
-            
-            const ratingsCountEl = document.querySelector('.text-xs.opacity-50.block.mt-1');
-            if(ratingsCountEl && ratingsCountEl.textContent.includes('customer ratings')) {
-                ratingsCountEl.textContent = `(${count} customer ratings)`;
-            }
+        // Append base dummy reviews to fill out the list
+        const dummyReviews = [
+            {name: "Suresh K.", rating: 5, date: "1 week ago", text: "Excellent quality and very authentic. The energy is palpable."},
+            {name: "Lakshmi R.", rating: 5, date: "2 weeks ago", text: "Beautifully crafted. Very satisfied with the purchase. Feeling the positive vibrations."},
+            {name: "Karthik", rating: 4, date: "1 month ago", text: "Good product, nice packaging. Delivery took a bit long but worth it."},
+            {name: "Priya", rating: 5, text: "Absolutely stunning. Feels very divine.", date: "2 months ago"},
+            {name: "Ramesh M.", rating: 5, text: "Genuine Karungali. Can definitely feel the aura.", date: "3 months ago"}
+        ];
+        
+        let dummyHtml = '';
+        dummyReviews.forEach(d => {
+            const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
+            dummyHtml += `
+            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge mb-4">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 rounded-full">${d.name.charAt(0)}</div>
+                        <div>
+                            <h4 class="font-bold text-[#8B4513]">${d.name}</h4>
+                            <div class="flex text-amber-500 text-xs">${stars}</div>
+                        </div>
+                    </div>
+                    <span class="text-xs opacity-50">${d.date}</span>
+                </div>
+                <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"${d.text}"</p>
+            </div>
+            `;
+        });
+        container.innerHTML += dummyHtml;
 
-            for (let s = 1; s <= 5; s++) {
-                const pct = Math.round((counts[s] / count) * 100);
-                const bar = document.getElementById('bar' + s);
-                const pctEl = document.getElementById('pct' + s);
-                if (bar) bar.style.width = pct + '%';
-                if (pctEl) pctEl.textContent = pct + '%';
-            }
+        // Update Rating Summary UI (since count > 0 is guaranteed now)
+        const avg = (totalRating / count).toFixed(1);
+        const scoreEl = document.querySelector('.text-6xl.font-black');
+        if (scoreEl) scoreEl.textContent = avg;
+        
+        const ratingsCountEl = document.querySelector('.text-xs.opacity-50.block.mt-1');
+        if(ratingsCountEl && ratingsCountEl.textContent.includes('customer ratings')) {
+            ratingsCountEl.textContent = `(${count} customer ratings)`;
+        }
+
+        for (let s = 1; s <= 5; s++) {
+            const pct = Math.round((counts[s] / count) * 100);
+            const bar = document.getElementById('bar' + s);
+            const pctEl = document.getElementById('pct' + s);
+            if (bar) bar.style.width = pct + '%';
+            if (pctEl) pctEl.textContent = pct + '%';
         }
     }, (error) => {
         console.error("Firebase comments error:", error);

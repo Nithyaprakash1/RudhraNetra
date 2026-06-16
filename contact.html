@@ -675,6 +675,19 @@
         // HTML-internal simulation form feedback handler
         function handleContactSubmit(e) {
             e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text;
+            const message = document.getElementById('message').value;
+
+            const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:info@rudranethra.com?subject=Contact Form Inquiry: ${subject}&body=${encodeURIComponent(body)}`;
+            
+            // Redirect to email client
+            window.location.href = mailtoLink;
+
+            // Show success modal to user
             const form = document.getElementById('contactForm');
             const modal = document.getElementById('successModal');
             const icon = document.getElementById('successIcon');
@@ -686,7 +699,6 @@
             modal.classList.remove('hidden');
             modal.classList.add('flex');
 
-            // Trigger smooth overlay display transitions
             setTimeout(() => {
                 if(icon) icon.classList.remove('scale-0');
                 if(text1) text1.classList.remove('opacity-0');
