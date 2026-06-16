@@ -684,8 +684,13 @@
             const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
             const mailtoLink = `mailto:info@rudranethra.com?subject=Contact Form Inquiry: ${subject}&body=${encodeURIComponent(body)}`;
             
-            // Redirect to email client
-            window.location.href = mailtoLink;
+            // Redirect to email client reliably
+            const mailLink = document.createElement('a');
+            mailLink.href = mailtoLink;
+            mailLink.target = '_blank';
+            document.body.appendChild(mailLink);
+            mailLink.click();
+            document.body.removeChild(mailLink);
 
             // Show success modal to user
             const form = document.getElementById('contactForm');
