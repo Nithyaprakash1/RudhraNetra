@@ -1742,16 +1742,42 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             container.innerHTML += html;
         });
 
-        // Append base dummy reviews to fill out the list
-        const dummyReviews = [
+        // Generate deterministic dummy reviews based on productId
+        const allDummyReviews = [
             {name: "Suresh K.", rating: 5, date: "1 week ago", text: "Excellent quality and very authentic. The energy is palpable."},
             {name: "Lakshmi R.", rating: 5, date: "2 weeks ago", text: "Beautifully crafted. Very satisfied with the purchase. Feeling the positive vibrations."},
-            {name: "Karthik", rating: 4, date: "1 month ago", text: "Good product, nice packaging. Delivery took a bit long but worth it."},
-            {name: "Priya", rating: 5, text: "Absolutely stunning. Feels very divine.", date: "2 months ago"}
+            {name: "Karthik M.", rating: 4, date: "1 month ago", text: "Good product, nice packaging. Delivery took a bit long but worth it."},
+            {name: "Priya S.", rating: 5, date: "2 months ago", text: "Absolutely stunning. Feels very divine."},
+            {name: "Anand T.", rating: 5, date: "3 days ago", text: "Genuine product. Highly recommend Rudra Nethra for spiritual items."},
+            {name: "Meenakshi V.", rating: 5, date: "3 weeks ago", text: "The craftsmanship is superb. I wear it every day during my meditation."},
+            {name: "Ravi G.", rating: 4, date: "2 months ago", text: "Very nice beads. The color and texture are perfect."},
+            {name: "Divya N.", rating: 5, date: "1 month ago", text: "Felt an immediate sense of peace. The packaging was also very premium."},
+            {name: "Arjun P.", rating: 5, date: "5 days ago", text: "Authentic and pure. You can tell they source the best materials."},
+            {name: "Sneha B.", rating: 5, date: "2 weeks ago", text: "Beautiful product. Exactly as described and very powerful."},
+            {name: "Venkatesh", rating: 4, date: "1 month ago", text: "Good size and weight. Happy with my purchase."},
+            {name: "Aarti D.", rating: 5, date: "1 week ago", text: "A truly divine experience. Thank you!"},
+            {name: "Manikandan", rating: 5, date: "3 months ago", text: "I have bought many items, but this one stands out. Amazing energy."},
+            {name: "Nandhini", rating: 5, date: "2 weeks ago", text: "Perfect size and excellent quality. I feel very grounded wearing this."},
+            {name: "Bala Murugan", rating: 4, date: "4 weeks ago", text: "Great product, solid build. Just what I was looking for."},
+            {name: "Deepa", rating: 5, date: "2 months ago", text: "Very authentic. The finish is smooth and perfect for chanting."},
+            {name: "Ganesh K.", rating: 5, date: "1 week ago", text: "I love the subtle fragrance and the natural feel of the wood."},
+            {name: "Vidya R.", rating: 5, date: "3 weeks ago", text: "Exactly what I needed for my daily puja. Beautifully made."},
+            {name: "Pradeep", rating: 4, date: "1 month ago", text: "Nice item. Looks exactly like the pictures."},
+            {name: "Kavitha", rating: 5, date: "2 months ago", text: "I can feel the spiritual significance. Very grateful to have this."}
         ];
         
+        let pSeed = 0;
+        let pidString = String(productId);
+        for(let i=0; i<pidString.length; i++) pSeed += pidString.charCodeAt(i);
+        
+        let selectedDummyReviews = [];
+        for(let i=0; i<4; i++) {
+            let index = (pSeed + (i * 7)) % allDummyReviews.length;
+            selectedDummyReviews.push(allDummyReviews[index]);
+        }
+        
         let dummyHtml = '';
-        dummyReviews.forEach(d => {
+        selectedDummyReviews.forEach(d => {
             const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
             dummyHtml += `
             <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col">
