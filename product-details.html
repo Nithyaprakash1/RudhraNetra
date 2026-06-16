@@ -170,6 +170,48 @@
             transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s, height 0.3s ease-out 0.9s;
         }
 
+        .certificate-anim {
+            position: relative;
+            overflow: hidden;
+            animation: float-cert 6s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.2);
+            transition: all 0.5s ease;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .certificate-anim:hover {
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.4);
+            transform: scale(1.02);
+            border-color: rgba(139, 69, 19, 0.5);
+        }
+        .certificate-anim::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 241, 224, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine-sweep 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes shine-sweep {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            30% { transform: translateX(100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        @keyframes float-cert {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
         /* Product Drawer */
         
                     .nav-text-glow {
@@ -692,7 +734,7 @@
             <!-- Right Side Security Certificate (5 Columns sharp edge) -->
             <div class="lg:col-span-5" data-aos="fade-left">
                 <!-- Visual Certificate Layout representation -->
-                <div class="border-2 border-dashed border-[#8B4513]/50 bg-white/60 p-8 shadow-inner sharp-edge relative">
+                <div class="border-2 border-dashed border-[#8B4513]/50 bg-white/60 p-8 shadow-inner sharp-edge relative certificate-anim">
                     <!-- Fine filigree style design inside borders -->
                     <div class="absolute inset-2 border border-[#8B4513]/10 pointer-events-none"></div>
                     
@@ -739,35 +781,35 @@
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">5&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar5" style="width: 0%;" data-width="85%"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar5" style="width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;" data-width="85%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct5">85%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">4&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar4" style="width: 0%;" data-width="10%"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar4" style="width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;" data-width="10%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct4">10%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">3&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar3" style="width: 0%;" data-width="3%"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar3" style="width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;" data-width="3%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct3">3%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">2&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar2" style="width: 0%;" data-width="1%"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar2" style="width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;" data-width="1%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct2">1%</span>
                         </div>
                         <div class="flex items-center text-xs">
                             <span class="w-8 opacity-75">1&#9733;</span>
                             <div class="flex-1 h-3 bg-[#8B4513]/10 mx-3 sharp-edge overflow-hidden">
-                                <div class="h-full bg-[#8B4513] rating-bar-fill" style="transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);" id="bar1" style="width: 0%;" data-width="1%"></div>
+                                <div class="h-full bg-[#8B4513] rating-bar-fill" id="bar1" style="width: 0%; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 1.0s;" data-width="1%"></div>
                             </div>
                             <span class="w-8 text-right opacity-75" id="pct1">1%</span>
                         </div>
