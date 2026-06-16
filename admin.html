@@ -119,7 +119,7 @@
                 <div class="animate-fade-in-up delay-200">
                     <h3 class="text-xl mb-4 font-serif">Recent Orders Activity</h3>
                     <div class="glass-panel overflow-x-auto">
-                        <table class="w-full min-w-[500px]" id="recentOrdersTable">
+                        <table class="w-full min-w-[500px] lg:min-w-0" id="recentOrdersTable">
                             <thead>
                                 <tr>
                                     <th>Customer</th>
@@ -244,21 +244,21 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                        <label class="block text-xs md:text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
                             Beads
-                            <button type="button" onclick="addDynamicField('beadsContainer', 'newProdBeads[]', 'e.g. 54')" class="text-xs bg-[#8B4513]/10 text-[#8B4513] px-2 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
+                            <button type="button" onclick="addDynamicField('beadsContainer', 'newProdBeads[]', 'e.g. 54')" class="text-[10px] bg-[#8B4513]/10 text-[#8B4513] px-1.5 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
                         </label>
                         <div id="beadsContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
-                            <input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                            <input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                        <label class="block text-xs md:text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
                             Size (mm)
-                            <button type="button" onclick="addDynamicField('sizesContainer', 'newProdSize[]', 'e.g. 8mm')" class="text-xs bg-[#8B4513]/10 text-[#8B4513] px-2 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
+                            <button type="button" onclick="addDynamicField('sizesContainer', 'newProdSize[]', 'e.g. 8mm')" class="text-[10px] bg-[#8B4513]/10 text-[#8B4513] px-1.5 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
                         </label>
                         <div id="sizesContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
-                            <input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                            <input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513] text-sm">
                         </div>
                     </div>
                 </div>
@@ -501,7 +501,7 @@
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
                     datasets: [{
                         label: 'Site Views',
                         data: [1200, 1900, 3000, 5000, 2000, 3000, 4500],
@@ -558,9 +558,7 @@
                         },
                         x: {
                             grid: { 
-                                color: 'rgba(139, 69, 19, 0.1)',
-                                borderDash: [5, 5],
-                                drawBorder: false
+                                display: false
                             },
                             ticks: { 
                                 color: '#8B4513',
