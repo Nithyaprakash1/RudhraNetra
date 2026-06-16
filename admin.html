@@ -176,7 +176,9 @@
     </div>
     <!-- Sidebar -->
     <aside id="adminSidebar" class="w-64 border-r border-[#8B4513]/20 flex flex-col p-6 absolute md:relative z-50 bg-[#FFF1E0] h-full transition-transform transform -translate-x-full md:translate-x-0 overflow-y-auto">
-        <button onclick="document.getElementById('adminSidebar').classList.add('-translate-x-full')" class="md:hidden absolute top-4 right-4 text-[#8B4513] font-bold text-2xl z-50">&times;</button>
+        <button onclick="document.getElementById('adminSidebar').classList.add('-translate-x-full')" class="md:hidden absolute top-4 right-4 text-[#8B4513] bg-[#8B4513]/10 hover:bg-[#8B4513]/20 rounded-full p-1.5 transition-colors z-50 focus:outline-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
         
         <div class="mb-10 mt-2 flex items-center gap-4 relative group cursor-pointer p-3 rounded-2xl hover:bg-[#8B4513]/5 transition-all duration-300 border border-transparent hover:border-[#8B4513]/10 hover:shadow-[0_4px_20px_rgba(139,69,19,0.1)]">
             <div class="relative flex-shrink-0">
