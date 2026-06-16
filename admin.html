@@ -223,12 +223,22 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Beads</label>
-                        <input type="text" id="newProdBeads" placeholder="e.g. 54 & 108" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                            Beads
+                            <button type="button" onclick="addDynamicField('beadsContainer', 'newProdBeads[]', 'e.g. 54')" class="text-xs bg-[#8B4513]/10 text-[#8B4513] px-2 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
+                        </label>
+                        <div id="beadsContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
+                            <input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Size (mm)</label>
-                        <input type="text" id="newProdSize" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        <label class="block text-sm font-semibold mb-1 text-[#8B4513] flex justify-between items-center">
+                            Size (mm)
+                            <button type="button" onclick="addDynamicField('sizesContainer', 'newProdSize[]', 'e.g. 8mm')" class="text-xs bg-[#8B4513]/10 text-[#8B4513] px-2 py-0.5 rounded font-bold hover:bg-[#8B4513]/20">+ Add</button>
+                        </label>
+                        <div id="sizesContainer" class="space-y-2 max-h-32 overflow-y-auto pr-1">
+                            <input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -300,6 +310,17 @@
             }
         };
 
+        window.addDynamicField = function(containerId, nameAttr, placeholder) {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = 'flex gap-2';
+            div.innerHTML = `
+                <input type="text" name="${nameAttr}" placeholder="${placeholder}" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold px-3 hover:bg-red-50 rounded-lg text-lg">&times;</button>
+            `;
+            container.appendChild(div);
+        };
+
         // Handle Add Product
         document.getElementById('addProductForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -314,8 +335,8 @@
                 oldPrice: document.getElementById('newProdOldPrice').value ? parseFloat(document.getElementById('newProdOldPrice').value) : null,
                 category: document.getElementById('newProdCat').value,
                 isFeatured: document.getElementById('newProdFeatured').value === "true",
-                beads: document.getElementById('newProdBeads').value,
-                size: document.getElementById('newProdSize').value,
+                beads: Array.from(document.querySelectorAll('input[name="newProdBeads[]"]')).map(el => el.value).filter(v => v),
+                sizes: Array.from(document.querySelectorAll('input[name="newProdSize[]"]')).map(el => el.value).filter(v => v),
                 images: [document.getElementById('newProdImg').value]
             };
             
@@ -326,6 +347,10 @@
             loadProducts();
             document.getElementById('addProductModal').style.display = 'none';
             this.reset();
+            // Reset dynamic fields to 1 input each
+            document.getElementById('beadsContainer').innerHTML = '<input type="text" name="newProdBeads[]" placeholder="e.g. 54" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">';
+            document.getElementById('sizesContainer').innerHTML = '<input type="text" name="newProdSize[]" placeholder="e.g. 8mm" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">';
+            
             alert("Product added successfully! Refresh the storefront to see it.");
         });
 
@@ -431,10 +456,10 @@
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['W1', 'W2', 'W3', 'W4', 'W5'],
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                     datasets: [{
                         label: 'Site Views',
-                        data: [72, 38, 0, 0, 0],
+                        data: [1200, 1900, 3000, 5000, 2000, 3000, 4500],
                         borderColor: '#8B4513',
                         backgroundColor: gradient,
                         borderWidth: 3,
@@ -478,7 +503,7 @@
                             grid: { display: false },
                             ticks: { 
                                 color: '#8B4513',
-                                callback: function(value) { return value + 'k'; }
+                                callback: function(value) { return value; }
                             },
                             border: { display: false }
                         },
