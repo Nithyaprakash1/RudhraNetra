@@ -1211,13 +1211,16 @@
             let beads = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace('\n', ' ') : '20 Beads';
             
             let qty = parseInt(document.getElementById('quantityVal').value) || 1;
-            let price = calculateDynamicPrice();
+            let dynamicPriceObj = calculateDynamicPrice();
             
+            let itemName = window.currentProduct ? window.currentProduct.name : 'Karungali Malai';
+            let itemImage = (window.currentProduct && window.currentProduct.images && window.currentProduct.images.length > 0) ? window.currentProduct.images[0] : 'https://placehold.co/600x600/8B4513/FFF1E0?text=Karungali+Malai';
+
             return {
-                name: `Karungali Malai (${size}, ${beads})`,
-                price: price,
+                name: `${itemName} (${size}, ${beads})`,
+                price: dynamicPriceObj.price,
                 quantity: qty,
-                image: 'https://placehold.co/600x600/8B4513/FFF1E0?text=Karungali+Malai'
+                image: itemImage
             };
         }
 
