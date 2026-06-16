@@ -77,7 +77,10 @@
             <a class="sidebar-item" data-target="products-tab">Inventory Catalog</a>
         </nav>
         
-        <div class="text-xs opacity-40 mt-auto">Logged in as Prathosh</div>
+        <div class="mt-auto">
+            <div class="text-xs opacity-40 mb-4">Logged in as Admin</div>
+            <button onclick="logoutAdmin()" class="w-full py-2 bg-red-900/10 text-red-700 font-bold text-sm uppercase tracking-widest rounded-lg hover:bg-red-900/20 transition">Sign Out</button>
+        </div>
     </aside>
 
     <!-- Main Content -->
@@ -278,6 +281,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
@@ -290,6 +294,39 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // --- AUTHENTICATION & SECURITY FLOW ---
+        const pendingEmail = sessionStorage.getItem('adminEmail');
+        const pendingPwd = sessionStorage.getItem('adminPwd');
+
+        if (pendingEmail && pendingPwd) {
+            // Attempt to login using credentials passed from modal
+            sessionStorage.removeItem('adminEmail');
+            sessionStorage.removeItem('adminPwd');
+            
+            signInWithEmailAndPassword(auth, pendingEmail, pendingPwd)
+                .then((userCredential) => {
+                    console.log("Admin login successful");
+                })
+                .catch((error) => {
+                    alert('Invalid Admin Credentials.');
+                    window.location.href = 'index.html';
+                });
+        } else {
+            // Security Check: Ensure they are authenticated
+            onAuthStateChanged(auth, (user) => {
+                if (!user) {
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+
+        window.logoutAdmin = function() {
+            signOut(auth).then(() => {
+                window.location.href = 'index.html';
+            });
+        };
 
         // Tab Navigation
         document.querySelectorAll('.sidebar-item').forEach(item => {

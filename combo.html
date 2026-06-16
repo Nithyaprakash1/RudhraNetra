@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
         rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* â”€â”€ Font display fix (no FOUT) â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Font display fix (no FOUT) Ã¢â€â‚¬Ã¢â€â‚¬ */
         @font-face { font-display: swap; }
 
         html, body {
@@ -37,7 +37,7 @@
         ::-webkit-scrollbar-track { background: #FFF1E0; }
         ::-webkit-scrollbar-thumb { background: #8B4513; border-radius: 4px; }
 
-        /* â”€â”€ Navbar â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Navbar Ã¢â€â‚¬Ã¢â€â‚¬ */
         .navbar-transition { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .glass-nav {
@@ -49,7 +49,7 @@
             box-shadow: 0 4px 24px rgba(139,69,19,0.12);
         }
 
-        /* â”€â”€ Shining button â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Shining button Ã¢â€â‚¬Ã¢â€â‚¬ */
         .shining-button { position: relative; overflow: hidden; }
         .shining-button::before {
             content: '';
@@ -66,7 +66,7 @@
             100% { left: 150% }
         }
 
-        /* â”€â”€ Button hover effects â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Button hover effects Ã¢â€â‚¬Ã¢â€â‚¬ */
         button, a[href] {
             transition: all 0.25s ease;
         }
@@ -90,7 +90,7 @@
 
         
 
-        /* â”€â”€ Countdown timer â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Countdown timer Ã¢â€â‚¬Ã¢â€â‚¬ */
         .timer-box {
             border-radius: 16px;
             background: rgba(255,255,255,.45);
@@ -110,7 +110,7 @@
         }
         .timer-digit:hover { transform: translateY(-2px); }
 
-        /* â”€â”€ Combo cards (with stagger fade-in on load) â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Combo cards (with stagger fade-in on load) Ã¢â€â‚¬Ã¢â€â‚¬ */
         .combo-card {
             border-radius: 20px !important;
             transition: transform .4s cubic-bezier(.165,.84,.44,1), box-shadow .4s ease;
@@ -149,7 +149,7 @@
         }
         .combo-card:hover .card-img { transform: scale(1.06); }
 
-        /* â”€â”€ Savings badges â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Savings badges Ã¢â€â‚¬Ã¢â€â‚¬ */
         .savings-badge {
             background: linear-gradient(135deg,#8B4513,#a8704d);
             border-radius: 6px;
@@ -161,14 +161,14 @@
             box-shadow: 0 3px 8px rgba(180,83,9,.35);
         }
 
-        /* â”€â”€ Pulse glow for bestseller â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Pulse glow for bestseller Ã¢â€â‚¬Ã¢â€â‚¬ */
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 30px 60px -10px rgba(142,89,54,.22), 0 0 0 2px rgba(142,89,54,.16); }
             50%       { box-shadow: 0 30px 60px -10px rgba(142,89,54,.44), 0 0 0 4px rgba(142,89,54,.32); }
         }
         .bestseller-card { animation: pulse-glow 3s ease-in-out infinite; }
 
-        /* â”€â”€ Selector cards â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Selector cards Ã¢â€â‚¬Ã¢â€â‚¬ */
         .selector-card {
             border-radius: 12px;
             transition: all .4s cubic-bezier(.165,.84,.44,1);
@@ -189,7 +189,7 @@
             box-shadow: 0 0 0 3px rgba(142,89,54,.2), 0 12px 24px -6px rgba(142,89,54,.22);
         }
         .selector-card.selected::after {
-            content: 'âœ“';
+            content: 'Ã¢Å“â€œ';
             position: absolute; top: 10px; right: 10px;
             width: 28px; height: 28px;
             background: #8B4513; color: #FFF1E0;
@@ -200,14 +200,14 @@
         }
         .selector-card img { border-radius: 8px; }
 
-        /* â”€â”€ Checkout panel â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Checkout panel Ã¢â€â‚¬Ã¢â€â‚¬ */
         .checkout-panel {
             border-radius: 20px; background: white;
             border: 1px solid rgba(142,89,54,.12);
             box-shadow: 0 20px 40px -8px rgba(142,89,54,.12);
         }
 
-        /* â”€â”€ Bundle panel slide-in animation â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Bundle panel slide-in animation Ã¢â€â‚¬Ã¢â€â‚¬ */
         @keyframes bundle-slide-in {
             from { opacity:0; transform: translateX(12px); }
             to   { opacity:1; transform: translateX(0); }
@@ -216,7 +216,7 @@
             animation: bundle-slide-in 0.35s cubic-bezier(.175,.885,.32,1.275) forwards;
         }
 
-        /* â”€â”€ Section title underline â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Section title underline Ã¢â€â‚¬Ã¢â€â‚¬ */
         .section-title-line { display: inline-block; position: relative; }
         .section-title-line::after {
             content: '';
@@ -226,7 +226,7 @@
             border-radius: 2px;
         }
 
-        /* â”€â”€ Banner top-fade â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Banner top-fade Ã¢â€â‚¬Ã¢â€â‚¬ */
         .banner-top-fade {
             position: absolute; top:0; left:0; right:0;
             height: 120px; z-index: 2;
@@ -234,7 +234,7 @@
             pointer-events: none;
         }
 
-        /* â”€â”€ Nav colors â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Nav colors Ã¢â€â‚¬Ã¢â€â‚¬ */
         .nav-text-glow { text-shadow: none; }
         .active-nav-link { text-shadow: none; color:#8B4513 !important; font-weight:800; }
         .nav-links, .nav-cart, .nav-mobile-btn { color:#8B4513; transition:color 0.3s ease; }
@@ -255,7 +255,7 @@
         .glass-nav .nav-shop-btn:hover { background-color:#5c3a23 !important; border-color:#5c3a23 !important; }
         .glass-nav .active-nav-link { color:#8B4513 !important; text-shadow: none; }
 
-        /* â”€â”€ Modal â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Modal Ã¢â€â‚¬Ã¢â€â‚¬ */
         #comboModal {
             position: fixed; inset:0; z-index:9000;
             display:flex; align-items:flex-end; justify-content:center;
@@ -294,7 +294,7 @@
         #modalSheet::-webkit-scrollbar { width:4px; }
         #modalSheet::-webkit-scrollbar-thumb { background:#8B4513; border-radius:4px; }
 
-        /* â”€â”€ Toast â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Toast Ã¢â€â‚¬Ã¢â€â‚¬ */
         #comboToast {
             position:fixed; bottom:32px; right:28px; z-index:10000;
             background:#8B4513; color:#FFF1E0;
@@ -309,13 +309,13 @@
         }
         #comboToast.show { transform:translateY(0) scale(1); opacity:1; }
 
-        /* â”€â”€ Mobile responsiveness tweaks â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Mobile responsiveness tweaks Ã¢â€â‚¬Ã¢â€â‚¬ */
         @media (max-width:640px) {
             .combo-card { border-radius:16px !important; }
             #comboModal { align-items:flex-end; }
         }
 
-        /* â”€â”€ Smooth anchor scrolling already handled via CSS scroll-behavior â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Smooth anchor scrolling already handled via CSS scroll-behavior Ã¢â€â‚¬Ã¢â€â‚¬ */
             /* Gold Energy Glow & Shimmer */
         .gold-energy-glow {
             color: #FFE1A8;
@@ -355,7 +355,7 @@
 
 <body class="overflow-x-hidden">
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â NAVBAR Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-2 md:px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl w-full mx-auto flex justify-between items-center px-4 md:px-8 py-2 md:py-4 transition-all duration-500 glass-nav"
             id="nav-container">
@@ -475,14 +475,14 @@
         <div class="bg-[#FFF1E0] rounded-2xl w-full max-w-sm p-8 shadow-2xl border border-[#8B4513]/20 relative">
             <button onclick="document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminLoginModal').classList.remove('flex');" class="absolute top-4 right-4 text-[#8B4513] text-2xl leading-none">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-[#8B4513] font-serif text-center">Admin Portal</h3>
-            <form onsubmit="event.preventDefault(); const e = document.getElementById('adminEmail').value; const p = document.getElementById('adminPwd').value; if(e==='admin@rudhranethra.com' && p==='admin123') window.location.href='admin.html'; else alert('Invalid Credentials');" class="space-y-4">
+            <form onsubmit="event.preventDefault(); sessionStorage.setItem('adminEmail', document.getElementById('adminEmail').value); sessionStorage.setItem('adminPwd', document.getElementById('adminPwd').value); window.location.href='admin.html';" class="space-y-4">
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Email</label>
                     <input type="email" id="adminEmail" required placeholder="admin@rudhranethra.com" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Password</label>
-                    <input type="password" id="adminPwd" required placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    <input type="password" id="adminPwd" required placeholder="Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
                 <button type="submit" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4">
                     Login
@@ -491,7 +491,7 @@
         </div>
     </div>
 
-    <!-- ════════════════════════════ MAIN CONTENT ════════════════════════════ -->
+    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MAIN CONTENT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
     <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
@@ -526,7 +526,7 @@
                 <h2 class="text-3xl md:text-5xl section-title-line">Featured Sacred Combos</h2>
             </div>
 
-            <!-- Cards grid â€” stagger set via JS -->
+            <!-- Cards grid Ã¢â‚¬â€ stagger set via JS -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="comboGrid">
                 <!-- Combos will be injected here by javascript below -->
             </div>
@@ -541,7 +541,7 @@
                     <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-3">Divine Amplification</span>
                     <h2 class="text-3xl md:text-5xl mb-6 section-title-line text-[#8B4513] font-bold tracking-tight">The Power of Synergy</h2>
                     <p class="text-base md:text-lg text-[#8B4513]/75 max-w-2xl mx-auto mt-8 font-light leading-relaxed">
-                        When authenticated Karungali elements are combined, their energetic resonance doesn't just add upâ€”it multiplies. Discover why pairing our sacred artifacts creates a profound auric shield.
+                        When authenticated Karungali elements are combined, their energetic resonance doesn't just add upÃ¢â‚¬â€it multiplies. Discover why pairing our sacred artifacts creates a profound auric shield.
                     </p>
                 </div>
 
@@ -604,7 +604,7 @@
 
     </div><!-- End Main Content Wrapper -->
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â FOOTER Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
     <div id="footer-spacer"></div>
     <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-10 md:pt-16 px-4 md:px-6 text-[#FFF1E0]/80" id="footer-contact">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
@@ -651,7 +651,7 @@
         </div>
     </footer>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• COMBO DETAILS MODAL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â COMBO DETAILS MODAL Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
     <div id="comboModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div id="modalSheet">
             <!-- Close button -->
@@ -707,7 +707,7 @@
         </div>
     </div>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TOAST â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â TOAST Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
     <div id="comboToast">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px;height:20px;flex-shrink:0">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
@@ -715,13 +715,13 @@
         <span id="comboToastMsg">Combo added to cart!</span>
     </div>
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SCRIPTS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â SCRIPTS Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // â”€â”€ AOS Init â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ AOS Init Ã¢â€â‚¬Ã¢â€â‚¬
         AOS.init({ duration: 900, once: true, offset: 60 });
 
-        // â”€â”€ Footer spacer â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Footer spacer Ã¢â€â‚¬Ã¢â€â‚¬
         function updateFooterSpacer() {
             const footer = document.getElementById('footer-contact');
             const spacer = document.getElementById('footer-spacer');
@@ -731,7 +731,7 @@
         window.addEventListener('load', updateFooterSpacer);
         updateFooterSpacer();
 
-        // â”€â”€ Navbar scroll glass + shadow â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Navbar scroll glass + shadow Ã¢â€â‚¬Ã¢â€â‚¬
         window.addEventListener('scroll', () => {
             const nc = document.getElementById('nav-container');
             if (window.scrollY > 50) {
@@ -741,7 +741,7 @@
             }
         });
 
-        // â”€â”€ Countdown timer â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Countdown timer Ã¢â€â‚¬Ã¢â€â‚¬
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 3);
         function updateTimer() {
@@ -755,7 +755,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // â”€â”€ Staggered card fade-in on page load â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Staggered card fade-in on page load Ã¢â€â‚¬Ã¢â€â‚¬
         window.addEventListener('load', () => {
             const cards = document.querySelectorAll('#comboGrid .combo-card');
             cards.forEach((card, i) => {
@@ -766,7 +766,7 @@
             });
         });
 
-        // â”€â”€ MODAL state â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ MODAL state Ã¢â€â‚¬Ã¢â€â‚¬
         let _currentModalCard = null;
 
         function openComboModal(card) {
@@ -827,7 +827,7 @@
             }
         }
 
-        // â”€â”€ Add combo to cart (localStorage) â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Add combo to cart (localStorage) Ã¢â€â‚¬Ã¢â€â‚¬
         function addComboToCart(card, btn) {
             const name  = card.dataset.comboName;
             const price = parseInt(card.dataset.comboPrice);
@@ -855,7 +855,7 @@
             animateBtn(btn);
         }
 
-        // â”€â”€ Buy combo now (redirect to checkout) â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Buy combo now (redirect to checkout) Ã¢â€â‚¬Ã¢â€â‚¬
         function buyComboNow(card) {
             const name  = card.dataset.comboName;
             const price = parseInt(card.dataset.comboPrice);
@@ -890,7 +890,7 @@
             });
         }
 
-        // â”€â”€ Toast helper â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Toast helper Ã¢â€â‚¬Ã¢â€â‚¬
         let _toastTimer;
         function showComboToast(msg, isWarning = false) {
             const t = document.getElementById('comboToast');
@@ -901,7 +901,7 @@
             _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
         }
 
-        // â”€â”€ Mobile menu â”€â”€
+        // Ã¢â€â‚¬Ã¢â€â‚¬ Mobile menu Ã¢â€â‚¬Ã¢â€â‚¬
         document.addEventListener('DOMContentLoaded', () => {
             updateNavCartCount();
             const btn      = document.getElementById('mobile-menu-btn');
@@ -1014,7 +1014,7 @@
                 items: ["Silver Coated Karungali Malai (8 mm - 54 Beads)", "Silver Twin Damru Bracelet (6 mm - 20 Beads)", "Karungali Ring with Silver coated Band (6 mm)"],
                 images: [
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
-                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_producâ€¦_202606111456.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_producÃ¢â‚¬Â¦_202606111456.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_worn_by_model_202606111522.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg"
@@ -1032,7 +1032,7 @@
                     "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM (3).jpeg",
                     "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
                     "image/Product Images (1-11)/Product 1 (Classic Karungali Malai (54 Beads))/WhatsApp Image 2026-06-11 at 11.32.30 AM.jpeg",
-                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_pedâ€¦_202606111730.jpeg"
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_pedÃ¢â‚¬Â¦_202606111730.jpeg"
                 ],
                 variations: []
             },
@@ -1040,14 +1040,14 @@
                 name: "Value Pack",
                 price: 799,
                 views: '8716+',
-                delivery: "Delivery Fee: â‚¹149",
+                delivery: "Delivery Fee: Ã¢â€šÂ¹149",
                 items: ["Set of 2 Karungali Bracelets(6mm - 20 Beads)"],
                 images: [
                     "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
                     "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_display_block_202606111730.jpeg",
                     "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wrist_202606111731.jpeg",
-                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_handcrafted_Tâ€¦_202606111731.jpeg",
-                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_pedâ€¦_202606111730.jpeg"
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_handcrafted_TÃ¢â‚¬Â¦_202606111731.jpeg",
+                    "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_pedÃ¢â‚¬Â¦_202606111730.jpeg"
                 ],
                 variations: ["Variation 1", "Variation 2"]
             },
@@ -1055,7 +1055,7 @@
                 name: "Spiritual Combo",
                 price: 1699,
                 views: '13381+',
-                delivery: "Delivery Fee: â‚¹149",
+                delivery: "Delivery Fee: Ã¢â€šÂ¹149",
                 items: ["Karungali necklace with karungali dollar (8mm - 54 Beads)", "Mini Damru bracelet (6mm - 20 Beads)", "Natural Karungali Ring (6mm)"],
                 images: [
                     "image/Product Images (1-11)/Karungali dollor/2.jpeg",
@@ -1167,6 +1167,7 @@
     </script>
 </body>
 </html>
+
 
 
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -138,11 +138,11 @@
         }
 
         /* ============================================================
-           ART OF KARUNGALI — GSAP ScrollTrigger Scroll-Story Section
+           ART OF KARUNGALI â€” GSAP ScrollTrigger Scroll-Story Section
            Matches reference: zoom-out from full-bleed to contained card
            ============================================================ */
 
-        /* Outer scroll spacer — gives scroll distance for the pin */
+        /* Outer scroll spacer â€” gives scroll distance for the pin */
         #art-scroll-section {
             height: 320vh;
             /* Stretched track height to significantly slow down the animations */
@@ -163,7 +163,7 @@
             background-color: #1E110A;
         }
 
-        /* Background parallax layer — moves slowest */
+        /* Background parallax layer â€” moves slowest */
         #art-bg-parallax {
             position: absolute;
             inset: -60px;
@@ -171,7 +171,7 @@
             transform: translateZ(0);
         }
 
-        /* The video wrapper — starts full-bleed, zooms out to a card */
+        /* The video wrapper â€” starts full-bleed, zooms out to a card */
         #art-video-wrapper {
             position: absolute;
             inset: 0;
@@ -200,7 +200,7 @@
             z-index: 2;
         }
 
-        /* Text overlay — centered, fades out as video zooms out */
+        /* Text overlay â€” centered, fades out as video zooms out */
         #art-text-overlay {
             position: absolute;
             inset: 0;
@@ -583,14 +583,14 @@
         <div class="bg-[#FFF1E0] rounded-2xl w-full max-w-sm p-8 shadow-2xl border border-[#8B4513]/20 relative">
             <button onclick="document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminLoginModal').classList.remove('flex');" class="absolute top-4 right-4 text-[#8B4513] text-2xl leading-none">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-[#8B4513] font-serif text-center">Admin Portal</h3>
-            <form onsubmit="event.preventDefault(); const e = document.getElementById('adminEmail').value; const p = document.getElementById('adminPwd').value; if(e==='admin@rudhranethra.com' && p==='admin123') window.location.href='admin.html'; else alert('Invalid Credentials');" class="space-y-4">
+            <form onsubmit="event.preventDefault(); sessionStorage.setItem('adminEmail', document.getElementById('adminEmail').value); sessionStorage.setItem('adminPwd', document.getElementById('adminPwd').value); window.location.href='admin.html';" class="space-y-4">
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Email</label>
                     <input type="email" id="adminEmail" required placeholder="admin@rudhranethra.com" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Password</label>
-                    <input type="password" id="adminPwd" required placeholder="••••••••" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    <input type="password" id="adminPwd" required placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
                 <button type="submit" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4">
                     Login
@@ -636,7 +636,7 @@
         </section>
 
         <!-- ================================================================
-         THE ART OF KARUNGALI — GSAP ScrollTrigger Scroll-Story Section
+         THE ART OF KARUNGALI â€” GSAP ScrollTrigger Scroll-Story Section
          id="about" is placed on this element so nav "About" link works.
          ================================================================ -->
         <div id="art-scroll-section" role="region" aria-label="Experience the Beauty of Karungali">
@@ -650,8 +650,8 @@
 
                 <!-- Layer 1 (back): Video wrapper
                  Positioned absolute inset:0 so it fills the sticky stage.
-                 GSAP scrubs it from scale(1.35) → scale(1.0) as user scrolls.
-                 border-radius morphs from 0px → 24px simultaneously. -->
+                 GSAP scrubs it from scale(1.35) â†’ scale(1.0) as user scrolls.
+                 border-radius morphs from 0px â†’ 24px simultaneously. -->
                 <div id="art-video-wrapper">
                     <!-- Replace this src with your own Karungali video -->
                     <video autoplay muted loop playsinline id="art-video"
@@ -659,7 +659,7 @@
                         <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
                     </video>
 
-                    <!-- Cinematic dark gradient overlay —
+                    <!-- Cinematic dark gradient overlay â€”
                      makes text legible at all animation stages -->
                     <div id="art-overlay" aria-hidden="true"></div>
                 </div>
@@ -673,8 +673,8 @@
                 </div>
 
                 <!-- Layer 2 (fore): Text overlay
-                 Fades IN during Phase A (scroll 0%–15%).
-                 Fades OUT during Phase B (scroll 60%–68%) as video zooms out. -->
+                 Fades IN during Phase A (scroll 0%â€“15%).
+                 Fades OUT during Phase B (scroll 60%â€“68%) as video zooms out. -->
                 <div id="art-text-overlay">
 
                     <!-- Eyebrow: letter-spaced label, appears first -->
@@ -694,7 +694,7 @@
                         </p>
                     </div>
 
-                    <!-- CTA — appears last, after all text is visible -->
+                    <!-- CTA â€” appears last, after all text is visible -->
                     <a href="#store" id="art-cta" aria-label="Explore the Karungali collection" class="mt-8">
                         Explore the Collection
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -789,9 +789,9 @@
                         <!-- Card 1 -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-xl text-[#8B4513] font-medium leading-relaxed mb-8">"The energy in my
                                     house shifted the moment I placed the Karungali idol. Truly powerful and the design
                                     details are immaculate."</p>
@@ -809,9 +809,9 @@
                         <!-- Card 2 -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Exceptional quality. The beads
                                     feel authentic and grounding during my meditation. The authenticity certificate gave
                                     me immense confidence."</p>
@@ -829,9 +829,9 @@
                         <!-- Card 3 -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"An absolute essential for my
                                     living space. The craftsmanship is divine and very soothing. Beautiful and fast
                                     packaging."</p>
@@ -849,9 +849,9 @@
                         <!-- Card 4 (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"I wear the Karungali bracelet
                                     daily. It gives me a deep sense of calm in my high-stress job. The quality is
                                     unmatched."</p>
@@ -869,9 +869,9 @@
                         <!-- Card 5 (New) -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"The holy plank transformed my
                                     puja room. The wood's texture and natural dark tone resonate with ancient traditions
                                     perfectly."</p>
@@ -889,9 +889,9 @@
                         <!-- Card 6 (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Purchasing from Rudra Nethra was
                                     an incredible experience. Customer service guided me to the exact beads my
                                     astrological chart required."</p>
@@ -910,9 +910,9 @@
                         <!-- Card 1 Duplicate -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-xl text-[#8B4513] font-medium leading-relaxed mb-8">"The energy in my
                                     house shifted the moment I placed the Karungali idol. Truly powerful and the design
                                     details are immaculate."</p>
@@ -930,9 +930,9 @@
                         <!-- Card 2 Duplicate -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Exceptional quality. The beads
                                     feel authentic and grounding during my meditation. The authenticity certificate gave
                                     me immense confidence."</p>
@@ -950,9 +950,9 @@
                         <!-- Card 3 Duplicate -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"An absolute essential for my
                                     living space. The craftsmanship is divine and very soothing. Beautiful and fast
                                     packaging."</p>
@@ -970,9 +970,9 @@
                         <!-- Card 4 Duplicate (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"I wear the Karungali bracelet
                                     daily. It gives me a deep sense of calm in my high-stress job. The quality is
                                     unmatched."</p>
@@ -990,9 +990,9 @@
                         <!-- Card 5 Duplicate (New) -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"The holy plank transformed my
                                     puja room. The wood's texture and natural dark tone resonate with ancient traditions
                                     perfectly."</p>
@@ -1010,9 +1010,9 @@
                         <!-- Card 6 Duplicate (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">â€œ</div>
                             <div class="relative z-10 pt-6">
-                                <div class="flex text-amber-500 mb-4">★★★★★</div>
+                                <div class="flex text-amber-500 mb-4">â˜…â˜…â˜…â˜…â˜…</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Purchasing from Rudra Nethra was
                                     an incredible experience. Customer service guided me to the exact beads my
                                     astrological chart required."</p>
@@ -1201,7 +1201,7 @@
         });
 
         /* ------------------------------------------------------------------
-           THE ART OF KARUNGALI — GSAP SCROLLTRIGGER ANIMATION
+           THE ART OF KARUNGALI â€” GSAP SCROLLTRIGGER ANIMATION
         ------------------------------------------------------------------ */
         (function initArtAnimation() {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1267,7 +1267,7 @@
                GSAP Timeline Mapping
             ================================================================ */
 
-            /* ── Phase 1: Text Zoom & Fade In (0.00 -> 0.15) ── */
+            /* â”€â”€ Phase 1: Text Zoom & Fade In (0.00 -> 0.15) â”€â”€ */
             tl.to(textOverlay, {
                 opacity: 1,
                 scale: 1.00,
@@ -1280,7 +1280,7 @@
             tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.06);
             tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.08);
 
-            /* ── Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) ── */
+            /* â”€â”€ Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) â”€â”€ */
             tl.to(cornerAside, {
                 opacity: 0,
                 y: 15,
@@ -1288,10 +1288,10 @@
                 duration: 0.20
             }, 0.20);
 
-            /* ── Phase 3: Text Pause / Hold (0.15 -> 0.60) ── */
+            /* â”€â”€ Phase 3: Text Pause / Hold (0.15 -> 0.60) â”€â”€ */
             // The text remains completely static and readable for 45% of the timeline track
 
-            /* ── Phase 4: Text Overlay Fade & Exit (Fades out 0.60 -> 0.68) ── */
+            /* â”€â”€ Phase 4: Text Overlay Fade & Exit (Fades out 0.60 -> 0.68) â”€â”€ */
             tl.to(textOverlay, {
                 opacity: 0,
                 y: textExitY,
@@ -1300,7 +1300,7 @@
                 duration: 0.08
             }, 0.60);
 
-            /* ── Phase 5: Video Zoom Out (Initiates later, runs 0.68 -> 0.82) ── */
+            /* â”€â”€ Phase 5: Video Zoom Out (Initiates later, runs 0.68 -> 0.82) â”€â”€ */
             tl.to(videoWrapper, {
                 scale: endScale,
                 borderRadius: endRadius + 'px',
@@ -1308,7 +1308,7 @@
                 duration: 0.14
             }, 0.68);
 
-            /* ── Phase 6: Prolonged Video Pause / Hold (0.82 -> 1.00) ── */
+            /* â”€â”€ Phase 6: Prolonged Video Pause / Hold (0.82 -> 1.00) â”€â”€ */
             // Deliberately empty duration buffer block to anchor the static card video
             tl.to({}, { duration: 0.18 }, 0.82);
 
@@ -1387,5 +1387,6 @@
 </body>
 
 </html>
+
 
 
