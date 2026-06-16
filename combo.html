@@ -1017,7 +1017,7 @@
                     const mainImgId = `combo-img-${idx}`;
                     
                     let thumbnailsHtml = '<div class="flex gap-2 p-3 bg-white border-b border-[#8B4513]/10 overflow-x-auto">';
-                    c.images.forEach(img => {
+                    c.images.slice(0, 3).forEach(img => {
                         thumbnailsHtml += `<img src="${img}" class="w-12 h-12 object-cover rounded cursor-pointer border-2 border-transparent hover:border-[#8B4513] transition-all" onclick="document.getElementById('${mainImgId}').src=this.src">`;
                     });
                     thumbnailsHtml += '</div>';
