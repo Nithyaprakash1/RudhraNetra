@@ -129,6 +129,11 @@
 
         .hover-border-draw {
             position: relative;
+            transition: box-shadow 0.5s ease-out, background-color 0.5s ease-out;
+        }
+        .hover-border-draw:hover {
+            box-shadow: 0 25px 50px -12px rgba(142, 89, 54, 0.25);
+            background-color: rgba(255, 255, 255, 0.7);
         }
         .hover-border-draw::before, .hover-border-draw::after {
             content: '';
@@ -153,6 +158,7 @@
             height: 100%;
             border-top-color: #8B4513;
             border-right-color: #8B4513;
+            filter: drop-shadow(0 0 6px rgba(139, 69, 19, 0.6));
             transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
         }
         .hover-border-draw:hover::after {
@@ -160,6 +166,7 @@
             height: 100%;
             border-bottom-color: #8B4513;
             border-left-color: #8B4513;
+            filter: drop-shadow(0 0 6px rgba(139, 69, 19, 0.6));
             transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s, height 0.3s ease-out 0.9s;
         }
 
