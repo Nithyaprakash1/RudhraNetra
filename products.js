@@ -1,4 +1,4 @@
-const masterProducts = [
+const defaultMasterProducts = [
     {
         "id":  1,
         "isFeatured":  true,
@@ -319,3 +319,15 @@ const masterProducts = [
         "category":  "necklaces"
     }
 ];
+let masterProducts = [];
+try {
+    const stored = localStorage.getItem('rudraProducts');
+    if (stored) {
+        masterProducts = JSON.parse(stored);
+    } else {
+        masterProducts = JSON.parse(JSON.stringify(defaultMasterProducts));
+    }
+} catch (e) {
+    console.error("Error loading products from local storage:", e);
+    masterProducts = JSON.parse(JSON.stringify(defaultMasterProducts));
+}
