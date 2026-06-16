@@ -737,8 +737,8 @@
             </div>
 
             <!-- Right Side Customer Feedbacks List (8 Columns) -->
-            <div class="lg:col-span-8 space-y-8" data-aos="fade-left" id="reviews-list-container">
-                <p class="text-[#8B4513] italic opacity-70">Loading reviews...</p>
+            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-left" id="reviews-list-container">
+                <p class="text-[#8B4513] italic opacity-70 col-span-full">Loading reviews...</p>
             </div>
 
         </div>
@@ -1725,7 +1725,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const text = data.text || '';
 
             const html = `
-            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge mb-4">
+            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 rounded-full">${initial}</div>
@@ -1736,7 +1736,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
                     </div>
                     <span class="text-xs opacity-50">${dateStr}</span>
                 </div>
-                <p class="text-sm text-[#8B4513]/90 leading-relaxed italic">"${text}"</p>
+                <p class="text-sm text-[#8B4513]/90 leading-relaxed italic flex-1">"${text}"</p>
             </div>
             `;
             container.innerHTML += html;
@@ -1754,7 +1754,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         dummyReviews.forEach(d => {
             const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
             dummyHtml += `
-            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge mb-4">
+            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-[#8B4513] text-white flex items-center justify-center font-bold mr-3 rounded-full">${d.name.charAt(0)}</div>
