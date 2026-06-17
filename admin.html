@@ -434,7 +434,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -536,7 +536,7 @@
             }
         });
 
-        window.selectCustomStatus = async function(docId, newStatus, item, colorClass) {
+        window.selectCustomStatus = function(docId, newStatus, item, colorClass) {
             const dropdown = item.closest('[data-dropdown]');
             const btn = dropdown.querySelector('button');
             const statusText = btn.querySelector('.status-text');
@@ -554,63 +554,28 @@
             
             dropdown.querySelector('.dropdown-menu').classList.add('hidden');
             
+            // Actually call the firebase update function directly here
             try {
-                const orderRef = doc(db, "orders", docId);
-                const orderSnap = await getDoc(orderRef);
-                if(orderSnap.exists()) {
-                    const orderData = orderSnap.data();
-                    // 1. Direct update if userId is present (New Architecture)
-                    if(orderData.userId) {
-                        const userRef = doc(db, "Users", orderData.userId);
-                        const userSnap = await getDoc(userRef);
-                        if(userSnap.exists()) {
-                            const userData = userSnap.data();
-                            if(userData.orders) {
-                                const orderNum = orderData.orderNumber || orderData.razorpay_payment_id?.slice(-6).toUpperCase();
-                                const updatedOrders = userData.orders.map(o => {
-                                    if(o.orderNumber === orderNum || o.id === orderData.id || o.razorpay_payment_id === orderData.razorpay_payment_id) {
-                                        return { ...o, status: newStatus };
-                                    }
-                                    return o;
-                                });
-                                await updateDoc(userRef, { orders: updatedOrders });
-                            }
+                updateDoc(doc(db, "orders", docId), { status: newStatus }).then(async () => {
+                    // Update Dashboard Orders too
+                    try {
+                        const orderData = (await getDoc(doc(db, "orders", docId))).data();
+                        if (orderData && orderData.razorpay_payment_id) {
+                            const orderNum = orderData.razorpay_payment_id.slice(-6).toUpperCase();
+                            const qDash = query(collection(db, "Orders"), where("orderNumber", "==", orderNum));
+                            const dashDocs = await getDocs(qDash);
+                            dashDocs.forEach(dashDoc => {
+                                updateDoc(doc(db, "Orders", dashDoc.id), { status: newStatus });
+                            });
                         }
-                    } 
-                    // 2. Bulletproof Fallback (Old Orders): Search ALL users for the matching payment ID
-                    else {
-                        const allUsersSnap = await getDocs(collection(db, "Users"));
-                        allUsersSnap.forEach(uDoc => {
-                            const uData = uDoc.data();
-                            if(uData.orders) {
-                                let found = false;
-                                const updatedOrders = uData.orders.map(o => {
-                                    // Match by payment ID, order ID, or exact total amount and date as last resort
-                                    if(o.razorpay_payment_id === orderData.razorpay_payment_id || 
-                                       (o.totalAmount === orderData.totalAmount && Math.abs(o.createdAt - orderData.timestamp?.toMillis()) < 60000) ||
-                                       (orderData.razorpay_payment_id && o.orderNumber === orderData.razorpay_payment_id.slice(-6).toUpperCase())) {
-                                        found = true;
-                                        return { ...o, status: newStatus };
-                                    }
-                                    return o;
-                                });
-                                if(found) {
-                                    updateDoc(doc(db, "Users", uDoc.id), { orders: updatedOrders });
-                                }
-                            }
-                        });
-                    }
-                }
+                    } catch(err) { console.error("Failed to sync to user dashboard", err); }
 
-                await updateDoc(orderRef, { status: newStatus });
-                
-                const toast = document.getElementById('customToast');
-                toast.querySelector('span').innerText = 'Order status updated to: ' + newStatus;
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 4000);
-            } catch(e) {
-                console.error("Status update error: ", e);
-            }
+                    const toast = document.getElementById('customToast');
+                    toast.querySelector('span').innerText = 'Order status updated to: ' + newStatus;
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                });
+            } catch(e) {}
         }
 
         // Tab Switching
