@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,7 +46,7 @@
             border-radius: 4px;
         }
 
-        /* â”€â”€ Navbar â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Navbar Ã¢â€â‚¬Ã¢â€â‚¬ */
         .navbar-transition {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -58,7 +58,7 @@
             border-radius: 9999px;
         }
 
-        /* â”€â”€ Shining button â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Shining button Ã¢â€â‚¬Ã¢â€â‚¬ */
         .shining-button {
             position: relative;
             overflow: hidden;
@@ -90,15 +90,15 @@
             }
         }
 
-        /* â”€â”€ Product drawer â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Product drawer Ã¢â€â‚¬Ã¢â€â‚¬ */
 
 
         
 
-        /* â”€â”€ Scroll Product Showcase â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Scroll Product Showcase Ã¢â€â‚¬Ã¢â€â‚¬ */
         #product-showcase {
             position: relative;
-            /* height is just one viewport â€” page does NOT scroll during animation */
+            /* height is just one viewport Ã¢â‚¬â€ page does NOT scroll during animation */
             height: 100vh;
         }
 
@@ -122,7 +122,7 @@
             z-index: 1;
         }
 
-        /* Bead wrapper â€” starts upper-center, JS moves it \ then / diagonally */
+        /* Bead wrapper Ã¢â‚¬â€ starts upper-center, JS moves it \ then / diagonally */
         #bead-wrap {
             position: absolute;
             width: 350px;
@@ -163,8 +163,8 @@
         #features-left {
             left: 15vw;
             /* Vertically centered around bead's right-side position:
-               bead at 38%+14% = 52% of 100vh â‰ˆ 400px.
-               Two cards â‰ˆ 340px total. Center panel at 400px â†’ top = 400-170 = 230px */
+               bead at 38%+14% = 52% of 100vh Ã¢â€°Ë† 400px.
+               Two cards Ã¢â€°Ë† 340px total. Center panel at 400px Ã¢â€ â€™ top = 400-170 = 230px */
             top: 210px;
             visibility: hidden;
         }
@@ -172,8 +172,8 @@
         #features-right {
             right: 15vw;
             /* Vertically centered around bead's left-side position:
-               bead at 38%+26% = 64% of 100vh â‰ˆ 491px.
-               Two cards â‰ˆ 340px. Center at 491px â†’ top = 491-170 = 321px */
+               bead at 38%+26% = 64% of 100vh Ã¢â€°Ë† 491px.
+               Two cards Ã¢â€°Ë† 340px. Center at 491px Ã¢â€ â€™ top = 491-170 = 321px */
             top: 300px;
             visibility: hidden;
         }
@@ -183,7 +183,7 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            /* margin-bottom removed â€” use parent gap only */
+            /* margin-bottom removed Ã¢â‚¬â€ use parent gap only */
             background: rgba(255, 241, 224, 0.45);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(139, 69, 19, 0.15);
@@ -325,7 +325,7 @@
             }
         }
 
-        /* Feature modal (mobile only â€” hidden by default) */
+        /* Feature modal (mobile only Ã¢â‚¬â€ hidden by default) */
         #feat-modal-overlay {
             display: none;
             position: fixed;
@@ -479,7 +479,7 @@
             }
         }
 
-        /* Mobile override â€” tighter panels */
+        /* Mobile override Ã¢â‚¬â€ tighter panels */
         @media (max-width: 768px) {
             #bead-wrap {
                 width: 220px;
@@ -659,21 +659,6 @@
                 <button onclick="window.location.href='product.html'"
                     class="shining-button px-2 md:px-6 py-1.5 md:py-2 rounded-full text-[9px] md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop
                     Now</button>
-                <!-- Account Menu -->
-                <div id="account-menu-container" class="relative hidden ml-2 md:ml-4">
-                    <button id="account-btn" class="w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition cursor-pointer nav-shop-btn">
-                        U
-                    </button>
-                    <div id="account-dropdown" class="absolute right-0 mt-3 w-56 bg-[#FFF1E0] rounded-xl shadow-xl border border-[#8B4513]/10 hidden flex-col overflow-hidden z-[100]">
-                        <div class="px-4 py-3 border-b border-[#8B4513]/10 bg-white/50">
-                            <p id="account-name" class="text-sm font-bold text-[#8B4513] truncate">User Name</p>
-                            <p id="account-email" class="text-xs text-[#8B4513]/70 truncate">user@example.com</p>
-                        </div>
-                        <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm text-red-600 font-bold hover:bg-red-50 transition cursor-pointer">
-                            Sign Out
-                        </button>
-                    </div>
-                </div>
                 <!-- Mobile Menu Toggle Button -->
                 <button id="mobile-menu-btn"
                     class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2"
@@ -723,15 +708,15 @@
                 <h1 class="text-4xl md:text-5xl lg:text-6xl text-[#8B4513] mb-5 font-bold" data-aos="fade-up">About Us</h1>
                 <p class="text-[#8B4513]/90 text-base md:text-lg leading-relaxed font-medium" data-aos="fade-up"
                     data-aos-delay="80">
-                    Every Karungali bead we craft carries centuries of sacred tradition â€”
+                    Every Karungali bead we craft carries centuries of sacred tradition Ã¢â‚¬â€
                     ethically sourced, ritually consecrated, and lovingly finished by hand.
                 </p>
             </div>
         </section>
 
-        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+        <!-- Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
              SCROLL-DRIVEN PRODUCT ANIMATION SECTION
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+        Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â -->
         <section id="product-showcase">
             <div id="showcase-sticky">
 
@@ -769,7 +754,7 @@
 
                 <!-- Rotating Product Image -->
                 <div id="bead-wrap">
-                    <img id="bead-image" src="image/bead.png" alt="Karungali Bead â€” 360Â° view" />
+                    <img id="bead-image" src="image/bead.png" alt="Karungali Bead Ã¢â‚¬â€ 360Ã‚Â° view" />
                 </div>
 
                 <!-- Right feature panel -->
@@ -912,16 +897,16 @@
         }
         window.addEventListener('load', updateNavCartCount);
 
-        /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+        /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
            IMAGE 2D ROTATION + BIDIRECTIONAL SCROLL-LOCK
-           â”€ Rotates the 2D bead image (counter-clockwise on scroll down)
-           â”€ Staggered fade-in of left points, which then fade out
+           Ã¢â€â‚¬ Rotates the 2D bead image (counter-clockwise on scroll down)
+           Ã¢â€â‚¬ Staggered fade-in of left points, which then fade out
              before the right points fade in.
-           â”€ Page stays frozen until all feature points are revealed
-           â”€ Works in reverse: scrolling back up re-enters animation
-         â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+           Ã¢â€â‚¬ Page stays frozen until all feature points are revealed
+           Ã¢â€â‚¬ Works in reverse: scrolling back up re-enters animation
+         Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
         (function () {
-            /* â”€â”€ DOM â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ DOM Ã¢â€â‚¬Ã¢â€â‚¬ */
             const section = document.getElementById('product-showcase');
             const beadWrap = document.getElementById('bead-wrap');
             const beadImage = document.getElementById('bead-image');
@@ -930,15 +915,15 @@
             const fr1 = document.getElementById('fr1'), fr2 = document.getElementById('fr2');
             if (!section || !beadImage) return;
 
-            /* â”€â”€ Virtual scroll + bidirectional scroll-lock state â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Virtual scroll + bidirectional scroll-lock state Ã¢â€â‚¬Ã¢â€â‚¬ */
             const TOTAL = 4500;        // virtual pixels for full animation
-            let vScroll = 0;         // 0 â€¦ TOTAL
+            let vScroll = 0;         // 0 Ã¢â‚¬Â¦ TOTAL
             let locked = false;
             let frozenY = 0;         // scrollY while locked
             let sectionDir = 'above';  // 'above' | 'below' relative to viewport
             let rafId = null;
 
-            /* â”€â”€ Smoothed display state â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Smoothed display state Ã¢â€â‚¬Ã¢â€â‚¬ */
             let rotAngle = 0, rotTarget = 0;
             let tx = 0, txT = 0;
             let ty = 0, tyT = 0;
@@ -947,7 +932,7 @@
             let fl1x = -60, fl2x = -60, fr1x = 60, fr2x = 60;
             let hOp = 1;
 
-            /* â”€â”€ Helpers â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Helpers Ã¢â€â‚¬Ã¢â€â‚¬ */
             function lerp(a, b, t) { return a + (b - a) * t; }
             function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
             function cl(v, lo = 0, hi = 1) { return Math.max(lo, Math.min(hi, v)); }
@@ -958,29 +943,29 @@
                 return Math.round(section.getBoundingClientRect().top + window.scrollY);
             }
 
-            /* â”€â”€ Map vScroll to animation targets â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Map vScroll to animation targets Ã¢â€â‚¬Ã¢â€â‚¬ */
             /*
              * ANIMATION TIMELINE  (TOTAL = 4500 virtual px)
              *
-             * p 0.00â€“0.12 : Bead glides CENTER â†’ upper-RIGHT  (no cards)
-             * p 0.12â€“0.20 : fl1 fades in (LEFT panel), bead frozen upper-right
-             * p 0.20â€“0.28 : fl2 fades in (LEFT panel)
-             * p 0.28â€“0.50 : FREEZE â€” both left cards & bead hold still
-             * p 0.50â€“0.56 : Left cards HARD fade out
-             * p 0.56â€“0.70 : Bead moves diagonal upper-right â†’ lower-left  (â€œ/â€)
-             * p 0.70â€“0.78 : fr1 fades in (RIGHT panel), bead frozen lower-left
-             * p 0.78â€“0.86 : fr2 fades in (RIGHT panel)
-             * p 0.86â€“1.00 : FREEZE â€” both right cards & bead hold still
+             * p 0.00Ã¢â‚¬â€œ0.12 : Bead glides CENTER Ã¢â€ â€™ upper-RIGHT  (no cards)
+             * p 0.12Ã¢â‚¬â€œ0.20 : fl1 fades in (LEFT panel), bead frozen upper-right
+             * p 0.20Ã¢â‚¬â€œ0.28 : fl2 fades in (LEFT panel)
+             * p 0.28Ã¢â‚¬â€œ0.50 : FREEZE Ã¢â‚¬â€ both left cards & bead hold still
+             * p 0.50Ã¢â‚¬â€œ0.56 : Left cards HARD fade out
+             * p 0.56Ã¢â‚¬â€œ0.70 : Bead moves diagonal upper-right Ã¢â€ â€™ lower-left  (Ã¢â‚¬Å“/Ã¢â‚¬Â)
+             * p 0.70Ã¢â‚¬â€œ0.78 : fr1 fades in (RIGHT panel), bead frozen lower-left
+             * p 0.78Ã¢â‚¬â€œ0.86 : fr2 fades in (RIGHT panel)
+             * p 0.86Ã¢â‚¬â€œ1.00 : FREEZE Ã¢â‚¬â€ both right cards & bead hold still
              */
-            /* â”€â”€ Map vScroll to animation targets â”€â”€
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Map vScroll to animation targets Ã¢â€â‚¬Ã¢â€â‚¬
              *
              * BEAD PATH (\ then / then |):
-             * p 0.00â€“0.12 : center â†’ lower-right  (\  path, bead goes DOWN+RIGHT)
-             * p 0.12â€“0.50 : FREEZE lower-right. Left cards fade in.
-             * p 0.50â€“0.56 : Left cards fade out.
-             * p 0.56â€“0.70 : lower-right â†’ even-lower-left  (/  path, DOWN+LEFT)
-             * p 0.70â€“0.85 : FREEZE lower-left. Right cards fade in.
-             * p 0.85â€“1.00 : lower-left â†’ move DOWN  (| path) while right cards stay still.
+             * p 0.00Ã¢â‚¬â€œ0.12 : center Ã¢â€ â€™ lower-right  (\  path, bead goes DOWN+RIGHT)
+             * p 0.12Ã¢â‚¬â€œ0.50 : FREEZE lower-right. Left cards fade in.
+             * p 0.50Ã¢â‚¬â€œ0.56 : Left cards fade out.
+             * p 0.56Ã¢â‚¬â€œ0.70 : lower-right Ã¢â€ â€™ even-lower-left  (/  path, DOWN+LEFT)
+             * p 0.70Ã¢â‚¬â€œ0.85 : FREEZE lower-left. Right cards fade in.
+             * p 0.85Ã¢â‚¬â€œ1.00 : lower-left Ã¢â€ â€™ move DOWN  (| path) while right cards stay still.
              */
             function calcTargets() {
                 const p      = cl(vScroll / TOTAL);
@@ -1015,14 +1000,14 @@
 
                 rotTarget = -p * Math.PI * 4;
 
-                /* LEFT CARDS visible while bead is at lower-right (p 0.12â€“0.56)
-                   BOTH cards appear at exactly the same time â€” zero stagger */
+                /* LEFT CARDS visible while bead is at lower-right (p 0.12Ã¢â‚¬â€œ0.56)
+                   BOTH cards appear at exactly the same time Ã¢â‚¬â€ zero stagger */
                 const leftOn = (p >= 0.12 && p < 0.56);
                 if (leftOn) {
                     const lp = cl((p - 0.12) / 0.44);
                     const lFade = ease(cl(lp / 0.10));  /* fast fade: done in 10% of window */
-                    fl1oT = lFade;   /* card 1 â€” simultaneous */
-                    fl2oT = lFade;   /* card 2 â€” exactly same opacity as card 1 */
+                    fl1oT = lFade;   /* card 1 Ã¢â‚¬â€ simultaneous */
+                    fl2oT = lFade;   /* card 2 Ã¢â‚¬â€ exactly same opacity as card 1 */
                     if (p > 0.50) {
                         const out = ease(cl((p - 0.50) / 0.06));
                         fl1oT *= (1 - out);
@@ -1030,20 +1015,20 @@
                     }
                 } else {
                     fl1oT = fl2oT = 0;
-                    fl1o  = fl2o  = 0;  /* hard zero â€” no ghost */
+                    fl1o  = fl2o  = 0;  /* hard zero Ã¢â‚¬â€ no ghost */
                 }
 
                 /* RIGHT CARDS visible as soon as bead is mostly on the left (p >= 0.65)
-                   BOTH cards appear at exactly the same time â€” zero stagger */
+                   BOTH cards appear at exactly the same time Ã¢â‚¬â€ zero stagger */
                 const rightOn = (p >= 0.65);
                 if (rightOn) {
                     const rp = cl((p - 0.65) / 0.35);
                     const rFade = ease(cl(rp / 0.10));  /* fast fade: done in 10% of window */
-                    fr1oT = rFade;   /* card 1 â€” simultaneous */
-                    fr2oT = rFade;   /* card 2 â€” exactly same opacity as card 1 */
+                    fr1oT = rFade;   /* card 1 Ã¢â‚¬â€ simultaneous */
+                    fr2oT = rFade;   /* card 2 Ã¢â‚¬â€ exactly same opacity as card 1 */
                 } else {
                     fr1oT = fr2oT = 0;
-                    fr1o  = fr2o  = 0;  /* hard zero â€” no ghost */
+                    fr1o  = fr2o  = 0;  /* hard zero Ã¢â‚¬â€ no ghost */
                 }
 
                 /* NOTE: visibility is set in render() based on ACTUAL opacity, not target */
@@ -1087,7 +1072,7 @@
                 fr2.style.opacity = fr2o;  fr2.style.transform = `translateX(${fr2x}px)`;
                 if (hint) hint.style.opacity = hOp;
 
-                /* Visibility driven by ACTUAL opacity â€” bullet-proof for all scroll directions */
+                /* Visibility driven by ACTUAL opacity Ã¢â‚¬â€ bullet-proof for all scroll directions */
                 const FL = document.getElementById('features-left');
                 const FR = document.getElementById('features-right');
                 FL.style.visibility = (fl1o > 0.02 || fl2o > 0.02) ? 'visible' : 'hidden';
@@ -1096,7 +1081,7 @@
                 rafId = requestAnimationFrame(render);
             }
 
-            /* â”€â”€ Scroll-lock helpers â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Scroll-lock helpers Ã¢â€â‚¬Ã¢â€â‚¬ */
             function resetAnim(initV) {
                 vScroll  = initV;
                 const p  = cl(initV / TOTAL);
@@ -1106,7 +1091,7 @@
                 else if (p >= 0.12) { tx =  18; ty = 14; }   /* lower-right freeze */
                 else { tx = 0; ty = 0; }                       /* start center */
                 rotAngle = rotTarget = -p * Math.PI * 4;
-                /* Hard-reset all opacities â€” critical for glitch-free reverse scroll */
+                /* Hard-reset all opacities Ã¢â‚¬â€ critical for glitch-free reverse scroll */
                 fl1o = fl2o = fr1o = fr2o = 0;
                 fl1oT = fl2oT = fr1oT = fr2oT = 0;
             }
@@ -1122,10 +1107,10 @@
                 window.scrollTo(0, to);
             }
 
-            /* â”€â”€ Unified wheel/touch handler â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Unified wheel/touch handler Ã¢â€â‚¬Ã¢â€â‚¬ */
             function onWheel(e) {
                 const rect = section.getBoundingClientRect();
-                const atEdge = Math.abs(rect.top) <= 150;  // section top â‰ˆ viewport top (increased threshold to catch fast scrolls)
+                const atEdge = Math.abs(rect.top) <= 150;  // section top Ã¢â€°Ë† viewport top (increased threshold to catch fast scrolls)
 
                 if (!locked && atEdge) {
                     /* Enter from top on downward scroll */
@@ -1144,13 +1129,13 @@
                 vScroll = cl(vScroll + e.deltaY, 0, TOTAL);
                 const p = vScroll / TOTAL;
 
-                /* Exit forward â€” animation finished, page scrolls past section */
+                /* Exit forward Ã¢â‚¬â€ animation finished, page scrolls past section */
                 if (p >= 1 && e.deltaY > 0) {
                     sectionDir = 'below';
                     unlockScroll(frozenY + section.offsetHeight + 4);
                     return;
                 }
-                /* Exit backward â€” re-entered from reverse, page scrolls above section */
+                /* Exit backward Ã¢â‚¬â€ re-entered from reverse, page scrolls above section */
                 if (p <= 0 && e.deltaY < 0) {
                     sectionDir = 'above';
                     unlockScroll(frozenY - 4);
@@ -1178,7 +1163,7 @@
                 if (t < -10) sectionDir = 'below';
             });
 
-            /* â”€â”€ Touch support (mobile) â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ Touch support (mobile) Ã¢â€â‚¬Ã¢â€â‚¬ */
             let touchY0 = 0;
             window.addEventListener('touchstart', e => {
                 touchY0 = e.touches[0].clientY;
@@ -1190,7 +1175,7 @@
                 onWheel({ deltaY: dy * 2.5, preventDefault: () => { if (e.cancelable) e.preventDefault(); } });
             }, { passive: false });
 
-            /* â”€â”€ IntersectionObserver: start/stop RAF to save CPU â”€â”€ */
+            /* Ã¢â€â‚¬Ã¢â€â‚¬ IntersectionObserver: start/stop RAF to save CPU Ã¢â€â‚¬Ã¢â€â‚¬ */
             const obs = new IntersectionObserver(entries => {
                 entries.forEach(en => {
                     if (en.isIntersecting && !rafId) {
@@ -1249,7 +1234,7 @@
     </div>
 
     <script>
-        /* â”€â”€ Mobile feature card tap-to-expand (mobile only) â”€â”€ */
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Mobile feature card tap-to-expand (mobile only) Ã¢â€â‚¬Ã¢â€â‚¬ */
         (function () {
             const overlay = document.getElementById('feat-modal-overlay');
             const sheet = document.getElementById('feat-modal-sheet');
@@ -1319,10 +1304,11 @@
         });
     </script>
 
-    <script type="module" src="auth-state.js"></script>
+    
 </body>
 
 </html>
+
 
 
 

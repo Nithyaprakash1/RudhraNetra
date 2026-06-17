@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -140,11 +140,11 @@
         }
 
         /* ============================================================
-           ART OF KARUNGALI � GSAP ScrollTrigger Scroll-Story Section
+           ART OF KARUNGALI — GSAP ScrollTrigger Scroll-Story Section
            Matches reference: zoom-out from full-bleed to contained card
            ============================================================ */
 
-        /* Outer scroll spacer � gives scroll distance for the pin */
+        /* Outer scroll spacer — gives scroll distance for the pin */
         #art-scroll-section {
             height: 320vh;
             /* Stretched track height to significantly slow down the animations */
@@ -165,7 +165,7 @@
             background-color: #1E110A;
         }
 
-        /* Background parallax layer � moves slowest */
+        /* Background parallax layer — moves slowest */
         #art-bg-parallax {
             position: absolute;
             inset: -60px;
@@ -173,7 +173,7 @@
             transform: translateZ(0);
         }
 
-        /* The video wrapper � starts full-bleed, zooms out to a card */
+        /* The video wrapper — starts full-bleed, zooms out to a card */
         #art-video-wrapper {
             position: absolute;
             inset: 0;
@@ -202,7 +202,7 @@
             z-index: 2;
         }
 
-        /* Text overlay � centered, fades out as video zooms out */
+        /* Text overlay — centered, fades out as video zooms out */
         #art-text-overlay {
             position: absolute;
             inset: 0;
@@ -533,21 +533,6 @@
                 <button onclick="window.location.href='product.html'"
                     class="shining-button px-2 md:px-6 py-1.5 md:py-2 rounded-full text-[9px] md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop
                     Now</button>
-                <!-- Account Menu -->
-                <div id="account-menu-container" class="relative hidden ml-2 md:ml-4">
-                    <button id="account-btn" class="w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition cursor-pointer nav-shop-btn">
-                        U
-                    </button>
-                    <div id="account-dropdown" class="absolute right-0 mt-3 w-56 bg-[#FFF1E0] rounded-xl shadow-xl border border-[#8B4513]/10 hidden flex-col overflow-hidden z-[100]">
-                        <div class="px-4 py-3 border-b border-[#8B4513]/10 bg-white/50">
-                            <p id="account-name" class="text-sm font-bold text-[#8B4513] truncate">User Name</p>
-                            <p id="account-email" class="text-xs text-[#8B4513]/70 truncate">user@example.com</p>
-                        </div>
-                        <button id="logout-btn" class="w-full text-left px-4 py-3 text-sm text-red-600 font-bold hover:bg-red-50 transition cursor-pointer">
-                            Sign Out
-                        </button>
-                    </div>
-                </div>
                 <!-- Mobile Menu Toggle Button -->
                 <button id="mobile-menu-btn"
                     class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2"
@@ -625,7 +610,7 @@
         </section>
 
         <!-- ================================================================
-         THE ART OF KARUNGALI � GSAP ScrollTrigger Scroll-Story Section
+         THE ART OF KARUNGALI — GSAP ScrollTrigger Scroll-Story Section
          id="about" is placed on this element so nav "About" link works.
          ================================================================ -->
         <div id="art-scroll-section" role="region" aria-label="Experience the Beauty of Karungali">
@@ -648,7 +633,7 @@
                         <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
                     </video>
 
-                    <!-- Cinematic dark gradient overlay �
+                    <!-- Cinematic dark gradient overlay —
                      makes text legible at all animation stages -->
                     <div id="art-overlay" aria-hidden="true"></div>
                 </div>
@@ -662,8 +647,8 @@
                 </div>
 
                 <!-- Layer 2 (fore): Text overlay
-                 Fades IN during Phase A (scroll 0%–15%).
-                 Fades OUT during Phase B (scroll 60%–68%) as video zooms out. -->
+                 Fades IN during Phase A (scroll 0%â€“15%).
+                 Fades OUT during Phase B (scroll 60%â€“68%) as video zooms out. -->
                 <div id="art-text-overlay">
 
                     <!-- Eyebrow: letter-spaced label, appears first -->
@@ -683,7 +668,7 @@
                         </p>
                     </div>
 
-                    <!-- CTA � appears last, after all text is visible -->
+                    <!-- CTA — appears last, after all text is visible -->
                     <a href="#store" id="art-cta" aria-label="Explore the Karungali collection" class="mt-8">
                         Explore the Collection
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -778,7 +763,7 @@
                         <!-- Card 1 -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-xl text-[#8B4513] font-medium leading-relaxed mb-8">"The energy in my
@@ -798,7 +783,7 @@
                         <!-- Card 2 -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Exceptional quality. The beads
@@ -818,7 +803,7 @@
                         <!-- Card 3 -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"An absolute essential for my
@@ -838,7 +823,7 @@
                         <!-- Card 4 (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"I wear the Karungali bracelet
@@ -858,7 +843,7 @@
                         <!-- Card 5 (New) -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"The holy plank transformed my
@@ -878,7 +863,7 @@
                         <!-- Card 6 (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Purchasing from Rudra Nethra was
@@ -899,7 +884,7 @@
                         <!-- Card 1 Duplicate -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-xl text-[#8B4513] font-medium leading-relaxed mb-8">"The energy in my
@@ -919,7 +904,7 @@
                         <!-- Card 2 Duplicate -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Exceptional quality. The beads
@@ -939,7 +924,7 @@
                         <!-- Card 3 Duplicate -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"An absolute essential for my
@@ -959,7 +944,7 @@
                         <!-- Card 4 Duplicate (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"I wear the Karungali bracelet
@@ -979,7 +964,7 @@
                         <!-- Card 5 Duplicate (New) -->
                         <div
                             class="bg-white/40 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"The holy plank transformed my
@@ -999,7 +984,7 @@
                         <!-- Card 6 Duplicate (New) -->
                         <div
                             class="bg-[#8B4513]/5 p-8 border border-[#8B4513]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition duration-500 relative w-[400px] shrink-0">
-                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">�</div>
+                            <div class="text-6xl text-[#8B4513]/20 font-serif absolute top-4 left-4">“</div>
                             <div class="relative z-10 pt-6">
                                 <div class="flex text-amber-500 mb-4">?????</div>
                                 <p class="text-lg text-[#8B4513] leading-relaxed mb-8">"Purchasing from Rudra Nethra was
@@ -1190,7 +1175,7 @@
         });
 
         /* ------------------------------------------------------------------
-           THE ART OF KARUNGALI � GSAP SCROLLTRIGGER ANIMATION
+           THE ART OF KARUNGALI — GSAP SCROLLTRIGGER ANIMATION
         ------------------------------------------------------------------ */
         (function initArtAnimation() {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1256,7 +1241,7 @@
                GSAP Timeline Mapping
             ================================================================ */
 
-            /* ── Phase 1: Text Zoom & Fade In (0.00 -> 0.15) ── */
+            /* â”€â”€ Phase 1: Text Zoom & Fade In (0.00 -> 0.15) â”€â”€ */
             tl.to(textOverlay, {
                 opacity: 1,
                 scale: 1.00,
@@ -1269,7 +1254,7 @@
             tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.06);
             tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.08);
 
-            /* ── Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) ── */
+            /* â”€â”€ Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) â”€â”€ */
             tl.to(cornerAside, {
                 opacity: 0,
                 y: 15,
@@ -1277,10 +1262,10 @@
                 duration: 0.20
             }, 0.20);
 
-            /* ── Phase 3: Text Pause / Hold (0.15 -> 0.60) ── */
+            /* â”€â”€ Phase 3: Text Pause / Hold (0.15 -> 0.60) â”€â”€ */
             // The text remains completely static and readable for 45% of the timeline track
 
-            /* ── Phase 4: Text Overlay Fade & Exit (Fades out 0.60 -> 0.68) ── */
+            /* â”€â”€ Phase 4: Text Overlay Fade & Exit (Fades out 0.60 -> 0.68) â”€â”€ */
             tl.to(textOverlay, {
                 opacity: 0,
                 y: textExitY,
@@ -1289,7 +1274,7 @@
                 duration: 0.08
             }, 0.60);
 
-            /* ── Phase 5: Video Zoom Out (Initiates later, runs 0.68 -> 0.82) ── */
+            /* â”€â”€ Phase 5: Video Zoom Out (Initiates later, runs 0.68 -> 0.82) â”€â”€ */
             tl.to(videoWrapper, {
                 scale: endScale,
                 borderRadius: endRadius + 'px',
@@ -1297,7 +1282,7 @@
                 duration: 0.14
             }, 0.68);
 
-            /* ── Phase 6: Prolonged Video Pause / Hold (0.82 -> 1.00) ── */
+            /* â”€â”€ Phase 6: Prolonged Video Pause / Hold (0.82 -> 1.00) â”€â”€ */
             // Deliberately empty duration buffer block to anchor the static card video
             tl.to({}, { duration: 0.18 }, 0.82);
 
@@ -1374,10 +1359,11 @@
         });
     </script>
 
-    <script type="module" src="auth-state.js"></script>
+    
 </body>
 
 </html>
+
 
 
 
