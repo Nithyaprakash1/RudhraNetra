@@ -242,9 +242,14 @@
                             
                             <div id="saved-addresses-container">
                                 <label class="block text-sm font-semibold mb-2 text-[#8B4513]">Select Saved Address</label>
-                                <select id="saved-address-select" class="w-full px-4 py-3 bg-[#FAEDDF] border-2 border-transparent rounded-lg focus:border-[#8B4513] outline-none transition truncate max-w-full" required>
-                                    <option value="" disabled selected>Loading your addresses...</option>
-                                </select>
+                                <div class="relative group">
+                                    <select id="saved-address-select" class="w-full px-5 py-4 bg-white/50 backdrop-blur-sm border border-[#8B4513]/20 text-[#8B4513] font-medium rounded-xl focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]/20 outline-none transition-all duration-300 shadow-[0_4px_12px_rgba(139,69,19,0.05)] hover:shadow-[0_4px_20px_rgba(139,69,19,0.12)] hover:border-[#8B4513]/40 truncate max-w-full appearance-none cursor-pointer pr-12" required>
+                                        <option value="" disabled selected>Loading your addresses...</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#8B4513] transition-transform duration-300 group-hover:-translate-y-0.5">
+                                        <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                                    </div>
+                                </div>
                                 <p class="text-xs text-[#8B4513]/60 mt-2">You can manage your addresses in your <a href="dashboard.html" class="underline font-bold">Dashboard</a>.</p>
                             </div>
                         </div>
