@@ -57,7 +57,20 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter admin password" required>
           </div>
+          <div class="form-options" style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+            <a href="#" class="forgot-password" onclick="showForgotPassword(event)" style="font-size: 0.8rem; color: #8B4513;">Forgot Password?</a>
+          </div>
           <button type="submit" class="btn-primary">Admin Sign In</button>
+        </form>
+
+        <!-- Forgot Password Form (Hidden by default) -->
+        <form class="login-form" id="forgot-password-form" action="#" style="display: none;">
+          <div class="input-group">
+            <label for="reset-email">Email</label>
+            <input type="email" id="reset-email" placeholder="Enter admin email address" required>
+          </div>
+          <button type="submit" class="btn-primary">Send Reset Link</button>
+          <p class="signup-link"><a href="#" onclick="showLoginForm(event)">Back to Login</a></p>
         </form>
       </div>
     </div>
@@ -76,6 +89,48 @@
 
   <script src="app.js"></script>
   <script>
+    // Show Forgot Password Form
+    function showForgotPassword(e) {
+      if(e) e.preventDefault();
+      
+      // Hide Login Elements
+      document.getElementById('main-login-form').style.display = 'none';
+      
+      // Update Header
+      document.querySelector('.login-header h2').innerText = 'Reset Password';
+      document.getElementById('login-subtitle').innerText = 'Enter your admin email to receive a secure reset link.';
+      
+      // Show Reset Form with animation
+      const resetForm = document.getElementById('forgot-password-form');
+      resetForm.style.display = 'flex';
+      gsap.fromTo(resetForm, 
+        { opacity: 0, y: 15 }, 
+        { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.2)" }
+      );
+    }
+
+    // Show Login Form
+    function showLoginForm(e) {
+      if(e) e.preventDefault();
+      
+      // Hide Reset Form
+      document.getElementById('forgot-password-form').style.display = 'none';
+      
+      // Update Header
+      document.querySelector('.login-header h2').innerText = 'Admin Access';
+      document.getElementById('login-subtitle').innerText = 'Sign in to the admin dashboard.';
+      
+      // Show Login Elements
+      const loginForm = document.getElementById('main-login-form');
+      loginForm.style.display = 'flex';
+      
+      // Animate them back in
+      gsap.fromTo(loginForm, 
+        { opacity: 0, y: -15 }, 
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }
+
     // Toast Notification System
     function showToast(message) {
       const toast = document.getElementById('toast');
@@ -139,6 +194,38 @@
              errorMsg = error.message;
           }
           showToast(errorMsg);
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        });
+    });
+  }
+
+  const forgotForm = document.getElementById('forgot-password-form');
+  if (forgotForm) {
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('reset-email').value.trim();
+      if (!email) {
+          showToast("Please enter a valid email.");
+          return;
+      }
+      const submitBtn = forgotForm.querySelector('.btn-primary');
+      const originalText = submitBtn.innerText;
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          showToast("A secure reset link has been sent to your email!");
+          document.getElementById('reset-email').value = '';
+          setTimeout(() => {
+            showLoginForm();
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+          }, 3000);
+        })
+        .catch((error) => {
+          showToast("Error: " + error.message);
           submitBtn.innerText = originalText;
           submitBtn.disabled = false;
         });
