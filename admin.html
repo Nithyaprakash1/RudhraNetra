@@ -536,7 +536,7 @@
             }
         });
 
-        window.selectCustomStatus = function(docId, newStatus, item, colorClass) {
+        window.selectCustomStatus = async function(docId, newStatus, item, colorClass) {
             const dropdown = item.closest('[data-dropdown]');
             const btn = dropdown.querySelector('button');
             const statusText = btn.querySelector('.status-text');
@@ -554,15 +554,39 @@
             
             dropdown.querySelector('.dropdown-menu').classList.add('hidden');
             
-            // Actually call the firebase update function directly here
             try {
-                updateDoc(doc(db, "orders", docId), { status: newStatus }).then(() => {
-                    const toast = document.getElementById('customToast');
-                    toast.querySelector('span').innerText = 'Order status updated to: ' + newStatus;
-                    toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 4000);
-                });
-            } catch(e) {}
+                const orderRef = doc(db, "orders", docId);
+                const orderSnap = await getDoc(orderRef);
+                if(orderSnap.exists()) {
+                    const orderData = orderSnap.data();
+                    if(orderData.userId) {
+                        const userRef = doc(db, "Users", orderData.userId);
+                        const userSnap = await getDoc(userRef);
+                        if(userSnap.exists()) {
+                            const userData = userSnap.data();
+                            if(userData.orders) {
+                                const orderNum = orderData.orderNumber || orderData.razorpay_payment_id?.slice(-6).toUpperCase();
+                                const updatedOrders = userData.orders.map(o => {
+                                    if(o.orderNumber === orderNum || o.id === orderData.id) {
+                                        return { ...o, status: newStatus };
+                                    }
+                                    return o;
+                                });
+                                await updateDoc(userRef, { orders: updatedOrders });
+                            }
+                        }
+                    }
+                }
+
+                await updateDoc(orderRef, { status: newStatus });
+                
+                const toast = document.getElementById('customToast');
+                toast.querySelector('span').innerText = 'Order status updated to: ' + newStatus;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+            } catch(e) {
+                console.error("Status update error: ", e);
+            }
         }
 
         // Tab Switching

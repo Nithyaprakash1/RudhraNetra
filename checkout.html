@@ -501,7 +501,9 @@
                                 totalAmount: totalAmount,
                                 razorpay_order_id: response.razorpay_order_id || null,
                                 razorpay_payment_id: response.razorpay_payment_id,
-                                status: "Pending",
+                                orderNumber: response.razorpay_payment_id.slice(-6).toUpperCase(),
+                                userId: user.id,
+                                status: "Confirmed",
                                 timestamp: serverTimestamp()
                             });
 
