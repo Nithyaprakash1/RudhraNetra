@@ -583,6 +583,26 @@
                         </div>
                     </div>
                     
+                    <div class="mt-2 mb-6">
+                        <h4 class="text-sm font-semibold mb-3 text-[#8B4513]">Items Ordered</h4>
+                        <div class="space-y-3 bg-[#FAEDDF]/30 p-4 rounded-xl border border-[#8B4513]/5">
+                            ${(order.items && order.items.length > 0) ? order.items.map(item => `
+                                <div class="flex justify-between items-center text-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-white rounded-lg border border-[#8B4513]/10 overflow-hidden flex items-center justify-center shrink-0">
+                                            ${item.image ? `<img src="${item.image}" class="object-cover w-full h-full" alt="product">` : `<img src="image/logo_icon.png" class="w-6 h-6 opacity-50" alt="product">`}
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-[#8B4513] line-clamp-1">${item.name || item.title || 'Spiritual Item'}</p>
+                                            <p class="text-xs text-[#8B4513]/70">Qty: ${item.quantity || 1}</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold text-[#8B4513] shrink-0">&#8377;${parseInt(item.price?.toString().replace(/[^0-9]/g, '') || 0).toLocaleString('en-IN')}</p>
+                                </div>
+                            `).join('') : '<p class="text-xs text-[#8B4513]/60 italic">Old order (items not recorded)</p>'}
+                        </div>
+                    </div>
+
                     <div class="mt-4">
                         <h4 class="text-sm font-semibold mb-4 text-[#8B4513]">Order Tracking</h4>
                         <div class="pl-2">

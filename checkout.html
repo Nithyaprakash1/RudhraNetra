@@ -510,6 +510,7 @@
                                 id: 'ord_' + Date.now(),
                                 orderNumber: response.razorpay_payment_id.slice(-6).toUpperCase(),
                                 addressId: selectedAddress.id,
+                                items: cart,
                                 status: "Confirmed",
                                 totalAmount: totalAmount,
                                 createdAt: new Date().toISOString()
