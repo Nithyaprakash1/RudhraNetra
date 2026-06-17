@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -320,15 +320,10 @@
                             <button id="fakePayBtn" type="button" class="w-full py-4 bg-[#8B4513] opacity-80 text-[#FFF1E0] rounded-lg transition text-sm uppercase tracking-widest font-semibold shadow-lg hover:bg-[#5c3a23]">
                                 Fill Details to Pay
                             </button>
-                            <div id="rzp-button-container" class="hidden w-full">
-                                <form class="w-full flex justify-center">
-                                    <style>
-                                        .razorpay-payment-button { width: 100% !important; display: flex !important; justify-content: center !important; }
-                                        iframe.razorpay-payment-button { width: 100% !important; }
-                                    </style>
-                                    <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_T2eWwebSrh3jb4" async></script> 
-                                </form>
-                            </div>
+                            <button id="rzp-button" type="button" class="hidden w-full py-4 bg-green-600 text-white rounded-lg transition text-sm uppercase tracking-widest font-semibold shadow-lg hover:bg-green-700 flex justify-center items-center gap-2">
+                                <span>Proceed to Payment</span>
+                                <div id="rzp-loader" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -413,7 +408,7 @@
 
         // Handle Form Validation for Payment Button
         const fakeBtn = document.getElementById('fakePayBtn');
-        const rzpContainer = document.getElementById('rzp-button-container');
+        const rzpBtn = document.getElementById('rzp-button');
         const checkoutForm = document.getElementById('checkoutForm');
 
         fakeBtn.addEventListener('click', (e) => {
@@ -421,14 +416,120 @@
             checkoutForm.reportValidity();
         });
 
-        // Recheck form validity whenever the user types something
         checkoutForm.addEventListener('input', () => {
             if (checkoutForm.checkValidity()) {
                 fakeBtn.classList.add('hidden');
-                rzpContainer.classList.remove('hidden');
+                rzpBtn.classList.remove('hidden');
             } else {
                 fakeBtn.classList.remove('hidden');
-                rzpContainer.classList.add('hidden');
+                rzpBtn.classList.add('hidden');
+            }
+        });
+
+        rzpBtn.addEventListener('click', async () => {
+            if (!checkoutForm.checkValidity()) {
+                checkoutForm.reportValidity();
+                return;
+            }
+
+            // Show loader
+            document.getElementById('rzp-loader').classList.remove('hidden');
+            rzpBtn.disabled = true;
+
+            try {
+                let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
+                let totalAmount = 0;
+                cart.forEach(item => { totalAmount += item.price * (item.quantity || 1); });
+
+                // 1. Create order on backend
+                const createRes = await fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: totalAmount * 100, currency: 'INR' })
+                });
+
+                if (!createRes.ok) {
+                    const errTxt = await createRes.text();
+                    throw new Error('Failed to create order. Is your backend server running? ' + errTxt);
+                }
+                const orderData = await createRes.json();
+
+                // 2. Initialize Razorpay Checkout
+                const options = {
+                    key: orderData.key_id, // RAZORPAY_KEY_ID
+                    amount: orderData.amount,
+                    currency: orderData.currency,
+                    name: "Rudhra Nethra",
+                    description: "Order Checkout",
+                    order_id: orderData.id,
+                    handler: async function (response) {
+                        try {
+                            // 3. Verify signature on backend
+                            const verifyRes = await fetch('/api/verify-payment', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature
+                                })
+                            });
+
+                            const verifyData = await verifyRes.json();
+                            if (verifyData.success) {
+                                // 4. Save Order to Firebase
+                                const custData = {
+                                    name: document.getElementById('firstName').value + " " + document.getElementById('lastName').value,
+                                    email: document.getElementById('email').value,
+                                    phone: document.getElementById('phone').value,
+                                    address: document.getElementById('address').value,
+                                    city: document.getElementById('city').value,
+                                    state: document.getElementById('state').value,
+                                    pin: document.getElementById('pincode').value
+                                };
+                                
+                                await addDoc(collection(db, "orders"), {
+                                    customer: custData,
+                                    items: cart,
+                                    totalAmount: totalAmount,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    status: "Pending",
+                                    timestamp: serverTimestamp()
+                                });
+
+                                localStorage.removeItem('rudraCart');
+                                document.getElementById('successModal').style.display = 'flex';
+                            } else {
+                                alert("Payment verification failed. Please contact support.");
+                            }
+                        } catch (err) {
+                            console.error(err);
+                            alert("Error verifying payment.");
+                        }
+                    },
+                    prefill: {
+                        name: document.getElementById('firstName').value + " " + document.getElementById('lastName').value,
+                        email: document.getElementById('email').value,
+                        contact: document.getElementById('phone').value
+                    },
+                    theme: {
+                        color: "#8B4513"
+                    }
+                };
+                
+                const rzp1 = new window.Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                    alert("Payment failed: " + response.error.description);
+                });
+                rzp1.open();
+
+            } catch (err) {
+                console.error(err);
+                alert(err.message || "Something went wrong.");
+            } finally {
+                document.getElementById('rzp-loader').classList.add('hidden');
+                rzpBtn.disabled = false;
             }
         });
     </script>
