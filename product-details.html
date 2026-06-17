@@ -1903,38 +1903,11 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     let snapshotTotalRating = 0;
     let snapshotCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
     
-    // Initialize local reviews from localStorage
-    let storedReviews = [];
-    try {
-        storedReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
-    } catch(e) {}
-    let initExtraCount = 0;
-    let initExtraTotalRating = 0;
-    let initExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-    
+    // Remove local storage fallback to ensure admin status is always strictly respected
     window.localAllowedReviews = [];
-    storedReviews.forEach(r => {
-        if (String(r.productId) === String(productId)) {
-            initExtraCount++;
-            let rVal = Number(r.rating) || 5;
-            initExtraTotalRating += rVal;
-            if (initExtraCounts[rVal] !== undefined) initExtraCounts[rVal]++;
-            
-            if (r.status === 'allowed') {
-                window.localAllowedReviews.push({
-                    name: r.name || 'Anonymous',
-                    rating: r.rating || 5,
-                    text: r.reviewText || r.text || '',
-                    date: r.date || 'Recently',
-                    timestamp: r.timestamp || Date.now()
-                });
-            }
-        }
-    });
-
-    window.localExtraCount = initExtraCount;
-    window.localExtraTotalRating = initExtraTotalRating;
-    window.localExtraCounts = initExtraCounts;
+    window.localExtraCount = 0;
+    window.localExtraTotalRating = 0;
+    window.localExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
 
     window.renderReviewsUI = function() {
         const container = document.getElementById('reviews-list-container');
@@ -2075,20 +2048,20 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const data = docSnap.data();
             if (String(data.productId) !== String(productId)) return; // Filter for current product
 
+            if (data.status !== 'allowed') return; // Strictly ignore unallowed or pending reviews
+
             snapshotCount++;
             snapshotTotalRating += data.rating || 5;
             let ratingVal = data.rating || 5;
             if (snapshotCounts[ratingVal] !== undefined) snapshotCounts[ratingVal]++;
             
-            if (data.status === 'allowed') {
-                window.firebaseAllowedReviews.push({
-                    name: data.name || 'Anonymous',
-                    rating: data.rating || 5,
-                    text: data.reviewText || data.text || '',
-                    date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
-                    timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
-                });
-            }
+            window.firebaseAllowedReviews.push({
+                name: data.name || 'Anonymous',
+                rating: data.rating || 5,
+                text: data.reviewText || data.text || '',
+                date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
+                timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
+            });
         });
         window.renderReviewsUI();
     }, (error) => {
@@ -2113,32 +2086,17 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
                 name: name,
                 rating: rating,
                 reviewText: text,
+                status: 'pending', // Explicitly marked as pending
                 timestamp: serverTimestamp()
             });
         } catch (err) {
-            console.warn("Could not save to DB due to rules, but continuing local update.", err.message);
+            console.warn("Could not save to DB due to rules.", err.message);
         }
 
-        const localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
-        const newLocalReview = {
-            id: 'local_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9),
-            productId: productId,
-            name: name,
-            rating: rating,
-            reviewText: text,
-            status: 'pending',
-            date: new Date().toLocaleDateString(),
-            timestamp: Date.now()
-        };
-        localReviews.push(newLocalReview);
-        localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
+        // Removed local storage fallback so unallowed reviews don't show up
+        // Success animation handles the UI feedback for the user
         
-        // Locally increase the ratings
-        window.localExtraCount++;
-        window.localExtraTotalRating += rating;
-        window.localExtraCounts[rating]++;
-        window.renderReviewsUI();
-        
+
         if (typeof window.closeReviewPanel === 'function') {
             window.closeReviewPanel();
         }
