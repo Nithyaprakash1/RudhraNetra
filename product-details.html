@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -361,7 +361,7 @@
 
         
 
-        /* â”€â”€ Review Panel Styles â”€â”€ */
+        /* ── Review Panel Styles ── */
         #review-panel { backdrop-filter: blur(4px); }
         #review-panel > div {
             animation: panelSlideIn 0.4s cubic-bezier(0.22,1,0.36,1);
@@ -1481,7 +1481,7 @@
 </div>
 
 <script>
-/* â”€â”€ Review Panel Logic â”€â”€ */
+/* ── Review Panel Logic ── */
 let selectedRating = 0;
 
 // Counts (base data)
@@ -1800,6 +1800,10 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
 </script>
 
     
+    <!-- Customer Authentication Scripts -->
+    <script src="db.js"></script>
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
 </body>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -2008,18 +2012,24 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         
         // Merge them: Allowed reviews FIRST, then dummy reviews
         let allCommentsToRender = [...uniqueAllowed, ...selectedDummyReviews];
-
         let htmlToRender = '';
         allCommentsToRender.forEach(d => {
-            const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
+            let starSvgs = '';
+            for(let i=0; i<5; i++) {
+                if (i < d.rating) {
+                    starSvgs += `<svg class="w-3.5 h-3.5 text-amber-400 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+                } else {
+                    starSvgs += `<svg class="w-3.5 h-3.5 text-gray-300 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+                }
+            }
             htmlToRender += `
             <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 transition-all duration-300 cursor-default group">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1">${d.name.charAt(0).toUpperCase()}</div>
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 rounded-full shadow-md transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1">${d.name.charAt(0).toUpperCase()}</div>
                         <div>
                             <h4 class="font-bold text-[#8B4513]">${d.name}</h4>
-                            <div class="flex text-amber-500 text-xs">${stars}</div>
+                            <div class="flex gap-[2px] mt-1">${starSvgs}</div>
                         </div>
                     </div>
                     <span class="text-xs opacity-50">${d.date}</span>

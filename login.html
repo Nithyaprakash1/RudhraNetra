@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RudhraNetra</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1A0F0A; /* Deep dark background matching screenshot */
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Login Card */
+        .login-card {
+            background: #F4EAE0; /* Solid light beige matching screenshot */
+            border-radius: 24px;
+            box-shadow: 0px 20px 60px rgba(0,0,0,0.50);
+            width: 100%;
+            max-width: 420px;
+            padding: 48px 40px;
+            position: relative;
+            z-index: 10;
+            animation: card-enter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+        }
+
+        @keyframes card-enter {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Input Fields */
+        .input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 16px;
+            background: #FAEDDF;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #4A2B18;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .input-group input::placeholder {
+            color: #A06B4B;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .input-group input:focus {
+            background: #FFF;
+            border-color: #8B4513;
+            box-shadow: 0 0 0 4px rgba(139, 69, 19, 0.1);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8B4513;
+            opacity: 0.7;
+            font-size: 15px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: 8px;
+            font-size: 11px;
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #5A2E14; /* Darker brown to match screenshot */
+            color: #FFF1E0;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(90, 46, 20, 0.2);
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #4A2410;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(90, 46, 20, 0.3);
+        }
+
+        .toggle-link {
+            font-weight: 700;
+            color: #5A2E14;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .toggle-link:hover { color: #8B4513; }
+
+        .form-section {
+            display: none;
+            animation: fade-in 0.4s ease forwards;
+        }
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 24px;
+                border-radius: 20px;
+                box-shadow: 0px 10px 40px rgba(0,0,0,0.60);
+                margin: 16px;
+                width: calc(100% - 32px);
+            }
+
+            .logo-container img {
+                height: 40px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .logo-text {
+                font-size: 22px !important;
+            }
+
+            .input-group {
+                margin-bottom: 16px;
+            }
+
+            .input-group input {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .btn-primary {
+                padding: 14px;
+                font-size: 15px;
+            }
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-container img {
+            height: 40px;
+            margin: 0 auto 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8B4513;
+            letter-spacing: -0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Layer -->
+    <div class="spotlight-container" id="spotlightContainer">
+        <div class="spotlight" id="spotlight"></div>
+        <div class="particles"></div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+        
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="image/logo_icon.png" alt="RudhraNetra Logo" style="height: 50px; margin-bottom: 15px;">
+                <div class="logo-text" style="color: #6D3D22; font-size: 26px;">RudhraNetra</div>
+            </a>
+            <p class="text-[13px] font-medium text-[#8B4513] opacity-80 mt-2" id="form-subtitle">Welcome back to divine abundance.</p>
+            <p id="error-msg" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="form-section active">
+            <div class="input-group">
+                <input type="text" id="login-email" placeholder="EMAIL OR MOBILE NUMBER" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="PASSWORD" required>
+            </div>
+            
+            <button type="submit" class="btn-primary">Sign In</button>
+            
+            <div class="mt-8 text-center text-[13px] font-medium text-[#8B4513]">
+                New to RudhraNetra? <span class="toggle-link" onclick="toggleForm('register')">Create an account</span>
+            </div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="form-section">
+            <div class="input-group">
+                <input type="text" id="reg-name" placeholder="FULL NAME" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="reg-email" placeholder="EMAIL ADDRESS" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="reg-mobile" placeholder="MOBILE NUMBER (10 DIGITS)" required pattern="[0-9]{10}">
+            </div>
+            <div class="input-group">
+                <input type="password" id="reg-password" placeholder="PASSWORD" required minlength="6">
+            </div>
+            
+            <!-- Optional Avatar -->
+            <div class="mb-4">
+                <label class="block text-xs text-[#8B4513] mb-1 font-semibold">Avatar (Optional)</label>
+                <input type="file" id="reg-avatar" accept="image/*" class="text-sm text-[#8B4513] w-full">
+            </div>
+
+            <button type="submit" class="btn-primary">Create Account</button>
+            
+            <div class="mt-6 text-center text-sm text-[#8B4513]">
+                Already have an account? <span class="toggle-link" onclick="toggleForm('login')">Sign In</span>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="db.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Interactive Spotlight
+        document.addEventListener('mousemove', (e) => {
+            const spotlight = document.getElementById('spotlight');
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Move spotlight smoothly towards cursor, slightly lagging behind
+            spotlight.style.transform = `translate(calc(-50% + ${(x - window.innerWidth/2)/5}px), calc(-50% + ${(y - window.innerHeight/2)/5}px))`;
+        });
+
+        // Form Toggle
+        function toggleForm(type) {
+            document.getElementById('error-msg').classList.add('hidden');
+            if (type === 'register') {
+                document.getElementById('login-form').classList.remove('active');
+                document.getElementById('register-form').classList.add('active');
+                document.getElementById('form-subtitle').innerText = "Begin your spiritual journey.";
+            } else {
+                document.getElementById('register-form').classList.remove('active');
+                document.getElementById('login-form').classList.add('active');
+                document.getElementById('form-subtitle').innerText = "Welcome back to divine abundance.";
+            }
+        }
+
+        // Image to Base64 helper
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                if(!file) return resolve(null);
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Login Submit
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            try {
+                await Auth.login(email, pass);
+                const redirect = localStorage.getItem('authRedirect') || 'index.html';
+                localStorage.removeItem('authRedirect');
+                window.location.href = redirect;
+            } catch (err) {
+                errorMsg.innerText = err.message;
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        // Register Submit
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const mobile = document.getElementById('reg-mobile').value;
+            const pass = document.getElementById('reg-password').value;
+            const avatarFile = document.getElementById('reg-avatar').files[0];
+            const errorMsg = document.getElementById('error-msg');
+            
+            try {
+                const avatarBase64 = await getBase64(avatarFile);
+                await Auth.register(name, email, mobile, pass, avatarBase64);
+                
+                const redirect = localStorage.getItem('authRedirect') || 'index.html';
+                localStorage.removeItem('authRedirect');
+                window.location.href = redirect;
+            } catch (err) {
+                errorMsg.innerText = err.message;
+                errorMsg.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
