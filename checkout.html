@@ -379,13 +379,13 @@
                 checkoutItemsContainer.innerHTML += `
                     <div class="flex justify-between text-sm">
                         <span>${item.title || item.name || 'Item'} <span class="text-gray-500">x ${quantity}</span></span>
-                        <span class="font-bold">â‚¹${(price * quantity).toLocaleString('en-IN')}</span>
+                        <span class="font-bold">&#8377;${(price * quantity).toLocaleString('en-IN')}</span>
                     </div>
                 `;
             });
             
-            checkoutSubtotal.innerText = `â‚¹${totalAmount.toLocaleString('en-IN')}`;
-            checkoutTotal.innerText = `â‚¹${totalAmount.toLocaleString('en-IN')}`;
+            checkoutSubtotal.innerHTML = `&#8377;${totalAmount.toLocaleString('en-IN')}`;
+            checkoutTotal.innerHTML = `&#8377;${totalAmount.toLocaleString('en-IN')}`;
         }
 
         document.getElementById('checkout-form').addEventListener('submit', async (e) => {
