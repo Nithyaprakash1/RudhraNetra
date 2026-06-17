@@ -428,26 +428,9 @@
                     pin: selectedAddress.pincode
                 };
 
-                // Fetch order ID from backend
-                const orderResponse = await fetch('/api/create-order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ amount: totalAmount * 100 })
-                });
-                
-                if (!orderResponse.ok) {
-                    let errData;
-                    try {
-                        errData = await orderResponse.json();
-                    } catch(e) {}
-                    throw new Error(errData?.error || "Failed to create order from server.");
-                }
-                const orderData = await orderResponse.json();
-
                 const options = {
                     key: "rzp_test_T2hZdE4034sQPh", 
                     amount: totalAmount * 100, 
-                    order_id: orderData.id,
                     currency: "INR",
                     name: "RudhraNetra",
                     description: "Purchase Transaction",
