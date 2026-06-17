@@ -682,59 +682,51 @@
     <!-- Certification Section with Soft Blending Floral Background Line Art -->
     <section id="certification" class="py-24 px-6 bg-[#8B4513]/5 relative z-30 overflow-hidden">
 
-      <!-- Large Decorative Floral SVG Background Left -->
-      <div
-        class="absolute -left-20 -bottom-20 w-[450px] h-[450px] opacity-10 pointer-events-none select-none z-0 text-[#8B4513] rotate-12">
-        <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]"
-          xmlns="http://www.w3.org/2000/svg">
-          <!-- Center Bud -->
+      <!-- Floral SVG: Top-Right | Size: 500×500px | Rotated -45° | Opacity 15% -->
+      <div class="absolute -right-24 -top-24 w-[500px] h-[500px] opacity-15 pointer-events-none select-none z-0 text-[#8B4513] -rotate-45">
+        <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
           <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
-          <!-- Inner Left Petal -->
           <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
-          <!-- Inner Right Petal -->
           <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
-          <!-- Outer Left Petal -->
           <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
-          <!-- Outer Right Petal -->
           <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
-          <!-- Bottom support leaves -->
           <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
           <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
         </svg>
       </div>
 
-      <!-- Large Decorative Floral SVG Background Right -->
-      <div
-        class="absolute -right-24 -top-24 w-[500px] h-[500px] opacity-15 pointer-events-none select-none z-0 text-[#8B4513] -rotate-45">
-        <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]"
-          xmlns="http://www.w3.org/2000/svg">
-          <!-- Center Bud -->
+      <!-- Floral SVG: Bottom-Left | Size: 450×450px | Rotated 12° | Opacity 10% -->
+      <div class="absolute -left-20 -bottom-20 w-[450px] h-[450px] opacity-10 pointer-events-none select-none z-0 text-[#8B4513] rotate-12">
+        <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
           <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
-          <!-- Inner Left Petal -->
           <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
-          <!-- Inner Right Petal -->
           <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
-          <!-- Outer Left Petal -->
           <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
-          <!-- Outer Right Petal -->
           <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
-          <!-- Bottom support leaves -->
           <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
           <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
         </svg>
       </div>
 
+
+
+      <!-- Main Content: Certificate Image (left) + Text (right) -->
       <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+
+        <!-- LEFT: Certificate Image — takes up half width, rounded + glow effect -->
         <div class="md:w-1/2 rounded-2xl ethereal-glow" data-aos="fade-right">
           <img src="image/certificate.png"
             class="w-full rounded-2xl border border-[#8B4513]/20 transition-all duration-300 relative z-10"
             alt="Certificate of Authenticity">
         </div>
+
+        <!-- RIGHT: Text Content — takes up other half -->
         <div class="md:w-1/2" data-aos="fade-left">
           <h2 class="text-4xl mb-6">Our Certification</h2>
           <p class="text-[#8B4513]/80 leading-relaxed">All our Karungali products come with a certificate of
             authenticity, ensuring you receive only genuine and high-quality spiritual items.</p>
         </div>
+
       </div>
     </section>
 
