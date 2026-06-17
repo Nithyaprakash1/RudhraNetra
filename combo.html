@@ -310,13 +310,20 @@
         #comboToast.show { transform:translateY(0) scale(1); opacity:1; }
 
         /* Ã¢â€â‚¬Ã¢â€â‚¬ Mobile responsiveness tweaks Ã¢â€â‚¬Ã¢â€â‚¬ */
+        /* â• â• â• Mobile responsiveness tweaks â• â• â• */
         @media (max-width:640px) {
             .combo-card { border-radius:16px !important; }
             #comboModal { align-items:flex-end; }
         }
 
-        /* Ã¢â€â‚¬Ã¢â€â‚¬ Smooth anchor scrolling already handled via CSS scroll-behavior Ã¢â€â‚¬Ã¢â€â‚¬ */
-            /* Gold Energy Glow & Shimmer */
+        /* â• â• â• Smooth anchor scrolling already handled via CSS scroll-behavior â• â• â• */
+        
+        @keyframes slow-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Gold Energy Glow & Shimmer */
         .gold-energy-glow {
             padding-bottom: 0.15em;
             margin-bottom: -0.15em;
@@ -498,6 +505,32 @@
 
     <header class="relative pt-40 pb-10 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
             style="background:linear-gradient(135deg,#FFF1E0 0%,#f5e0c8 50%,#FFF1E0 100%);">
+            
+            <!-- Sacred Geometry Corner Top Left -->
+            <div class="absolute -left-32 -top-32 w-[500px] h-[500px] opacity-[0.06] pointer-events-none select-none z-0 text-[#8B4513]" style="animation: slow-spin 90s linear infinite;">
+                <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
+                    <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
+                    <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
+                    <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
+                    <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
+                    <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
+                    <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
+                </svg>
+            </div>
+
+            <!-- Sacred Geometry Corner Top Right -->
+            <div class="absolute -right-32 -top-10 w-[450px] h-[450px] opacity-[0.06] pointer-events-none select-none z-0 text-[#8B4513]" style="animation: slow-spin 75s linear infinite reverse;">
+                <svg viewBox="0 0 120 120" class="w-full h-full stroke-current fill-none stroke-[0.3]" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60,20 C50,45 50,75 60,100 C70,75 70,45 60,20 Z" />
+                    <path d="M60,25 C35,45 35,75 60,100 C45,75 45,45 60,25 Z" />
+                    <path d="M60,25 C85,45 85,75 60,100 C75,75 75,45 60,25 Z" />
+                    <path d="M60,35 C15,55 20,85 60,100 C30,85 25,60 60,35 Z" />
+                    <path d="M60,35 C105,55 100,85 60,100 C90,85 95,60 60,35 Z" />
+                    <path d="M60,95 C30,105 15,90 10,80 C30,90 50,95 60,95 Z" />
+                    <path d="M60,95 C90,105 105,90 110,80 C90,90 70,95 60,95 Z" />
+                </svg>
+            </div>
             <div class="relative z-10 px-4">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-4 block"
                     data-aos="fade-down" data-aos-delay="100">Auspicious Bundles</span>
@@ -548,41 +581,44 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                    <div class="bg-white/40 backdrop-blur-md border border-[#8B4513]/10 p-8 shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.2)] hover:bg-white/60 transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-[#fcd181]/0 via-[#fcd181]/5 to-[#8B4513]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative z-10">
-                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="bg-white/70 backdrop-blur-2xl border border-white/60 p-10 rounded-3xl shadow-[0_15px_40px_rgba(139,69,19,0.08)] hover:shadow-[0_25px_60px_rgba(139,69,19,0.15)] transition-all duration-500 hover:-translate-y-4 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#8B4513]/5 via-[#fcd181]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="w-20 h-20 bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center mb-8 rounded-[24px] shadow-[0_10px_20px_rgba(139,69,19,0.3)] group-hover:shadow-[0_15px_30px_rgba(139,69,19,0.5)] group-hover:scale-110 transition-all duration-500 relative z-10 group-hover:-rotate-6">
+                            <svg class="w-10 h-10 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
+                            <div class="absolute inset-0 rounded-[24px] bg-[#fcd181]/30 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
                         </div>
-                        <h3 class="text-xl font-bold text-[#8B4513] mb-4 relative z-10">Amplified Energy Field</h3>
-                        <p class="text-[#8B4513]/70 leading-relaxed text-sm relative z-10">
+                        <h3 class="text-2xl font-bold text-[#8B4513] mb-5 relative z-10 tracking-tight">Amplified Energy Field</h3>
+                        <p class="text-[#8B4513]/80 leading-relaxed text-base relative z-10 font-medium">
                             Wearing a Malai alongside a Bracelet creates a continuous closed loop of grounding energy across your body's meridian points, significantly amplifying your aura.
                         </p>
                     </div>
 
-                    <div class="bg-white/40 backdrop-blur-md border border-[#8B4513]/10 p-8 shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.2)] hover:bg-white/60 transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-[#fcd181]/0 via-[#fcd181]/5 to-[#8B4513]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 relative z-10">
-                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="bg-white/70 backdrop-blur-2xl border border-white/60 p-10 rounded-3xl shadow-[0_15px_40px_rgba(139,69,19,0.08)] hover:shadow-[0_25px_60px_rgba(139,69,19,0.15)] transition-all duration-500 hover:-translate-y-4 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#8B4513]/5 via-[#fcd181]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="w-20 h-20 bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center mb-8 rounded-[24px] shadow-[0_10px_20px_rgba(139,69,19,0.3)] group-hover:shadow-[0_15px_30px_rgba(139,69,19,0.5)] group-hover:scale-110 transition-all duration-500 relative z-10 group-hover:rotate-6">
+                            <svg class="w-10 h-10 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
+                            <div class="absolute inset-0 rounded-[24px] bg-[#fcd181]/30 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
                         </div>
-                        <h3 class="text-xl font-bold text-[#8B4513] mb-4 relative z-10">Complete Protection</h3>
-                        <p class="text-[#8B4513]/70 leading-relaxed text-sm relative z-10">
+                        <h3 class="text-2xl font-bold text-[#8B4513] mb-5 relative z-10 tracking-tight">Complete Protection</h3>
+                        <p class="text-[#8B4513]/80 leading-relaxed text-base relative z-10 font-medium">
                             While a necklace protects the heart chakra, bracelets guard against energy drain from interactions. Together, they form an impenetrable shield against negativity.
                         </p>
                     </div>
 
-                    <div class="bg-white/40 backdrop-blur-md border border-[#8B4513]/10 p-8 shadow-[0_8px_30px_rgb(139,69,19,0.06)] hover:shadow-[0_20px_40px_rgb(139,69,19,0.2)] hover:bg-white/60 transition-all duration-500 hover:-translate-y-3 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-[#fcd181]/0 via-[#fcd181]/5 to-[#8B4513]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div class="w-16 h-16 bg-gradient-to-br from-[#8B4513] to-[#b45309] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative z-10">
-                            <svg class="w-8 h-8 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="bg-white/70 backdrop-blur-2xl border border-white/60 p-10 rounded-3xl shadow-[0_15px_40px_rgba(139,69,19,0.08)] hover:shadow-[0_25px_60px_rgba(139,69,19,0.15)] transition-all duration-500 hover:-translate-y-4 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#8B4513]/5 via-[#fcd181]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="w-20 h-20 bg-gradient-to-br from-[#8B4513] to-[#A0522D] flex items-center justify-center mb-8 rounded-[24px] shadow-[0_10px_20px_rgba(139,69,19,0.3)] group-hover:shadow-[0_15px_30px_rgba(139,69,19,0.5)] group-hover:scale-110 transition-all duration-500 relative z-10 group-hover:-rotate-6">
+                            <svg class="w-10 h-10 text-[#FFF1E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
+                            <div class="absolute inset-0 rounded-[24px] bg-[#fcd181]/30 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
                         </div>
-                        <h3 class="text-xl font-bold text-[#8B4513] mb-4 relative z-10">Synchronized Consecration</h3>
-                        <p class="text-[#8B4513]/70 leading-relaxed text-sm relative z-10">
+                        <h3 class="text-2xl font-bold text-[#8B4513] mb-5 relative z-10 tracking-tight">Synchronized Consecration</h3>
+                        <p class="text-[#8B4513]/80 leading-relaxed text-base relative z-10 font-medium">
                             Our bundles are consecrated together at the exact same auspicious timing (Muhurtham), ensuring their vibrational frequencies are perfectly matched and harmonious.
                         </p>
                     </div>
