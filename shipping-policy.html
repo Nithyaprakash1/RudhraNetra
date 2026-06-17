@@ -146,11 +146,6 @@
                 <button onclick="window.location.href='product.html'"
                     class="shining-button px-2 md:px-6 py-1.5 md:py-2 rounded-full text-[9px] md:text-sm nav-shop-btn transition font-medium whitespace-nowrap">Shop
                     Now</button>
-                <!-- Admin Button -->
-                <button onclick="document.getElementById('adminLoginModal').classList.remove('hidden'); document.getElementById('adminLoginModal').classList.add('flex');"
-                    class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#8B4513] text-[#FFF1E0] flex items-center justify-center font-bold text-[10px] md:text-sm shadow-md hover:bg-[#5c3a23] transition-colors ml-1 md:ml-0" title="Admin Login">
-                    A
-                </button>
                 <!-- Mobile Menu Toggle Button -->
                 <button id="mobile-menu-btn"
                     class="md:hidden nav-mobile-btn nav-link focus:outline-none transition-colors ml-2"
@@ -191,30 +186,7 @@
                 class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">About</a>
             <a href="contact.html" class="hover:text-[#8B4513] nav-link transition-colors">Contact</a>
         </div>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
-        <div class="bg-[#FFF1E0] rounded-2xl w-full max-w-sm p-8 shadow-2xl border border-[#8B4513]/20 relative">
-            <button onclick="document.getElementById('adminLoginModal').classList.add('hidden'); document.getElementById('adminLoginModal').classList.remove('flex');" class="absolute top-4 right-4 text-[#8B4513] text-2xl leading-none">&times;</button>
-            <h3 class="text-2xl font-bold mb-6 text-[#8B4513] font-serif text-center">Admin Portal</h3>
-            <form onsubmit="event.preventDefault(); sessionStorage.setItem('adminEmail', document.getElementById('adminEmail').value); sessionStorage.setItem('adminPwd', document.getElementById('adminPwd').value); window.location.href='admin.html';" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Email</label>
-                    <input type="email" id="adminEmail" required placeholder="Enter Email" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Password</label>
-                    <input type="password" id="adminPwd" required placeholder="••••••••" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
-                </div>
-                <button type="submit" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4">
-                    Login
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Header Section -->
+    </div><!-- Header Section -->
     <header class="relative py-24 md:py-32 bg-[#8E5936]/10 text-center overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#FFF2E2]/20 z-0"></div>
         <div class="relative z-10 px-4" data-aos="fade-up" data-aos-duration="1200">
