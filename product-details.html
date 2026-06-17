@@ -2039,10 +2039,10 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         allCommentsToRender.forEach(d => {
             const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
             htmlToRender += `
-            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 transition-all duration-300 cursor-default">
+            <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 transition-all duration-300 cursor-default group">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md">${d.name.charAt(0).toUpperCase()}</div>
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1">${d.name.charAt(0).toUpperCase()}</div>
                         <div>
                             <h4 class="font-bold text-[#8B4513]">${d.name}</h4>
                             <div class="flex text-amber-500 text-xs">${stars}</div>
