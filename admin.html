@@ -559,33 +559,46 @@
                 const orderSnap = await getDoc(orderRef);
                 if(orderSnap.exists()) {
                     const orderData = orderSnap.data();
-                    let userRefToUpdate = null;
-
+                    // 1. Direct update if userId is present (New Architecture)
                     if(orderData.userId) {
-                        userRefToUpdate = doc(db, "Users", orderData.userId);
-                    } else if (orderData.customer && orderData.customer.email) {
-                        const qUser = query(collection(db, "Users"), where("email", "==", orderData.customer.email));
-                        const userSnapshots = await getDocs(qUser);
-                        if(!userSnapshots.empty) {
-                            userRefToUpdate = doc(db, "Users", userSnapshots.docs[0].id);
-                        }
-                    }
-
-                    if(userRefToUpdate) {
-                        const userSnap = await getDoc(userRefToUpdate);
+                        const userRef = doc(db, "Users", orderData.userId);
+                        const userSnap = await getDoc(userRef);
                         if(userSnap.exists()) {
                             const userData = userSnap.data();
                             if(userData.orders) {
                                 const orderNum = orderData.orderNumber || orderData.razorpay_payment_id?.slice(-6).toUpperCase();
                                 const updatedOrders = userData.orders.map(o => {
-                                    if(o.orderNumber === orderNum || o.id === orderData.id) {
+                                    if(o.orderNumber === orderNum || o.id === orderData.id || o.razorpay_payment_id === orderData.razorpay_payment_id) {
                                         return { ...o, status: newStatus };
                                     }
                                     return o;
                                 });
-                                await updateDoc(userRefToUpdate, { orders: updatedOrders });
+                                await updateDoc(userRef, { orders: updatedOrders });
                             }
                         }
+                    } 
+                    // 2. Bulletproof Fallback (Old Orders): Search ALL users for the matching payment ID
+                    else {
+                        const allUsersSnap = await getDocs(collection(db, "Users"));
+                        allUsersSnap.forEach(uDoc => {
+                            const uData = uDoc.data();
+                            if(uData.orders) {
+                                let found = false;
+                                const updatedOrders = uData.orders.map(o => {
+                                    // Match by payment ID, order ID, or exact total amount and date as last resort
+                                    if(o.razorpay_payment_id === orderData.razorpay_payment_id || 
+                                       (o.totalAmount === orderData.totalAmount && Math.abs(o.createdAt - orderData.timestamp?.toMillis()) < 60000) ||
+                                       (orderData.razorpay_payment_id && o.orderNumber === orderData.razorpay_payment_id.slice(-6).toUpperCase())) {
+                                        found = true;
+                                        return { ...o, status: newStatus };
+                                    }
+                                    return o;
+                                });
+                                if(found) {
+                                    updateDoc(doc(db, "Users", uDoc.id), { orders: updatedOrders });
+                                }
+                            }
+                        });
                     }
                 }
 
