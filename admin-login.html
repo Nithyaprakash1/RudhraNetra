@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Karungali Bead Experience</title>
+  <meta name="description" content="Explore the hand-crafted Karungali ebony wood bead in a premium 3D scrolling experience.">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Spinner -->
+  <div id="loader" class="loader-container">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- 3D Canvas Background -->
+  <canvas class="webgl"></canvas>
+
+  <!-- Content Overlay -->
+  <div class="login-layout">
+    <!-- Tap hint centered on screen -->
+    <div class="tap-hint">Tap to continue</div>
+
+    <!-- The left side is empty, letting the 3D bead shine -->
+    <div class="left-pane">
+      <div class="bead-features">
+        <div class="feature-item feature-top">
+          <span class="feature-number">100%</span>
+          <span class="feature-text">Authentic Karungali</span>
+        </div>
+        <div class="feature-item feature-left">
+          <span class="feature-number">Vedic</span>
+          <span class="feature-text">Consecration</span>
+        </div>
+        <div class="feature-item feature-bottom">
+          <span class="feature-number">Handcrafted</span>
+          <span class="feature-text">Finish</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- The right side holds the login form -->
+    <div class="right-pane">
+      <div class="login-glass-panel">
+        <div class="login-header">
+          <h2>Admin Access</h2>
+          <p id="login-subtitle">Sign in to the admin dashboard.</p>
+        </div>
+        
+        <form class="login-form" id="main-login-form" action="#">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter admin email" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter admin password" required>
+          </div>
+          <button type="submit" class="btn-primary">Admin Sign In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js and GSAP Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GLTFLoader for future .glb support -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // Toast Notification System
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.innerHTML = message;
+      toast.classList.add('show');
+      
+      // Auto-hide after 4 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+  </script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
+      authDomain: "studio-6539281913-cab55.firebaseapp.com",
+      projectId: "studio-6539281913-cab55",
+      storageBucket: "studio-6539281913-cab55.firebasestorage.app",
+      messagingSenderId: "654131616933",
+      appId: "1:654131616933:web:1411cc691a6fe9a700c14c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const mainLoginForm = document.getElementById('main-login-form');
+  if (mainLoginForm) {
+    mainLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const submitBtn = mainLoginForm.querySelector('.btn-primary');
+      const originalText = submitBtn.innerText;
+      submitBtn.innerText = 'Signing in...';
+      submitBtn.disabled = true;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          if (email.toLowerCase() === 'rudranethra@admin.com') {
+              sessionStorage.setItem('adminEmail', email);
+              sessionStorage.setItem('adminPwd', password); 
+              window.location.href = 'admin.html';
+          } else {
+              showToast("Access Denied: You are not an admin.");
+              submitBtn.innerText = originalText;
+              submitBtn.disabled = false;
+              auth.signOut();
+          }
+        })
+        .catch((error) => {
+          let errorMsg = "An error occurred. Please try again.";
+          if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+             errorMsg = "Invalid email or password.";
+          } else {
+             errorMsg = error.message;
+          }
+          showToast(errorMsg);
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        });
+    });
+  }
+  </script>
+</body>
+</html>
+

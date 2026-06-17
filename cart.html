@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -120,7 +120,7 @@
     <nav class="fixed top-6 left-0 right-0 z-50 px-2 md:px-6 navbar-transition" id="navbar">
         <div class="max-w-7xl w-full mx-auto flex justify-between items-center px-4 md:px-8 py-2 md:py-4 transition-all duration-500 glass-nav"
             id="nav-container">
-            <a href="home.html" class="flex items-center gap-1 md:gap-3.5 shrink min-w-0 mr-auto md:mr-0">
+            <a href="index.html" class="flex items-center gap-1 md:gap-3.5 shrink min-w-0 mr-auto md:mr-0">
                 <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-4 md:h-8 w-auto object-contain shrink-0">
                 <span class="w-[1px] h-3 md:h-6 bg-[#8B4513]/30 block shrink-0"></span>
                 <img src="image/logo_text.png" alt="Rudra Nethra Text"
@@ -128,7 +128,7 @@
             </a>
             <div
                 class="hidden md:flex items-center space-x-4 lg:space-x-8 font-medium text-xs lg:text-sm uppercase tracking-widest nav-links whitespace-nowrap">
-                <a href="home.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
+                <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
                     <a href="product.html"
                         class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow flex items-center gap-1">
@@ -228,7 +228,7 @@
             </svg>
         </button>
         <div class="flex flex-col space-y-6 text-xl text-[#8B4513] font-bold">
-            <a href="home.html"
+            <a href="index.html"
                 class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Home</a>
             <a href="product.html"
                 class="hover:text-[#8B4513] nav-link border-b border-[#8B4513]/20 pb-4 transition-colors">Products</a>
@@ -266,7 +266,7 @@
                         <h2 class="text-2xl mb-6 border-b border-[#8B4513]/20 pb-4">Order Summary</h2>
                         <div class="flex justify-between mb-4">
                             <span>Subtotal</span>
-                            <span id="cartSubtotal" class="font-bold">₹0</span>
+                            <span id="cartSubtotal" class="font-bold">?0</span>
                         </div>
                         <div class="flex justify-between mb-6 text-sm text-[#8B4513]/60">
                             <span>Shipping</span>
@@ -274,7 +274,7 @@
                         </div>
                         <div class="flex justify-between mb-8 text-xl border-t border-[#8B4513]/20 pt-4">
                             <span class="font-bold">Total</span>
-                            <span id="cartTotal" class="font-bold">₹0</span>
+                            <span id="cartTotal" class="font-bold">?0</span>
                         </div>
                         <button onclick="window.location.href='checkout.html'" class="w-full py-4 bg-[#8B4513] text-[#FFF1E0] sharp-edge hover:bg-[#8B4513] transition text-sm uppercase tracking-widest font-semibold">Proceed to Checkout</button>
                     </div>
@@ -312,7 +312,7 @@
             <div>
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="home.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
+                    <li><a href="index.html" class="hover:text-[#8B4513] nav-link transition">Home</a></li>
                     <li><a href="index.html#store" class="hover:text-[#8B4513] nav-link transition">Products</a></li>
                     <li><a href="combo.html" class="hover:text-[#8B4513] nav-link transition">Combo Offer</a></li>
                     <li><a href="about.html" class="hover:text-[#8B4513] nav-link transition">About Us</a></li>
@@ -409,14 +409,14 @@
                 `;
             });
 
-            // âœ… Update nav badge
+            // ✅ Update nav badge
             if (navBadge) {
                 navBadge.innerText = totalQty;
                 navBadge.style.transform = 'scale(1.5)';
                 setTimeout(() => navBadge.style.transform = 'scale(1)', 250);
             }
 
-            // âœ… Update Order Summary
+            // ✅ Update Order Summary
             document.getElementById('cartSubtotal').innerHTML = '&#8377;' + subtotal.toLocaleString('en-IN');
             document.getElementById('cartTotal').innerHTML    = '&#8377;' + subtotal.toLocaleString('en-IN');
         }

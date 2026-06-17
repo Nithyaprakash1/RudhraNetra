@@ -466,13 +466,13 @@
                 })
                 .catch((error) => {
                     alert('Login Failed: ' + error.code + ' - ' + error.message);
-                    window.location.href = 'index.html';
+                    window.location.href = 'admin-login.html';
                 });
         } else {
             // Security Check: Ensure they are authenticated
             onAuthStateChanged(auth, (user) => {
                 if (!user) {
-                    window.location.href = 'index.html';
+                    window.location.href = 'admin-login.html';
                 } else {
                     document.getElementById('authOverlay').style.display = 'none';
                 }
@@ -481,7 +481,7 @@
 
         window.logoutAdmin = function() {
             signOut(auth).then(() => {
-                window.location.href = 'index.html';
+                window.location.href = 'admin-login.html';
             });
         };
 
