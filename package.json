@@ -1,0 +1,9 @@
+{
+  "name": "rudhranetra-razorpay",
+  "version": "1.0.0",
+  "description": "Razorpay backend serverless functions",
+  "main": "index.js",
+  "dependencies": {
+    "razorpay": "^2.9.2"
+  }
+}

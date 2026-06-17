@@ -185,7 +185,7 @@
                 <div class="absolute inset-0 bg-gradient-to-tr from-[#fcd181]/40 to-[#8B4513]/20 rounded-full blur-md scale-150 animate-pulse group-hover:scale-[1.8] group-hover:bg-[#fcd181]/60 transition-all duration-500"></div>
                 <img src="image/logo_icon.png" class="h-10 relative z-10 admin-logo-spin" alt="Logo">
             </div>
-            <h1 class="text-3xl font-bold tracking-wider relative z-10 admin-glow-text-only font-serif drop-shadow-sm mt-1">Admin</h1>
+            <h1 class="text-3xl font-bold tracking-wider relative z-10 admin-glow-text-only drop-shadow-sm mt-1">Admin</h1>
         </div>
 
         <nav class="flex-1 space-y-2">
@@ -209,22 +209,22 @@
         
         <!-- Dashboard Tab -->
         <div id="dashboard-tab" class="tab-content active">
-            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-serif font-bold">Executive Overview</h2>
+            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-bold">Executive Overview</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-10">
-                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-100 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10">
+                <div onclick="window.goToTab('orders-tab')" class="glass-panel p-4 md:p-6 animate-fade-in-up delay-100 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Revenue</p>
                     <div class="text-3xl font-bold font-serif" id="metricRevenue"><div class="loader"></div></div>
                 </div>
-                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-200 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
+                <div onclick="window.goToTab('orders-tab')" class="glass-panel p-4 md:p-6 animate-fade-in-up delay-200 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Total Orders</p>
                     <div class="text-3xl font-bold font-serif" id="metricOrders"><div class="loader"></div></div>
                 </div>
-                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
+                <div onclick="window.goToTab('orders-tab')" class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Pending</p>
                     <div class="text-3xl font-bold font-serif text-yellow-600" id="metricPending">0</div>
                 </div>
-                <div class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
+                <div onclick="window.goToTab('reviews-tab')" class="glass-panel p-4 md:p-6 animate-fade-in-up delay-300 transition-all duration-150 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30 cursor-pointer">
                     <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Reviews</p>
                     <div class="text-3xl font-bold font-serif" id="metricReviews"><div class="loader"></div></div>
                 </div>
@@ -232,7 +232,13 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-10">
                 <div class="glass-panel p-4 md:p-6 lg:col-span-2 animate-fade-in-up delay-100 transition-all duration-150 hover:shadow-[0_8px_30px_rgba(139,69,19,0.15)] hover:border-[#8B4513]/30">
-                    <p class="text-xs uppercase tracking-widest opacity-50 mb-2">Site Views (Last 7 Days)</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-xs uppercase tracking-widest opacity-50" id="chartTitle">Site Views (Weekly)</p>
+                        <div class="flex items-center gap-1 bg-[#8B4513]/10 p-1 rounded-lg border border-[#8B4513]/20">
+                            <button onclick="window.updateChartTimeframe('weekly')" id="btn-weekly" class="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm">Weekly</button>
+                            <button onclick="window.updateChartTimeframe('monthly')" id="btn-monthly" class="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all">Monthly</button>
+                        </div>
+                    </div>
                     <div class="w-full h-64 md:h-80">
                         <canvas id="viewsChart"></canvas>
                     </div>
@@ -260,7 +266,7 @@
 
         <!-- Orders Tab -->
         <div id="orders-tab" class="tab-content">
-            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-serif font-bold">Customer Orders Directory</h2>
+            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-bold">Customer Orders Directory</h2>
             <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
                 <table class="w-full min-w-[900px]" id="fullOrdersTable">
                     <thead>
@@ -284,19 +290,21 @@
 
         <!-- Reviews Tab -->
         <div id="reviews-tab" class="tab-content">
-            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-serif font-bold">Product Reviews Database</h2>
+            <h2 class="text-2xl md:text-4xl mb-8 admin-glow-header font-bold">Product Reviews Database</h2>
             <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
                 <table class="w-full min-w-[600px]" id="reviewsTable">
                     <thead>
                         <tr>
-                            <th>Reviewer Name</th>
-                            <th>Rating</th>
-                            <th>Comment</th>
-                            <th>Date</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4">Reviewer Name</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4">Rating</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4">Comment</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4">Date</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4">Status</th>
+                            <th class="font-bold uppercase tracking-widest text-xs opacity-70 pb-4 text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td colspan="4" class="text-center py-10"><div class="loader"></div></td></tr>
+                        <tr><td colspan="6" class="text-center py-10"><div class="loader"></div></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -305,7 +313,7 @@
         <!-- Products Tab -->
         <div id="products-tab" class="tab-content">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-fade-in-up">
-                <h2 class="text-2xl md:text-4xl admin-glow-header font-serif font-bold">Inventory Catalog</h2>
+                <h2 class="text-2xl md:text-4xl admin-glow-header font-bold">Inventory Catalog</h2>
                 <button onclick="document.getElementById('addProductModal').style.display='flex'" class="relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,69,19,0.4)] transition-all duration-300 group whitespace-nowrap">
                     <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
                     <span class="relative z-10 flex items-center gap-2">
@@ -444,7 +452,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -529,6 +537,62 @@
                 alert("Could not update status due to database permissions.");
             }
             selectElement.disabled = false;
+        };
+
+        // Custom Dropdown UI Logic
+        window.toggleCustomDropdown = function(btn) {
+            // close all others
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if(m !== btn.nextElementSibling) m.classList.add('hidden');
+            });
+            btn.nextElementSibling.classList.toggle('hidden');
+        };
+
+        document.addEventListener('click', function(e) {
+            if(!e.target.closest('[data-dropdown]')) {
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.add('hidden'));
+            }
+        });
+
+        window.selectCustomStatus = function(docId, newStatus, item, colorClass) {
+            const dropdown = item.closest('[data-dropdown]');
+            const btn = dropdown.querySelector('button');
+            const statusText = btn.querySelector('.status-text');
+            
+            statusText.textContent = newStatus;
+            btn.className = `w-full bg-white text-${colorClass}-600 border border-${colorClass}-300 px-3 py-1.5 rounded-md text-xs font-bold flex justify-between items-center shadow-sm focus:outline-none transition-colors`;
+            
+            const menuItems = dropdown.querySelectorAll('ul li a');
+            menuItems.forEach(mi => {
+                mi.classList.remove('bg-blue-600', 'text-white');
+                mi.classList.add('text-gray-800');
+            });
+            item.classList.remove('text-gray-800');
+            item.classList.add('bg-blue-600', 'text-white');
+            
+            dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+            
+            // Actually call the firebase update function directly here
+            try {
+                updateDoc(doc(db, "orders", docId), { status: newStatus }).then(() => {
+                    const toast = document.getElementById('customToast');
+                    toast.querySelector('span').innerText = 'Order status updated to: ' + newStatus;
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                });
+            } catch(e) {}
+        }
+
+        // Tab Switching
+        window.goToTab = function(targetId) {
+            document.querySelectorAll('.sidebar-item').forEach(i => {
+                if(i.dataset.target === targetId) i.classList.add('active');
+                else i.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) targetElement.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         // Tab Navigation
@@ -792,12 +856,20 @@
                             </td>
                             <td class="text-xs min-w-[150px]">${itemsDesc}</td>
                             <td class="font-bold text-[#8B4513] whitespace-nowrap">&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
-                            <td>
-                                <select onchange="updateOrderStatus('${doc.id}', this.value, this)" class="bg-${statusColor}-600/10 text-${statusColor}-600 px-2 py-1 rounded text-xs border border-${statusColor}-600/30 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-${statusColor}-600/50 cursor-pointer font-bold transition-colors">
-                                    <option value="Pending" ${data.status === 'Pending' || !data.status ? 'selected' : ''} class="text-black">Pending</option>
-                                    <option value="Shipped" ${data.status === 'Shipped' ? 'selected' : ''} class="text-black">Shipped</option>
-                                    <option value="Delivered" ${data.status === 'Delivered' ? 'selected' : ''} class="text-black">Delivered</option>
-                                </select>
+                            <td class="align-middle">
+                                <div class="relative inline-block w-28 text-left" data-dropdown>
+                                    <button type="button" onclick="toggleCustomDropdown(this)" class="w-full bg-white text-${statusColor}-600 border border-${statusColor}-300 px-3 py-1.5 rounded-md text-xs font-bold flex justify-between items-center shadow-sm focus:outline-none transition-colors">
+                                        <span class="status-text">${data.status || 'Pending'}</span>
+                                        <svg class="h-4 w-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </button>
+                                    <div class="absolute right-0 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-[100] hidden dropdown-menu overflow-hidden">
+                                        <ul class="py-0 text-xs font-medium">
+                                            <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Pending', this, 'yellow'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(!data.status || data.status === 'Pending') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Pending</a></li>
+                                            <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Shipped', this, 'blue'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(data.status === 'Shipped') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Shipped</a></li>
+                                            <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Delivered', this, 'green'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(data.status === 'Delivered') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Delivered</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     `;
@@ -809,12 +881,20 @@
                                 <td>${cust.name}</td>
                                 <td>${date}</td>
                                 <td>&#8377;${(data.totalAmount||0).toLocaleString('en-IN')}</td>
-                                <td>
-                                    <select onchange="updateOrderStatus('${doc.id}', this.value, this)" class="bg-${statusColor}-600/10 text-${statusColor}-600 px-2 py-1 rounded text-xs border border-${statusColor}-600/30 focus:outline-none cursor-pointer font-bold transition-colors">
-                                        <option value="Pending" ${data.status === 'Pending' || !data.status ? 'selected' : ''} class="text-black">Pending</option>
-                                        <option value="Shipped" ${data.status === 'Shipped' ? 'selected' : ''} class="text-black">Shipped</option>
-                                        <option value="Delivered" ${data.status === 'Delivered' ? 'selected' : ''} class="text-black">Delivered</option>
-                                    </select>
+                                <td class="align-middle">
+                                    <div class="relative inline-block w-28 text-left" data-dropdown>
+                                        <button type="button" onclick="toggleCustomDropdown(this)" class="w-full bg-white text-${statusColor}-600 border border-${statusColor}-300 px-3 py-1.5 rounded-md text-xs font-bold flex justify-between items-center shadow-sm focus:outline-none transition-colors">
+                                            <span class="status-text">${data.status || 'Pending'}</span>
+                                            <svg class="h-4 w-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </button>
+                                        <div class="absolute right-0 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-[100] hidden dropdown-menu overflow-hidden">
+                                            <ul class="py-0 text-xs font-medium">
+                                                <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Pending', this, 'yellow'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(!data.status || data.status === 'Pending') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Pending</a></li>
+                                                <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Shipped', this, 'blue'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(data.status === 'Shipped') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Shipped</a></li>
+                                                <li><a href="#" onclick="selectCustomStatus('${doc.id}', 'Delivered', this, 'green'); return false;" class="block px-3 py-2 hover:bg-blue-600 hover:text-white transition-colors ${(data.status === 'Delivered') ? 'bg-blue-600 text-white' : 'text-gray-800'}">Delivered</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         `;
@@ -841,6 +921,9 @@
                     reviewsSnap.forEach((doc) => {
                         const data = doc.data();
                         allReviews.push({
+                            id: doc.id,
+                            isFirebase: true,
+                            status: data.status || 'pending',
                             name: data.name || 'Anonymous',
                             rating: data.rating || 5,
                             reviewText: data.reviewText || data.text || '',
@@ -858,9 +941,26 @@
                 // Seed with initial dummy reviews if completely empty to maintain premium look
                 if (localReviews.length === 0 && allReviews.length === 0) {
                     localReviews = [
-                        { name: "Priya M.", rating: 5, reviewText: "The Karungali malai is absolutely authentic and beautifully crafted. I can feel the positive energy. Very fast delivery too!", date: new Date(Date.now() - 86400000 * 2).toLocaleDateString(), timestamp: Date.now() - 86400000 * 2 },
-                        { name: "Rahul S.", rating: 4, reviewText: "Excellent quality beads. The silver spacing looks very elegant. Will definitely order again for my family.", date: new Date(Date.now() - 86400000 * 5).toLocaleDateString(), timestamp: Date.now() - 86400000 * 5 }
+                        { id: 'local_1', isFirebase: false, status: 'pending', name: "Priya M.", rating: 5, reviewText: "The Karungali malai is absolutely authentic and beautifully crafted. I can feel the positive energy. Very fast delivery too!", date: new Date(Date.now() - 86400000 * 2).toLocaleDateString(), timestamp: Date.now() - 86400000 * 2 },
+                        { id: 'local_2', isFirebase: false, status: 'pending', name: "Rahul S.", rating: 4, reviewText: "Excellent quality beads. The silver spacing looks very elegant. Will definitely order again for my family.", date: new Date(Date.now() - 86400000 * 5).toLocaleDateString(), timestamp: Date.now() - 86400000 * 5 }
                     ];
+                    localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
+                }
+
+                // Patch any local reviews missing an ID from older sessions
+                let needsLocalSave = false;
+                localReviews.forEach((r, idx) => {
+                    if (!r.id) {
+                        r.id = 'local_' + Date.now() + '_' + idx;
+                        needsLocalSave = true;
+                    }
+                    if (!r.status) {
+                        r.status = 'pending';
+                        needsLocalSave = true;
+                    }
+                    r.isFirebase = false;
+                });
+                if (needsLocalSave) {
                     localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
                 }
                 
@@ -869,7 +969,8 @@
                 // Deduplicate by name and review text since Firebase server timestamp and local timestamp might differ slightly
                 const uniqueReviews = [];
                 const seen = new Set();
-                for (const review of allReviews) {
+                for (let i = 0; i < allReviews.length; i++) {
+                    const review = allReviews[i];
                     const key = review.name + '|' + review.reviewText;
                     if (!seen.has(key)) {
                         seen.add(key);
@@ -884,12 +985,23 @@
                 let reviewsHtml = '';
                 allReviews.forEach(data => {
                     const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
+                    const isAllowed = data.status === 'allowed';
+                    const statusBadge = isAllowed 
+                        ? `<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase">Allowed</span>`
+                        : `<span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold uppercase">${data.status || 'Pending'}</span>`;
+                    
+                    const actionBtn = isAllowed
+                        ? `<button onclick="window.toggleReviewStatus('${data.id}', 'unallowed', ${data.isFirebase})" class="px-3 py-1 bg-red-100 text-red-600 rounded text-xs font-bold hover:bg-red-200 transition uppercase tracking-widest">Unallow</button>`
+                        : `<button onclick="window.toggleReviewStatus('${data.id}', 'allowed', ${data.isFirebase})" class="px-3 py-1 bg-[#8B4513] text-[#FFF1E0] rounded text-xs font-bold hover:bg-[#5c3a23] transition shadow-sm uppercase tracking-widest">Allow</button>`;
+
                     reviewsHtml += `
                         <tr class="hover:bg-[#8B4513]/5 transition-colors">
-                            <td class="font-bold">${data.name}</td>
-                            <td class="text-yellow-500">${stars}</td>
-                            <td class="text-sm opacity-80 max-w-md">${data.reviewText || '<i>No written comment</i>'}</td>
-                            <td class="text-xs opacity-60">${data.date}</td>
+                            <td class="font-bold py-3">${data.name}</td>
+                            <td class="text-yellow-500 py-3">${stars}</td>
+                            <td class="text-sm opacity-80 max-w-md py-3 pr-4">${data.reviewText || '<i>No written comment</i>'}</td>
+                            <td class="text-xs opacity-60 py-3">${data.date}</td>
+                            <td class="py-3">${statusBadge}</td>
+                            <td class="py-3 text-right">${actionBtn}</td>
                         </tr>
                     `;
                 });
@@ -909,97 +1021,230 @@
             }
         }
 
-        window.addEventListener('load', () => {
-            fetchDashboardData();
-            
-            // Render Chart
-            const ctx = document.getElementById('viewsChart').getContext('2d');
-            
-            // Create gradient for filled area
-            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)');
-            gradient.addColorStop(1, 'rgba(139, 69, 19, 0.0)');
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                    datasets: [{
-                        label: 'Site Views',
-                        data: [1200, 1900, 3000, 5000, 2000, 3000, 4500],
-                        borderColor: '#8B4513',
-                        backgroundColor: gradient,
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4,
-                        pointBackgroundColor: '#8B4513',
-                        pointBorderColor: '#FFF1E0',
-                        pointBorderWidth: 2,
-                        pointRadius: 6,
-                        pointHoverRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    animation: {
-                        duration: 2000,
-                        easing: 'easeOutQuart'
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#FFF1E0',
-                            titleColor: '#8B4513',
-                            bodyColor: '#8B4513',
-                            borderColor: 'rgba(139, 69, 19, 0.2)',
-                            borderWidth: 1,
-                            padding: 12,
-                            displayColors: false,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.parsed.y + ' Views';
-                                },
-                                title: function() { return null; } // Hide title to match the image tooltip
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { display: false },
-                            ticks: { 
-                                color: '#8B4513',
-                                maxTicksLimit: 6,
-                                padding: 10,
-                                font: {
-                                    family: "'Inter', sans-serif",
-                                    weight: '500'
-                                },
-                                callback: function(value) { 
-                                    if(value >= 1000) return (value/1000) + 'k';
-                                    return value; 
-                                }
-                            },
-                            border: { display: false }
-                        },
-                        x: {
-                            grid: { 
-                                display: false
-                            },
-                            ticks: { 
-                                color: '#8B4513',
-                                font: { weight: 'bold' }
-                            },
-                            border: { display: false }
-                        }
+        window.toggleReviewStatus = async function(id, newStatus, isFirebase) {
+            try {
+                if (isFirebase) {
+                    await updateDoc(doc(db, "reviews", id), { status: newStatus });
+                } else {
+                    let localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+                    let r = localReviews.find(x => x.id === id);
+                    if (r) {
+                        r.status = newStatus;
+                        localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
                     }
                 }
+                fetchDashboardData();
+            } catch(e) {
+                console.error("Error updating review status:", e);
+                alert("Failed to update status. Please try again.");
+            }
+        };
+
+        window.addEventListener('load', () => {
+            fetchDashboardData();
+            // Listen to real-time page_views collection
+            const viewsQuery = query(collection(db, "page_views"));
+            window.globalViewsData = [];
+            
+            onSnapshot(viewsQuery, (snapshot) => {
+                let views = [];
+                snapshot.forEach(docSnap => {
+                    views.push(docSnap.data());
+                });
+                
+                window.globalViewsData = views;
+                console.log("View Saved");
+                
+                let productWise = {};
+                views.forEach(v => {
+                    if(!productWise[v.productId]) {
+                        productWise[v.productId] = { productId: v.productId, productName: v.productName, views: 0 };
+                    }
+                    productWise[v.productId].views++;
+                });
+                console.log("Product Wise Views:", Object.values(productWise));
+                
+                // Fetch legacy views from products collection
+                let fetchPromises = [];
+                for (let i = 1; i <= 21; i++) {
+                    fetchPromises.push(getDoc(doc(db, "products", String(i))));
+                }
+                
+                Promise.all(fetchPromises).then(snaps => {
+                    let productDbViews = 0;
+                    snaps.forEach(snap => {
+                        if (snap.exists() && snap.data().views) {
+                            productDbViews += snap.data().views;
+                        }
+                    });
+                    
+                    let legacyViews = productDbViews - views.length;
+                    if (legacyViews < 0) legacyViews = 0;
+                    window.globalLegacyViews = legacyViews;
+                    
+                    window.globalActualViews = views.length + legacyViews;
+                    
+                    const timeframe = document.getElementById('chartTitle').innerText.includes('Weekly') ? 'weekly' : 'monthly';
+                    drawViewsChart(timeframe);
+                }).catch(err => {
+                    window.globalLegacyViews = 0;
+                    drawViewsChart('weekly');
+                });
+                
+            }, (err) => {
+                console.error("Views Chart error:", err);
+                // Fallback if page_views fails
+                drawViewsChart('weekly');
             });
+
+            window.updateChartTimeframe = function(timeframe) {
+                if (timeframe === 'weekly') {
+                    document.getElementById('chartTitle').innerText = 'Site Views (Weekly)';
+                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
+                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
+                } else {
+                    document.getElementById('chartTitle').innerText = 'Site Views (Monthly)';
+                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
+                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
+                }
+                drawViewsChart(timeframe);
+            };
+
+            function drawViewsChart(timeframe) {
+                let labels = [];
+                let chartData = [];
+                const views = window.globalViewsData || [];
+
+                if (timeframe === 'weekly') {
+                    labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                    chartData = [0, 0, 0, 0, 0, 0, 0];
+                    
+                    const now = new Date();
+                    const dayOfWeek = now.getDay() || 7;
+                    now.setHours(0,0,0,0);
+                    const monday = new Date(now.getTime() - (dayOfWeek - 1) * 86400000);
+                    
+                    views.forEach(v => {
+                        if (!v.date) return;
+                        const vDate = new Date(v.date);
+                        if (vDate >= monday) {
+                            let day = vDate.getDay() || 7;
+                            chartData[day - 1]++;
+                        }
+                    });
+                    
+                    // Add legacy views to today
+                    const todayIdx = (now.getDay() || 7) - 1;
+                    chartData[todayIdx] += window.globalLegacyViews || 0;
+                    
+                    const weeklyDataLog = chartData.map((v, i) => ({ day: labels[i], views: v }));
+                    console.log("Weekly Data:", weeklyDataLog);
+                } else {
+                    labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'];
+                    chartData = [0, 0, 0, 0, 0];
+                    
+                    const now = new Date();
+                    const currentMonth = now.getMonth() + 1;
+                    const currentYear = now.getFullYear();
+                    
+                    views.forEach(v => {
+                        if (v.month === currentMonth && v.year === currentYear) {
+                            const d = new Date(v.date).getDate();
+                            let weekIdx = Math.ceil(d / 7) - 1;
+                            if (weekIdx > 4) weekIdx = 4;
+                            chartData[weekIdx]++;
+                        }
+                    });
+                    
+                    // Add legacy views to current week
+                    const todayD = now.getDate();
+                    let currentWeekIdx = Math.ceil(todayD / 7) - 1;
+                    if (currentWeekIdx > 4) currentWeekIdx = 4;
+                    chartData[currentWeekIdx] += window.globalLegacyViews || 0;
+                    
+                    const monthlyDataLog = chartData.map((v, i) => ({ week: labels[i], views: v }));
+                    console.log("Monthly Data:", monthlyDataLog);
+                }
+                console.log("Chart Updated");
+
+                const ctx = document.getElementById('viewsChart').getContext('2d');
+                
+                // Check if chart instance exists and destroy it so it doesn't overlap on refresh
+                if (window.viewsChartInstance) {
+                    window.viewsChartInstance.destroy();
+                }
+
+                let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)');
+                gradient.addColorStop(1, 'rgba(139, 69, 19, 0.0)');
+
+                window.viewsChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Site Views',
+                            data: chartData,
+                            borderColor: '#8B4513',
+                            backgroundColor: gradient,
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#8B4513',
+                            pointBorderColor: '#FFF1E0',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false, drawBorder: false },
+                                ticks: { color: '#8B4513', font: { weight: 'bold' } }
+                            },
+                            y: {
+                                grid: { display: false, drawBorder: false },
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#8B4513',
+                                    callback: function(value) {
+                                        if (value >= 1000) return (value / 1000).toFixed(1) + 'k';
+                                        return value;
+                                    }
+                                }
+                            }
+                        },
+                        plugins: { 
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#FFF1E0',
+                                titleColor: '#8B4513',
+                                bodyColor: '#8B4513',
+                                borderColor: 'rgba(139, 69, 19, 0.2)',
+                                borderWidth: 1,
+                                padding: 12,
+                                displayColors: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        let val = context.parsed.y;
+                                        if (val >= 1000) return (val / 1000).toFixed(1) + 'k Views';
+                                        return val + ' Views';
+                                    },
+                                    title: function() { return null; }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
         });
 
     </script>

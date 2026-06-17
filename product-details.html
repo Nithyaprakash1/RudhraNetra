@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,6 +30,21 @@
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             border-radius: 9999px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(139, 69, 19, 0.05);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(139, 69, 19, 0.2);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 69, 19, 0.4);
         }
         
         ::-webkit-scrollbar { width: 8px; }
@@ -464,6 +479,8 @@
         }
             /* Gold Energy Glow & Shimmer */
         .gold-energy-glow {
+            padding-bottom: 0.15em;
+            margin-bottom: -0.15em;
             color: #FFE1A8;
             font-weight: 700;
             display: inline-block;
@@ -512,9 +529,9 @@
             </a>
             <div
                 class="hidden md:flex items-center space-x-4 lg:space-x-8 font-medium text-xs lg:text-sm uppercase tracking-widest nav-links whitespace-nowrap">
-                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
+                <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
-                    <a href="#store"
+                    <a href="product.html"
                         class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow flex items-center gap-1">
                         Products
                         <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none"
@@ -773,34 +790,54 @@
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 text-[#8B4513]">Quality Assurance</h3>
-                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="font-medium text-[#8B4513]/90">100% Natural Karungali Wood</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="font-medium text-[#8B4513]/90">Handcrafted by Skilled Artisans</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="font-medium text-[#8B4513]/90">Quality Checked & Approved</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-sm">
-                            <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="font-medium text-[#8B4513]/90">Eco-friendly & Sustainable</span>
-                        </li>
-                    </ul>
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-[#8B4513] relative inline-block">
+                        Quality Assurance
+                        <div class="absolute -bottom-2 left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#8B4513] to-transparent"></div>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-4">
+                        
+                        <!-- Feature 1 -->
+                        <div class="group flex items-center p-4 bg-white/40 backdrop-blur-md border border-[#8B4513]/20 hover:bg-white/70 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="50">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8B4513]/10 to-[#8B4513]/5 flex items-center justify-center mr-4 group-hover:scale-110 group-hover:bg-[#8B4513]/20 transition-all duration-300 shrink-0">
+                                <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span class="font-bold text-[#8B4513] text-[13px] uppercase tracking-wide leading-snug">100% Natural Karungali Wood</span>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="group flex items-center p-4 bg-white/40 backdrop-blur-md border border-[#8B4513]/20 hover:bg-white/70 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8B4513]/10 to-[#8B4513]/5 flex items-center justify-center mr-4 group-hover:scale-110 group-hover:bg-[#8B4513]/20 transition-all duration-300 shrink-0">
+                                <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                                </svg>
+                            </div>
+                            <span class="font-bold text-[#8B4513] text-[13px] uppercase tracking-wide leading-snug">Handcrafted by Skilled Artisans</span>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="group flex items-center p-4 bg-white/40 backdrop-blur-md border border-[#8B4513]/20 hover:bg-white/70 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8B4513]/10 to-[#8B4513]/5 flex items-center justify-center mr-4 group-hover:scale-110 group-hover:bg-[#8B4513]/20 transition-all duration-300 shrink-0">
+                                <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <span class="font-bold text-[#8B4513] text-[13px] uppercase tracking-wide leading-snug">Quality Checked & Approved</span>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="group flex items-center p-4 bg-white/40 backdrop-blur-md border border-[#8B4513]/20 hover:bg-white/70 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#8B4513]/10 to-[#8B4513]/5 flex items-center justify-center mr-4 group-hover:scale-110 group-hover:bg-[#8B4513]/20 transition-all duration-300 shrink-0">
+                                <svg class="h-5 w-5 text-[#8B4513]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </div>
+                            <span class="font-bold text-[#8B4513] text-[13px] uppercase tracking-wide leading-snug">Eco-friendly & Sustainable</span>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -1812,8 +1849,52 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     // Setup Realtime Views
     const productRef = doc(db, 'products', String(productId));
     
-    // Increment view count using setDoc with merge in case doc doesn't exist
-    setDoc(productRef, { views: increment(1) }, { merge: true }).catch(err => console.log('Error incrementing views:', err));
+    // Spam prevention (5 seconds for testing = 5000 ms)
+    const lastViewedKey = 'last_viewed_' + productId;
+    const lastViewed = localStorage.getItem(lastViewedKey);
+    const now = Date.now();
+    
+    if (!lastViewed || (now - parseInt(lastViewed)) > 5000) {
+        localStorage.setItem(lastViewedKey, now.toString());
+        
+        // 1. Increment total views on the product doc
+        setDoc(productRef, { views: increment(1) }, { merge: true }).catch(err => console.log('Error incrementing views:', err));
+        
+        // 2. Add detailed view record to page_views
+        setTimeout(() => {
+            let productName = "Unknown Product";
+            if (window.currentProduct && window.currentProduct.name) {
+                productName = window.currentProduct.name;
+            } else if (window.masterProducts) {
+                const found = window.masterProducts.find(p => p.id == parseInt(productId));
+                if (found) productName = found.name;
+            }
+            
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = d.getMonth() + 1; // 1-12
+            const dateStr = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, '0') + "-" + String(d.getDate()).padStart(2, '0');
+            
+            // Simple week number
+            const firstDayOfYear = new Date(d.getFullYear(), 0, 1);
+            const pastDaysOfYear = (d - firstDayOfYear) / 86400000;
+            const weekNumber = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+
+            addDoc(collection(db, "page_views"), {
+                productId: String(productId),
+                productName: productName,
+                timestamp: serverTimestamp(),
+                date: dateStr,
+                weekNumber: weekNumber,
+                month: month,
+                year: year
+            }).then(() => {
+                console.log("View Saved");
+            }).catch(err => {
+                console.error("Error saving view record:", err);
+            });
+        }, 500); // delay to ensure products.js loaded
+    }
 
     // Listen to views
     onSnapshot(productRef, (docSnap) => {
@@ -1828,7 +1909,8 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
                 let baseViews = 5000 + ((seed * 1234) % 10000);
                 
                 let totalViews = baseViews + (data.views || 0);
-                viewsEl.textContent = `${totalViews.toLocaleString()}+ views`;
+                let formattedViews = totalViews >= 1000 ? (totalViews / 1000).toFixed(1) + 'k+' : totalViews + '+';
+                viewsEl.textContent = `${formattedViews} VIEWS`;
             }
         }
     }, (error) => {
@@ -1836,15 +1918,45 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     });
 
     // Setup Realtime Comments
-    const commentsRef = collection(db, `products/${productId}/comments`);
+    const commentsRef = collection(db, "reviews");
     const q = query(commentsRef, orderBy('timestamp', 'desc'));
 
     let snapshotCount = 0;
     let snapshotTotalRating = 0;
     let snapshotCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-    window.localExtraCount = 0;
-    window.localExtraTotalRating = 0;
-    window.localExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    
+    // Initialize local reviews from localStorage
+    let storedReviews = [];
+    try {
+        storedReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+    } catch(e) {}
+    let initExtraCount = 0;
+    let initExtraTotalRating = 0;
+    let initExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    
+    window.localAllowedReviews = [];
+    storedReviews.forEach(r => {
+        if (String(r.productId) === String(productId)) {
+            initExtraCount++;
+            let rVal = Number(r.rating) || 5;
+            initExtraTotalRating += rVal;
+            if (initExtraCounts[rVal] !== undefined) initExtraCounts[rVal]++;
+            
+            if (r.status === 'allowed') {
+                window.localAllowedReviews.push({
+                    name: r.name || 'Anonymous',
+                    rating: r.rating || 5,
+                    text: r.reviewText || r.text || '',
+                    date: r.date || 'Recently',
+                    timestamp: r.timestamp || Date.now()
+                });
+            }
+        }
+    });
+
+    window.localExtraCount = initExtraCount;
+    window.localExtraTotalRating = initExtraTotalRating;
+    window.localExtraCounts = initExtraCounts;
 
     window.renderReviewsUI = function() {
         const container = document.getElementById('reviews-list-container');
@@ -1900,20 +2012,37 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         let pidString = String(productId);
         for(let i=0; i<pidString.length; i++) pSeed += pidString.charCodeAt(i);
         
+        // Deduplicate allowed reviews
+        let allAllowed = [...(window.firebaseAllowedReviews || []), ...(window.localAllowedReviews || [])];
+        let uniqueAllowed = [];
+        let seen = new Set();
+        for (let r of allAllowed) {
+            let key = r.name + '|' + r.text;
+            if (!seen.has(key)) {
+                seen.add(key);
+                uniqueAllowed.push(r);
+            }
+        }
+        uniqueAllowed.sort((a, b) => b.timestamp - a.timestamp);
+
+        // Prepare dummy reviews
         let selectedDummyReviews = [];
         for(let i=0; i<4; i++) {
             let index = (pSeed + (i * 7)) % allDummyReviews.length;
             selectedDummyReviews.push(allDummyReviews[index]);
         }
         
-        let dummyHtml = '';
-        selectedDummyReviews.forEach(d => {
+        // Merge them: Allowed reviews FIRST, then dummy reviews
+        let allCommentsToRender = [...uniqueAllowed, ...selectedDummyReviews];
+
+        let htmlToRender = '';
+        allCommentsToRender.forEach(d => {
             const stars = '&#9733;'.repeat(d.rating) + '&#9734;'.repeat(5 - d.rating);
-            dummyHtml += `
+            htmlToRender += `
             <div class="p-6 bg-white/40 border border-[#8B4513]/10 sharp-edge h-full flex flex-col hover:-translate-y-1 hover:shadow-xl hover:bg-white/60 transition-all duration-300 cursor-default">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md">${d.name.charAt(0)}</div>
+                        <div class="w-10 h-10 bg-gradient-to-br from-[#8B4513] to-[#A0522D] text-white flex items-center justify-center font-bold mr-3 shape-heart shadow-md">${d.name.charAt(0).toUpperCase()}</div>
                         <div>
                             <h4 class="font-bold text-[#8B4513]">${d.name}</h4>
                             <div class="flex text-amber-500 text-xs">${stars}</div>
@@ -1925,7 +2054,8 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             </div>
             `;
         });
-        container.innerHTML += dummyHtml;
+
+        container.innerHTML += htmlToRender;
 
         const avg = (totalRating / totalCount).toFixed(1);
         const scoreEl = document.querySelector('.text-6xl.font-black');
@@ -1950,16 +2080,31 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         }
     };
 
+    window.firebaseAllowedReviews = [];
     onSnapshot(q, (snapshot) => {
         snapshotCount = 0;
         snapshotTotalRating = 0;
         snapshotCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        window.firebaseAllowedReviews = [];
+
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
+            if (String(data.productId) !== String(productId)) return; // Filter for current product
+
             snapshotCount++;
             snapshotTotalRating += data.rating || 5;
             let ratingVal = data.rating || 5;
             if (snapshotCounts[ratingVal] !== undefined) snapshotCounts[ratingVal]++;
+            
+            if (data.status === 'allowed') {
+                window.firebaseAllowedReviews.push({
+                    name: data.name || 'Anonymous',
+                    rating: data.rating || 5,
+                    text: data.reviewText || data.text || '',
+                    date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
+                    timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
+                });
+            }
         });
         window.renderReviewsUI();
     }, (error) => {
@@ -1991,14 +2136,17 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         }
 
         const localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
-        localReviews.push({
+        const newLocalReview = {
+            id: 'local_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9),
             productId: productId,
             name: name,
             rating: rating,
             reviewText: text,
+            status: 'pending',
             date: new Date().toLocaleDateString(),
             timestamp: Date.now()
-        });
+        };
+        localReviews.push(newLocalReview);
         localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
         
         // Locally increase the ratings

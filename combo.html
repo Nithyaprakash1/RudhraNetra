@@ -318,6 +318,8 @@
         /* Ã¢â€â‚¬Ã¢â€â‚¬ Smooth anchor scrolling already handled via CSS scroll-behavior Ã¢â€â‚¬Ã¢â€â‚¬ */
             /* Gold Energy Glow & Shimmer */
         .gold-energy-glow {
+            padding-bottom: 0.15em;
+            margin-bottom: -0.15em;
             color: #FFE1A8;
             font-weight: 700;
             display: inline-block;
@@ -367,9 +369,9 @@
             </a>
             <div
                 class="hidden md:flex items-center space-x-4 lg:space-x-8 font-medium text-xs lg:text-sm uppercase tracking-widest nav-links whitespace-nowrap">
-                <a href="#home" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
+                <a href="index.html" class="hover:text-[#8B4513] nav-link nav-text-glow ">Home</a>
                 <div class="relative group">
-                    <a href="#store"
+                    <a href="product.html"
                         class="hover:text-[#8B4513] nav-link cursor-pointer nav-text-glow flex items-center gap-1">
                         Products
                         <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none"
@@ -482,7 +484,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-semibold mb-1 text-[#8B4513]">Password</label>
-                    <input type="password" id="adminPwd" required placeholder="Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
+                    <input type="password" id="adminPwd" required placeholder="••••••••" class="w-full px-4 py-2 rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                 </div>
                 <button type="submit" class="w-full bg-[#8B4513] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-lg shadow-lg hover:bg-[#5c3a23] transition mt-4">
                     Login
@@ -494,7 +496,7 @@
     <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MAIN CONTENT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
     <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
-    <header class="relative pt-40 pb-28 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
+    <header class="relative pt-40 pb-10 md:pt-52 md:pb-36 text-center overflow-hidden" id="combo-hero"
             style="background:linear-gradient(135deg,#FFF1E0 0%,#f5e0c8 50%,#FFF1E0 100%);">
             <div class="relative z-10 px-4">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 mb-4 block"
@@ -520,7 +522,7 @@
             </div>
         </header>
 
-        <section class="py-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
+        <section class="pt-10 pb-20 md:py-28 px-4 md:px-6 max-w-7xl mx-auto">
             <div class="text-center mb-14 md:mb-20" data-aos="fade-up">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-2">Handpicked for You</span>
                 <h2 class="text-3xl md:text-5xl section-title-line">Featured Sacred Combos</h2>
@@ -541,7 +543,7 @@
                     <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]/60 block mb-3">Divine Amplification</span>
                     <h2 class="text-3xl md:text-5xl mb-6 section-title-line text-[#8B4513] font-bold tracking-tight">The Power of Synergy</h2>
                     <p class="text-base md:text-lg text-[#8B4513]/75 max-w-2xl mx-auto mt-8 font-light leading-relaxed">
-                        When authenticated Karungali elements are combined, their energetic resonance doesn't just add upÃ¢â‚¬â€it multiplies. Discover why pairing our sacred artifacts creates a profound auric shield.
+                        When authenticated Karungali elements are combined, their energetic resonance doesn't just add up - it multiplies. Discover why pairing our sacred artifacts creates a profound auric shield.
                     </p>
                 </div>
 
@@ -627,7 +629,7 @@
                 <ul class="space-y-2 text-sm">
                     <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali malai</a></li>
                     <li><a href="product-details.html" class="hover:text-[#8B4513] nav-link transition">Karungali Bracelet</a></li>
-                    <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Deity Idols</a></li>
+
                     <li><a href="product.html" class="hover:text-[#8B4513] nav-link transition">Karungali Ring</a></li>
                 </ul>
             </div>
@@ -742,10 +744,18 @@
         });
 
         // Ã¢â€â‚¬Ã¢â€â‚¬ Countdown timer Ã¢â€â‚¬Ã¢â€â‚¬
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 3);
+        let targetDate = localStorage.getItem('comboTargetDate');
+        if (!targetDate) {
+            const newTarget = new Date();
+            newTarget.setDate(newTarget.getDate() + 3);
+            targetDate = newTarget.getTime();
+            localStorage.setItem('comboTargetDate', targetDate);
+        } else {
+            targetDate = parseInt(targetDate);
+        }
+        
         function updateTimer() {
-            const diff = targetDate - new Date();
+            const diff = targetDate - new Date().getTime();
             if (diff < 0) return;
             document.getElementById('days').innerText    = String(Math.floor(diff / 86400000)).padStart(2,'0');
             document.getElementById('hours').innerText   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
@@ -1014,7 +1024,7 @@
                 items: ["Silver Coated Karungali Malai (8 mm - 54 Beads)", "Silver Twin Damru Bracelet (6 mm - 20 Beads)", "Karungali Ring with Silver coated Band (6 mm)"],
                 images: [
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
-                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_producÃ¢â‚¬Â¦_202606111456.jpeg",
+                    "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc…_202606111456.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_worn_by_model_202606111522.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
                     "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg"
@@ -1040,7 +1050,7 @@
                 name: "Value Pack",
                 price: 799,
                 views: '8716+',
-                delivery: "Delivery Fee: Ã¢â€šÂ¹149",
+                delivery: "Delivery Fee: ₹149",
                 items: ["Set of 2 Karungali Bracelets(6mm - 20 Beads)"],
                 images: [
                     "image/Product Images (1-11)/Product 8 (Classic Karungali Bracelet (20  27 Beads))/Karungali_bracelet_on_wooden_stand_202606111731.jpeg",
@@ -1055,7 +1065,7 @@
                 name: "Spiritual Combo",
                 price: 1699,
                 views: '13381+',
-                delivery: "Delivery Fee: Ã¢â€šÂ¹149",
+                delivery: "Delivery Fee: ₹149",
                 items: ["Karungali necklace with karungali dollar (8mm - 54 Beads)", "Mini Damru bracelet (6mm - 20 Beads)", "Natural Karungali Ring (6mm)"],
                 images: [
                     "image/Product Images (1-11)/Karungali dollor/2.jpeg",
@@ -1087,6 +1097,14 @@
             const grid = document.getElementById('comboGrid');
             if(grid) {
                 grid.innerHTML = '';
+                function formatViews(viewsStr) {
+                    let num = parseInt(viewsStr.replace(/[^0-9]/g, ''));
+                    if (!isNaN(num) && num >= 1000) {
+                        return (num / 1000).toFixed(1) + 'k+ VIEWS';
+                    }
+                    return viewsStr + ' VIEWS';
+                }
+                
                 myCombos.forEach((c, idx) => {
                     const safeName = c.name.replace(/"/g, '&quot;');
                     const safeItems = JSON.stringify(c.items).replace(/"/g, '&quot;');
@@ -1123,7 +1141,7 @@
                                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                       <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                                     </span>
-                                    ${c.views} views
+                                    ${formatViews(c.views)}
                                 </div>
                             </div>
                             
@@ -1143,10 +1161,7 @@
                                 </div>
                                 
                                 <div class="flex space-x-2 mt-auto">
-                                    <button onclick="window.location.href='product-details.html?combo=${idx}'; event.stopPropagation();" class="flex-1 py-3 rounded-lg font-medium bg-[#8B4513]/10 text-[#8B4513] hover:bg-[#8B4513]/20 transition text-xs uppercase tracking-wider flex items-center justify-center">
-                                        View Product
-                                    </button>
-                                    <button onclick="buyComboNow(this.closest('.combo-card')); event.stopPropagation();" class="btn-brown flex-1 py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
+                                    <button onclick="buyComboNow(this.closest('.combo-card')); event.stopPropagation();" class="btn-brown w-full py-3 bg-[#8B4513] text-[#FFF1E0] transition font-medium text-xs uppercase tracking-wider flex items-center justify-center gap-2 rounded-lg shining-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" />
                                         </svg>
