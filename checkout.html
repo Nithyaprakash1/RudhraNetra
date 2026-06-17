@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -301,10 +301,20 @@
                             <span id="checkoutTotal" class="font-bold text-2xl text-[#8B4513]">₹0</span>
                         </div>
 
-                        <button id="placeOrderBtn"
-                            class="w-full py-4 bg-[#8B4513] text-[#FFF1E0] rounded-lg hover:bg-[#5c3a23] transition text-sm uppercase tracking-widest font-semibold shadow-lg">
-                            Place Order Securely
-                        </button>
+                        <div id="payment-container" class="relative w-full">
+                            <button id="fakePayBtn" type="button" class="w-full py-4 bg-[#8B4513] opacity-80 text-[#FFF1E0] rounded-lg transition text-sm uppercase tracking-widest font-semibold shadow-lg hover:bg-[#5c3a23]">
+                                Fill Details to Pay
+                            </button>
+                            <div id="rzp-button-container" class="hidden w-full">
+                                <form class="w-full flex justify-center">
+                                    <style>
+                                        .razorpay-payment-button { width: 100% !important; display: flex !important; justify-content: center !important; }
+                                        iframe.razorpay-payment-button { width: 100% !important; }
+                                    </style>
+                                    <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_T2eWwebSrh3jb4" async></script> 
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -386,155 +396,28 @@
 
         window.addEventListener('load', loadCheckout);
 
-        // Handle Order Placement
-        document.getElementById('placeOrderBtn').addEventListener('click', async () => {
-            const form = document.getElementById('checkoutForm');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
+        // Handle Form Validation for Payment Button
+        const fakeBtn = document.getElementById('fakePayBtn');
+        const rzpContainer = document.getElementById('rzp-button-container');
+        const checkoutForm = document.getElementById('checkoutForm');
 
-            const btn = document.getElementById('placeOrderBtn');
-            btn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing...`;
-            btn.disabled = true;
+        fakeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            checkoutForm.reportValidity();
+        });
 
-            const customerData = {
-                name: document.getElementById('custName').value,
-                email: document.getElementById('custEmail').value,
-                phone: document.getElementById('custPhone').value,
-                address: document.getElementById('custAddress').value,
-                city: document.getElementById('custCity').value,
-                state: document.getElementById('custState').value,
-                pin: document.getElementById('custPin').value,
-            };
-
-            const cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
-            let total = 0;
-            cart.forEach(item => total += item.price * (item.quantity || 1));
-
-            try {
-                // 1. Create order on backend
-                let createResponse;
-                try {
-                    createResponse = await fetch('/api/create-order', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ amount: total * 100, currency: 'INR' })
-                    });
-                } catch (e) {
-                    alert("Backend server not reachable! You are running this on a local static server (Live Server) which cannot execute backend code. Please deploy the project to Vercel or Netlify to test the Razorpay integration.");
-                    btn.innerHTML = "Place Order Securely";
-                    btn.disabled = false;
-                    return;
-                }
-
-                if (!createResponse.ok) {
-                    if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
-                        console.warn("Local Environment Detected! Bypassing Razorpay and saving directly to Firebase.");
-                        // Save directly to Firebase for local testing
-                        await addDoc(collection(db, "orders"), {
-                            customer: customerData,
-                            items: cart,
-                            totalAmount: total,
-                            status: 'Local Test Order',
-                            paymentId: 'TEST_' + Math.random().toString(36).substring(2, 9).toUpperCase(),
-                            timestamp: serverTimestamp(),
-                            date: new Date().toISOString()
-                        });
-                        
-                        localStorage.removeItem('rudraCart');
-                        const modal = document.getElementById('successModal');
-                        modal.style.display = 'flex';
-                        setTimeout(() => modal.querySelector('div').classList.remove('scale-95'), 50);
-                        return;
-                    }
-                    throw new Error('Failed to create order on server');
-                }
-
-                const orderData = await createResponse.json();
-
-                // 2. Initialize Razorpay Checkout
-                const options = {
-                    key: orderData.key_id,
-                    amount: orderData.amount,
-                    currency: orderData.currency,
-                    name: "Rudra Nethra",
-                    description: "Spiritual Products Purchase",
-                    order_id: orderData.id,
-                    handler: async function (response) {
-                        try {
-                            // 3. Verify payment on backend
-                            const verifyResponse = await fetch('/api/verify-payment', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
-                                    razorpay_order_id: response.razorpay_order_id,
-                                    razorpay_payment_id: response.razorpay_payment_id,
-                                    razorpay_signature: response.razorpay_signature
-                                })
-                            });
-
-                            if (!verifyResponse.ok) {
-                                throw new Error('Payment verification failed');
-                            }
-
-                            // 4. Save to Firebase
-                            await addDoc(collection(db, "orders"), {
-                                customer: customerData,
-                                items: cart,
-                                totalAmount: total,
-                                status: 'Paid',
-                                paymentId: response.razorpay_payment_id,
-                                timestamp: serverTimestamp(),
-                                date: new Date().toISOString()
-                            });
-
-                            localStorage.removeItem('rudraCart');
-                            const modal = document.getElementById('successModal');
-                            modal.style.display = 'flex';
-                            setTimeout(() => modal.querySelector('div').classList.remove('scale-95'), 50);
-
-                        } catch (err) {
-                            console.error("Verification/Save Error: ", err);
-                            alert("Payment verification failed or error saving order.");
-                            btn.innerHTML = "Place Order Securely";
-                            btn.disabled = false;
-                        }
-                    },
-                    prefill: {
-                        name: customerData.name,
-                        email: customerData.email,
-                        contact: customerData.phone
-                    },
-                    theme: {
-                        color: "#8B4513"
-                    },
-                    modal: {
-                        ondismiss: function() {
-                            btn.innerHTML = "Place Order Securely";
-                            btn.disabled = false;
-                        }
-                    }
-                };
-
-                const rzp1 = new window.Razorpay(options);
-                rzp1.on('payment.failed', function (response){
-                    console.error("Payment Failed: ", response.error);
-                    alert("Payment failed: " + response.error.description);
-                    btn.innerHTML = "Place Order Securely";
-                    btn.disabled = false;
-                });
-
-                rzp1.open();
-
-            } catch (error) {
-                console.error("Error placing order: ", error);
-                alert("Something went wrong. Please try again later.");
-                btn.innerHTML = "Place Order Securely";
-                btn.disabled = false;
+        // Recheck form validity whenever the user types something
+        checkoutForm.addEventListener('input', () => {
+            if (checkoutForm.checkValidity()) {
+                fakeBtn.classList.add('hidden');
+                rzpContainer.classList.remove('hidden');
+            } else {
+                fakeBtn.classList.remove('hidden');
+                rzpContainer.classList.add('hidden');
             }
         });
     </script>
 </body>
 
 </html>
+
