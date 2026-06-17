@@ -242,12 +242,18 @@
                             
                             <div id="saved-addresses-container">
                                 <label class="block text-sm font-semibold mb-2 text-[#8B4513]">Select Saved Address</label>
-                                <div class="relative group">
-                                    <select id="saved-address-select" class="w-full px-5 py-4 bg-white/50 backdrop-blur-sm border border-[#8B4513]/20 text-[#8B4513] font-medium rounded-xl focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]/20 outline-none transition-all duration-300 shadow-[0_4px_12px_rgba(139,69,19,0.05)] hover:shadow-[0_4px_20px_rgba(139,69,19,0.12)] hover:border-[#8B4513]/40 truncate max-w-full appearance-none cursor-pointer pr-12" required>
-                                        <option value="" disabled selected>Loading your addresses...</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#8B4513] transition-transform duration-300 group-hover:-translate-y-0.5">
-                                        <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                                <div class="relative w-full" id="custom-address-dropdown-container">
+                                    <input type="hidden" id="saved-address-select" required>
+                                    
+                                    <button type="button" id="custom-address-trigger" class="w-full px-5 py-4 bg-white/50 backdrop-blur-sm border border-[#8B4513]/20 text-[#8B4513] font-medium rounded-xl focus:border-[#8B4513] focus:ring-2 focus:ring-[#8B4513]/20 outline-none transition-all duration-300 shadow-[0_4px_12px_rgba(139,69,19,0.05)] hover:shadow-[0_4px_20px_rgba(139,69,19,0.12)] hover:border-[#8B4513]/40 text-left flex justify-between items-center group relative z-20">
+                                        <span class="truncate block max-w-[90%]" id="custom-address-text">Loading your addresses...</span>
+                                        <svg class="w-5 h-5 opacity-70 transition-transform duration-300 group-hover:-translate-y-0.5" id="custom-address-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                                    </button>
+
+                                    <div id="custom-address-menu" class="absolute z-30 w-full mt-2 bg-[#FAEDDF] border border-[#8B4513]/20 rounded-xl shadow-[0_10px_40px_rgba(139,69,19,0.15)] opacity-0 invisible transform -translate-y-2 transition-all duration-300 overflow-hidden max-h-64 overflow-y-auto backdrop-blur-xl">
+                                        <ul id="custom-address-list" class="py-2 text-[15px] font-medium text-[#8B4513] leading-relaxed">
+                                            <!-- Injected via JS -->
+                                        </ul>
                                     </div>
                                 </div>
                                 <p class="text-xs text-[#8B4513]/60 mt-2">You can manage your addresses in your <a href="dashboard.html" class="underline font-bold">Dashboard</a>.</p>
@@ -333,17 +339,56 @@
             const user = Auth.getUser();
             const addresses = user.addresses || [];
             const selectEl = document.getElementById('saved-address-select');
+            const customText = document.getElementById('custom-address-text');
+            const customList = document.getElementById('custom-address-list');
+            const trigger = document.getElementById('custom-address-trigger');
+            const menu = document.getElementById('custom-address-menu');
+            const icon = document.getElementById('custom-address-icon');
             
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = !menu.classList.contains('invisible');
+                if(isOpen) {
+                    menu.classList.add('invisible', 'opacity-0', '-translate-y-2');
+                    icon.style.transform = '';
+                } else {
+                    menu.classList.remove('invisible', 'opacity-0', '-translate-y-2');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if(!trigger.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.add('invisible', 'opacity-0', '-translate-y-2');
+                    icon.style.transform = '';
+                }
+            });
+
             if (addresses.length === 0) {
-                selectEl.innerHTML = `<option value="" disabled selected>No saved addresses. Please go to Dashboard to add one.</option>`;
+                customText.innerText = "No saved addresses. Please go to Dashboard to add one.";
                 document.getElementById('checkout-form').querySelector('button[type="submit"]').disabled = true;
                 document.getElementById('checkout-form').querySelector('button[type="submit"]').innerText = "Please add an address first";
             } else {
-                selectEl.innerHTML = addresses.map(addr => `
-                    <option value='${encodeURIComponent(JSON.stringify(addr))}'>
-                        ${addr.addressName}: ${addr.receiverName}, ${addr.fullAddress}, ${addr.city} - ${addr.pincode}
-                    </option>
-                `).join('');
+                customList.innerHTML = addresses.map(addr => {
+                    const addrStr = `${addr.addressName}: ${addr.receiverName}, ${addr.fullAddress}, ${addr.city} - ${addr.pincode}`;
+                    const val = encodeURIComponent(JSON.stringify(addr));
+                    return `<li class="px-5 py-3 hover:bg-[#8B4513]/10 cursor-pointer transition-colors border-b border-[#8B4513]/5 last:border-0" data-val="${val}">
+                        ${addrStr}
+                    </li>`;
+                }).join('');
+
+                const defaultAddr = addresses[0];
+                selectEl.value = encodeURIComponent(JSON.stringify(defaultAddr));
+                customText.innerText = `${defaultAddr.addressName}: ${defaultAddr.receiverName}, ${defaultAddr.fullAddress}, ${defaultAddr.city} - ${defaultAddr.pincode}`;
+
+                customList.querySelectorAll('li').forEach(li => {
+                    li.addEventListener('click', () => {
+                        selectEl.value = li.getAttribute('data-val');
+                        customText.innerText = li.innerText.trim();
+                        menu.classList.add('invisible', 'opacity-0', '-translate-y-2');
+                        icon.style.transform = '';
+                    });
+                });
             }
             
             loadCheckoutCart();
