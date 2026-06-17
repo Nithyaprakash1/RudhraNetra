@@ -479,13 +479,13 @@
                             if (verifyData.success) {
                                 // 4. Save Order to Firebase
                                 const custData = {
-                                    name: document.getElementById('firstName').value + " " + document.getElementById('lastName').value,
-                                    email: document.getElementById('email').value,
-                                    phone: document.getElementById('phone').value,
-                                    address: document.getElementById('address').value,
-                                    city: document.getElementById('city').value,
-                                    state: document.getElementById('state').value,
-                                    pin: document.getElementById('pincode').value
+                                    name: document.getElementById('custName').value,
+                                    email: document.getElementById('custEmail').value,
+                                    phone: document.getElementById('custPhone').value,
+                                    address: document.getElementById('custAddress').value,
+                                    city: document.getElementById('custCity').value,
+                                    state: document.getElementById('custState').value,
+                                    pin: document.getElementById('custPin').value
                                 };
                                 
                                 await addDoc(collection(db, "orders"), {
@@ -509,9 +509,9 @@
                         }
                     },
                     prefill: {
-                        name: document.getElementById('firstName').value + " " + document.getElementById('lastName').value,
-                        email: document.getElementById('email').value,
-                        contact: document.getElementById('phone').value
+                        name: document.getElementById('custName').value,
+                        email: document.getElementById('custEmail').value,
+                        contact: document.getElementById('custPhone').value
                     },
                     theme: {
                         color: "#8B4513"
