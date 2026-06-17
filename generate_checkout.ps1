@@ -1,4 +1,4 @@
-$html = Get-Content -Path 'index.html' -Raw -Encoding UTF8
+﻿$html = Get-Content -Path 'index.html' -Raw -Encoding UTF8
 
 $header = ""
 if ($html -match '(?s)(.*?</nav>)') {
@@ -95,7 +95,7 @@ $checkoutBody = @"
                     <div class="border-t border-[#8B4513]/10 pt-4 space-y-3 mb-6 text-sm text-[#8B4513]/80">
                         <div class="flex justify-between">
                             <span>Subtotal</span>
-                            <span id="checkout-subtotal" class="font-medium">₹0.00</span>
+                            <span id="checkout-subtotal" class="font-medium">â‚¹0.00</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Shipping</span>
@@ -103,7 +103,7 @@ $checkoutBody = @"
                         </div>
                         <div class="flex justify-between text-lg font-bold text-[#8B4513] pt-3 border-t border-[#8B4513]/10">
                             <span>Total</span>
-                            <span id="checkout-total">₹0.00</span>
+                            <span id="checkout-total">â‚¹0.00</span>
                         </div>
                     </div>
 
@@ -145,7 +145,7 @@ $checkoutBody = @"
                     <h4 class="text-sm font-bold text-[#8B4513]">Karungali Product</h4>
                     <p class="text-xs text-[#8B4513]/70">Qty: 1</p>
                 </div>
-                <div class="text-sm font-bold text-[#8B4513]">₹1200</div>
+                <div class="text-sm font-bold text-[#8B4513]">â‚¹1200</div>
             </div>`;
         totalAmt = 1200;
     } else {
@@ -160,13 +160,13 @@ $checkoutBody = @"
                     <h4 class="text-sm font-bold text-[#8B4513]">` + item.name + `</h4>
                     <p class="text-xs text-[#8B4513]/70">Qty: ` + item.quantity + `</p>
                 </div>
-                <div class="text-sm font-bold text-[#8B4513]">₹` + (item.price * item.quantity) + `</div>
+                <div class="text-sm font-bold text-[#8B4513]">â‚¹` + (item.price * item.quantity) + `</div>
             </div>`;
         });
     }
 
-    document.getElementById('checkout-subtotal').textContent = '₹' + totalAmt;
-    document.getElementById('checkout-total').textContent = '₹' + totalAmt;
+    document.getElementById('checkout-subtotal').textContent = 'â‚¹' + totalAmt;
+    document.getElementById('checkout-total').textContent = 'â‚¹' + totalAmt;
 
     // Razorpay Integration
     document.getElementById('rzp-button1').onclick = function(e) {
@@ -182,7 +182,7 @@ $checkoutBody = @"
         }
 
         var options = {
-            "key": "rzp_test_dummykey12345", // Replace with actual Razorpay Key ID
+            "key": "rzp_test_T2hZdE4034sQPh", // Replace with actual Razorpay Key ID
             "amount": totalAmt * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Rudra Nethra",
@@ -218,3 +218,4 @@ $checkoutBody = @"
 $finalHtml = $header + $checkoutBody + $footer
 [IO.File]::WriteAllText('checkout.html', $finalHtml, [System.Text.Encoding]::UTF8)
 Write-Host "Created checkout.html"
+
