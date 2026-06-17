@@ -204,11 +204,11 @@
     <div class="login-card">
         
         <div class="logo-container">
-            <a href="index.html">
-                <img src="image/logo_icon.png" alt="RudhraNetra Logo" style="height: 50px; margin-bottom: 15px;">
+            <a href="index.html" id="login-logo-link" class="block transition-all duration-300">
+                <img src="image/logo_icon.png" alt="RudhraNetra Logo" style="height: 50px; margin-bottom: 15px; display: inline-block;">
                 <div class="logo-text" style="color: #6D3D22; font-size: 26px;">RudhraNetra</div>
+                <p class="text-[13px] font-medium text-[#8B4513] opacity-80 mt-2 mb-4" id="form-subtitle">Welcome back to divine abundance.</p>
             </a>
-            <p class="text-[13px] font-medium text-[#8B4513] opacity-80 mt-2" id="form-subtitle">Welcome back to divine abundance.</p>
             <p id="error-msg" class="text-red-500 text-sm mt-2 hidden"></p>
         </div>
 
@@ -274,14 +274,15 @@
         // Form Toggle
         function toggleForm(type) {
             document.getElementById('error-msg').classList.add('hidden');
+            const logoLink = document.getElementById('login-logo-link');
             if (type === 'register') {
                 document.getElementById('login-form').classList.remove('active');
                 document.getElementById('register-form').classList.add('active');
-                document.getElementById('form-subtitle').innerText = "Begin your spiritual journey.";
+                if(logoLink) logoLink.style.display = 'none';
             } else {
                 document.getElementById('register-form').classList.remove('active');
                 document.getElementById('login-form').classList.add('active');
-                document.getElementById('form-subtitle').innerText = "Welcome back to divine abundance.";
+                if(logoLink) logoLink.style.display = 'block';
             }
         }
 

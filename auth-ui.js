@@ -74,16 +74,19 @@ window.addEventListener('click', (e) => {
     if (!btn) return;
     
     const text = (btn.innerText || '').toLowerCase();
-    if (text.includes('buy now') || text.includes('add to cart') || text.includes('checkout')) {
+    const ariaLabel = (btn.getAttribute('aria-label') || '').toLowerCase();
+    const onclickAttr = (btn.getAttribute('onclick') || '').toLowerCase();
+
+    if (text.includes('buy now') || text.includes('add to cart') || text.includes('checkout') ||
+        ariaLabel.includes('buy now') || ariaLabel.includes('add to cart') || ariaLabel.includes('checkout') ||
+        onclickAttr.includes('addtocart')) {
         // If it's a shop now button (which navigates to products), let it pass
-        if(text.includes('shop now')) return;
+        if(text.includes('shop now') || ariaLabel.includes('shop now')) return;
         
-        if (!Auth.isLoggedIn()) {
+        if (window.Auth && !Auth.isLoggedIn()) {
             e.preventDefault();
             e.stopPropagation();
-            showCustomAlert("Please login to continue your purchase.", () => {
-                Auth.requireAuth();
-            });
+            Auth.requireAuth(); // Go directly to sign in page
         }
     }
 }, true); // use capture phase to intercept before other click handlers
@@ -96,33 +99,37 @@ function showCustomAlert(message, onOk) {
 
     const overlay = document.createElement('div');
     overlay.id = 'custom-auth-alert';
-    overlay.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity opacity-0';
+    overlay.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md transition-opacity duration-300 opacity-0';
     
     const box = document.createElement('div');
-    box.className = 'bg-[#2B1B12] border border-[#8B4513]/30 rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300';
+    box.className = 'bg-gradient-to-b from-[#3E2415] to-[#1A0F0A] border border-[#8B4513]/50 rounded-2xl p-8 max-w-sm w-full mx-4 shadow-[0_0_40px_rgba(139,69,19,0.3)] transform scale-75 opacity-0 transition-all duration-500';
+    box.style.transitionTimingFunction = "cubic-bezier(0.34, 1.56, 0.64, 1)";
     
     const title = document.createElement('h3');
-    title.className = 'text-[#FFF1E0] font-bold text-lg mb-3 flex items-center gap-2';
+    title.className = 'text-[#FFF1E0] font-bold text-xl mb-3 flex items-center gap-3';
     title.innerHTML = `
-        <svg class="w-5 h-5 text-[#8B4513]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-        </svg>
+        <div class="bg-[#8B4513]/20 p-2 rounded-full animate-pulse">
+            <svg class="w-6 h-6 text-[#F3B79B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+        </div>
         Authentication Required
     `;
 
     const msg = document.createElement('p');
-    msg.className = 'text-[#FFF1E0]/80 text-sm mb-6';
+    msg.className = 'text-[#FFF1E0]/80 text-[15px] mb-8 leading-relaxed';
     msg.innerText = message;
 
     const btnWrapper = document.createElement('div');
     btnWrapper.className = 'flex justify-end';
 
     const btn = document.createElement('button');
-    btn.className = 'px-6 py-2 bg-[#F3B79B] text-[#4A2B18] font-bold rounded-full hover:bg-[#ffcdb5] transition-colors shadow-lg border border-[#4A2B18] text-sm tracking-wide';
+    btn.className = 'px-8 py-2.5 bg-gradient-to-r from-[#D98A6C] to-[#C06947] text-white font-bold rounded-full hover:from-[#E89E82] hover:to-[#D27E5E] transition-all duration-300 shadow-[0_4px_15px_rgba(217,138,108,0.4)] hover:shadow-[0_6px_20px_rgba(217,138,108,0.6)] transform hover:-translate-y-0.5 text-sm tracking-widest uppercase';
     btn.innerText = 'OK';
     btn.onclick = () => {
         overlay.classList.remove('opacity-100');
-        box.classList.remove('scale-100');
+        box.classList.remove('scale-100', 'opacity-100');
+        box.classList.add('scale-95', 'opacity-0');
         setTimeout(() => {
             overlay.remove();
             if(onOk) onOk();
@@ -138,8 +145,11 @@ function showCustomAlert(message, onOk) {
 
     // Animate in
     requestAnimationFrame(() => {
-        overlay.classList.add('opacity-100');
-        box.classList.add('scale-100');
+        requestAnimationFrame(() => {
+            overlay.classList.add('opacity-100');
+            box.classList.remove('scale-75', 'opacity-0');
+            box.classList.add('scale-100', 'opacity-100');
+        });
     });
 }
 

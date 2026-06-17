@@ -22,6 +22,12 @@ window.addToCart = function(name, price, image, qty = 1) {
         event.stopPropagation();
     }
 
+    // Force sign in check directly on addToCart
+    if (window.Auth && !Auth.isLoggedIn()) {
+        Auth.requireAuth();
+        return;
+    }
+
     // 1. Add to local storage
     let cart = JSON.parse(localStorage.getItem('rudraCart')) || [];
     let existing = cart.find(i => i.name === name);
