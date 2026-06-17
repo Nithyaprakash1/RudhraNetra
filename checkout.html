@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -290,7 +290,7 @@
 
                         <div class="flex justify-between mb-4">
                             <span>Subtotal</span>
-                            <span id="checkoutSubtotal" class="font-bold">â‚¹0</span>
+                            <span id="checkoutSubtotal" class="font-bold">&#8377;0</span>
                         </div>
                         <div class="flex justify-between mb-6 text-sm text-[#8B4513]/60">
                             <span>Shipping</span>
@@ -298,7 +298,7 @@
                         </div>
                         <div class="flex justify-between mb-8 text-xl border-t border-[#8B4513]/20 pt-4">
                             <span class="font-bold">Total to Pay</span>
-                            <span id="checkoutTotal" class="font-bold text-2xl text-[#8B4513]">â‚¹0</span>
+                            <span id="checkoutTotal" class="font-bold text-2xl text-[#8B4513]">&#8377;0</span>
                         </div>
 
                         <div id="payment-container" class="relative w-full">
@@ -382,8 +382,8 @@
                 `;
             });
 
-            document.getElementById('checkoutSubtotal').innerText = 'â‚¹' + total.toLocaleString('en-IN');
-            document.getElementById('checkoutTotal').innerText = 'â‚¹' + total.toLocaleString('en-IN');
+            document.getElementById('checkoutSubtotal').innerText = '₹' + total.toLocaleString('en-IN');
+            document.getElementById('checkoutTotal').innerText = '₹' + total.toLocaleString('en-IN');
 
             const navBadge = document.getElementById('navCartCount');
             if (navBadge) navBadge.innerText = qty;
