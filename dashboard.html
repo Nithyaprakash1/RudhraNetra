@@ -521,9 +521,46 @@
 
         // --- Orders Logic ---
         async function loadOrders() {
-            const user = Auth.getUser();
-            const orders = await DB.find('Orders', { userId: user.id });
-            const container = document.getElementById('ordersContainer');
+            let user = Auth.getUser();
+            
+            // 1. Fetch fresh user data from DB to ensure sync
+            try {
+                const freshUser = await DB.findOne('Users', { email: user.email });
+                if (freshUser) {
+                    user = freshUser;
+                    Auth.loginState(user);
+                }
+            } catch(e) { console.error("Could not fetch fresh user", e); }
+
+            // 2. Migrate old orders if any exist in the global Orders collection
+            try {
+                const oldOrders = await DB.find('Orders', { userId: user.id });
+                if (oldOrders && oldOrders.length > 0) {
+                    user.orders = [...(user.orders || []), ...oldOrders];
+                    
+                    // Deduplicate
+                    const uniqueOrders = [];
+                    const seen = new Set();
+                    for(const o of user.orders) {
+                        if(!seen.has(o.orderNumber || o.id)) {
+                            seen.add(o.orderNumber || o.id);
+                            uniqueOrders.push(o);
+                        }
+                    }
+                    user.orders = uniqueOrders;
+                    
+                    await DB.update('Users', user.id, { orders: user.orders });
+                    Auth.loginState(user);
+                    
+                    // Cleanup old ones
+                    for (const old of oldOrders) {
+                        await DB.delete('Orders', old.id);
+                    }
+                }
+            } catch(e) { console.error("Migration check failed", e); }
+
+            const orders = user.orders || [];
+            const container = document.getElementById('orders-container'); // fixed ID!
 
             if(orders.length === 0) {
                 container.innerHTML = `<div class="text-center py-16 bg-[#FAEDDF] rounded-2xl"><p class="text-[#8B4513]/60 font-medium text-lg">You haven't placed any orders yet.</p><a href="index.html" class="inline-block mt-4 text-[#8B4513] font-bold hover:text-[#5C2E0C] underline decoration-2 underline-offset-4 transition">Start your spiritual journey</a></div>`;

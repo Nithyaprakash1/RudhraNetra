@@ -505,14 +505,20 @@
                                 timestamp: serverTimestamp()
                             });
 
-                            // 2. Also save to new 'Orders' structure for Dashboard
-                            await DB.insert('Orders', {
-                                userId: user.id,
+                            // 2. Save order inside the User document
+                            const newOrder = {
+                                id: 'ord_' + Date.now(),
                                 orderNumber: response.razorpay_payment_id.slice(-6).toUpperCase(),
                                 addressId: selectedAddress.id,
                                 status: "Confirmed",
-                                totalAmount: totalAmount
-                            });
+                                totalAmount: totalAmount,
+                                createdAt: new Date().toISOString()
+                            };
+                            let userOrders = user.orders || [];
+                            userOrders.push(newOrder);
+                            await DB.update('Users', user.id, { orders: userOrders });
+                            user.orders = userOrders;
+                            Auth.loginState(user);
 
                             // Clear cart
                             localStorage.removeItem('rudraCart');
