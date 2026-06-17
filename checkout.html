@@ -467,6 +467,25 @@
                 }
 
                 if (!createResponse.ok) {
+                    if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+                        console.warn("Local Environment Detected! Bypassing Razorpay and saving directly to Firebase.");
+                        // Save directly to Firebase for local testing
+                        await addDoc(collection(db, "orders"), {
+                            customer: customerData,
+                            items: cart,
+                            totalAmount: total,
+                            status: 'Local Test Order',
+                            paymentId: 'TEST_' + Math.random().toString(36).substring(2, 9).toUpperCase(),
+                            timestamp: serverTimestamp(),
+                            date: new Date().toISOString()
+                        });
+                        
+                        localStorage.removeItem('rudraCart');
+                        const modal = document.getElementById('successModal');
+                        modal.style.display = 'flex';
+                        setTimeout(() => modal.querySelector('div').classList.remove('scale-95'), 50);
+                        return;
+                    }
                     throw new Error('Failed to create order on server');
                 }
 
@@ -504,7 +523,8 @@
                                 totalAmount: total,
                                 status: 'Paid',
                                 paymentId: response.razorpay_payment_id,
-                                timestamp: serverTimestamp()
+                                timestamp: serverTimestamp(),
+                                date: new Date().toISOString()
                             });
 
                             localStorage.removeItem('rudraCart');
