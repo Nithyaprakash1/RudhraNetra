@@ -252,19 +252,19 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="md:w-3/4 bg-white rounded-[32px] p-8 md:p-12 shadow-[0px_20px_40px_rgba(139,69,19,0.04)] border border-[#8B4513]/5 min-h-[600px] relative z-10">
+        <main class="w-full md:w-3/4 bg-white rounded-3xl md:rounded-[32px] p-6 md:p-12 shadow-[0px_20px_40px_rgba(139,69,19,0.04)] border border-[#8B4513]/5 min-h-[600px] relative z-10 overflow-hidden">
             
             <!-- PROFILE TAB -->
             <section id="profile-tab" class="tab-content active">
                 <h2 class="text-4xl text-[#8B4513] mb-10 font-serif">My Profile</h2>
                 
-                <div class="bg-[#FAEDDF] rounded-2xl p-8 mb-10 border border-[#8B4513]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                    <div>
+                <div class="bg-[#FAEDDF] rounded-2xl p-6 md:p-8 mb-10 border border-[#8B4513]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
+                    <div class="w-full overflow-hidden">
                         <h4 class="font-bold text-lg mb-2 text-[#8B4513]">Update Avatar</h4>
                         <p class="text-sm text-[#8B4513]/60 mb-4">Choose a new profile picture to personalize your account.</p>
-                        <input type="file" id="avatarUpload" accept="image/*" class="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[#8B4513]/10 file:text-[#8B4513] hover:file:bg-[#8B4513]/20 cursor-pointer text-[#8B4513]/70">
+                        <input type="file" id="avatarUpload" accept="image/*" class="w-full text-xs md:text-sm file:mr-2 file:md:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:md:text-sm file:font-bold file:bg-[#8B4513]/10 file:text-[#8B4513] hover:file:bg-[#8B4513]/20 cursor-pointer text-[#8B4513]/70 overflow-hidden text-ellipsis">
                     </div>
-                    <button onclick="updateAvatar()" class="btn-secondary whitespace-nowrap mt-4 md:mt-0">Upload Image</button>
+                    <button onclick="updateAvatar()" class="w-full md:w-auto btn-secondary whitespace-nowrap mt-2 md:mt-0 justify-center">Upload Image</button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -296,9 +296,9 @@
 
             <!-- ADDRESSES TAB -->
             <section id="addresses-tab" class="tab-content hidden">
-                <div class="flex justify-between items-center mb-10">
-                    <h2 class="text-4xl text-[#8B4513] font-serif">Saved Addresses</h2>
-                    <button onclick="document.getElementById('address-modal').classList.remove('hidden')" class="px-6 py-3 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#5c3a23] transition font-bold shadow-lg flex items-center gap-2">Add New Address</button>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
+                    <h2 class="text-3xl md:text-4xl text-[#8B4513] font-serif">Saved Addresses</h2>
+                    <button onclick="document.getElementById('address-modal').classList.remove('hidden')" class="w-full md:w-auto px-6 py-3 bg-[#8B4513] text-[#FFF1E0] rounded-full hover:bg-[#5c3a23] transition font-bold shadow-lg flex justify-center items-center gap-2 text-sm md:text-base">Add New Address</button>
                 </div>
                 
                 <div id="addressesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
