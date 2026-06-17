@@ -434,7 +434,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -559,9 +559,20 @@
                 const orderSnap = await getDoc(orderRef);
                 if(orderSnap.exists()) {
                     const orderData = orderSnap.data();
+                    let userRefToUpdate = null;
+
                     if(orderData.userId) {
-                        const userRef = doc(db, "Users", orderData.userId);
-                        const userSnap = await getDoc(userRef);
+                        userRefToUpdate = doc(db, "Users", orderData.userId);
+                    } else if (orderData.customer && orderData.customer.email) {
+                        const qUser = query(collection(db, "Users"), where("email", "==", orderData.customer.email));
+                        const userSnapshots = await getDocs(qUser);
+                        if(!userSnapshots.empty) {
+                            userRefToUpdate = doc(db, "Users", userSnapshots.docs[0].id);
+                        }
+                    }
+
+                    if(userRefToUpdate) {
+                        const userSnap = await getDoc(userRefToUpdate);
                         if(userSnap.exists()) {
                             const userData = userSnap.data();
                             if(userData.orders) {
@@ -572,7 +583,7 @@
                                     }
                                     return o;
                                 });
-                                await updateDoc(userRef, { orders: updatedOrders });
+                                await updateDoc(userRefToUpdate, { orders: updatedOrders });
                             }
                         }
                     }
