@@ -50,11 +50,11 @@ const defaultMasterProducts = [
         "price":  949,
         "name":  "Silver Spaced Karungali Malai 54 \u0026 108 beads",
         "images":  [
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc._202606111456.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/silver_new_1.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/silver_new_2.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/silver_new_3.jpeg"
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/silver_new_3.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/silver_old_2.jpeg"
                    ],
         "oldPrice":  2400
     },
@@ -65,11 +65,11 @@ const defaultMasterProducts = [
         "price":  1299,
         "name":  "Copper Karungali Malai 54 \u0026 108 beads",
         "images":  [
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_1.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_2.jpeg",
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg",
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111647.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_1.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_2.jpeg"
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg"
                    ],
         "oldPrice":  1600
     },
@@ -321,7 +321,7 @@ const defaultMasterProducts = [
 ];
 let masterProducts = [];
 try {
-    const stored = localStorage.getItem('rudraProductsV3');
+    const stored = localStorage.getItem('rudraProductsV4');
     if (stored) {
         masterProducts = JSON.parse(stored);
     } else {
