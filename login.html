@@ -379,8 +379,8 @@
             btn.innerText = 'Sending...';
             btn.disabled = true;
             
-            // Simulate network delay
-            setTimeout(() => {
+            try {
+                await Auth.resetPassword(email);
                 errorMsg.innerText = `A reset link has been sent to ${email}`;
                 errorMsg.classList.remove('text-red-500');
                 errorMsg.classList.add('text-green-600');
@@ -394,7 +394,15 @@
                 setTimeout(() => {
                     toggleForm('login');
                 }, 3000);
-            }, 1000);
+            } catch (err) {
+                errorMsg.innerText = err.message;
+                errorMsg.classList.remove('text-green-600');
+                errorMsg.classList.add('text-red-500');
+                errorMsg.classList.remove('hidden');
+                
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
         });
     </script>
 </body>

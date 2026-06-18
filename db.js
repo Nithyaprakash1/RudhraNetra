@@ -64,6 +64,7 @@ class FirebaseDB {
 
         // Prevent double initialization if checkout.html or another script already initialized Firebase
         const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+        this.app = app;
         this.db = getFirestore(app);
         this.fs = { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc, query, where };
     }
