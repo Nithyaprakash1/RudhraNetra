@@ -1,4 +1,0 @@
-$content = Get-Content -Path index.html -Raw -Encoding UTF8
-$content = $content.Replace('<div class="absolute -left-16 -bottom-16 md:-left-24 md:-bottom-24 w-64 h-64 md:w-80 md:h-80 opacity-10 pointer-events-none select-none z-0 text-[#8B4513] rotate-45">', '<div class="absolute -left-10 -bottom-10 md:-left-20 md:-bottom-20 w-[250px] h-[250px] md:w-[450px] md:h-[450px] opacity-10 pointer-events-none select-none z-0 text-[#8B4513] rotate-[45deg]">')
-$content = $content.Replace('<div class="absolute -right-16 -top-16 md:-right-24 md:-top-24 w-64 h-64 md:w-80 md:h-80 opacity-10 pointer-events-none select-none z-0 text-[#8B4513] -rotate-135">', '<div class="absolute -right-10 -top-10 md:-right-24 md:-top-24 w-[300px] h-[300px] md:w-[500px] md:h-[500px] opacity-15 pointer-events-none select-none z-0 text-[#8B4513] rotate-[-135deg]">')
-Set-Content -Path index.html -Value $content -Encoding UTF8

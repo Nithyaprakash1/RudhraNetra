@@ -681,27 +681,16 @@
                     </div>
 
                     <!-- Options 1: Select Beads count (Segmented controllers with sharp edges) -->
-                    <div class="mb-6">
+                    <div class="mb-6" id="dynamic-beads-container" style="display: none;">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Beads</label>
-                        <div class="flex space-x-3">
-                            <button id="beads-btn-1" onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn selected-round">
-                                <span>20 Beads</span>
-                            </button>
-                            <button id="beads-btn-2" onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn">
-                                <span>27 Beads</span>
-                            </button>
+                        <div class="flex flex-wrap gap-2" id="beads-buttons-wrapper">
                         </div>
                     </div>
 
                     <!-- Options 2: Select Bead Size -->
-                    <div class="mb-8">
+                    <div class="mb-8" id="dynamic-sizes-container" style="display: none;">
                         <label class="block text-xs uppercase tracking-wider font-semibold opacity-75 mb-3">Select Size</label>
-                        <div class="flex flex-wrap gap-2">
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn selected-round">6mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">7mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">8mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">10mm</button>
-                            <button onclick="selectOption(this, 'size')" class="size-option-btn round-btn">12mm</button>
+                        <div class="flex flex-wrap gap-2" id="sizes-buttons-wrapper">
                         </div>
                     </div>
 
@@ -1016,20 +1005,20 @@
         }
 
         // Option selection button styles toggling
-        function selectOption(button, type) {
+        window.selectOption = function(button, type) {
             const buttons = document.querySelectorAll(`.${type}-option-btn`);
             
             if (type === 'size') {
                 buttons.forEach(btn => btn.classList.remove('selected-round'));
                 button.classList.add('selected-round');
             } else if (type === 'beads') {
-                if (button.classList.contains('selected-round')) {
-                    // Already selected, so unpick
-                    button.classList.remove('selected-round');
-                    return;
+                if (!button.classList.contains('selected-round')) {
+                    buttons.forEach(btn => btn.classList.remove('selected-round'));
+                    button.classList.add('selected-round');
+                    if (typeof window.renderDependentSizes === 'function') {
+                        window.renderDependentSizes();
+                    }
                 }
-                buttons.forEach(btn => btn.classList.remove('selected-round'));
-                button.classList.add('selected-round');
             } else {
                 buttons.forEach(btn => {
                     btn.className = `${type}-option-btn round-btn`;
@@ -1056,286 +1045,310 @@
             let basePrice = window.currentProduct ? window.currentProduct.price : 599;
             let oldPrice = window.currentProduct ? window.currentProduct.oldPrice : 699;
             
-            // Get selected size
+            // Get selected size (it could be a string like '6mm' or '6')
             let selectedSizeBtn = document.querySelector('.size-option-btn.selected-round');
-            let size = selectedSizeBtn ? parseInt(selectedSizeBtn.innerText) : 6;
+            let sizeStr = selectedSizeBtn ? selectedSizeBtn.innerText.trim() : '6mm';
+            let sizeNum = parseInt(sizeStr);
             
             // Get selected beads
             let selectedBeadsBtn = document.querySelector('.beads-option-btn.selected-round');
-            let beads = selectedBeadsBtn ? parseInt(selectedBeadsBtn.innerText) : 20;
+            let beadsStr = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace(' Beads', '') : '20';
+            let beadsNum = parseInt(beadsStr);
 
             if (window.currentProduct) {
+                // If the product uses the new Variants model
+                if (window.currentProduct.variants && window.currentProduct.variants.length > 0) {
+                    let matchingVariant = window.currentProduct.variants.find(v => {
+                        let vBeadsStr = v.beads ? String(v.beads).replace(/[^0-9]/g, '') : '';
+                        let vSizeStr = v.size ? String(v.size).replace(/[^0-9]/g, '') : '';
+                        let checkBeads = String(beadsNum) === vBeadsStr;
+                        let checkSize = String(sizeNum) === vSizeStr;
+                        // If variant only specified one of them, we handle it
+                        if (v.beads && v.size) return checkBeads && checkSize;
+                        if (v.beads) return checkBeads;
+                        if (v.size) return checkSize;
+                        return false;
+                    });
+
+                    if (matchingVariant) {
+                        basePrice = matchingVariant.price;
+                        oldPrice = matchingVariant.oldPrice || (basePrice * 1.2); 
+                        return { price: basePrice, oldPrice: oldPrice };
+                    }
+                }
+
+                // BACKWARD COMPATIBILITY: Hardcoded legacy logic for old products
                 if (window.currentProduct.id === 1) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 749;
-                        else if (size === 7) basePrice = 899;
-                        else if (size === 8) basePrice = 999;
-                        else if (size === 10) basePrice = 1299;
-                        else if (size === 12) basePrice = 1499;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 899;
-                        else if (size === 7) basePrice = 999;
-                        else if (size === 8) basePrice = 1299;
-                        else if (size === 10) basePrice = 1499;
-                        else if (size === 12) basePrice = 1799;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 749;
+                        else if (sizeNum === 7) basePrice = 899;
+                        else if (sizeNum === 8) basePrice = 999;
+                        else if (sizeNum === 10) basePrice = 1299;
+                        else if (sizeNum === 12) basePrice = 1499;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 899;
+                        else if (sizeNum === 7) basePrice = 999;
+                        else if (sizeNum === 8) basePrice = 1299;
+                        else if (sizeNum === 10) basePrice = 1499;
+                        else if (sizeNum === 12) basePrice = 1799;
                     }
                     oldPrice = Math.round(basePrice / 0.62 / 100) * 100;
                 } else if (window.currentProduct.id === 2 || window.currentProduct.id === 3) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 849;
-                        else if (size === 7) basePrice = 999;
-                        else if (size === 8) basePrice = 1199;
-                        else if (size === 10) basePrice = 1399;
-                        else if (size === 12) basePrice = 1599;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 999;
-                        else if (size === 7) basePrice = 1199;
-                        else if (size === 8) basePrice = 1399;
-                        else if (size === 10) basePrice = 1599;
-                        else if (size === 12) basePrice = 1899;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 849;
+                        else if (sizeNum === 7) basePrice = 999;
+                        else if (sizeNum === 8) basePrice = 1199;
+                        else if (sizeNum === 10) basePrice = 1399;
+                        else if (sizeNum === 12) basePrice = 1599;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 999;
+                        else if (sizeNum === 7) basePrice = 1199;
+                        else if (sizeNum === 8) basePrice = 1399;
+                        else if (sizeNum === 10) basePrice = 1599;
+                        else if (sizeNum === 12) basePrice = 1899;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 4) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 949;
-                        else if (size === 7) basePrice = 1099;
-                        else if (size === 8) basePrice = 1299;
-                        else if (size === 10) basePrice = 1599;
-                        else if (size === 12) basePrice = 1799;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 1099;
-                        else if (size === 7) basePrice = 1399;
-                        else if (size === 8) basePrice = 1599;
-                        else if (size === 10) basePrice = 1999;
-                        else if (size === 12) basePrice = 2199;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 949;
+                        else if (sizeNum === 7) basePrice = 1099;
+                        else if (sizeNum === 8) basePrice = 1299;
+                        else if (sizeNum === 10) basePrice = 1599;
+                        else if (sizeNum === 12) basePrice = 1799;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 1099;
+                        else if (sizeNum === 7) basePrice = 1399;
+                        else if (sizeNum === 8) basePrice = 1599;
+                        else if (sizeNum === 10) basePrice = 1999;
+                        else if (sizeNum === 12) basePrice = 2199;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 5) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1299;
-                        else if (size === 7) basePrice = 1499;
-                        else if (size === 8) basePrice = 1599;
-                        else if (size === 10) basePrice = 1799;
-                        else if (size === 12) basePrice = 1999;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 1799;
-                        else if (size === 7) basePrice = 1999;
-                        else if (size === 8) basePrice = 2199;
-                        else if (size === 10) basePrice = 2499;
-                        else if (size === 12) basePrice = 2799;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1299;
+                        else if (sizeNum === 7) basePrice = 1499;
+                        else if (sizeNum === 8) basePrice = 1599;
+                        else if (sizeNum === 10) basePrice = 1799;
+                        else if (sizeNum === 12) basePrice = 1999;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 1799;
+                        else if (sizeNum === 7) basePrice = 1999;
+                        else if (sizeNum === 8) basePrice = 2199;
+                        else if (sizeNum === 10) basePrice = 2499;
+                        else if (sizeNum === 12) basePrice = 2799;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 6) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 749;
-                        else if (size === 7) basePrice = 899;
-                        else if (size === 8) basePrice = 999;
-                        else if (size === 10) basePrice = 1299;
-                        else if (size === 12) basePrice = 1499;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 899;
-                        else if (size === 7) basePrice = 999;
-                        else if (size === 8) basePrice = 1199;
-                        else if (size === 10) basePrice = 1499;
-                        else if (size === 12) basePrice = 1799;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 749;
+                        else if (sizeNum === 7) basePrice = 899;
+                        else if (sizeNum === 8) basePrice = 999;
+                        else if (sizeNum === 10) basePrice = 1299;
+                        else if (sizeNum === 12) basePrice = 1499;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 899;
+                        else if (sizeNum === 7) basePrice = 999;
+                        else if (sizeNum === 8) basePrice = 1199;
+                        else if (sizeNum === 10) basePrice = 1499;
+                        else if (sizeNum === 12) basePrice = 1799;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 7) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 849;
-                        else if (size === 7) basePrice = 999;
-                        else if (size === 8) basePrice = 1199;
-                        else if (size === 10) basePrice = 1399;
-                        else if (size === 12) basePrice = 1599;
-                    } else if (beads === 108) {
-                        if (size === 6) basePrice = 999;
-                        else if (size === 7) basePrice = 1199;
-                        else if (size === 8) basePrice = 1399;
-                        else if (size === 10) basePrice = 1799;
-                        else if (size === 12) basePrice = 1999;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 849;
+                        else if (sizeNum === 7) basePrice = 999;
+                        else if (sizeNum === 8) basePrice = 1199;
+                        else if (sizeNum === 10) basePrice = 1399;
+                        else if (sizeNum === 12) basePrice = 1599;
+                    } else if (beadsNum === 108) {
+                        if (sizeNum === 6) basePrice = 999;
+                        else if (sizeNum === 7) basePrice = 1199;
+                        else if (sizeNum === 8) basePrice = 1399;
+                        else if (sizeNum === 10) basePrice = 1799;
+                        else if (sizeNum === 12) basePrice = 1999;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 8) {
-                    if (beads === 20) {
-                        if (size === 6) basePrice = 399;
-                        else if (size === 7) basePrice = 499;
-                        else if (size === 8) basePrice = 599;
-                        else if (size === 10) basePrice = 699;
-                        else if (size === 12) basePrice = 899;
-                    } else if (beads === 27) {
-                        if (size === 6) basePrice = 499;
-                        else if (size === 7) basePrice = 599;
-                        else if (size === 8) basePrice = 799;
-                        else if (size === 10) basePrice = 899;
-                        else if (size === 12) basePrice = 999;
+                    if (beadsNum === 20) {
+                        if (sizeNum === 6) basePrice = 399;
+                        else if (sizeNum === 7) basePrice = 499;
+                        else if (sizeNum === 8) basePrice = 599;
+                        else if (sizeNum === 10) basePrice = 699;
+                        else if (sizeNum === 12) basePrice = 899;
+                    } else if (beadsNum === 27) {
+                        if (sizeNum === 6) basePrice = 499;
+                        else if (sizeNum === 7) basePrice = 599;
+                        else if (sizeNum === 8) basePrice = 799;
+                        else if (sizeNum === 10) basePrice = 899;
+                        else if (sizeNum === 12) basePrice = 999;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 9) {
-                    if (beads === 20) {
-                        if (size === 6) basePrice = 599;
-                        else if (size === 7) basePrice = 699;
-                        else if (size === 8) basePrice = 799;
-                        else if (size === 10) basePrice = 899;
-                        else if (size === 12) basePrice = 1099;
-                    } else if (beads === 27) {
-                        if (size === 6) basePrice = 699;
-                        else if (size === 7) basePrice = 799;
-                        else if (size === 8) basePrice = 899;
-                        else if (size === 10) basePrice = 999;
-                        else if (size === 12) basePrice = 1199;
+                    if (beadsNum === 20) {
+                        if (sizeNum === 6) basePrice = 599;
+                        else if (sizeNum === 7) basePrice = 699;
+                        else if (sizeNum === 8) basePrice = 799;
+                        else if (sizeNum === 10) basePrice = 899;
+                        else if (sizeNum === 12) basePrice = 1099;
+                    } else if (beadsNum === 27) {
+                        if (sizeNum === 6) basePrice = 699;
+                        else if (sizeNum === 7) basePrice = 799;
+                        else if (sizeNum === 8) basePrice = 899;
+                        else if (sizeNum === 10) basePrice = 999;
+                        else if (sizeNum === 12) basePrice = 1199;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 10) {
-                    if (beads === 20) {
-                        if (size === 6) basePrice = 499;
-                        else if (size === 7) basePrice = 599;
-                        else if (size === 8) basePrice = 699;
-                        else if (size === 10) basePrice = 799;
-                        else if (size === 12) basePrice = 999;
-                    } else if (beads === 27) {
-                        if (size === 6) basePrice = 599;
-                        else if (size === 7) basePrice = 699;
-                        else if (size === 8) basePrice = 799;
-                        else if (size === 10) basePrice = 999;
-                        else if (size === 12) basePrice = 1099;
+                    if (beadsNum === 20) {
+                        if (sizeNum === 6) basePrice = 499;
+                        else if (sizeNum === 7) basePrice = 599;
+                        else if (sizeNum === 8) basePrice = 699;
+                        else if (sizeNum === 10) basePrice = 799;
+                        else if (sizeNum === 12) basePrice = 999;
+                    } else if (beadsNum === 27) {
+                        if (sizeNum === 6) basePrice = 599;
+                        else if (sizeNum === 7) basePrice = 699;
+                        else if (sizeNum === 8) basePrice = 799;
+                        else if (sizeNum === 10) basePrice = 999;
+                        else if (sizeNum === 12) basePrice = 1099;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 11 || window.currentProduct.id === 12) {
-                    if (beads === 20) {
-                        if (size === 6) basePrice = 599;
-                        else if (size === 7) basePrice = 699;
-                        else if (size === 8) basePrice = 799;
-                        else if (size === 10) basePrice = 899;
-                        else if (size === 12) basePrice = 1099;
-                    } else if (beads === 27) {
-                        if (size === 6) basePrice = 699;
-                        else if (size === 7) basePrice = 799;
-                        else if (size === 8) basePrice = 899;
-                        else if (size === 10) basePrice = 1099;
-                        else if (size === 12) basePrice = 1199;
+                    if (beadsNum === 20) {
+                        if (sizeNum === 6) basePrice = 599;
+                        else if (sizeNum === 7) basePrice = 699;
+                        else if (sizeNum === 8) basePrice = 799;
+                        else if (sizeNum === 10) basePrice = 899;
+                        else if (sizeNum === 12) basePrice = 1099;
+                    } else if (beadsNum === 27) {
+                        if (sizeNum === 6) basePrice = 699;
+                        else if (sizeNum === 7) basePrice = 799;
+                        else if (sizeNum === 8) basePrice = 899;
+                        else if (sizeNum === 10) basePrice = 1099;
+                        else if (sizeNum === 12) basePrice = 1199;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 13) {
-                    if (beads === 20) {
-                        if (size === 6) basePrice = 399;
-                        else if (size === 7) basePrice = 499;
-                        else if (size === 8) basePrice = 599;
-                        else if (size === 10) basePrice = 699;
-                        else if (size === 12) basePrice = 899;
-                    } else if (beads === 27) {
-                        if (size === 6) basePrice = 499;
-                        else if (size === 7) basePrice = 599;
-                        else if (size === 8) basePrice = 799;
-                        else if (size === 10) basePrice = 899;
-                        else if (size === 12) basePrice = 999;
+                    if (beadsNum === 20) {
+                        if (sizeNum === 6) basePrice = 399;
+                        else if (sizeNum === 7) basePrice = 499;
+                        else if (sizeNum === 8) basePrice = 599;
+                        else if (sizeNum === 10) basePrice = 699;
+                        else if (sizeNum === 12) basePrice = 899;
+                    } else if (beadsNum === 27) {
+                        if (sizeNum === 6) basePrice = 499;
+                        else if (sizeNum === 7) basePrice = 599;
+                        else if (sizeNum === 8) basePrice = 799;
+                        else if (sizeNum === 10) basePrice = 899;
+                        else if (sizeNum === 12) basePrice = 999;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 14) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 699;
-                        else if (size === 7) basePrice = 899;
-                        else if (size === 8) basePrice = 999;
-                        else if (size === 10) basePrice = 1249;
-                        else if (size === 12) basePrice = 1499;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 699;
+                        else if (sizeNum === 7) basePrice = 899;
+                        else if (sizeNum === 8) basePrice = 999;
+                        else if (sizeNum === 10) basePrice = 1249;
+                        else if (sizeNum === 12) basePrice = 1499;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 15) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1149;
-                        else if (size === 7) basePrice = 1349;
-                        else if (size === 8) basePrice = 1849;
-                        else if (size === 10) basePrice = 2099;
-                        else if (size === 12) basePrice = 2499;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1149;
+                        else if (sizeNum === 7) basePrice = 1349;
+                        else if (sizeNum === 8) basePrice = 1849;
+                        else if (sizeNum === 10) basePrice = 2099;
+                        else if (sizeNum === 12) basePrice = 2499;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 16) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1249;
-                        else if (size === 7) basePrice = 1449;
-                        else if (size === 8) basePrice = 1899;
-                        else if (size === 10) basePrice = 2249;
-                        else if (size === 12) basePrice = 2499;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1249;
+                        else if (sizeNum === 7) basePrice = 1449;
+                        else if (sizeNum === 8) basePrice = 1899;
+                        else if (sizeNum === 10) basePrice = 2249;
+                        else if (sizeNum === 12) basePrice = 2499;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 17) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1249;
-                        else if (size === 7) basePrice = 1449;
-                        else if (size === 8) basePrice = 1699;
-                        else if (size === 10) basePrice = 1899;
-                        else if (size === 12) basePrice = 2049;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1249;
+                        else if (sizeNum === 7) basePrice = 1449;
+                        else if (sizeNum === 8) basePrice = 1699;
+                        else if (sizeNum === 10) basePrice = 1899;
+                        else if (sizeNum === 12) basePrice = 2049;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 18) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1549;
-                        else if (size === 7) basePrice = 1799;
-                        else if (size === 8) basePrice = 1849;
-                        else if (size === 10) basePrice = 1899;
-                        else if (size === 12) basePrice = 2499;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1549;
+                        else if (sizeNum === 7) basePrice = 1799;
+                        else if (sizeNum === 8) basePrice = 1849;
+                        else if (sizeNum === 10) basePrice = 1899;
+                        else if (sizeNum === 12) basePrice = 2499;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 19) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1249;
-                        else if (size === 7) basePrice = 1449;
-                        else if (size === 8) basePrice = 1699;
-                        else if (size === 10) basePrice = 1899;
-                        else if (size === 12) basePrice = 2749;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1249;
+                        else if (sizeNum === 7) basePrice = 1449;
+                        else if (sizeNum === 8) basePrice = 1699;
+                        else if (sizeNum === 10) basePrice = 1899;
+                        else if (sizeNum === 12) basePrice = 2749;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 20) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1875;
-                        else if (size === 7) basePrice = 2125;
-                        else if (size === 8) basePrice = 2499;
-                        else if (size === 10) basePrice = 2699;
-                        else if (size === 12) basePrice = 2899;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1875;
+                        else if (sizeNum === 7) basePrice = 2125;
+                        else if (sizeNum === 8) basePrice = 2499;
+                        else if (sizeNum === 10) basePrice = 2699;
+                        else if (sizeNum === 12) basePrice = 2899;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.id === 21) {
-                    if (beads === 54) {
-                        if (size === 6) basePrice = 1249;
-                        else if (size === 7) basePrice = 1499;
-                        else if (size === 8) basePrice = 1699;
-                        else if (size === 10) basePrice = 1899;
-                        else if (size === 12) basePrice = 2249;
+                    if (beadsNum === 54) {
+                        if (sizeNum === 6) basePrice = 1249;
+                        else if (sizeNum === 7) basePrice = 1499;
+                        else if (sizeNum === 8) basePrice = 1699;
+                        else if (sizeNum === 10) basePrice = 1899;
+                        else if (sizeNum === 12) basePrice = 2249;
                     }
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio) / 100) * 100;
                 } else if (window.currentProduct.category === 'malas') {
-                    if (size === 7) basePrice += 150;
-                    else if (size === 8) basePrice += 250;
-                    else if (size === 10) basePrice += 550;
-                    else if (size === 12) basePrice += 750;
+                    if (sizeNum === 7) basePrice += 150;
+                    else if (sizeNum === 8) basePrice += 250;
+                    else if (sizeNum === 10) basePrice += 550;
+                    else if (sizeNum === 12) basePrice += 750;
 
-                    if (beads === 108) basePrice += 250;
+                    if (beadsNum === 108) basePrice += 250;
                     
                     oldPrice = Math.round(basePrice / 0.62 / 100) * 100;
                 } else if (window.currentProduct.category === 'bracelets') {
-                    if (size > 6) basePrice += (size - 6) * 50;
-                    if (beads === 27) basePrice += 100;
+                    if (sizeNum > 6) basePrice += (sizeNum - 6) * 50;
+                    if (beadsNum === 27) basePrice += 100;
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio));
                 } else if (window.currentProduct.category === 'necklaces') {
-                    if (size > 6) basePrice += (size - 6) * 50;
+                    if (sizeNum > 6) basePrice += (sizeNum - 6) * 50;
                     const discountRatio = (window.currentProduct.oldPrice - window.currentProduct.price) / window.currentProduct.oldPrice;
                     oldPrice = Math.round(basePrice / (1 - discountRatio));
                 }
@@ -1726,21 +1739,78 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             }
         }
         
-        const btn1 = document.getElementById('beads-btn-1');
-        const btn2 = document.getElementById('beads-btn-2');
-        if(btn1 && btn2) {
-            if(product.category === 'bracelets') {
-                btn1.innerHTML = '<span>20 Beads</span>';
-                btn2.innerHTML = '<span>27 Beads</span>';
-                btn2.style.display = 'inline-block';
-            } else if(product.category === 'necklaces') {
-                btn1.innerHTML = '<span>54 Beads</span>';
-                btn2.style.display = 'none';
+        // Dynamic Options Population
+        const beadsContainer = document.getElementById('dynamic-beads-container');
+        const sizesContainer = document.getElementById('dynamic-sizes-container');
+        const beadsWrapper = document.getElementById('beads-buttons-wrapper');
+        const sizesWrapper = document.getElementById('sizes-buttons-wrapper');
+        
+        let availableBeads = [];
+        let availableSizes = [];
+
+        if (product.variants && product.variants.length > 0) {
+            // New Variants Logic
+            product.variants.forEach(v => {
+                if (v.beads && !availableBeads.includes(v.beads)) availableBeads.push(v.beads);
+                if (v.size && !availableSizes.includes(v.size)) availableSizes.push(v.size);
+            });
+        } else {
+            // Fallback Legacy Logic
+            if (product.category === 'bracelets') {
+                availableBeads = ['20 Beads', '27 Beads'];
+                availableSizes = ['6mm', '7mm', '8mm', '10mm', '12mm'];
+            } else if (product.category === 'necklaces') {
+                availableBeads = ['54 Beads'];
+                availableSizes = ['6mm', '7mm', '8mm', '10mm', '12mm'];
             } else {
-                btn1.innerHTML = '<span>54 Beads</span>';
-                btn2.innerHTML = '<span>108 Beads</span>';
-                btn2.style.display = 'inline-block';
+                availableBeads = ['54 Beads', '108 Beads'];
+                availableSizes = ['6mm', '7mm', '8mm', '10mm', '12mm'];
             }
+        }
+
+        // Populate Beads
+        if (availableBeads.length > 0) {
+            beadsContainer.style.display = 'block';
+            beadsWrapper.innerHTML = availableBeads.map((bead, index) => 
+                `<button onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn ${index === 0 ? 'selected-round' : ''}">
+                    <span>${bead.includes('Beads') ? bead : bead + ' Beads'}</span>
+                </button>`
+            ).join('');
+        }
+
+        // Populate Sizes
+        if (availableSizes.length > 0) {
+            sizesContainer.style.display = 'block';
+            
+            // Function to render sizes based on selected bead
+            window.renderDependentSizes = function() {
+                let selectedBeadBtn = document.querySelector('.beads-option-btn.selected-round');
+                // Extract only numbers from the selected bead text to avoid case/text mismatch (e.g. '54 BEADS' -> '54')
+                let selectedBeadRaw = selectedBeadBtn ? selectedBeadBtn.innerText.trim().replace(/[^0-9]/g, '') : null;
+                
+                let sizesToShow = availableSizes;
+                if (product.variants && product.variants.length > 0 && selectedBeadRaw) {
+                    // Filter sizes to only those valid for the selected bead
+                    sizesToShow = product.variants.filter(v => {
+                        let vBead = v.beads ? String(v.beads).replace(/[^0-9]/g, '') : null;
+                        return !vBead || vBead === selectedBeadRaw;
+                    }).map(v => v.size).filter(s => s);
+                    
+                    // remove duplicates
+                    sizesToShow = [...new Set(sizesToShow)];
+                }
+                
+                // If the previously selected size is still valid, keep it, else select first
+                let previouslySelectedSize = document.querySelector('.size-option-btn.selected-round');
+                let prevSizeText = previouslySelectedSize ? previouslySelectedSize.innerText.trim() : null;
+                
+                sizesWrapper.innerHTML = sizesToShow.map((size, index) => {
+                    let isSelected = prevSizeText === size || (!prevSizeText && index === 0);
+                    return `<button onclick="selectOption(this, 'size')" class="size-option-btn round-btn ${isSelected ? 'selected-round' : ''}">${size}</button>`;
+                }).join('');
+            };
+
+            renderDependentSizes(); // Initial render
         }
         
         const specMaterial = document.getElementById('spec-material');

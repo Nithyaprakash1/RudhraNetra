@@ -42,9 +42,9 @@ function injectAuthUI() {
                 </div>
                 <!-- Dropdown -->
                 <div class="absolute right-0 mt-2 py-2 w-48 bg-[#FFF1E0] shadow-xl rounded-xl border border-[#8B4513]/10 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all z-50">
-                    <a href="dashboard.html" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">My Profile</a>
-                    <a href="dashboard.html" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">My Orders</a>
-                    <a href="dashboard.html" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">Saved Addresses</a>
+                    <a href="dashboard.html?tab=profile" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">My Profile</a>
+                    <a href="dashboard.html?tab=orders" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">My Orders</a>
+                    <a href="dashboard.html?tab=addresses" class="block px-4 py-2 text-sm text-[#8B4513] hover:bg-[#8B4513]/5">Saved Addresses</a>
                     <div class="border-t border-[#8B4513]/10 my-1"></div>
                     <button onclick="Auth.logout()" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Logout</button>
                 </div>
