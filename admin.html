@@ -764,9 +764,9 @@
             };
             
             confirmBtn.onclick = () => {
-                let currentProds = JSON.parse(localStorage.getItem('rudraProductsV7')) || masterProducts;
+                let currentProds = JSON.parse(localStorage.getItem('rudraProductsV8')) || masterProducts;
                 currentProds = currentProds.filter(p => p.id !== id);
-                localStorage.setItem('rudraProductsV7', JSON.stringify(currentProds));
+                localStorage.setItem('rudraProductsV8', JSON.stringify(currentProds));
                 masterProducts = currentProds;
                 
                 content.classList.add('delete-blackhole');
@@ -840,7 +840,7 @@
                 imagesArray.push("https://placehold.co/100x100/8B4513/FFF1E0?text=No+Image");
             }
 
-            let currentProds = JSON.parse(localStorage.getItem('rudraProductsV7')) || masterProducts;
+            let currentProds = JSON.parse(localStorage.getItem('rudraProductsV8')) || masterProducts;
             
             const newId = currentProds.length > 0 ? Math.max(...currentProds.map(p => p.id)) + 1 : 1;
             
@@ -874,7 +874,7 @@
             };
             
             currentProds.unshift(newProduct); // Add to beginning
-            localStorage.setItem('rudraProductsV7', JSON.stringify(currentProds));
+            localStorage.setItem('rudraProductsV8', JSON.stringify(currentProds));
             masterProducts = currentProds;
             
             loadProducts();
