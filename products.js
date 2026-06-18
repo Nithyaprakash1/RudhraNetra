@@ -51,10 +51,7 @@ const defaultMasterProducts = [
         "name":  "Silver Spaced Karungali Malai 54 \u0026 108 beads",
         "images":  [
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_display_202606111518.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc…_202606111456.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_worn_by_model_202606111522.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc._202606111456.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.44.43 PM.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.44.52 PM.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.45.02 PM.jpeg"
@@ -68,11 +65,11 @@ const defaultMasterProducts = [
         "price":  1299,
         "name":  "Copper Karungali Malai 54 \u0026 108 beads",
         "images":  [
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_worn_202606111654.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg",
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111647.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Karungali_Malai_Tamil_Nadu_202606111652.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg"
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.45.37 PM.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.45.50 PM.jpeg"
                    ],
         "oldPrice":  1600
     },
