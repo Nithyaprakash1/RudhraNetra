@@ -23,8 +23,9 @@ const defaultMasterProducts = [
         "images":  [
                        "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_with_Rudraksha_b…_202606111208.jpeg",
                        "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_on_stone_202606111233.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_worn_202606111231.jpeg",
-                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_Tamil_…_202606111227.jpeg"
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Malai_Rudraksha_Tamil_…_202606181627.jpeg",
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/Karungali_Rudraksha_Malai_macro_202606181627.jpeg",
+                       "image/Product Images (1-11)/Product 2  (Karungali Malai with Rudraksha (54 Beads))/ChatGPT Image Jun 18, 2026, 04_13_20 PM.png"
                    ],
         "oldPrice":  1500
     },
@@ -321,12 +322,12 @@ const defaultMasterProducts = [
 ];
 let masterProducts = [];
 try {
-    const stored = localStorage.getItem('rudraProductsV6');
+    const stored = localStorage.getItem('rudraProductsV7');
     if (stored) {
         masterProducts = JSON.parse(stored);
     } else {
         masterProducts = JSON.parse(JSON.stringify(defaultMasterProducts));
-        localStorage.setItem('rudraProductsV6', JSON.stringify(masterProducts));
+        localStorage.setItem('rudraProductsV7', JSON.stringify(masterProducts));
     }
 } catch (e) {
     console.error("Error loading products from local storage:", e);
