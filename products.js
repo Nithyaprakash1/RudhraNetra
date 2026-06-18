@@ -65,11 +65,11 @@ const defaultMasterProducts = [
         "price":  1299,
         "name":  "Copper Karungali Malai 54 \u0026 108 beads",
         "images":  [
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_1.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_2.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg",
                        "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111647.jpeg",
-                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg"
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Copper_Spaced_Karungali_Malai_202606111550.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/Karungali_Malai_with_copper_spacers_202606111702.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_1.jpeg",
+                       "image/Product Images (1-11)/Product 5 (Copper Karungali Malai (54 Beads))/copper_new_2.jpeg"
                    ],
         "oldPrice":  1600
     },
@@ -321,11 +321,12 @@ const defaultMasterProducts = [
 ];
 let masterProducts = [];
 try {
-    const stored = localStorage.getItem('rudraProductsV4');
+    const stored = localStorage.getItem('rudraProductsV6');
     if (stored) {
         masterProducts = JSON.parse(stored);
     } else {
         masterProducts = JSON.parse(JSON.stringify(defaultMasterProducts));
+        localStorage.setItem('rudraProductsV6', JSON.stringify(masterProducts));
     }
 } catch (e) {
     console.error("Error loading products from local storage:", e);
