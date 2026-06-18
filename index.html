@@ -1246,26 +1246,26 @@
          GSAP Timeline Mapping
       ================================================================ */
 
-      /* ── Phase 1: Text Zoom & Fade In (0.00 -> 0.15) ── */
+      /* ── Phase 1: Text Zoom & Fade In (0.00 -> 0.35) ── */
       tl.to(textOverlay, {
         opacity: 1,
         scale: 1.00,
         ease: 'power2.out',
-        duration: 0.15
+        duration: 0.30
       }, 0.00);
 
-      tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.02);
-      tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.10 }, 0.04);
-      tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.06);
-      tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.10 }, 0.08);
+      tl.to(eyebrow, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.20 }, 0.05);
+      tl.to(headline, { opacity: 1, y: 0, scale: 1, ease: 'power2.out', duration: 0.20 }, 0.10);
+      tl.to(bodyText, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.20 }, 0.15);
+      tl.to(cta, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.20 }, 0.20);
 
-      /* ── Phase 2: Corner Aside Paragraph Vanish (0.20 -> 0.40) ── */
+      /* ── Phase 2: Corner Aside Paragraph Vanish (0.30 -> 0.45) ── */
       tl.to(cornerAside, {
         opacity: 0,
         y: 15,
         ease: 'power1.in',
-        duration: 0.20
-      }, 0.20);
+        duration: 0.15
+      }, 0.30);
 
       /* ── Phase 3: Text Pause / Hold (0.15 -> 0.60) ── */
       // The text remains completely static and readable for 45% of the timeline track
@@ -1297,7 +1297,7 @@
         trigger: scrollSection,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1.2,
+        scrub: 2.5,
         pin: stickyStage,
         pinSpacing: false,
         anticipatePin: 1,
