@@ -221,6 +221,10 @@
                 <input type="password" id="login-password" placeholder="PASSWORD" required>
             </div>
             
+            <div class="text-right mb-4">
+                <a href="#" onclick="toggleForm('forgot'); return false;" class="text-[12px] font-bold text-[#8B4513] hover:underline">Forgot Password?</a>
+            </div>
+            
             <button type="submit" class="btn-primary">Sign In</button>
             
             <div class="mt-8 text-center text-[13px] font-medium text-[#8B4513]">
@@ -256,6 +260,22 @@
             </div>
         </form>
 
+        <!-- Forgot Password Form -->
+        <form id="forgot-password-form" class="form-section">
+            <h3 class="text-lg font-bold text-[#8B4513] mb-2 text-center">Reset Password</h3>
+            <p class="text-[13px] text-[#8B4513] opacity-80 text-center mb-6 font-medium">Enter your email address and we'll send you a link to reset your password.</p>
+            
+            <div class="input-group">
+                <input type="email" id="forgot-email" placeholder="EMAIL ADDRESS" required>
+            </div>
+            
+            <button type="submit" class="btn-primary">Send Reset Link</button>
+            
+            <div class="mt-6 text-center text-sm text-[#8B4513]">
+                Remembered your password? <span class="toggle-link" onclick="toggleForm('login')">Sign In</span>
+            </div>
+        </form>
+
     </div>
 
     <script src="db.js"></script>
@@ -273,14 +293,24 @@
 
         // Form Toggle
         function toggleForm(type) {
-            document.getElementById('error-msg').classList.add('hidden');
+            const errorMsg = document.getElementById('error-msg');
+            errorMsg.classList.add('hidden');
+            errorMsg.classList.remove('text-green-600');
+            errorMsg.classList.add('text-red-500');
+            
             const logoLink = document.getElementById('login-logo-link');
+            
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+            
             if (type === 'register') {
-                document.getElementById('login-form').classList.remove('active');
                 document.getElementById('register-form').classList.add('active');
                 if(logoLink) logoLink.style.display = 'none';
+            } else if (type === 'forgot') {
+                document.getElementById('forgot-password-form').classList.add('active');
+                if(logoLink) logoLink.style.display = 'block';
             } else {
-                document.getElementById('register-form').classList.remove('active');
                 document.getElementById('login-form').classList.add('active');
                 if(logoLink) logoLink.style.display = 'block';
             }
@@ -336,6 +366,35 @@
                 errorMsg.innerText = err.message;
                 errorMsg.classList.remove('hidden');
             }
+        });
+
+        // Forgot Password Submit
+        document.getElementById('forgot-password-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+            const errorMsg = document.getElementById('error-msg');
+            const btn = e.target.querySelector('button[type="submit"]');
+            
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+            
+            // Simulate network delay
+            setTimeout(() => {
+                errorMsg.innerText = `A reset link has been sent to ${email}`;
+                errorMsg.classList.remove('text-red-500');
+                errorMsg.classList.add('text-green-600');
+                errorMsg.classList.remove('hidden');
+                
+                btn.innerText = originalText;
+                btn.disabled = false;
+                document.getElementById('forgot-email').value = '';
+                
+                // Switch back to login after 3 seconds
+                setTimeout(() => {
+                    toggleForm('login');
+                }, 3000);
+            }, 1000);
         });
     </script>
 </body>
