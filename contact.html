@@ -317,28 +317,29 @@
     <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
         <!-- Header Section with Ambient Video Loop Play (Full-Screen h-screen) -->
-        <header id="home" class="relative h-screen flex items-center justify-start text-left overflow-hidden">
-            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-right scale-[1.15] z-0 transform origin-right" poster="https://placehold.co/1920x1080/120a06/120a06">
+        <header id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover object-right scale-[1.15] z-0" poster="https://placehold.co/1920x1080/120a06/120a06">
                 <source src="https://videos.pexels.com/video-files/7721241/7721241-uhd_4096_2160_25fps.mp4" type="video/mp4">
             </video>
             <!-- Overlay to blend the video loop behind dark elements -->
-            <div class="absolute inset-0 bg-[#FFF1E0]/50 z-10"></div>
+            <div class="absolute inset-0 bg-[#FFF1E0]/60 z-10"></div>
 
-            <div class="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start" data-aos="zoom-out" data-aos-duration="1500">
+            <div class="relative z-20 px-4 flex flex-col items-center" data-aos="zoom-out" data-aos-duration="1500">
                 <div class="inline-flex items-center space-x-2 mb-6 px-4 py-1.5 rounded-full bg-[#8B4513]/10 border border-[#8B4513]/20 backdrop-blur-sm"
                     data-aos="fade-down" data-aos-delay="200">
                     <span class="w-2 h-2 rounded-full bg-[#8B4513] animate-pulse"></span>
                     <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]">Reach Out to Us</span>
                 </div>
-                <h1 class="text-6xl md:text-8xl mb-6 tracking-tight text-[#8B4513] drop-shadow-sm font-bold max-w-3xl"
+                <h1 class="text-6xl md:text-8xl mb-6 tracking-tight text-[#8B4513] drop-shadow-sm font-bold"
                     data-aos="fade-up" data-aos-delay="400">Connect with Rudra Nethra</h1>
-                <p class="text-lg md:text-xl font-light max-w-xl text-[#8B4513]/85 leading-relaxed"
+                <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-[#8B4513]/85 leading-relaxed"
                     data-aos="fade-up" data-aos-delay="600">
                     Whether you have questions about our authentic products, certification, or customized needs, our
                     spiritual care team is ready to guide you.
                 </p>
             </div>
-            <div class="absolute bottom-0 left-0 w-full h-64 md:h-80 bg-gradient-to-t from-[#FFF1E0] via-[#FFF1E0]/70 to-transparent z-10 pointer-events-none"></div>
+            <!-- Extended bottom gradient to softly blur out the vase -->
+            <div class="absolute bottom-0 left-0 w-full h-64 md:h-80 bg-gradient-to-t from-[#FFF1E0] to-transparent z-10"></div>
         </header>
 
         <!-- Main Contact & Info Section -->
