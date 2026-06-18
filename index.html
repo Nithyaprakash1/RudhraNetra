@@ -1103,6 +1103,7 @@
     let lastScrollY = window.scrollY;
     const navbar = document.getElementById('navbar');
     const heroSection = document.getElementById('home');
+    const artSection = document.getElementById('art-scroll-section');
 
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
@@ -1116,8 +1117,21 @@
         navContainer.classList.remove('glass-nav');
       }
 
+      // Check if inside Art of Karungali section
+      let inArtSection = false;
+      if (artSection) {
+        const rect = artSection.getBoundingClientRect();
+        // Hide navbar if the top of the art section reaches the top of viewport,
+        // and keeps hiding until the bottom of the section scrolls past.
+        if (rect.top <= 50 && rect.bottom >= 50) {
+          inArtSection = true;
+        }
+      }
+
       // Hide/Show logic
-      if (currentScrollY <= heroHeight - 100) {
+      if (inArtSection) {
+        navbar.style.transform = 'translateY(-150%)';
+      } else if (currentScrollY <= heroHeight - 100) {
         navbar.style.transform = 'translateY(0)';
       } else {
         if (currentScrollY > lastScrollY) {
