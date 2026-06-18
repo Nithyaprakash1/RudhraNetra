@@ -140,11 +140,11 @@
     }
 
     /* ============================================================
-           ART OF KARUNGALI � GSAP ScrollTrigger Scroll-Story Section
+           ART OF KARUNGALI – GSAP ScrollTrigger Scroll-Story Section
            Matches reference: zoom-out from full-bleed to contained card
            ============================================================ */
 
-    /* Outer scroll spacer � gives scroll distance for the pin */
+    /* Outer scroll spacer – gives scroll distance for the pin */
     #art-scroll-section {
       height: 320vh;
       /* Stretched track height to significantly slow down the animations */
@@ -165,7 +165,7 @@
       background-color: #1E110A;
     }
 
-    /* Background parallax layer � moves slowest */
+    /* Background parallax layer – moves slowest */
     #art-bg-parallax {
       position: absolute;
       inset: -60px;
@@ -173,7 +173,7 @@
       transform: translateZ(0);
     }
 
-    /* The video wrapper � starts full-bleed, zooms out to a card */
+    /* The video wrapper – starts full-bleed, zooms out to a card */
     #art-video-wrapper {
       position: absolute;
       inset: 0;
@@ -202,7 +202,7 @@
       z-index: 2;
     }
 
-    /* Text overlay � centered, fades out as video zooms out */
+    /* Text overlay – centered, fades out as video zooms out */
     #art-text-overlay {
       position: absolute;
       inset: 0;
@@ -578,10 +578,9 @@
       <!-- 
           PERFECTLY ALIGNED HERO VIDEO:
           Uses 'object-cover' and absolute positioning to adapt seamlessly to both mobile and desktop screens.
-          Note: This video is hosted on a permanent public CDN (https://files.catbox.moe/p8zsyo.mp4)
-          so the local 74MB video is excluded from the Git repository but still renders perfectly on the web.
+          Note: Local 74MB video is excluded, rendering online Pexels streams.
         -->
-      <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0"
+      <video id="hero-video" autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0"
         poster="https://placehold.co/1920x1080/120a06/120a06">
         <source src="https://www.pexels.com/download/video/30778298/" type="video/mp4">
       </video>
@@ -592,7 +591,9 @@
         <p class="text-lg md:text-xl font-light mb-8 max-w-xl mx-auto opacity-90">Authentic Karungali wood,
           meticulously crafted to shield your home and elevate your spirit.</p>
       </div>
-      <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#FFF1E0] to-transparent z-20"></div>
+      
+      <!-- Fixed Bottom Fade (Optimized color interpolation to remove muddy bands + pointer-events-none) -->
+      <div class="absolute -bottom-1 left-0 w-full h-40 bg-gradient-to-t from-[#FFF1E0] via-[#FFF1E0]/80 to-[#FFF1E0]/0 z-10 pointer-events-none"></div>
     </header>
 
     <section id="store" class="py-24 px-6 max-w-7xl mx-auto">
@@ -608,7 +609,7 @@
     </section>
 
     <!-- ================================================================
-         THE ART OF KARUNGALI � GSAP ScrollTrigger Scroll-Story Section
+         THE ART OF KARUNGALI – GSAP ScrollTrigger Scroll-Story Section
          id="about" is placed on this element so nav "About" link works.
          ================================================================ -->
     <div id="art-scroll-section" role="region" aria-label="Experience the Beauty of Karungali">
@@ -622,8 +623,8 @@
 
         <!-- Layer 1 (back): Video wrapper
                  Positioned absolute inset:0 so it fills the sticky stage.
-                 GSAP scrubs it from scale(1.35) ? scale(1.0) as user scrolls.
-                 border-radius morphs from 0px ? 24px simultaneously. -->
+                 GSAP scrubs it from scale(1.35) ➔ scale(1.0) as user scrolls.
+                 border-radius morphs from 0px ➔ 24px simultaneously. -->
         <div id="art-video-wrapper">
           <!-- Replace this src with your own Karungali video -->
           <video autoplay muted loop playsinline id="art-video"
@@ -631,7 +632,7 @@
             <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
           </video>
 
-          <!-- Cinematic dark gradient overlay �
+          <!-- Cinematic dark gradient overlay –
                      makes text legible at all animation stages -->
           <div id="art-overlay" aria-hidden="true"></div>
         </div>
@@ -665,7 +666,7 @@
             </p>
           </div>
 
-          <!-- CTA � appears last, after all text is visible -->
+          <!-- CTA – appears last, after all text is visible -->
           <a href="product.html" id="art-cta" aria-label="Explore the Karungali collection" class="mt-8">
             Explore the Collection
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -1163,7 +1164,7 @@
     });
 
     /* ------------------------------------------------------------------
-       THE ART OF KARUNGALI � GSAP SCROLLTRIGGER ANIMATION
+       THE ART OF KARUNGALI – GSAP SCROLLTRIGGER ANIMATION
     ------------------------------------------------------------------ */
     (function initArtAnimation() {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1341,24 +1342,36 @@
           link.style.fontWeight = "bold";
           link.style.textShadow = "none";
           link.classList.remove("text-[#FFF1E0]");
-
         }
       });
+
+      // Sequential Looping Hero Video Playlist
+      const heroVideoList = [
+        "https://www.pexels.com/download/video/30778298/", // Video 1
+        "https://www.pexels.com/download/video/3044127/",  // Video 2 [3.1.6]
+        "https://www.pexels.com/download/video/855431/"   // Video 3
+      ];
+      let currentHeroVideoIndex = 0;
+      const heroVideoElement = document.getElementById('hero-video');
+
+      if (heroVideoElement) {
+        // Explicitly strip the loop attribute to allow sequential transition triggers
+        heroVideoElement.removeAttribute('loop');
+        heroVideoElement.addEventListener('ended', () => {
+          currentHeroVideoIndex = (currentHeroVideoIndex + 1) % heroVideoList.length;
+          heroVideoElement.src = heroVideoList[currentHeroVideoIndex];
+          heroVideoElement.play().catch(error => {
+            console.warn("Autoplay transition was paused by browser policy:", error);
+          });
+        });
+      }
     });
   </script>
 
-
-    <!-- Customer Authentication Scripts -->
-    <script src="db.js"></script>
-    <script src="auth.js"></script>
-    <script src="auth-ui.js"></script>
+  <!-- Customer Authentication Scripts -->
+  <script src="db.js"></script>
+  <script src="auth.js"></script>
+  <script src="auth-ui.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
