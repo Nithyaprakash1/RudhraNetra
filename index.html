@@ -582,11 +582,12 @@
           Uses 'object-cover' and absolute positioning to adapt seamlessly to both mobile and desktop screens.
           Note: Local 74MB video is excluded, rendering online Pexels streams.
         -->
-      <video id="hero-video" autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0" style="transform: scale(1.03);"
+      <video id="hero-video" autoplay muted playsinline onloadeddata="this.playbackRate=0.75;" class="absolute inset-0 w-full h-full object-cover z-0" style="transform: scale(1.03);"
         poster="https://placehold.co/1920x1080/120a06/120a06">
         <source src="https://www.pexels.com/download/video/30778298/" type="video/mp4">
       </video>
-      <div class="absolute inset-0 bg-black/30 z-10"></div>
+      <!-- Dark Vignette Overlay -->
+      <div class="absolute inset-0 z-10 pointer-events-none" style="background: radial-gradient(circle, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.5) 100%);"></div>
 
       <div class="relative z-20 text-[#FFF1E0] px-4" data-aos="fade-up" data-aos-duration="1500">
         <h1 class="text-6xl md:text-8xl mb-6 tracking-tight">Divine Awakening</h1>
@@ -629,7 +630,7 @@
                  border-radius morphs from 0px ➔ 24px simultaneously. -->
         <div id="art-video-wrapper">
           <!-- Replace this src with your own Karungali video -->
-          <video autoplay muted loop playsinline id="art-video"
+          <video autoplay muted loop playsinline id="art-video" onloadeddata="this.playbackRate=0.75;"
             aria-label="Cloud formation on a forest">
             <source src="https://videos.pexels.com/video-files/8233060/8233060-uhd_4096_2160_30fps.mp4" type="video/mp4">
           </video>
