@@ -54,7 +54,10 @@ const defaultMasterProducts = [
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Authentic_Karungali_Malai_produc…_202606111456.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_worn_by_model_202606111522.jpeg",
                        "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111511.jpeg",
-                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg"
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/Karungali_Malai_on_teakwood_202606111508.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.44.43 PM.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.44.52 PM.jpeg",
+                       "image/Product Images (1-11)/Product 4  (Silver Spaced Karungali Malai (54 Beads))/WhatsApp Image 2026-06-18 at 3.45.02 PM.jpeg"
                    ],
         "oldPrice":  2400
     },
