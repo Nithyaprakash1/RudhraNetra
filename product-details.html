@@ -1397,11 +1397,11 @@
             let hasBeads = document.getElementById('dynamic-beads-container').style.display === 'block';
 
             if (hasBeads && !beads) {
-                alert("Please select the number of beads.");
+                showToast("Please select the number of beads.");
                 return null;
             }
             if (hasSizes && !size) {
-                alert("Please select a size.");
+                showToast("Please select a size.");
                 return null;
             }
 
@@ -1439,7 +1439,7 @@
                     cart.push(item);
                 }
                 localStorage.setItem('rudraCart', JSON.stringify(cart));
-                alert(`Added ${item.quantity}x ${item.name} to cart!`);
+                showToast(`Added ${item.quantity}x ${item.name} to cart!`);
             }
         }
 
@@ -1548,9 +1548,9 @@ function updateStarPicker(n) {
 }
 
 function submitReview() {
-    if (!selectedRating) { alert('Please select a star rating.'); return; }
+    if (!selectedRating) { showToast('Please select a star rating.'); return; }
     const name = document.getElementById('reviewerName').value.trim();
-    if (!name) { alert('Please enter your name.'); return; }
+    if (!name) { showToast('Please enter your name.'); return; }
 
     // Update counts
     ratingCounts[selectedRating]++;
@@ -2194,13 +2194,13 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     window.submitReviewFirebase = async function() {
         const rating = window.selectedRating || 5; 
         if (!window.selectedRating) {
-            alert('Please select a star rating.');
+            showToast('Please select a star rating.');
             return;
         }
         
         const name = document.getElementById('reviewerName').value.trim();
         const text = document.getElementById('reviewText').value.trim();
-        if (!name) { alert('Please enter your name.'); return; }
+        if (!name) { showToast('Please enter your name.'); return; }
 
         try {
             await addDoc(collection(db, "reviews"), {
