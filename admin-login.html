@@ -178,6 +178,7 @@
           if (email.toLowerCase() === 'sathyprathosh@gmail.com') {
               sessionStorage.setItem('adminEmail', email);
               sessionStorage.setItem('adminPwd', password); 
+              localStorage.setItem('isAdminLoggedIn', 'true');
               window.location.href = 'admin.html';
           } else {
               showToast("Access Denied: You are not an admin.");

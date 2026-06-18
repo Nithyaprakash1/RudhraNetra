@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Rudra Nethra</title>
+    <script>
+        if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
+            window.location.href = 'admin-login.html';
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="products.js"></script>
@@ -465,6 +470,7 @@
 
         window.logoutAdmin = function() {
             signOut(auth).then(() => {
+                localStorage.removeItem('isAdminLoggedIn');
                 window.location.href = 'admin-login.html';
             });
         };
