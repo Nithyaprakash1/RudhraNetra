@@ -1388,10 +1388,25 @@
 
         function getCartItemOptions() {
             let selectedSizeBtn = document.querySelector('.size-option-btn.selected-round');
-            let size = selectedSizeBtn ? selectedSizeBtn.innerText : '6mm';
+            let size = selectedSizeBtn ? selectedSizeBtn.innerText : null;
             
             let selectedBeadsBtn = document.querySelector('.beads-option-btn.selected-round');
-            let beads = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace('\n', ' ') : '20 Beads';
+            let beads = selectedBeadsBtn ? selectedBeadsBtn.innerText.trim().replace('\n', ' ') : null;
+            
+            let hasSizes = document.getElementById('dynamic-sizes-container').style.display === 'block';
+            let hasBeads = document.getElementById('dynamic-beads-container').style.display === 'block';
+
+            if (hasBeads && !beads) {
+                alert("Please select the number of beads.");
+                return null;
+            }
+            if (hasSizes && !size) {
+                alert("Please select a size.");
+                return null;
+            }
+
+            if (!size) size = 'One Size';
+            if (!beads) beads = 'Standard';
             
             let qty = parseInt(document.getElementById('quantityVal').value) || 1;
             let dynamicPriceObj = calculateDynamicPrice();
@@ -1409,6 +1424,7 @@
 
         function addToCartWithOptions() {
             const item = getCartItemOptions();
+            if (!item) return;
             
             // Delegate to the global window.addToCart to handle storage and trigger the flying cart animation
             if (typeof window.addToCart === 'function') {
@@ -1429,6 +1445,7 @@
 
         function buyNowWithOptions() {
             const item = getCartItemOptions();
+            if (!item) return;
             
             // For Buy Now, we clear the cart and exclusively checkout this specific item configuration
             let cart = [item];
@@ -1772,7 +1789,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         if (availableBeads.length > 0) {
             beadsContainer.style.display = 'block';
             beadsWrapper.innerHTML = availableBeads.map((bead, index) => 
-                `<button onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn ${index === 0 ? 'selected-round' : ''}">
+                `<button onclick="selectOption(this, 'beads')" class="beads-option-btn round-btn">
                     <span>${bead.includes('Beads') ? bead : bead + ' Beads'}</span>
                 </button>`
             ).join('');
@@ -1800,12 +1817,12 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
                     sizesToShow = [...new Set(sizesToShow)];
                 }
                 
-                // If the previously selected size is still valid, keep it, else select first
+                // If the previously selected size is still valid, keep it
                 let previouslySelectedSize = document.querySelector('.size-option-btn.selected-round');
                 let prevSizeText = previouslySelectedSize ? previouslySelectedSize.innerText.trim() : null;
                 
                 sizesWrapper.innerHTML = sizesToShow.map((size, index) => {
-                    let isSelected = prevSizeText === size || (!prevSizeText && index === 0);
+                    let isSelected = prevSizeText === size;
                     return `<button onclick="selectOption(this, 'size')" class="size-option-btn round-btn ${isSelected ? 'selected-round' : ''}">${size}</button>`;
                 }).join('');
             };
@@ -1972,12 +1989,45 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
     let snapshotCount = 0;
     let snapshotTotalRating = 0;
     let snapshotCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-    
-    // Remove local storage fallback to ensure admin status is always strictly respected
     window.localAllowedReviews = [];
     window.localExtraCount = 0;
     window.localExtraTotalRating = 0;
     window.localExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    
+    function loadLocalReviews() {
+        let localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+        window.localAllowedReviews = [];
+        window.localExtraCount = 0;
+        window.localExtraTotalRating = 0;
+        window.localExtraCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+
+        localReviews.forEach(r => {
+            if (String(r.productId) === String(productId)) {
+                // Always count the rating immediately
+                window.localExtraCount++;
+                let ratingVal = r.rating || 5;
+                window.localExtraTotalRating += ratingVal;
+                if (window.localExtraCounts[ratingVal] !== undefined) window.localExtraCounts[ratingVal]++;
+                
+                // Only show the written review if allowed
+                if (r.status === 'allowed') {
+                    let dateStr = 'Just now';
+                    if(r.timestamp) {
+                        dateStr = new Date(r.timestamp).toLocaleDateString();
+                    }
+
+                    window.localAllowedReviews.push({
+                        name: r.name || 'Anonymous',
+                        rating: ratingVal,
+                        text: r.reviewText || '',
+                        date: dateStr,
+                        timestamp: r.timestamp || Date.now()
+                    });
+                }
+            }
+        });
+    }
+    loadLocalReviews();
 
     window.renderReviewsUI = function() {
         const container = document.getElementById('reviews-list-container');
@@ -1988,7 +2038,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
         let pidStr = String(productId);
         let reviewSeed = 0;
         for(let i=0; i<pidStr.length; i++) reviewSeed += pidStr.charCodeAt(i);
-        let baseCount = 15 + (reviewSeed % 16);
+        let baseCount = 15 + (reviewSeed % 16); // 15 to 30 ratings
         
         let c5 = Math.floor(baseCount * 0.85);
         let c4 = Math.floor(baseCount * 0.1);
@@ -2002,8 +2052,8 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             5: c5 + snapshotCounts[5] + window.localExtraCounts[5], 
             4: c4 + snapshotCounts[4] + window.localExtraCounts[4], 
             3: c3 + snapshotCounts[3] + window.localExtraCounts[3], 
-            2: 0 + snapshotCounts[2] + window.localExtraCounts[2], 
-            1: 0 + snapshotCounts[1] + window.localExtraCounts[1] 
+            2: snapshotCounts[2] + window.localExtraCounts[2], 
+            1: snapshotCounts[1] + window.localExtraCounts[1] 
         };
 
         const allDummyReviews = [
@@ -2048,7 +2098,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
 
         // Prepare dummy reviews
         let selectedDummyReviews = [];
-        for(let i=0; i<4; i++) {
+        for(let i=0; i<Math.min(4, baseCount); i++) {
             let index = (pSeed + (i * 7)) % allDummyReviews.length;
             selectedDummyReviews.push(allDummyReviews[index]);
         }
@@ -2084,7 +2134,7 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
 
         container.innerHTML += htmlToRender;
 
-        const avg = (totalRating / totalCount).toFixed(1);
+        const avg = totalCount > 0 ? (totalRating / totalCount).toFixed(1) : "0.0";
         const scoreEl = document.querySelector('.text-6xl.font-black');
         if (scoreEl) scoreEl.textContent = avg;
         
@@ -2118,20 +2168,22 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
             const data = docSnap.data();
             if (String(data.productId) !== String(productId)) return; // Filter for current product
 
-            if (data.status !== 'allowed') return; // Strictly ignore unallowed or pending reviews
-
+            // Always count the rating immediately
             snapshotCount++;
             snapshotTotalRating += data.rating || 5;
             let ratingVal = data.rating || 5;
             if (snapshotCounts[ratingVal] !== undefined) snapshotCounts[ratingVal]++;
             
-            window.firebaseAllowedReviews.push({
-                name: data.name || 'Anonymous',
-                rating: data.rating || 5,
-                text: data.reviewText || data.text || '',
-                date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
-                timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
-            });
+            // Only show the written review if allowed
+            if (data.status === 'allowed') {
+                window.firebaseAllowedReviews.push({
+                    name: data.name || 'Anonymous',
+                    rating: data.rating || 5,
+                    text: data.reviewText || data.text || '',
+                    date: data.timestamp ? data.timestamp.toDate().toLocaleDateString() : 'Just now',
+                    timestamp: data.timestamp ? data.timestamp.toMillis() : Date.now()
+                });
+            }
         });
         window.renderReviewsUI();
     }, (error) => {
@@ -2160,7 +2212,20 @@ document.getElementById('review-panel').addEventListener('click', function(e) {
                 timestamp: serverTimestamp()
             });
         } catch (err) {
-            console.warn("Could not save to DB due to rules.", err.message);
+            console.warn("Could not save to DB due to rules. Saving to LocalStorage.", err.message);
+            let localReviews = JSON.parse(localStorage.getItem('rudraAdminReviews') || '[]');
+            localReviews.push({
+                productId: String(productId),
+                name: name,
+                rating: rating,
+                reviewText: text,
+                status: 'pending',
+                timestamp: Date.now(),
+                isFirebase: false,
+                id: 'local_' + Date.now() + '_' + Math.floor(Math.random() * 1000)
+            });
+            localStorage.setItem('rudraAdminReviews', JSON.stringify(localReviews));
+            loadLocalReviews();
         }
 
         // Removed local storage fallback so unallowed reviews don't show up
