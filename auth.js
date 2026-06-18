@@ -89,11 +89,21 @@ class AuthController {
             throw new Error("We couldn't find an account with that email.");
         }
         
-        const { auth, sendPasswordResetEmail } = await this.getFirebaseAuth();
+        const { auth, sendPasswordResetEmail, createUserWithEmailAndPassword } = await this.getFirebaseAuth();
         try {
             await sendPasswordResetEmail(auth, email);
         } catch (error) {
-            throw new Error(error.message);
+            // Lazy migration if they try to reset before ever logging in
+            if (error.code === 'auth/user-not-found') {
+                try {
+                    await createUserWithEmailAndPassword(auth, user.email, user.password);
+                    await sendPasswordResetEmail(auth, email);
+                } catch (migrationError) {
+                    throw new Error("An error occurred while sending the reset link.");
+                }
+            } else {
+                throw new Error(error.message);
+            }
         }
     }
 
