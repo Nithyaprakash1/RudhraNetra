@@ -712,9 +712,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             const vid1 = document.getElementById('hero-video-1');
             if (vid1) {
-                setTimeout(() => {
+                if (sessionStorage.getItem('productRevealed')) {
                     vid1.style.opacity = '1';
-                }, 2500);
+                } else {
+                    setTimeout(() => {
+                        vid1.style.opacity = '1';
+                        sessionStorage.setItem('productRevealed', 'true');
+                    }, 2500);
+                }
             }
         });
     </script>

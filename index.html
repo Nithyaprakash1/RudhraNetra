@@ -1410,10 +1410,15 @@
       const vid2 = document.getElementById('hero-video-2');
       
       if (vid1 && vid2) {
-        // Dramatic reveal: Fade in the first video gracefully after 2.5 seconds
-        setTimeout(() => {
+        if (sessionStorage.getItem('indexRevealed')) {
           vid1.style.opacity = '1';
-        }, 2500);
+        } else {
+          // Dramatic reveal: Fade in the first video gracefully after 2.5 seconds
+          setTimeout(() => {
+            vid1.style.opacity = '1';
+            sessionStorage.setItem('indexRevealed', 'true');
+          }, 2500);
+        }
 
         let activeVid = vid1;
         let nextVid = vid2;
