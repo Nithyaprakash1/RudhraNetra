@@ -587,9 +587,9 @@
         -->
               <div id="hero-video-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
           <video id="hero-video-1" autoplay muted playsinline preload="auto" onloadeddata="this.playbackRate=0.75;"
-            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" style="transform: scale(1.03);"
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" style="transform: scale(1.03);"
             poster="https://placehold.co/1920x1080/120a06/120a06">
-            <source src="https://www.pexels.com/download/video/30778298/" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/30778298/13165849_3840_2160_30fps.mp4" type="video/mp4">
           </video>
           <video id="hero-video-2" muted playsinline preload="none" onloadeddata="this.playbackRate=0.75;"
             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" style="transform: scale(1.03);">
@@ -1400,9 +1400,9 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const heroVideoList = [
-        "https://www.pexels.com/download/video/30778298/",
-        "https://www.pexels.com/download/video/29633667/",
-        "https://www.pexels.com/download/video/34635921/"
+        "https://videos.pexels.com/video-files/30778298/13165849_3840_2160_30fps.mp4",
+        "https://videos.pexels.com/video-files/29633667/12750705_1920_1080_25fps.mp4",
+        "https://videos.pexels.com/video-files/34635921/14680049_3840_2160_16fps.mp4"
       ];
       let currentIdx = 0;
       
@@ -1410,16 +1410,6 @@
       const vid2 = document.getElementById('hero-video-2');
       
       if (vid1 && vid2) {
-        if (sessionStorage.getItem('indexRevealed')) {
-          vid1.style.opacity = '1';
-        } else {
-          // Dramatic reveal: Fade in the first video gracefully after 2.5 seconds
-          setTimeout(() => {
-            vid1.style.opacity = '1';
-            sessionStorage.setItem('indexRevealed', 'true');
-          }, 2500);
-        }
-
         let activeVid = vid1;
         let nextVid = vid2;
         
