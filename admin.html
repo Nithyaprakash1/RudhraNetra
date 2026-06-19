@@ -1468,26 +1468,9 @@ window.addEventListener('unhandledrejection', function(event) {
                     }
                 }
                 requestAnimationFrame(animate);
+            }
 
-                Promise.all(fetchPromises).then(snaps => {
-                    let productDbViews = 0;
-                    snaps.forEach(snap => {
-                        if (snap.exists() && snap.data().views) {
-                            productDbViews += snap.data().views;
-                        }
-                    });
-                    window.globalLegacyViews = productDbViews;
-                    drawViewsChart('weekly');
-                }).catch(err => {
-                    window.globalLegacyViews = 0;
-                    drawViewsChart('weekly');
-                });
-                
-            }, (err) => {
-                console.error("Views Chart error:", err);
-                // Fallback if page_views fails
-                drawViewsChart('weekly');
-            });
+        });
 
             window.updateChartTimeframe = function(timeframe) {
                 if (timeframe === 'weekly') {
@@ -1761,6 +1744,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
    
  
+
 
 
 
