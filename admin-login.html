@@ -358,7 +358,7 @@
                 if (isAdmin) {
                     sessionStorage.setItem('adminEmail', email);
                     sessionStorage.setItem('adminPwd', password); 
-                    localStorage.setItem('isAdminLoggedIn', 'true');
+                    sessionStorage.setItem('isAdminLoggedIn', 'true');
                     window.location.href = 'admin.html';
                 } else {
                     showToast("Access Denied: You are not an admin.");

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Rudra Nethra</title>
     <script>
-        if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
+        if (sessionStorage.getItem('isAdminLoggedIn') !== 'true') {
             window.location.href = 'admin-login.html';
         }
     </script>
@@ -497,9 +497,9 @@
         async function verifyAdminRole(user) {
             try {
                 let isAdmin = false;
-                if (user.email.toLowerCase() === 'admin@rudranethra.com') {
+                if (user && user.email && user.email.toLowerCase() === 'admin@rudranethra.com') {
                     isAdmin = true;
-                } else {
+                } else if (user && user.email) {
                     const q = query(collection(db, "admins"), where("email", "==", user.email));
                     const snapshot = await getDocs(q);
                     if (!snapshot.empty) {
@@ -511,7 +511,7 @@
                     // Not in admins collection
                     alert("Access Denied: Your email is not registered as an Administrator.");
                     await signOut(auth);
-                    localStorage.removeItem('isAdminLoggedIn');
+                    sessionStorage.removeItem('isAdminLoggedIn');
                     window.location.href = 'admin-login.html';
                 } else {
                     console.log("Admin verified.");
@@ -553,7 +553,7 @@
 
         window.logoutAdmin = function() {
             signOut(auth).then(() => {
-                localStorage.removeItem('isAdminLoggedIn');
+                sessionStorage.removeItem('isAdminLoggedIn');
                 window.location.href = 'admin-login.html';
             });
         };
