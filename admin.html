@@ -395,6 +395,21 @@ window.addEventListener('unhandledrejection', function(event) {
         </div>
     </div>
 
+    <!-- Custom Confirm Modal -->
+    <div id="customConfirmModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[250] hidden flex items-center justify-center transition-opacity duration-300 opacity-0">
+        <div class="bg-[#FFF1E0] rounded-2xl shadow-2xl max-w-sm w-full p-6 mx-4 transform scale-95 transition-all duration-300" id="customConfirmBox">
+            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mx-auto mb-4">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-center text-[#3a200d] mb-2" id="confirmModalTitle">Are you sure?</h3>
+            <p class="text-sm text-[#8B4513] text-center mb-6" id="confirmModalText">This action cannot be undone.</p>
+            <div class="flex gap-3">
+                <button id="confirmCancelBtn" class="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-bold hover:bg-gray-300 transition-colors">Cancel</button>
+                <button id="confirmYesBtn" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md">Yes, Revoke</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Success Toast -->
     <div id="customToast" class="fixed bottom-10 left-1/2 bg-green-600 text-white px-6 py-3 rounded-full shadow-2xl z-[300] flex items-center gap-3">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -1498,196 +1513,6 @@ window.addEventListener('unhandledrejection', function(event) {
 
         });
 
-            window.updateChartTimeframe = function(timeframe) {
-                if (timeframe === 'weekly') {
-                    document.getElementById('chartTitle').innerText = 'Site Views (Weekly)';
-                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
-                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
-                } else {
-                    document.getElementById('chartTitle').innerText = 'Site Views (Monthly)';
-                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
-                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
-                }
-                drawViewsChart(timeframe);
-            };
-
-            function drawViewsChart(timeframe) {
-                let labels = [];
-                let chartData = [];
-                const views = window.globalViewsData || [];
-
-                if (timeframe === 'weekly') {
-                    labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-                    chartData = [0, 0, 0, 0, 0, 0, 0];
-                    
-                    const now = new Date();
-                    const dayOfWeek = now.getDay() || 7;
-                    now.setHours(0,0,0,0);
-                    const monday = new Date(now.getTime() - (dayOfWeek - 1) * 86400000);
-                    
-                    views.forEach(v => {
-                        if (!v.date) return;
-                        const vDate = new Date(v.date);
-                        if (vDate >= monday) {
-                            let day = vDate.getDay() || 7;
-                            chartData[day - 1]++;
-                        }
-                    });
-                    
-                    // Add legacy views to today
-                    const todayIdx = (now.getDay() || 7) - 1;
-                    chartData[todayIdx] += window.globalLegacyViews || 0;
-                    
-                    const weeklyDataLog = chartData.map((v, i) => ({ day: labels[i], views: v }));
-                    console.log("Weekly Data:", weeklyDataLog);
-                } else {
-                    labels = ['W1', 'W2', 'W3', 'W4', 'W5'];
-                    chartData = [0, 0, 0, 0, 0];
-                    
-                    const now = new Date();
-                    const currentMonth = now.getMonth() + 1;
-                    const currentYear = now.getFullYear();
-                    
-                    views.forEach(v => {
-                        if (v.month === currentMonth && v.year === currentYear) {
-                            const d = new Date(v.date).getDate();
-                            let weekIdx = Math.ceil(d / 7) - 1;
-                            if (weekIdx > 4) weekIdx = 4;
-                            chartData[weekIdx]++;
-                        }
-                    });
-                    
-                    // Add legacy views to current week
-                    const todayD = now.getDate();
-                    let currentWeekIdx = Math.ceil(todayD / 7) - 1;
-                    if (currentWeekIdx > 4) currentWeekIdx = 4;
-                    chartData[currentWeekIdx] += window.globalLegacyViews || 0;
-                    
-                    const monthlyDataLog = chartData.map((v, i) => ({ week: labels[i], views: v }));
-                    console.log("Monthly Data:", monthlyDataLog);
-                }
-                console.log("Chart Updated");
-
-                const ctx = document.getElementById('viewsChart').getContext('2d');
-                
-                // Check if chart instance exists and destroy it so it doesn't overlap on refresh
-                if (window.viewsChartInstance) {
-                    window.viewsChartInstance.destroy();
-                }
-
-                let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)');
-                gradient.addColorStop(1, 'rgba(139, 69, 19, 0.0)');
-
-                window.viewsChartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Site Views',
-                            data: chartData,
-                            borderColor: '#8B4513',
-                            backgroundColor: gradient,
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4,
-                            pointBackgroundColor: '#8B4513',
-                            pointBorderColor: '#FFF1E0',
-                            pointBorderWidth: 2,
-                            pointRadius: 6,
-                            pointHoverRadius: 8
-                        }]
-                    },
-                    options: {
-                        animation: false,
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: {
-                            mode: 'index',
-                            intersect: false,
-                        },
-                        scales: {
-                            x: {
-                                grid: { display: false, drawBorder: false },
-                                ticks: { color: '#8B4513', font: { weight: 'bold' } }
-                            },
-                            y: {
-                                grid: { display: false, drawBorder: false },
-                                beginAtZero: true,
-                                ticks: {
-                                    color: '#8B4513',
-                                    callback: function(value) {
-                                        if (value >= 1000) return (value / 1000).toFixed(1) + 'k';
-                                        return value;
-                                    }
-                                }
-                            }
-                        },
-                        plugins: { 
-                            legend: { display: false },
-                            tooltip: {
-                                backgroundColor: '#FFF1E0',
-                                titleColor: '#8B4513',
-                                bodyColor: '#8B4513',
-                                borderColor: 'rgba(139, 69, 19, 0.2)',
-                                borderWidth: 1,
-                                padding: 12,
-                                displayColors: false,
-                                callbacks: {
-                                    label: function(context) {
-                                        let val = context.parsed.y;
-                                        if (val >= 1000) return (val / 1000).toFixed(1) + 'k Views';
-                                        return val + ' Views';
-                                    },
-                                    title: function() { return null; }
-                                }
-                            }
-                        }
-                    },
-                    plugins: [{
-                        id: 'clipReveal',
-                        beforeDraw: (chart) => {
-                            const progress = chart.revealProgress !== undefined ? chart.revealProgress : 1;
-                            if (progress < 1 && chart.chartArea) {
-                                const ctx = chart.ctx;
-                                const chartArea = chart.chartArea;
-                                ctx.save();
-                                ctx.beginPath();
-                                const width = chartArea.right - chartArea.left;
-                                ctx.rect(chartArea.left, chartArea.top - 50, width * progress, chartArea.bottom - chartArea.top + 100);
-                                ctx.clip();
-                            }
-                        },
-                        afterDraw: (chart) => {
-                            const progress = chart.revealProgress !== undefined ? chart.revealProgress : 1;
-                            if (progress < 1 && chart.chartArea) {
-                                chart.ctx.restore();
-                            }
-                        }
-                    }]
-                });
-
-                // Custom buttery smooth reveal animation
-                window.viewsChartInstance.revealProgress = 0;
-                const startTime = performance.now();
-                const duration = 2000; // 2.0s smooth duration
-                
-                function animate() {
-                    const elapsed = performance.now() - startTime;
-                    let progress = elapsed / duration;
-                    if (progress > 1) progress = 1;
-                    
-                    // easeOutQuart
-                    window.viewsChartInstance.revealProgress = 1 - Math.pow(1 - progress, 4);
-                    window.viewsChartInstance.draw();
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
-                                        }
-                }
-                requestAnimationFrame(animate);
-            }
-
         // --- ADMIN MANAGEMENT SYSTEM ---
         let secondaryApp; try { secondaryApp = initializeApp(firebaseConfig, "SecondaryApp"); } catch(e) { console.warn("App exists"); }
         let secondaryAuth; if(secondaryApp) { secondaryAuth = getAuth(secondaryApp); }
@@ -1717,8 +1542,35 @@ window.addEventListener('unhandledrejection', function(event) {
         }
         window.loadAdminsList = loadAdminsList;
 
-        window.removeAdmin = async function(docId, email) {
-            if(confirm(`Are you sure you want to revoke admin access for ${email}?`)) {
+                window.removeAdmin = async function(docId, email) {
+            const modal = document.getElementById('customConfirmModal');
+            const box = document.getElementById('customConfirmBox');
+            document.getElementById('confirmModalTitle').innerText = 'Revoke Access?';
+            document.getElementById('confirmModalText').innerText = `Are you sure you want to revoke admin access for ${email}?`;
+            
+            modal.classList.remove('hidden');
+            // Trigger animation
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                box.classList.remove('scale-95');
+            }, 10);
+
+            // Handle Buttons
+            const cancelBtn = document.getElementById('confirmCancelBtn');
+            const yesBtn = document.getElementById('confirmYesBtn');
+
+            const cleanup = () => {
+                modal.classList.add('opacity-0');
+                box.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+                cancelBtn.onclick = null;
+                yesBtn.onclick = null;
+            };
+
+            cancelBtn.onclick = () => cleanup();
+
+            yesBtn.onclick = async () => {
+                cleanup();
                 try {
                     await deleteDoc(doc(db, "admins", docId));
                     alert(`Access revoked for ${email}.`);
@@ -1727,7 +1579,7 @@ window.addEventListener('unhandledrejection', function(event) {
                     console.error("Error removing admin:", e);
                     alert("Failed to remove admin. Check permissions.");
                 }
-            }
+            };
         };
 
         const addAdminForm = document.getElementById('addAdminForm');
@@ -1774,8 +1626,11 @@ window.addEventListener('unhandledrejection', function(event) {
 </body>
 </html>
 
-   
+  
  
+ 
+
+
 
 
 
