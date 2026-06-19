@@ -1308,7 +1308,7 @@ window.addEventListener('unhandledrejection', function(event) {
                     
                     window.globalActualViews = views.length + legacyViews;
                     
-                    const timeframe = document.getElementById('chartTitle').innerText.includes('Weekly') ? 'weekly' : 'monthly';
+                    const timeframe = document.getElementById('chartTitle').innerText.toLowerCase().includes('weekly') ? 'weekly' : 'monthly';
                     drawViewsChart(timeframe);
                 }).catch(err => {
                     window.globalLegacyViews = 0;
@@ -1629,6 +1629,7 @@ window.addEventListener('unhandledrejection', function(event) {
   
  
  
+
 
 
 
