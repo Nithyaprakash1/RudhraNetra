@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1208,7 +1208,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
                 let reviewsHtml = '';
                 allReviews.forEach(data => {
-                    const stars = 'Ã¢Ëœâ€¦'.repeat(data.rating) + 'Ã¢Ëœâ€ '.repeat(5 - data.rating);
+                    const stars = `<span class="text-yellow-500 text-lg">${'&#9733;'.repeat(data.rating)}</span><span class="text-gray-300 text-lg">${'&#9733;'.repeat(5 - data.rating)}</span>`;
                     const isAllowed = data.status === 'allowed';
                     const statusBadge = isAllowed 
                         ? `<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase">Allowed</span>`
@@ -1629,6 +1629,8 @@ window.addEventListener('unhandledrejection', function(event) {
   
  
  
+
+
 
 
 
