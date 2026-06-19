@@ -1463,8 +1463,22 @@ window.addEventListener('unhandledrejection', function(event) {
                     window.viewsChartInstance.revealProgress = 1 - Math.pow(1 - progress, 4);
                     window.viewsChartInstance.draw();
                     
-                    if (progress < 1) {
+                                        if (progress < 1) {
                         requestAnimationFrame(animate);
+                    }
+                }
+                requestAnimationFrame(animate);
+
+                Promise.all(fetchPromises).then(snaps => {
+                    let productDbViews = 0;
+                    snaps.forEach(snap => {
+                        if (snap.exists() && snap.data().views) {
+                            productDbViews += snap.data().views;
+                        }
+                    });
+                    window.globalLegacyViews = productDbViews;
+                    drawViewsChart('weekly');
+                }).catch(err => {
                     window.globalLegacyViews = 0;
                     drawViewsChart('weekly');
                 });
@@ -1747,5 +1761,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
    
  
+
+
 
 
