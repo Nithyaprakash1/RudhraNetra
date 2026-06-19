@@ -1716,9 +1716,17 @@ window.addEventListener('unhandledrejection', function(event) {
                 btnText.style.display = 'none';
                 loader.style.display = 'block';
 
-                try {
+                                try {
                     // Create User in Auth using Secondary App so current admin isn't logged out
-                    await createUserWithEmailAndPassword(secondaryAuth, email, pwd);
+                    try {
+                        await createUserWithEmailAndPassword(secondaryAuth, email, pwd);
+                    } catch(authErr) {
+                        if (authErr.code === 'auth/email-already-in-use') {
+                            console.log("User already exists in Auth, proceeding to grant admin access.");
+                        } else {
+                            throw authErr;
+                        }
+                    }
                     
                     // Add to admins collection
                     await addDoc(collection(db, "admins"), { email: email, addedAt: new Date() });
@@ -1742,6 +1750,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
    
  
+
 
 
 
