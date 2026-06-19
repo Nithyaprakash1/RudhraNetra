@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -498,7 +498,7 @@
             try {
                 const q = query(collection(db, "admins"), where("email", "==", user.email));
                 const snapshot = await getDocs(q);
-                if (snapshot.empty) {
+                if (snapshot.empty && user.email.toLowerCase() !== 'admin@rudranethra.com') {
                     // Not in admins collection
                     alert("Access Denied: Your email is not registered as an Administrator.");
                     await signOut(auth);
