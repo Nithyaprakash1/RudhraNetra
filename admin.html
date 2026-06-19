@@ -498,7 +498,7 @@
                 if (user && user.email && user.email.toLowerCase() === 'admin@rudranethra.com') {
                     isAdmin = true;
                 } else if (user && user.email) {
-                    const q = query(collection(db, "admins"), where("email", "==", user.email));
+                    const q = query(collection(db, "admins"), where("email", "==", (user.email ? user.email.toLowerCase() : "")));
                     const snapshot = await getDocs(q);
                     if (!snapshot.empty) {
                         isAdmin = true;
@@ -1653,8 +1653,8 @@
         });
 
         // --- ADMIN MANAGEMENT SYSTEM ---
-        const secondaryApp = initializeApp(firebaseConfig, "SecondaryApp");
-        const secondaryAuth = getAuth(secondaryApp);
+        let secondaryApp; try { secondaryApp = initializeApp(firebaseConfig, "SecondaryApp"); } catch(e) { console.warn("App exists"); }
+        let secondaryAuth; if(secondaryApp) { secondaryAuth = getAuth(secondaryApp); }
 
         async function loadAdminsList() {
             try {
@@ -1732,3 +1732,4 @@
 
    
  
+
