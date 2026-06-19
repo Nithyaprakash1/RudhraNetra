@@ -217,7 +217,7 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-6 left-0 right-0 z-50 px-2 md:px-6 navbar-transition" id="navbar">
-        <div class="max-w-7xl w-full mx-auto flex justify-between items-center px-4 md:px-8 py-2 md:py-4 transition-all duration-500 glass-nav"
+        <div class="max-w-7xl w-full mx-auto flex justify-between items-center px-4 md:px-8 py-2 md:py-4 transition-all duration-500"
             id="nav-container">
             <a href="index.html" class="flex items-center gap-1 md:gap-3.5 shrink min-w-0 mr-auto md:mr-0">
                 <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-4 md:h-8 w-auto object-contain shrink-0">
@@ -327,21 +327,23 @@
     <div class="relative z-20 bg-[#FFF1E0] shadow-[0_30px_60px_rgba(0,0,0,0.4)] mb-0">
 
         <!-- Hero Section with Background Image -->
-        <header
-            class="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-cover bg-center"
-            style="background-image: url('https://images.unsplash.com/photo-1606744824163-985d376605aa?auto=format&fit=crop&q=80&w=1600');">
-            <!-- Deep Dark Overlay -->
-            <div class="absolute inset-0 bg-[#1E110A]/60 z-0"></div>
+                <header id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+            <video autoplay muted loop playsinline onloadeddata="this.playbackRate=0.5;"
+                class="absolute inset-0 w-full h-full object-cover z-0" poster="https://placehold.co/1920x1080/120a06/120a06">
+                <source src="https://videos.pexels.com/video-files/6071224/6071224-uhd_2560_1440_30fps.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Deep Dark Overlay for text readability -->
+            <div class="absolute inset-0 bg-[#1E110A]/30 z-0"></div>
 
             <!-- Bottom Fade to merge with Cream Background -->
-            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FFF1E0] to-transparent z-10">
-            </div>
+            <div class="absolute -bottom-1 left-0 right-0 h-16 bg-gradient-to-t from-[#FFF1E0] via-[#FFF1E0]/80 to-[#FFF1E0]/0 z-10 pointer-events-none"></div>
 
             <div class="relative z-20 text-[#FFF1E0] px-4" data-aos="fade-up" data-aos-duration="1500">
                 <span class="text-xs uppercase tracking-widest font-semibold text-[#FFF1E0]/70 mb-4 block">The
                     Consecrated Assemblage</span>
-                <h1 class="text-5xl md:text-7xl mb-4 tracking-tight">The Sacred Collection</h1>
-                <p class="text-base md:text-lg font-light max-w-xl mx-auto opacity-90">Every piece is verified for
+                <h1 class="text-5xl md:text-7xl mb-4 tracking-tight drop-shadow-md" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);">The Sacred Collection</h1>
+                <p class="text-base md:text-lg font-light max-w-xl mx-auto opacity-90" style="text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);">Every piece is verified for
                     absolute authenticity, ethically sourced, and ritually energized.</p>
             </div>
         </header>
@@ -709,6 +711,9 @@
 </body>
 
 </html>
+
+
+
 
 
 
