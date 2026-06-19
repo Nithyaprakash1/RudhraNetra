@@ -491,8 +491,6 @@
         const auth = getAuth(app);
 
         // --- AUTHENTICATION & SECURITY FLOW ---
-        const pendingEmail = sessionStorage.getItem('adminEmail');
-        const pendingPwd = sessionStorage.getItem('adminPwd');
 
         async function verifyAdminRole(user) {
             try {
@@ -529,27 +527,13 @@
             }
         }
 
-        if (pendingEmail && pendingPwd) {
-            sessionStorage.removeItem('adminEmail');
-            sessionStorage.removeItem('adminPwd');
-            
-            signInWithEmailAndPassword(auth, pendingEmail, pendingPwd)
-                .then((userCredential) => {
-                    verifyAdminRole(userCredential.user);
-                })
-                .catch((error) => {
-                    alert('Login Failed: ' + error.code + ' - ' + error.message);
-                    window.location.href = 'admin-login.html';
-                });
-        } else {
-            onAuthStateChanged(auth, (user) => {
-                if (!user) {
-                    window.location.href = 'admin-login.html';
-                } else {
-                    verifyAdminRole(user);
-                }
-            });
-        }
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'admin-login.html';
+            } else {
+                verifyAdminRole(user);
+            }
+        });
 
         window.logoutAdmin = function() {
             signOut(auth).then(() => {
