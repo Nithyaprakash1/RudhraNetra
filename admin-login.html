@@ -147,7 +147,7 @@
   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
   const firebaseConfig = {
       apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
@@ -175,18 +175,30 @@
       submitBtn.disabled = true;
 
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          if (email.toLowerCase() === 'sathyprathosh@gmail.com') {
-              sessionStorage.setItem('adminEmail', email);
-              sessionStorage.setItem('adminPwd', password); 
-              localStorage.setItem('isAdminLoggedIn', 'true');
-              window.location.href = 'admin.html';
-          } else {
-              showToast("Access Denied: You are not an admin.");
-              submitBtn.innerText = originalText;
-              submitBtn.disabled = false;
-              auth.signOut();
-          }
+        .then(async (userCredential) => {
+          try {
+                // Check if user is in 'admins' collection
+                const q = query(collection(db, "admins"), where("email", "==", email.toLowerCase()));
+                const querySnapshot = await getDocs(q);
+                
+                if (email.toLowerCase() === 'sathyprathosh@gmail.com' || !querySnapshot.empty) {
+                    sessionStorage.setItem('adminEmail', email);
+                    sessionStorage.setItem('adminPwd', password); 
+                    localStorage.setItem('isAdminLoggedIn', 'true');
+                    window.location.href = 'admin.html';
+                } else {
+                    showToast("Access Denied: You are not an admin.");
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                    auth.signOut();
+                }
+            } catch (err) {
+                console.error("Error checking admin status:", err);
+                showToast("Error verifying admin status.");
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+                auth.signOut();
+            }
         })
         .catch((error) => {
           let errorMsg = "An error occurred. Please try again.";
@@ -236,6 +248,7 @@
   </script>
 </body>
 </html>
+
 
 
 
