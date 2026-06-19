@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -148,6 +148,7 @@
             100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 5px rgba(139,69,19,0.3)); }
         }
     </style>
+    <meta name="google-site-verification" content="sM0xGobJRlZPfyrba2cmN2xrvvvhJkNpX6RiKYAghKQ" />
 </head>
 <body class="flex h-screen overflow-hidden bg-[#FFF1E0]">
     
@@ -344,11 +345,11 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Price (₹)</label>
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Price (â‚¹)</label>
                         <input type="number" id="newProdPrice" required class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Old Price (₹) <span class="opacity-50 font-normal">(optional)</span></label>
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Old Price (â‚¹) <span class="opacity-50 font-normal">(optional)</span></label>
                         <input type="number" id="newProdOldPrice" class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                 </div>
@@ -376,7 +377,7 @@
                         <div class="flex gap-2 items-center bg-white/40 p-2 rounded-lg border border-[#8B4513]/20 variant-row">
                             <input type="text" placeholder="Beads (e.g. 54)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-beads">
                             <input type="text" placeholder="Size (e.g. 8mm)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-size">
-                            <input type="number" placeholder="Price (₹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
+                            <input type="number" placeholder="Price (â‚¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
                             <input type="number" placeholder="Old Price" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-oldPrice">
                             <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold hover:bg-red-50 px-1.5 py-1 rounded text-lg leading-none">&times;</button>
                         </div>
@@ -802,7 +803,7 @@
             div.innerHTML = `
                 <input type="text" placeholder="Beads (e.g. 54)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-beads">
                 <input type="text" placeholder="Size (e.g. 8mm)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-size">
-                <input type="number" placeholder="Price (₹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
+                <input type="number" placeholder="Price (â‚¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
                 <input type="number" placeholder="Old Price" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-oldPrice">
                 <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold hover:bg-red-50 px-1.5 py-1 rounded text-lg leading-none">&times;</button>
             `;
@@ -1084,7 +1085,7 @@
 
                 let reviewsHtml = '';
                 allReviews.forEach(data => {
-                    const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
+                    const stars = 'â˜…'.repeat(data.rating) + 'â˜†'.repeat(5 - data.rating);
                     const isAllowed = data.status === 'allowed';
                     const statusBadge = isAllowed 
                         ? `<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase">Allowed</span>`
@@ -1394,6 +1395,7 @@
     <script type="module" src="auth-state.js"></script>
 </body>
 </html>
+
 
 
 

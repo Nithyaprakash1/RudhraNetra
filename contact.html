@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -141,21 +141,41 @@
             font-weight: 800;
         }
         
-        /* Navbar starts with dark brand text to ensure legibility on load */
-        .nav-links, .nav-cart, .nav-mobile-btn {
-            color: #8B4513 !important;
+                /* Dynamic Navbar Colors */
+        .nav-links,
+        .nav-cart,
+        .nav-mobile-btn {
+            color: #FFF1E0 !important;
             transition: color 0.3s ease;
         }
         .nav-link { transition: color 0.3s ease; }
-        .nav-link:hover { color: #5c3a23 !important; }
-        
+        .nav-link:hover { color: #FFE1A8 !important; }
+
         .nav-shop-btn {
-            background-color: #8B4513 !important;
-            color: #FFF1E0 !important;
-            border: 1px solid #8B4513 !important;
+            background-color: #FFF1E0 !important;
+            color: #8B4513 !important;
+            border: 1px solid #FFF1E0 !important;
             transition: all 0.3s ease;
         }
         .nav-shop-btn:hover {
+            background-color: transparent !important;
+            color: #FFF1E0 !important;
+        }
+
+        /* Glass state */
+        .glass-nav .nav-links,
+        .glass-nav .nav-cart,
+        .glass-nav .nav-mobile-btn {
+            color: #8B4513 !important;
+        }
+        .glass-nav .nav-link:hover { color: #5c3a23 !important; }
+
+        .glass-nav .nav-shop-btn {
+            background-color: #8B4513 !important;
+            color: #FFF1E0 !important;
+            border-color: #8B4513 !important;
+        }
+        .glass-nav .nav-shop-btn:hover {
             background-color: #5c3a23 !important;
             border-color: #5c3a23 !important;
         }
@@ -201,6 +221,7 @@
             }
         }
     </style>
+    <meta name="google-site-verification" content="sM0xGobJRlZPfyrba2cmN2xrvvvhJkNpX6RiKYAghKQ" />
 </head>
 
 <body class="overflow-x-hidden bg-[#1E110A]">
@@ -319,20 +340,18 @@
         <!-- Header Section with Ambient Video Loop Play (Full-Screen h-screen) -->
         <header id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
             <video autoplay muted loop playsinline onloadeddata="this.playbackRate=0.75;" class="absolute inset-0 w-full h-full object-cover z-0" poster="https://placehold.co/1920x1080/120a06/120a06">
-                <source src="https://videos.pexels.com/video-files/6693764/6693764-uhd_4096_2160_24fps.mp4" type="video/mp4">
+                <source src="https://videos.pexels.com/video-files/11057253/11057253-hd_2560_1440_30fps.mp4" type="video/mp4">
             </video>
-            <!-- Overlay to blend the video loop behind dark elements -->
-            <div class="absolute inset-0 bg-[#FFF1E0]/60 z-10"></div>
 
             <div class="relative z-20 px-4 flex flex-col items-center" data-aos="zoom-out" data-aos-duration="1500">
-                <div class="inline-flex items-center space-x-2 mb-6 px-4 py-1.5 rounded-full bg-[#8B4513]/10 border border-[#8B4513]/20 backdrop-blur-sm"
+                <div class="inline-flex items-center space-x-2 mb-6 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm"
                     data-aos="fade-down" data-aos-delay="200">
-                    <span class="w-2 h-2 rounded-full bg-[#8B4513] animate-pulse"></span>
-                    <span class="text-xs uppercase tracking-widest font-semibold text-[#8B4513]">Reach Out to Us</span>
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-white">Reach Out to Us</span>
                 </div>
-                <h1 class="text-6xl md:text-8xl mb-6 tracking-tight text-[#8B4513] drop-shadow-sm font-bold"
+                <h1 class="text-6xl md:text-8xl mb-6 tracking-tight text-white drop-shadow-md font-bold"
                     data-aos="fade-up" data-aos-delay="400">Connect with Rudra Nethra</h1>
-                <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-[#8B4513]/85 leading-relaxed"
+                <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-white/90 leading-relaxed drop-shadow"
                     data-aos="fade-up" data-aos-delay="600">
                     Whether you have questions about our authentic products, certification, or customized needs, our
                     spiritual care team is ready to guide you.
@@ -582,8 +601,11 @@
     <footer class="fixed bottom-0 left-0 right-0 z-0 bg-[#120a06] pt-16 px-6 text-[#FFF1E0]/80" id="footer-contact">
         <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
             <div class="col-span-2 md:col-span-1">
-                <h3 class="text-3xl font-bold mb-4 text-[#FFF1E0]">Rudra Nethra</h3>
-                <p class="text-sm">Awaken your third eye.</p>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="image/logo_icon.png" alt="Rudra Nethra Icon" class="h-10 w-auto object-contain">
+                    <h3 class="text-3xl font-bold text-[#FFF1E0] m-0">Rudra Nethra</h3>
+                </div>
+                                <p class="text-sm">Awaken your third eye.</p>
             </div>
             <div>
                 <h4 class="font-bold tracking-widest uppercase mb-4 text-[#FFF1E0]">Quick Links</h4>
@@ -801,6 +823,22 @@
     <script src="auth-ui.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
