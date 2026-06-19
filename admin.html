@@ -1657,12 +1657,10 @@ window.addEventListener('unhandledrejection', function(event) {
                     
                     if (progress < 1) {
                         requestAnimationFrame(animate);
-                    }
+                                        }
                 }
                 requestAnimationFrame(animate);
             }
-
-        });
 
         // --- ADMIN MANAGEMENT SYSTEM ---
         let secondaryApp; try { secondaryApp = initializeApp(firebaseConfig, "SecondaryApp"); } catch(e) { console.warn("App exists"); }
@@ -1744,6 +1742,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
    
  
+
 
 
 
