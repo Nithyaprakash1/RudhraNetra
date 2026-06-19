@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -586,12 +586,12 @@
           Note: Local 74MB video is excluded, rendering online Pexels streams.
         -->
               <div id="hero-video-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
-          <video id="hero-video-1" autoplay muted playsinline onloadeddata="this.playbackRate=0.75;"
+          <video id="hero-video-1" autoplay muted playsinline preload="auto" onloadeddata="this.playbackRate=0.75;"
             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" style="transform: scale(1.03);"
             poster="https://placehold.co/1920x1080/120a06/120a06">
             <source src="https://www.pexels.com/download/video/30778298/" type="video/mp4">
           </video>
-          <video id="hero-video-2" muted playsinline onloadeddata="this.playbackRate=0.75;"
+          <video id="hero-video-2" muted playsinline preload="auto" onloadeddata="this.playbackRate=0.75;"
             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" style="transform: scale(1.03);">
           </video>
         </div>
@@ -643,7 +643,7 @@
                  border-radius morphs from 0px âž” 24px simultaneously. -->
         <div id="art-video-wrapper">
           <!-- Replace this src with your own Karungali video -->
-          <video autoplay muted loop playsinline id="art-video" onloadeddata="this.playbackRate=0.75;"
+          <video autoplay muted loop playsinline preload="auto" id="art-video" onloadeddata="this.playbackRate=0.75;"
             aria-label="Cloud formation on a forest">
             <source src="https://videos.pexels.com/video-files/8233060/8233060-uhd_4096_2160_30fps.mp4"
               type="video/mp4">
