@@ -333,6 +333,36 @@
             </form>
         </div>
     </div>
+    
+
+            <!-- Admins Tab -->
+        <div id="admins-tab" class="tab-content">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-fade-in-up">
+                <h2 class="text-2xl md:text-4xl admin-glow-header font-bold">Admin Management</h2>
+                <button onclick="document.getElementById('addAdminModal').style.display='flex'" class="relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,69,19,0.4)] transition-all duration-300 group whitespace-nowrap">
+                    <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
+                    <span class="relative z-10 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                        Add Admin
+                    </span>
+                </button>
+            </div>
+            
+            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
+                <table class="w-full min-w-[600px]" id="adminsTable">
+                    <thead>
+                        <tr class="text-left text-[#8B4513]/70 border-b border-[#8B4513]/20 uppercase tracking-widest text-xs">
+                            <th class="pb-4 font-semibold text-left">Email</th>
+                            <th class="pb-4 font-semibold text-left">Role</th>
+                            <th class="pb-4 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminsList" class="divide-y divide-[#8B4513]/10 text-sm">
+                        <!-- Filled by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <!-- Custom Delete Confirm Modal -->
@@ -356,34 +386,7 @@
         <span class="font-bold tracking-wide">Product deleted successfully!</span>
     </div>
 
-            <!-- Admins Tab -->
-        <div id="admins-tab" class="tab-content">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-fade-in-up">
-                <h2 class="text-2xl md:text-4xl admin-glow-header font-bold">Admin Management</h2>
-                <button onclick="document.getElementById('addAdminModal').style.display='flex'" class="relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,69,19,0.4)] transition-all duration-300 group whitespace-nowrap">
-                    <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
-                    <span class="relative z-10 flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                        Add Admin
-                    </span>
-                </button>
-            </div>
-            
-            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
-                <table class="w-full min-w-[600px]" id="adminsTable">
-                    <thead>
-                        <tr class="text-left text-[#8B4513]/70 border-b border-[#8B4513]/20 uppercase tracking-widest text-xs">
-                            <th class="pb-4 font-semibold">Email</th>
-                            <th class="pb-4 font-semibold">Role</th>
-                            <th class="pb-4 font-semibold text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminsList" class="divide-y divide-[#8B4513]/10 text-sm">
-                        <!-- Filled by JS -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+
 
     <!-- Add Product Modal -->
     <div id="addProductModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" style="perspective: 1200px;">
@@ -398,11 +401,11 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Price (â‚¹)</label>
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Price (Ã¢â€šÂ¹)</label>
                         <input type="number" id="newProdPrice" required class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Old Price (â‚¹) <span class="opacity-50 font-normal">(optional)</span></label>
+                        <label class="block text-xs font-semibold mb-1 text-[#8B4513]">Old Price (Ã¢â€šÂ¹) <span class="opacity-50 font-normal">(optional)</span></label>
                         <input type="number" id="newProdOldPrice" class="w-full px-3 py-1.5 text-sm rounded-lg border border-[#8B4513]/30 bg-white/50 focus:outline-none focus:border-[#8B4513]">
                     </div>
                 </div>
@@ -430,7 +433,7 @@
                         <div class="flex gap-2 items-center bg-white/40 p-2 rounded-lg border border-[#8B4513]/20 variant-row">
                             <input type="text" placeholder="Beads (e.g. 54)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-beads">
                             <input type="text" placeholder="Size (e.g. 8mm)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-size">
-                            <input type="number" placeholder="Price (â‚¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
+                            <input type="number" placeholder="Price (Ã¢â€šÂ¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
                             <input type="number" placeholder="Old Price" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-oldPrice">
                             <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold hover:bg-red-50 px-1.5 py-1 rounded text-lg leading-none">&times;</button>
                         </div>
@@ -649,6 +652,7 @@
         };
 
         window.closeSidebar = function() {
+            if (window.innerWidth >= 768) return;
             const sidebar = document.getElementById('adminSidebar');
             const btn = document.getElementById('openSidebarBtn');
             sidebar.style.marginLeft = '-16rem';
@@ -873,7 +877,7 @@
             div.innerHTML = `
                 <input type="text" placeholder="Beads (e.g. 54)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-beads">
                 <input type="text" placeholder="Size (e.g. 8mm)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-size">
-                <input type="number" placeholder="Price (â‚¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
+                <input type="number" placeholder="Price (Ã¢â€šÂ¹)" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-price" required>
                 <input type="number" placeholder="Old Price" class="w-1/4 px-2 py-1.5 rounded border border-[#8B4513]/30 bg-white/50 focus:outline-none text-xs var-oldPrice">
                 <button type="button" onclick="this.parentElement.remove()" class="text-red-500 font-bold hover:bg-red-50 px-1.5 py-1 rounded text-lg leading-none">&times;</button>
             `;
@@ -1155,7 +1159,7 @@
 
                 let reviewsHtml = '';
                 allReviews.forEach(data => {
-                    const stars = 'â˜…'.repeat(data.rating) + 'â˜†'.repeat(5 - data.rating);
+                    const stars = 'Ã¢Ëœâ€¦'.repeat(data.rating) + 'Ã¢Ëœâ€ '.repeat(5 - data.rating);
                     const isAllowed = data.status === 'allowed';
                     const statusBadge = isAllowed 
                         ? `<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase">Allowed</span>`
@@ -1453,6 +1457,201 @@
                     
                     if (progress < 1) {
                         requestAnimationFrame(animate);
+                    window.globalLegacyViews = 0;
+                    drawViewsChart('weekly');
+                });
+                
+            }, (err) => {
+                console.error("Views Chart error:", err);
+                // Fallback if page_views fails
+                drawViewsChart('weekly');
+            });
+
+            window.updateChartTimeframe = function(timeframe) {
+                if (timeframe === 'weekly') {
+                    document.getElementById('chartTitle').innerText = 'Site Views (Weekly)';
+                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
+                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
+                } else {
+                    document.getElementById('chartTitle').innerText = 'Site Views (Monthly)';
+                    document.getElementById('btn-monthly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded bg-[#8B4513] text-[#FFF1E0] font-bold transition-all shadow-sm";
+                    document.getElementById('btn-weekly').className = "text-[10px] uppercase tracking-widest px-3 py-1.5 rounded text-[#8B4513] hover:bg-[#8B4513]/20 font-bold transition-all";
+                }
+                drawViewsChart(timeframe);
+            };
+
+            function drawViewsChart(timeframe) {
+                let labels = [];
+                let chartData = [];
+                const views = window.globalViewsData || [];
+
+                if (timeframe === 'weekly') {
+                    labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                    chartData = [0, 0, 0, 0, 0, 0, 0];
+                    
+                    const now = new Date();
+                    const dayOfWeek = now.getDay() || 7;
+                    now.setHours(0,0,0,0);
+                    const monday = new Date(now.getTime() - (dayOfWeek - 1) * 86400000);
+                    
+                    views.forEach(v => {
+                        if (!v.date) return;
+                        const vDate = new Date(v.date);
+                        if (vDate >= monday) {
+                            let day = vDate.getDay() || 7;
+                            chartData[day - 1]++;
+                        }
+                    });
+                    
+                    // Add legacy views to today
+                    const todayIdx = (now.getDay() || 7) - 1;
+                    chartData[todayIdx] += window.globalLegacyViews || 0;
+                    
+                    const weeklyDataLog = chartData.map((v, i) => ({ day: labels[i], views: v }));
+                    console.log("Weekly Data:", weeklyDataLog);
+                } else {
+                    labels = ['W1', 'W2', 'W3', 'W4', 'W5'];
+                    chartData = [0, 0, 0, 0, 0];
+                    
+                    const now = new Date();
+                    const currentMonth = now.getMonth() + 1;
+                    const currentYear = now.getFullYear();
+                    
+                    views.forEach(v => {
+                        if (v.month === currentMonth && v.year === currentYear) {
+                            const d = new Date(v.date).getDate();
+                            let weekIdx = Math.ceil(d / 7) - 1;
+                            if (weekIdx > 4) weekIdx = 4;
+                            chartData[weekIdx]++;
+                        }
+                    });
+                    
+                    // Add legacy views to current week
+                    const todayD = now.getDate();
+                    let currentWeekIdx = Math.ceil(todayD / 7) - 1;
+                    if (currentWeekIdx > 4) currentWeekIdx = 4;
+                    chartData[currentWeekIdx] += window.globalLegacyViews || 0;
+                    
+                    const monthlyDataLog = chartData.map((v, i) => ({ week: labels[i], views: v }));
+                    console.log("Monthly Data:", monthlyDataLog);
+                }
+                console.log("Chart Updated");
+
+                const ctx = document.getElementById('viewsChart').getContext('2d');
+                
+                // Check if chart instance exists and destroy it so it doesn't overlap on refresh
+                if (window.viewsChartInstance) {
+                    window.viewsChartInstance.destroy();
+                }
+
+                let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, 'rgba(139, 69, 19, 0.3)');
+                gradient.addColorStop(1, 'rgba(139, 69, 19, 0.0)');
+
+                window.viewsChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Site Views',
+                            data: chartData,
+                            borderColor: '#8B4513',
+                            backgroundColor: gradient,
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#8B4513',
+                            pointBorderColor: '#FFF1E0',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        animation: false,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false, drawBorder: false },
+                                ticks: { color: '#8B4513', font: { weight: 'bold' } }
+                            },
+                            y: {
+                                grid: { display: false, drawBorder: false },
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#8B4513',
+                                    callback: function(value) {
+                                        if (value >= 1000) return (value / 1000).toFixed(1) + 'k';
+                                        return value;
+                                    }
+                                }
+                            }
+                        },
+                        plugins: { 
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#FFF1E0',
+                                titleColor: '#8B4513',
+                                bodyColor: '#8B4513',
+                                borderColor: 'rgba(139, 69, 19, 0.2)',
+                                borderWidth: 1,
+                                padding: 12,
+                                displayColors: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        let val = context.parsed.y;
+                                        if (val >= 1000) return (val / 1000).toFixed(1) + 'k Views';
+                                        return val + ' Views';
+                                    },
+                                    title: function() { return null; }
+                                }
+                            }
+                        }
+                    },
+                    plugins: [{
+                        id: 'clipReveal',
+                        beforeDraw: (chart) => {
+                            const progress = chart.revealProgress !== undefined ? chart.revealProgress : 1;
+                            if (progress < 1 && chart.chartArea) {
+                                const ctx = chart.ctx;
+                                const chartArea = chart.chartArea;
+                                ctx.save();
+                                ctx.beginPath();
+                                const width = chartArea.right - chartArea.left;
+                                ctx.rect(chartArea.left, chartArea.top - 50, width * progress, chartArea.bottom - chartArea.top + 100);
+                                ctx.clip();
+                            }
+                        },
+                        afterDraw: (chart) => {
+                            const progress = chart.revealProgress !== undefined ? chart.revealProgress : 1;
+                            if (progress < 1 && chart.chartArea) {
+                                chart.ctx.restore();
+                            }
+                        }
+                    }]
+                });
+
+                // Custom buttery smooth reveal animation
+                window.viewsChartInstance.revealProgress = 0;
+                const startTime = performance.now();
+                const duration = 2000; // 2.0s smooth duration
+                
+                function animate() {
+                    const elapsed = performance.now() - startTime;
+                    let progress = elapsed / duration;
+                    if (progress > 1) progress = 1;
+                    
+                    // easeOutQuart
+                    window.viewsChartInstance.revealProgress = 1 - Math.pow(1 - progress, 4);
+                    window.viewsChartInstance.draw();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
                     }
                 }
                 requestAnimationFrame(animate);
@@ -1460,9 +1659,7 @@
 
         });
 
-    </script>
-
-    <script type="module" src="auth-state.js">        // --- ADMIN MANAGEMENT SYSTEM ---
+        // --- ADMIN MANAGEMENT SYSTEM ---
         const secondaryApp = initializeApp(firebaseConfig, "SecondaryApp");
         const secondaryAuth = getAuth(secondaryApp);
 
@@ -1476,13 +1673,13 @@
                     const data = docSnap.data();
                     const tr = document.createElement('tr');
                     tr.className = 'hover:bg-[#8B4513]/5 transition-colors';
-                    tr.innerHTML = 
-                        <td class="font-bold py-4 pl-2 text-[#3a200d]"></td>
+                    tr.innerHTML = `
+                        <td class="font-bold py-4 pl-2 text-[#3a200d]">${data.email}</td>
                         <td class="py-4"><span class="px-2 py-1 bg-[#8B4513]/10 text-[#8B4513] rounded-full text-[10px] font-bold uppercase tracking-widest">Administrator</span></td>
                         <td class="py-4 text-right pr-2">
-                            <button onclick="removeAdmin('', '')" class="px-3 py-1.5 bg-red-100 text-red-600 rounded text-xs font-bold hover:bg-red-200 transition uppercase tracking-widest shadow-sm">Revoke Access</button>
+                            <button onclick="removeAdmin('${docSnap.id}', '${data.email}')" class="px-3 py-1.5 bg-red-100 text-red-600 rounded text-xs font-bold hover:bg-red-200 transition uppercase tracking-widest shadow-sm">Revoke Access</button>
                         </td>
-                    ;
+                    `;
                     tbody.appendChild(tr);
                 });
             } catch(e) {
@@ -1492,10 +1689,10 @@
         window.loadAdminsList = loadAdminsList;
 
         window.removeAdmin = async function(docId, email) {
-            if(confirm(Are you sure you want to revoke admin access for ?)) {
+            if(confirm(`Are you sure you want to revoke admin access for ${email}?`)) {
                 try {
                     await deleteDoc(doc(db, "admins", docId));
-                    alert(Access revoked for .);
+                    alert(`Access revoked for ${email}.`);
                     loadAdminsList();
                 } catch(e) {
                     console.error("Error removing admin:", e);
@@ -1523,7 +1720,7 @@
                     // Add to admins collection
                     await addDoc(collection(db, "admins"), { email: email, addedAt: new Date() });
                     
-                    alert(Admin  successfully registered!);
+                    alert(`Admin ${email} successfully registered!`);
                     document.getElementById('addAdminModal').style.display = 'none';
                     addAdminForm.reset();
                     loadAdminsList();
@@ -1536,15 +1733,7 @@
                 }
             });
         }
-    
+    </script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
 
