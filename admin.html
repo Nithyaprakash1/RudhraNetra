@@ -496,9 +496,18 @@
 
         async function verifyAdminRole(user) {
             try {
-                const q = query(collection(db, "admins"), where("email", "==", user.email));
-                const snapshot = await getDocs(q);
-                if (snapshot.empty && user.email.toLowerCase() !== 'admin@rudranethra.com') {
+                let isAdmin = false;
+                if (user.email.toLowerCase() === 'admin@rudranethra.com') {
+                    isAdmin = true;
+                } else {
+                    const q = query(collection(db, "admins"), where("email", "==", user.email));
+                    const snapshot = await getDocs(q);
+                    if (!snapshot.empty) {
+                        isAdmin = true;
+                    }
+                }
+
+                if (!isAdmin) {
                     // Not in admins collection
                     alert("Access Denied: Your email is not registered as an Administrator.");
                     await signOut(auth);

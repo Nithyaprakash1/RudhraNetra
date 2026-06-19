@@ -343,11 +343,19 @@
       signInWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           try {
-                // Check if user is in 'admins' collection
-                const q = query(collection(db, "admins"), where("email", "==", email.toLowerCase()));
-                const querySnapshot = await getDocs(q);
+                let isAdmin = false;
+                if (email.toLowerCase() === 'admin@rudranethra.com') {
+                    isAdmin = true;
+                } else {
+                    // Check if user is in 'admins' collection
+                    const q = query(collection(db, "admins"), where("email", "==", email.toLowerCase()));
+                    const querySnapshot = await getDocs(q);
+                    if (!querySnapshot.empty) {
+                        isAdmin = true;
+                    }
+                }
                 
-                if (email.toLowerCase() === 'admin@rudranethra.com' || !querySnapshot.empty) {
+                if (isAdmin) {
                     sessionStorage.setItem('adminEmail', email);
                     sessionStorage.setItem('adminPwd', password); 
                     localStorage.setItem('isAdminLoggedIn', 'true');
