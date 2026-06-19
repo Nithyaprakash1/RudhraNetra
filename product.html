@@ -328,8 +328,8 @@
 
         <!-- Hero Section with Background Image -->
                 <header id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-            <video autoplay loop muted playsinline aria-hidden="true"
-                class="absolute inset-0 w-full h-full object-cover object-[center_80%] z-0" poster="https://placehold.co/1920x1080/120a06/120a06">
+            <video id="hero-video-1" autoplay loop muted playsinline preload="auto" aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-cover object-[center_80%] z-0 transition-opacity duration-1000 ease-in-out opacity-0" poster="https://placehold.co/1920x1080/120a06/120a06">
                 <source src="https://www.pexels.com/download/video/30743318/" type="video/mp4">
             </video>
             
@@ -708,6 +708,16 @@
     <script src="db.js"></script>
     <script src="auth.js"></script>
     <script src="auth-ui.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const vid1 = document.getElementById('hero-video-1');
+            if (vid1) {
+                setTimeout(() => {
+                    vid1.style.opacity = '1';
+                }, 2500);
+            }
+        });
+    </script>
 </body>
 
 </html>
