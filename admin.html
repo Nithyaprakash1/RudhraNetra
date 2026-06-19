@@ -152,7 +152,22 @@
 </head>
 <body class="flex h-screen overflow-hidden bg-[#FFF1E0]">
     
-    <!-- Authentication Loading Overlay -->
+    
+<script>
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+  var overlay = document.getElementById('authOverlay');
+  if(overlay) {
+    overlay.innerHTML = '<div style="color:red; background:white; padding:20px; z-index:999999;"><h2>GLOBAL ERROR</h2><p>' + msg + '</p><p>Line: ' + lineNo + '</p></div>';
+  }
+};
+window.addEventListener('unhandledrejection', function(event) {
+  var overlay = document.getElementById('authOverlay');
+  if(overlay) {
+    overlay.innerHTML = '<div style="color:red; background:white; padding:20px; z-index:999999;"><h2>PROMISE ERROR</h2><p>' + event.reason + '</p></div>';
+  }
+});
+</script>
+<!-- Authentication Loading Overlay -->
     <div id="authOverlay" class="fixed inset-0 z-[9999] bg-[#FFF1E0] flex flex-col items-center justify-center">
         <div class="loader mb-4" style="width: 48px; height: 48px; border-width: 4px;"></div>
         <p class="text-[#8B4513] font-bold tracking-widest uppercase animate-pulse">Securing Admin Portal...</p>
@@ -1732,4 +1747,5 @@
 
    
  
+
 
