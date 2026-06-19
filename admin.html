@@ -176,7 +176,8 @@
             <a class="sidebar-item" data-target="orders-tab">Customer Orders</a>
             <a class="sidebar-item" data-target="reviews-tab">Product Reviews</a>
             <a class="sidebar-item" data-target="products-tab">Inventory Catalog</a>
-        </nav>
+        <a class="sidebar-item" data-target="admins-tab">Manage Admins</a>
+          </nav>
         
         <div class="mt-auto">
             <div class="text-[11px] uppercase tracking-widest opacity-50 mb-1">Logged in as</div>
@@ -309,6 +310,29 @@
             </div>
         </div>
 
+        <!-- Add Admin Modal -->
+    <div id="addAdminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" style="perspective: 1200px;">
+        <div class="bg-[#FFF1E0] w-full max-w-md rounded-2xl p-6 shadow-2xl relative" style="transform-style: preserve-3d; animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;">
+            <button onclick="document.getElementById('addAdminModal').style.display='none'" class="absolute top-4 right-4 text-[#8B4513]/50 hover:text-[#8B4513] transition-colors focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-2xl font-bold text-[#8B4513] mb-6 tracking-tight">Register New Admin</h2>
+            <form id="addAdminForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-[#8B4513] uppercase tracking-widest mb-1">Email Address</label>
+                    <input type="email" id="newAdminEmail" required class="w-full px-4 py-3 bg-[#8B4513]/5 border border-[#8B4513]/20 rounded-xl focus:outline-none focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] transition-all text-[#3a200d]">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[#8B4513] uppercase tracking-widest mb-1">Temporary Password</label>
+                    <input type="password" id="newAdminPwd" required minlength="6" class="w-full px-4 py-3 bg-[#8B4513]/5 border border-[#8B4513]/20 rounded-xl focus:outline-none focus:border-[#8B4513] focus:ring-1 focus:ring-[#8B4513] transition-all text-[#3a200d]">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] font-bold uppercase tracking-widest py-3 rounded-xl hover:shadow-[0_10px_20px_rgba(139,69,19,0.3)] transition-all hover:-translate-y-1 mt-2 flex justify-center items-center gap-2">
+                    <span id="addAdminBtnText">Create Admin Account</span>
+                    <div id="addAdminLoader" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                </button>
+            </form>
+        </div>
+    </div>
     </main>
 
     <!-- Custom Delete Confirm Modal -->
@@ -331,6 +355,35 @@
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
         <span class="font-bold tracking-wide">Product deleted successfully!</span>
     </div>
+
+            <!-- Admins Tab -->
+        <div id="admins-tab" class="tab-content">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-fade-in-up">
+                <h2 class="text-2xl md:text-4xl admin-glow-header font-bold">Admin Management</h2>
+                <button onclick="document.getElementById('addAdminModal').style.display='flex'" class="relative overflow-hidden bg-gradient-to-r from-[#8B4513] to-[#b5651d] text-[#FFF1E0] px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(139,69,19,0.4)] transition-all duration-300 group whitespace-nowrap">
+                    <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out -skew-x-12"></span>
+                    <span class="relative z-10 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                        Add Admin
+                    </span>
+                </button>
+            </div>
+            
+            <div class="glass-panel overflow-x-auto animate-fade-in-up delay-100">
+                <table class="w-full min-w-[600px]" id="adminsTable">
+                    <thead>
+                        <tr class="text-left text-[#8B4513]/70 border-b border-[#8B4513]/20 uppercase tracking-widest text-xs">
+                            <th class="pb-4 font-semibold">Email</th>
+                            <th class="pb-4 font-semibold">Role</th>
+                            <th class="pb-4 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminsList" class="divide-y divide-[#8B4513]/10 text-sm">
+                        <!-- Filled by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     <!-- Add Product Modal -->
     <div id="addProductModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" style="perspective: 1200px;">
@@ -418,8 +471,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        import { getFirestore, collection, query, orderBy, getDocs, doc, getDoc, updateDoc, onSnapshot, where, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC8NPDb0efimxJE_WHA3-rbmFdynla6TwI",
@@ -438,33 +491,50 @@
         const pendingEmail = sessionStorage.getItem('adminEmail');
         const pendingPwd = sessionStorage.getItem('adminPwd');
 
+        async function verifyAdminRole(user) {
+            try {
+                const q = query(collection(db, "admins"), where("email", "==", user.email));
+                const snapshot = await getDocs(q);
+                if (snapshot.empty) {
+                    // Not in admins collection
+                    alert("Access Denied: Your email is not registered as an Administrator.");
+                    await signOut(auth);
+                    localStorage.removeItem('isAdminLoggedIn');
+                    window.location.href = 'admin-login.html';
+                } else {
+                    console.log("Admin verified.");
+                    document.getElementById('authOverlay').style.display = 'none';
+                    if (document.getElementById('adminEmailDisplay')) {
+                        document.getElementById('adminEmailDisplay').innerText = user.email;
+                    }
+                    loadAdminsList(); // Load admins tab data
+                }
+            } catch (e) {
+                console.error("Error verifying admin role:", e);
+                alert("Security Error: Could not verify admin role.");
+                await signOut(auth);
+                window.location.href = 'admin-login.html';
+            }
+        }
+
         if (pendingEmail && pendingPwd) {
-            // Attempt to login using credentials passed from modal
             sessionStorage.removeItem('adminEmail');
             sessionStorage.removeItem('adminPwd');
             
             signInWithEmailAndPassword(auth, pendingEmail, pendingPwd)
                 .then((userCredential) => {
-                    console.log("Admin login successful");
-                    document.getElementById('authOverlay').style.display = 'none';
-                    if (document.getElementById('adminEmailDisplay')) {
-                        document.getElementById('adminEmailDisplay').innerText = userCredential.user.email;
-                    }
+                    verifyAdminRole(userCredential.user);
                 })
                 .catch((error) => {
                     alert('Login Failed: ' + error.code + ' - ' + error.message);
                     window.location.href = 'admin-login.html';
                 });
         } else {
-            // Security Check: Ensure they are authenticated
             onAuthStateChanged(auth, (user) => {
                 if (!user) {
                     window.location.href = 'admin-login.html';
                 } else {
-                    document.getElementById('authOverlay').style.display = 'none';
-                    if (document.getElementById('adminEmailDisplay')) {
-                        document.getElementById('adminEmailDisplay').innerText = user.email;
-                    }
+                    verifyAdminRole(user);
                 }
             });
         }
@@ -1392,9 +1462,87 @@
 
     </script>
 
-    <script type="module" src="auth-state.js"></script>
-</body>
+    <script type="module" src="auth-state.js">        // --- ADMIN MANAGEMENT SYSTEM ---
+        const secondaryApp = initializeApp(firebaseConfig, "SecondaryApp");
+        const secondaryAuth = getAuth(secondaryApp);
+
+        async function loadAdminsList() {
+            try {
+                const snapshot = await getDocs(collection(db, "admins"));
+                const tbody = document.getElementById("adminsList");
+                if(!tbody) return;
+                tbody.innerHTML = '';
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-[#8B4513]/5 transition-colors';
+                    tr.innerHTML = 
+                        <td class="font-bold py-4 pl-2 text-[#3a200d]"></td>
+                        <td class="py-4"><span class="px-2 py-1 bg-[#8B4513]/10 text-[#8B4513] rounded-full text-[10px] font-bold uppercase tracking-widest">Administrator</span></td>
+                        <td class="py-4 text-right pr-2">
+                            <button onclick="removeAdmin('', '')" class="px-3 py-1.5 bg-red-100 text-red-600 rounded text-xs font-bold hover:bg-red-200 transition uppercase tracking-widest shadow-sm">Revoke Access</button>
+                        </td>
+                    ;
+                    tbody.appendChild(tr);
+                });
+            } catch(e) {
+                console.error("Error loading admins:", e);
+            }
+        }
+        window.loadAdminsList = loadAdminsList;
+
+        window.removeAdmin = async function(docId, email) {
+            if(confirm(Are you sure you want to revoke admin access for ?)) {
+                try {
+                    await deleteDoc(doc(db, "admins", docId));
+                    alert(Access revoked for .);
+                    loadAdminsList();
+                } catch(e) {
+                    console.error("Error removing admin:", e);
+                    alert("Failed to remove admin. Check permissions.");
+                }
+            }
+        };
+
+        const addAdminForm = document.getElementById('addAdminForm');
+        if(addAdminForm) {
+            addAdminForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newAdminEmail').value;
+                const pwd = document.getElementById('newAdminPwd').value;
+                const btnText = document.getElementById('addAdminBtnText');
+                const loader = document.getElementById('addAdminLoader');
+                
+                btnText.style.display = 'none';
+                loader.style.display = 'block';
+
+                try {
+                    // Create User in Auth using Secondary App so current admin isn't logged out
+                    await createUserWithEmailAndPassword(secondaryAuth, email, pwd);
+                    
+                    // Add to admins collection
+                    await addDoc(collection(db, "admins"), { email: email, addedAt: new Date() });
+                    
+                    alert(Admin  successfully registered!);
+                    document.getElementById('addAdminModal').style.display = 'none';
+                    addAdminForm.reset();
+                    loadAdminsList();
+                } catch(err) {
+                    console.error("Error adding admin:", err);
+                    alert("Error: " + err.message);
+                } finally {
+                    btnText.style.display = 'block';
+                    loader.style.display = 'none';
+                }
+            });
+        }
+    
 </html>
+
+
+
+
+
 
 
 
