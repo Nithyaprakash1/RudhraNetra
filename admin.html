@@ -503,7 +503,33 @@ window.addEventListener('unhandledrejection', function(event) {
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
+                const auth = getAuth(app);
+
+        // --- CUSTOM TOAST / ALERT OVERRIDE ---
+        window.showAdminToast = function(msg, isError = false) {
+            const toast = document.getElementById('customToast');
+            if(toast) {
+                toast.querySelector('span').innerText = msg;
+                if(isError) {
+                    toast.classList.remove('bg-green-600');
+                    toast.classList.add('bg-red-600');
+                    toast.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                } else {
+                    toast.classList.remove('bg-red-600');
+                    toast.classList.add('bg-green-600');
+                    toast.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>';
+                }
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+            } else {
+                console.log("Toast:", msg);
+            }
+        };
+
+        window.alert = function(msg) {
+            const isError = msg.toLowerCase().includes("error") || msg.toLowerCase().includes("failed") || msg.toLowerCase().includes("denied");
+            window.showAdminToast(msg, isError);
+        };
 
         // --- AUTHENTICATION & SECURITY FLOW ---
 
@@ -1750,6 +1776,7 @@ window.addEventListener('unhandledrejection', function(event) {
 
    
  
+
 
 
 
